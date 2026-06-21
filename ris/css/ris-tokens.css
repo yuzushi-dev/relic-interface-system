@@ -1,0 +1,485 @@
+/* ============================================================================
+   RELIC INTERFACE SYSTEM v2 — ris-tokens.css
+   Token layer: themes (dark default / light) + brands (relic / biohub /
+   vivokey / neutral). Source of truth mirrored in ../tokens/ris.tokens.json.
+
+   Usage:
+     <html data-theme="dark|light" data-brand="relic|biohub|vivokey|neutral">
+     <link rel="stylesheet" href="css/ris-tokens.css">
+     <link rel="stylesheet" href="css/ris.css">
+
+   FONTS:
+     - Archivo       : display / headings / HUD numerics
+     - Archivo        : body, labels, UI text
+     - JetBrains Mono: metadata, telemetry, code, logs
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+/* ----------------------------------------------------------------------------
+   1. PRIMITIVES — theme-independent. Bright accent fills (forensic/archival
+   instrument palette), fonts, scale, spacing, shape, motion. Never reference
+   these in components for *text/border* color — use the contextual tier (2/3).
+   -------------------------------------------------------------------------- */
+:root {
+  /* Accent fills — always bright, pair with --ris-fg-invert text.
+     Forensic-instrument palette: amber-sodium accent, cold precise data colors. */
+  --ris-yellow-fill:  #e6a23c;  /* amber-sodium — active/CTA/pending */
+  --ris-cyan-fill:    #6fb3c9;  /* steel-ice    — data/link/scan     */
+  --ris-red-fill:     #d45565;
+  --ris-green-fill:   #5fae84;
+  --ris-violet-fill:  #8479be;
+  --ris-magenta-fill: #b274c0;  /* orchid — Gumi runtime */
+  --ris-orange-fill:  #d08a4e;
+
+  /* Type families — off-genre grotesk (Archivo), instrument feel */
+  --ris-font-display: 'Archivo', system-ui, sans-serif;
+  --ris-font-body:    'Archivo', system-ui, sans-serif;
+  --ris-font-mono:    'JetBrains Mono', ui-monospace, 'Courier New', monospace;
+
+  /* Type scale (px). Dense UI; 11px floor for hard metadata only. */
+  --ris-text-3xl: 44px;
+  --ris-text-2xl: 32px;
+  --ris-text-xl:  24px;
+  --ris-text-lg:  19px;
+  --ris-text-md:  16px;
+  --ris-text-sm:  14px;
+  --ris-text-xs:  11px;
+
+  --ris-w-reg: 400; --ris-w-med: 500; --ris-w-semi: 600; --ris-w-bold: 700;
+
+  --ris-track-tight: -0.01em;
+  --ris-track-normal: 0;
+  --ris-track-wide:  0.08em;
+  --ris-track-wider: 0.16em;
+  --ris-track-max:   0.28em;
+
+  /* Spacing — 4px base grid */
+  --ris-s1: 4px;  --ris-s2: 8px;  --ris-s3: 12px; --ris-s4: 16px;
+  --ris-s5: 20px; --ris-s6: 24px; --ris-s7: 32px; --ris-s8: 48px;
+
+  /* Shape — hard-edged; corners are CLIPPED, never rounded */
+  --ris-radius:  0px;
+  --ris-clip:    10px;  /* panels */
+  --ris-clip-sm: 6px;   /* chips, inputs, buttons */
+  --ris-clip-lg: 16px;  /* modals, hero panels */
+
+  /* Motion — quick + mechanical, never bouncy */
+  --ris-ease:      cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ris-ease-snap: cubic-bezier(0.16, 1, 0.3, 1);
+  --ris-dur-fast:  90ms;
+  --ris-dur:       160ms;
+
+  /* Layout */
+  --ris-topbar-h:    52px;
+  --ris-rail-w:      64px;
+  --ris-bottomnav-h: 60px;
+  --ris-content-max: 1280px;
+}
+
+/* ----------------------------------------------------------------------------
+   2. THEME: DARK (default) — graphite stack, never pure black.
+   Contextual accents == fills (bright is readable on graphite).
+   -------------------------------------------------------------------------- */
+:root,
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Surfaces */
+  --ris-void:      #060708;   /* deepest backdrop, input wells              */
+  --ris-bg:        #0a0c0e;   /* app background                             */
+  --ris-surface-1: #0f1316;   /* panel base                                 */
+  --ris-surface-2: #141a1e;   /* raised panel / row hover                   */
+  --ris-surface-3: #1b2228;   /* elevated / selected row                    */
+  --ris-surface-4: #232c33;   /* tooltips, popovers, deepest elevation      */
+
+  /* Lines / grid — borders carry the structure, not shadows */
+  --ris-line:        #2a343b;
+  --ris-line-strong: #3b4750;
+  --ris-line-faint:  #1a2126;
+  --ris-scanline:    rgba(255,255,255,0.025);
+
+  /* Text */
+  --ris-fg1: #e6ebe8;
+  --ris-fg2: #aab4b2;
+  --ris-fg3: #98a3a5;   /* metadata — AA-safe on surface-1 */
+  --ris-fg4: #4a555b;   /* disabled / placeholder only     */
+  --ris-fg-invert: #07090a;
+  --ris-on-accent: #07090a;  /* ink ON bright accent fills — dark in BOTH themes (fills stay bright) */
+
+  /* Contextual accents (text/border/icon safe on this theme) */
+  --ris-yellow:  var(--ris-yellow-fill);
+  --ris-cyan:    var(--ris-cyan-fill);
+  --ris-red:     #da6171;  /* +L vs fill: #d45565 fails AA on surface-3 (4.5:1 ok bg..s2) */
+  --ris-green:   var(--ris-green-fill);
+  --ris-violet:  #938ac8;  /* +L vs fill: #8479be fails AA on surface-3 */
+  --ris-magenta: var(--ris-magenta-fill);
+  --ris-orange:  var(--ris-orange-fill);
+
+  --ris-yellow-dim:  #8f6425;
+  --ris-cyan-dim:    #456f7d;
+  --ris-red-dim:     #83353f;
+  --ris-green-dim:   #3b6c52;
+  --ris-violet-dim:  #524b76;
+  --ris-magenta-dim: #6e4877;
+  --ris-orange-dim:  #815630;
+
+  /* Translucent fills (-glow) and borders (-line) — derived from new bases */
+  --ris-yellow-glow:  rgba(230,162,60,0.16);
+  --ris-cyan-glow:    rgba(111,179,201,0.13);
+  --ris-red-glow:     rgba(212,85,101,0.16);
+  --ris-green-glow:   rgba(95,174,132,0.13);
+  --ris-violet-glow:  rgba(132,121,190,0.14);
+  --ris-magenta-glow: rgba(178,116,192,0.14);
+  --ris-orange-glow:  rgba(208,138,78,0.14);
+
+  --ris-yellow-line:  rgba(230,162,60,0.45);
+  --ris-cyan-line:    rgba(111,179,201,0.45);
+  --ris-red-line:     rgba(212,85,101,0.50);
+  --ris-green-line:   rgba(95,174,132,0.42);
+  --ris-violet-line:  rgba(132,121,190,0.45);
+  --ris-magenta-line: rgba(178,116,192,0.45);
+  --ris-orange-line:  rgba(208,138,78,0.45);
+
+  /* Elevation = border + glow, not soft shadows */
+  --ris-elev-1:   0 0 0 1px var(--ris-line);
+  --ris-elev-2:   0 0 0 1px var(--ris-line-strong), 0 8px 24px rgba(0,0,0,0.55);
+  --ris-elev-pop: 0 0 0 1px var(--ris-line-strong), 0 12px 40px rgba(0,0,0,0.7);
+}
+
+/* ----------------------------------------------------------------------------
+   3. THEME: LIGHT — cold blue-grey paper. Same structure-by-border logic.
+   Contextual accents drop to ink values (AA on light surfaces);
+   fills stay bright (CTA giallo resta giallo).
+   -------------------------------------------------------------------------- */
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --ris-void:      #d9dfe3;
+  --ris-bg:        #e9edef;
+  --ris-surface-1: #f4f6f7;
+  --ris-surface-2: #fafbfc;
+  --ris-surface-3: #ffffff;
+  --ris-surface-4: #ffffff;
+
+  --ris-line:        #c3ccd2;
+  --ris-line-strong: #9aa7b0;
+  --ris-line-faint:  #dde3e7;
+  --ris-scanline:    rgba(10,20,26,0.028);
+
+  --ris-fg1: #11181c;
+  --ris-fg2: #3d4a52;
+  --ris-fg3: #5d6b74;
+  --ris-fg4: #97a4ad;
+  --ris-fg-invert: #f6f8f8;
+
+  /* Ink accents — every value ≥4.5:1 on bg, surface-1 and white (WCAG AA) */
+  --ris-yellow:  #8a5a12;
+  --ris-cyan:    #216270;
+  --ris-red:     #b52f3d;
+  --ris-green:   #1f6e47;
+  --ris-violet:  #534a9e;
+  --ris-magenta: #8a3f9a;
+  --ris-orange:  #925312;
+
+  --ris-yellow-dim:  #a06a18;
+  --ris-cyan-dim:    #2c7a8a;
+  --ris-red-dim:     #c64351;
+  --ris-green-dim:   #2a8559;
+  --ris-violet-dim:  #6359b4;
+  --ris-magenta-dim: #a14fb0;
+  --ris-orange-dim:  #ab6418;
+
+  --ris-yellow-glow:  rgba(230,162,60,0.30);
+  --ris-cyan-glow:    rgba(111,179,201,0.16);
+  --ris-red-glow:     rgba(212,85,101,0.10);
+  --ris-green-glow:   rgba(95,174,132,0.16);
+  --ris-violet-glow:  rgba(132,121,190,0.12);
+  --ris-magenta-glow: rgba(178,116,192,0.12);
+  --ris-orange-glow:  rgba(208,138,78,0.16);
+
+  --ris-yellow-line:  rgba(138,90,18,0.55);
+  --ris-cyan-line:    rgba(33,98,112,0.50);
+  --ris-red-line:     rgba(181,47,61,0.50);
+  --ris-green-line:   rgba(31,110,71,0.50);
+  --ris-violet-line:  rgba(83,74,158,0.50);
+  --ris-magenta-line: rgba(138,63,154,0.50);
+  --ris-orange-line:  rgba(146,83,18,0.50);
+
+  --ris-elev-1:   0 0 0 1px var(--ris-line);
+  --ris-elev-2:   0 0 0 1px var(--ris-line-strong), 0 8px 24px rgba(20,32,40,0.14);
+  --ris-elev-pop: 0 0 0 1px var(--ris-line-strong), 0 12px 40px rgba(20,32,40,0.20);
+}
+
+/* ----------------------------------------------------------------------------
+   4. SEMANTIC ROLES — theme-resolved, brand-independent. Status is NEVER
+   color-only: always pair with a label or icon.
+   -------------------------------------------------------------------------- */
+:root {
+  --ris-link:       var(--ris-cyan);
+  --ris-danger:     var(--ris-red);
+  --ris-warning:    var(--ris-yellow);
+  --ris-success:    var(--ris-green);
+  --ris-info:       var(--ris-cyan);
+  --ris-focus-ring: var(--ris-cyan);
+
+  /* Stream taxonomy (Relic research governance) */
+  --ris-stream-evidence:   var(--ris-cyan);
+  --ris-stream-inference:  var(--ris-violet);
+  --ris-stream-pending:    var(--ris-yellow);
+  --ris-stream-approved:   var(--ris-green);
+  --ris-stream-blocked:    var(--ris-red);
+  --ris-stream-gumi:       var(--ris-magenta);
+  --ris-stream-runtime:    var(--ris-cyan-dim);
+  --ris-stream-correction: var(--ris-orange);
+}
+
+/* ----------------------------------------------------------------------------
+   5. BRAND LAYER — sets the accent pair only; semantics never change.
+     relic   (default) yellow / cyan   — workbench, command
+     biohub            cyan   / green  — biofeedback, data
+     vivokey           red    / yellow — auth, possession factor
+     neutral           violet / cyan   — general use
+   -------------------------------------------------------------------------- */
+:root,
+:root[data-brand="relic"] {
+  --ris-accent:       var(--ris-yellow);
+  --ris-accent-dim:   var(--ris-yellow-dim);
+  --ris-accent-glow:  var(--ris-yellow-glow);
+  --ris-accent-line:  var(--ris-yellow-line);
+  --ris-accent-fill:  var(--ris-yellow-fill);
+  --ris-accent-2:      var(--ris-cyan);
+  --ris-accent-2-glow: var(--ris-cyan-glow);
+  --ris-accent-2-line: var(--ris-cyan-line);
+}
+:root[data-brand="biohub"] {
+  --ris-accent:       var(--ris-cyan);
+  --ris-accent-dim:   var(--ris-cyan-dim);
+  --ris-accent-glow:  var(--ris-cyan-glow);
+  --ris-accent-line:  var(--ris-cyan-line);
+  --ris-accent-fill:  var(--ris-cyan-fill);
+  --ris-accent-2:      var(--ris-green);
+  --ris-accent-2-glow: var(--ris-green-glow);
+  --ris-accent-2-line: var(--ris-green-line);
+}
+:root[data-brand="vivokey"] {
+  --ris-accent:       var(--ris-red);
+  --ris-accent-dim:   var(--ris-red-dim);
+  --ris-accent-glow:  var(--ris-red-glow);
+  --ris-accent-line:  var(--ris-red-line);
+  --ris-accent-fill:  var(--ris-red-fill);
+  --ris-accent-2:      var(--ris-yellow);
+  --ris-accent-2-glow: var(--ris-yellow-glow);
+  --ris-accent-2-line: var(--ris-yellow-line);
+}
+:root[data-brand="neutral"] {
+  --ris-accent:       var(--ris-violet);
+  --ris-accent-dim:   var(--ris-violet-dim);
+  --ris-accent-glow:  var(--ris-violet-glow);
+  --ris-accent-line:  var(--ris-violet-line);
+  --ris-accent-fill:  var(--ris-violet-fill);
+  --ris-accent-2:      var(--ris-cyan);
+  --ris-accent-2-glow: var(--ris-cyan-glow);
+  --ris-accent-2-line: var(--ris-cyan-line);
+}
+
+/* ----------------------------------------------------------------------------
+   5b. CASE-CONTEXT SKINS — full skins for evidence-handling contexts. Oltre
+   alla coppia accent tingono anche superfici e linee (solo in dark; in light
+   cambiano solo gli accent ink). Identità forensi/archivistiche (le chiavi
+   data-brand restano stabili per compat con i consumer):
+     arasaka  → "sealed" : dossier sigillato, rosso evidenziario su grafite
+                fredda, secondario steel-ice (catena di custodia)
+     militech → "field"  : raccolta sul campo, ambra-sodio su antracite calda,
+                secondario oliva (annotazione)
+     edgerunners → "archive" : archivio notturno, orchidea su grafite porpora,
+                secondario steel-ice (cross-reference)
+   -------------------------------------------------------------------------- */
+
+/* ── SEALED (arasaka key) ── */
+:root[data-brand="arasaka"] {
+  --ris-accent:       #cf5e6b;
+  --ris-accent-dim:   #83353f;
+  --ris-accent-glow:  rgba(212,85,101,0.16);
+  --ris-accent-line:  rgba(207,94,107,0.50);
+  --ris-accent-fill:  #d45565;
+  --ris-accent-2:      #6fb3c9;
+  --ris-accent-2-glow: rgba(111,179,201,0.13);
+  --ris-accent-2-line: rgba(111,179,201,0.45);
+}
+:root[data-brand="arasaka"]:not([data-theme="light"]) {
+  --ris-void: #070608;       --ris-bg: #0b090c;
+  --ris-surface-1: #120e12;  --ris-surface-2: #181219;
+  --ris-surface-3: #1f1820;  --ris-surface-4: #271f29;
+  --ris-line: #322a34;       --ris-line-strong: #463a48;
+  --ris-line-faint: #1c161d;
+}
+:root[data-brand="arasaka"][data-theme="light"] {
+  --ris-accent:      #b52f3d;
+  --ris-accent-line: rgba(181,47,61,0.50);
+  --ris-accent-glow: rgba(212,85,101,0.10);
+  --ris-accent-2:      #216270;
+  --ris-accent-2-line: rgba(33,98,112,0.50);
+  --ris-accent-2-glow: rgba(111,179,201,0.12);
+}
+
+/* ── FIELD (militech key) ── */
+:root[data-brand="militech"] {
+  --ris-accent:       #d99a4a;
+  --ris-accent-dim:   #8a5a12;
+  --ris-accent-glow:  rgba(217,154,74,0.15);
+  --ris-accent-line:  rgba(217,154,74,0.48);
+  --ris-accent-fill:  #d99a4a;
+  --ris-accent-2:      #9fae6b;
+  --ris-accent-2-glow: rgba(159,174,107,0.14);
+  --ris-accent-2-line: rgba(159,174,107,0.45);
+}
+:root[data-brand="militech"]:not([data-theme="light"]) {
+  --ris-void: #080706;       --ris-bg: #0c0b09;
+  --ris-surface-1: #14120e;  --ris-surface-2: #1a1713;
+  --ris-surface-3: #221e18;  --ris-surface-4: #2b2620;
+  --ris-line: #38322a;       --ris-line-strong: #4c4436;
+  --ris-line-faint: #1e1a15;
+}
+:root[data-brand="militech"][data-theme="light"] {
+  --ris-accent:      #8a5a12;
+  --ris-accent-line: rgba(138,90,18,0.55);
+  --ris-accent-glow: rgba(217,154,74,0.22);
+  --ris-accent-2:      #586327;
+  --ris-accent-2-line: rgba(88,99,39,0.50);
+  --ris-accent-2-glow: rgba(159,174,107,0.20);
+}
+
+/* ── ARCHIVE (edgerunners key) ── */
+:root[data-brand="edgerunners"] {
+  --ris-accent:       #be7ecf;
+  --ris-accent-dim:   #6e4877;
+  --ris-accent-glow:  rgba(178,116,192,0.16);
+  --ris-accent-line:  rgba(190,126,207,0.50);
+  --ris-accent-fill:  #b274c0;
+  --ris-accent-2:      var(--ris-cyan);
+  --ris-accent-2-glow: var(--ris-cyan-glow);
+  --ris-accent-2-line: var(--ris-cyan-line);
+}
+:root[data-brand="edgerunners"]:not([data-theme="light"]) {
+  --ris-void: #080612;       --ris-bg: #0c0a14;
+  --ris-surface-1: #130f1e;  --ris-surface-2: #181327;
+  --ris-surface-3: #201a33;  --ris-surface-4: #291f40;
+  --ris-line: #352b52;       --ris-line-strong: #4a3d6e;
+  --ris-line-faint: #1d1730;
+}
+:root[data-brand="edgerunners"][data-theme="light"] {
+  --ris-accent:      #8a3f9a;
+  --ris-accent-line: rgba(138,63,154,0.50);
+  --ris-accent-glow: rgba(178,116,192,0.12);
+}
+
+/* ----------------------------------------------------------------------------
+   6. GLOWS that depend on accent (must come after brand layer).
+   Glow is an EXCEPTION, not a default. Components signal state with contrast +
+   border weight; these shadows are reserved for opt-in FX utilities and the
+   single intentional --ris-live path (genuinely critical / live telemetry).
+   -------------------------------------------------------------------------- */
+:root {
+  --ris-glow-accent: 0 0 0 1px var(--ris-accent-line), 0 0 18px var(--ris-accent-glow);
+  --ris-glow-cyan:   0 0 0 1px var(--ris-cyan-line),   0 0 18px var(--ris-cyan-glow);
+  --ris-glow-red:    0 0 0 1px var(--ris-red-line),    0 0 18px var(--ris-red-glow);
+
+  /* The ONE sanctioned glow: a live/critical state signal (e.g. recording,
+     active acquisition). Use sparingly — this is the only default-CSS glow. */
+  --ris-live: 0 0 0 1px var(--ris-red-line), 0 0 14px var(--ris-red-glow);
+}
+
+/* ----------------------------------------------------------------------------
+   7. DEPRECATED ALIASES (v1 compat) — --ris-amber* lives on as yellow.
+   -------------------------------------------------------------------------- */
+:root {
+  --ris-amber:      var(--ris-yellow);
+  --ris-amber-dim:  var(--ris-yellow-dim);
+  --ris-amber-glow: var(--ris-yellow-glow);
+  --ris-amber-line: var(--ris-yellow-line);
+  --ris-glow-amber: var(--ris-glow-accent);
+}
+
+/* ----------------------------------------------------------------------------
+   8. SEMANTIC TYPE CLASSES
+   -------------------------------------------------------------------------- */
+.ris-hero {
+  font-family: var(--ris-font-display);
+  font-size: var(--ris-text-3xl);
+  font-weight: var(--ris-w-bold);
+  line-height: 1.0;
+  letter-spacing: var(--ris-track-tight);
+  color: var(--ris-fg1);
+  text-transform: uppercase;
+}
+.ris-h1 {
+  font-family: var(--ris-font-display);
+  font-size: var(--ris-text-2xl);
+  font-weight: var(--ris-w-bold);
+  line-height: 1.05;
+  letter-spacing: var(--ris-track-tight);
+  color: var(--ris-fg1);
+  text-transform: uppercase;
+}
+.ris-h2 {
+  font-family: var(--ris-font-display);
+  font-size: var(--ris-text-xl);
+  font-weight: var(--ris-w-semi);
+  line-height: 1.1;
+  color: var(--ris-fg1);
+  text-transform: uppercase;
+}
+.ris-h3 {
+  font-family: var(--ris-font-display);
+  font-size: var(--ris-text-lg);
+  font-weight: var(--ris-w-semi);
+  line-height: 1.15;
+  color: var(--ris-fg1);
+}
+.ris-body {
+  font-family: var(--ris-font-body);
+  font-size: var(--ris-text-md);
+  font-weight: var(--ris-w-med);
+  line-height: 1.55;
+  letter-spacing: 0.005em;
+  color: var(--ris-fg2);
+}
+.ris-small {
+  font-family: var(--ris-font-body);
+  font-size: var(--ris-text-sm);
+  font-weight: var(--ris-w-med);
+  line-height: 1.5;
+  color: var(--ris-fg3);
+}
+.ris-label {
+  font-family: var(--ris-font-body);
+  font-size: var(--ris-text-xs);
+  font-weight: var(--ris-w-semi);
+  line-height: 1;
+  letter-spacing: var(--ris-track-wider);
+  text-transform: uppercase;
+  color: var(--ris-fg3);
+}
+.ris-eyebrow {
+  font-family: var(--ris-font-mono);
+  font-size: var(--ris-text-xs);
+  font-weight: var(--ris-w-med);
+  letter-spacing: var(--ris-track-max);
+  text-transform: uppercase;
+  color: var(--ris-fg3);
+}
+.ris-mono {
+  font-family: var(--ris-font-mono);
+  font-size: var(--ris-text-sm);
+  font-weight: var(--ris-w-med);
+  color: var(--ris-fg2);
+  font-variant-numeric: tabular-nums;
+}
+.ris-numeric {
+  font-family: var(--ris-font-display);
+  font-weight: var(--ris-w-bold);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--ris-track-tight);
+  color: var(--ris-fg1);
+}

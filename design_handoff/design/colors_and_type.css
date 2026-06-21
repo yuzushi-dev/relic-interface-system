@@ -1,0 +1,263 @@
+/* ============================================================================
+   RELIC INTERFACE SYSTEM — colors_and_type.css
+   Foundational color + type tokens for the Relic cyberpunk in-game UI system.
+   Load this file, then @import the fonts (or use the Google Fonts <link> below).
+
+   FONTS (loaded via Google Fonts CDN — see /fonts/README for offline notes):
+     - Chakra Petch  : display / headings / HUD numerics (angular, technical)
+     - Rajdhani      : body, labels, UI text (condensed, readable, HUD-like)
+     - JetBrains Mono: metadata, telemetry, code, logs (mono)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  /* ---------------------------------------------------------------------------
+     COLOR — BASE / SURFACES
+     Near-black graphite stack. Surfaces step up in lightness; never pure black.
+     --------------------------------------------------------------------------- */
+  --ris-void:        #060708;   /* deepest backdrop, behind everything        */
+  --ris-bg:          #0a0c0e;   /* app background                              */
+  --ris-surface-1:   #0f1316;   /* panel base                                 */
+  --ris-surface-2:   #141a1e;   /* raised panel / row hover                   */
+  --ris-surface-3:   #1b2228;   /* elevated / selected row                    */
+  --ris-surface-4:   #232c33;   /* tooltips, popovers, deepest elevation      */
+
+  /* ---------------------------------------------------------------------------
+     COLOR — BORDERS / LINES / GRID
+     Thin, hard, mostly cool grey. Borders carry the structure, not shadows.
+     --------------------------------------------------------------------------- */
+  --ris-line:        #2a343b;   /* default 1px hairline border                */
+  --ris-line-strong: #3b4750;   /* emphasized border / divider                */
+  --ris-line-faint:  #1a2126;   /* grid overlay, subtle separators            */
+  --ris-scanline:    rgba(255,255,255,0.025); /* scanline texture stripe      */
+
+  /* ---------------------------------------------------------------------------
+     COLOR — TEXT
+     Muted off-white primary; desaturated greys step down for hierarchy.
+     --------------------------------------------------------------------------- */
+  --ris-fg1:         #e6ebe8;   /* primary text                               */
+  --ris-fg2:         #aab4b2;   /* secondary text                             */
+  --ris-fg3:         #717d82;   /* tertiary / metadata / captions             */
+  --ris-fg4:         #4a555b;   /* disabled / placeholder / faint             */
+  --ris-fg-invert:   #07090a;   /* text on bright accent fills                */
+
+  /* ---------------------------------------------------------------------------
+     COLOR — ACCENTS  (use with restraint — these mean something)
+     --------------------------------------------------------------------------- */
+  /* AMBER / ACID — active selection, primary CTA, "you are here", highlights  */
+  --ris-amber:       #f2e205;
+  --ris-amber-dim:   #b3a906;
+  --ris-amber-glow:  rgba(242,226,5,0.18);
+  --ris-amber-line:  rgba(242,226,5,0.45);
+
+  /* CYAN / ELECTRIC — data, links, scans, secondary highlight, sync           */
+  --ris-cyan:        #16e0e0;
+  --ris-cyan-dim:    #0e9ea0;
+  --ris-cyan-glow:   rgba(22,224,224,0.16);
+  --ris-cyan-line:   rgba(22,224,224,0.45);
+
+  /* RED / DANGER — errors, destructive, combat, threat, corrupted             */
+  --ris-red:         #ff2d3c;
+  --ris-red-dim:     #b21a26;
+  --ris-red-glow:    rgba(255,45,60,0.16);
+  --ris-red-line:    rgba(255,45,60,0.45);
+
+  /* GREEN / ONLINE — success, online, encrypted-OK, low threat                */
+  --ris-green:       #2fe48a;
+  --ris-green-dim:   #1a9a5c;
+  --ris-green-glow:  rgba(47,228,138,0.14);
+
+  /* VIOLET — rare/legendary tags, special object class (used sparingly)       */
+  --ris-violet:      #b06bff;
+  --ris-violet-dim:  #7a44c0;
+
+  /* MAGENTA / GUMI — the Gumi runtime signature (orchid). Maps repo --gumi.    */
+  --ris-magenta:     #e85ad6;
+  --ris-magenta-dim: #a23a96;
+  --ris-magenta-glow:rgba(232,90,214,0.16);
+  --ris-magenta-line:rgba(232,90,214,0.45);
+
+  /* ORANGE — corrections / runtime adjustments. Maps repo --correction.        */
+  --ris-orange:      #e08a3c;
+  --ris-orange-dim:  #a8631f;
+
+  /* ---------------------------------------------------------------------------
+     SEMANTIC STREAM ROLES — mirror the Relic Researcher Workbench taxonomy
+     (repo: ui/app/globals.css). Each "stream" tags data provenance/governance.
+       evidence  → cyan   (observed data)
+       inference → violet (model-derived)
+       pending   → amber  (queued for review)
+       approved  → green  (validated / consented)
+       blocked   → red    (safety-blocked / failed)
+       gumi      → magenta(Gumi runtime)
+       runtime   → cyan-dim (system runtime)
+       correction→ orange (researcher correction)
+     --------------------------------------------------------------------------- */
+  --ris-stream-evidence:   var(--ris-cyan);
+  --ris-stream-inference:  var(--ris-violet);
+  --ris-stream-pending:    var(--ris-amber);
+  --ris-stream-approved:   var(--ris-green);
+  --ris-stream-blocked:    var(--ris-red);
+  --ris-stream-gumi:       var(--ris-magenta);
+  --ris-stream-runtime:    var(--ris-cyan-dim);
+  --ris-stream-correction: var(--ris-orange);
+
+  /* ---------------------------------------------------------------------------
+     SEMANTIC COLOR ROLES
+     --------------------------------------------------------------------------- */
+  --ris-accent:        var(--ris-amber);     /* primary brand accent           */
+  --ris-link:          var(--ris-cyan);
+  --ris-danger:        var(--ris-red);
+  --ris-warning:       var(--ris-amber);
+  --ris-success:       var(--ris-green);
+  --ris-info:          var(--ris-cyan);
+  --ris-focus-ring:    var(--ris-cyan);
+
+  /* ---------------------------------------------------------------------------
+     TYPE — FAMILIES
+     --------------------------------------------------------------------------- */
+  --ris-font-display: 'Chakra Petch', 'Rajdhani', system-ui, sans-serif;
+  --ris-font-body:    'Rajdhani', 'Chakra Petch', system-ui, sans-serif;
+  --ris-font-mono:    'JetBrains Mono', ui-monospace, 'Courier New', monospace;
+
+  /* ---------------------------------------------------------------------------
+     TYPE — SCALE (px). Dense UI; floor is 11px for hard metadata only.
+     --------------------------------------------------------------------------- */
+  --ris-text-3xl: 44px;   /* hero status / big HUD numerics                    */
+  --ris-text-2xl: 32px;   /* screen title                                     */
+  --ris-text-xl:  24px;   /* panel header                                     */
+  --ris-text-lg:  19px;   /* card title / section head                        */
+  --ris-text-md:  16px;   /* body / default UI                                */
+  --ris-text-sm:  14px;   /* secondary / dense rows                           */
+  --ris-text-xs:  11px;   /* labels, chips, telemetry                         */
+
+  /* TYPE — WEIGHTS */
+  --ris-w-reg:    400;
+  --ris-w-med:    500;
+  --ris-w-semi:   600;
+  --ris-w-bold:   700;
+
+  /* TYPE — TRACKING (letter-spacing). Uppercase labels run wide.              */
+  --ris-track-tight:  -0.01em;
+  --ris-track-normal: 0;
+  --ris-track-wide:   0.08em;
+  --ris-track-wider:  0.16em;   /* small uppercase labels / chips             */
+  --ris-track-max:    0.28em;   /* tiny eyebrow / system tags                 */
+
+  /* ---------------------------------------------------------------------------
+     SPACING (4px base grid) + RADII + ELEVATION
+     --------------------------------------------------------------------------- */
+  --ris-s1: 4px;   --ris-s2: 8px;   --ris-s3: 12px;  --ris-s4: 16px;
+  --ris-s5: 20px;  --ris-s6: 24px;  --ris-s7: 32px;  --ris-s8: 48px;
+
+  --ris-radius: 0px;          /* the system is hard-edged; corners are CLIPPED */
+  --ris-clip:   10px;         /* default corner-cut size for angular panels    */
+  --ris-clip-sm: 6px;
+  --ris-clip-lg: 16px;
+
+  /* Elevation is carried by border + faint glow, NOT soft drop shadows.       */
+  --ris-elev-1: 0 0 0 1px var(--ris-line);
+  --ris-elev-2: 0 0 0 1px var(--ris-line-strong), 0 8px 24px rgba(0,0,0,0.55);
+  --ris-elev-pop: 0 0 0 1px var(--ris-line-strong), 0 12px 40px rgba(0,0,0,0.7);
+  --ris-glow-amber: 0 0 0 1px var(--ris-amber-line), 0 0 18px var(--ris-amber-glow);
+  --ris-glow-cyan:  0 0 0 1px var(--ris-cyan-line),  0 0 18px var(--ris-cyan-glow);
+  --ris-glow-red:   0 0 0 1px var(--ris-red-line),   0 0 18px var(--ris-red-glow);
+
+  /* MOTION — quick + mechanical, never bouncy */
+  --ris-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ris-ease-snap: cubic-bezier(0.16, 1, 0.3, 1);
+  --ris-dur-fast: 90ms;
+  --ris-dur:      160ms;
+}
+
+/* ============================================================================
+   SEMANTIC TYPE CLASSES
+   Apply these directly, or copy the rules into component styles.
+   ========================================================================== */
+.ris-hero {
+  font-family: var(--ris-font-display);
+  font-size: var(--ris-text-3xl);
+  font-weight: var(--ris-w-bold);
+  line-height: 1.0;
+  letter-spacing: var(--ris-track-tight);
+  color: var(--ris-fg1);
+  text-transform: uppercase;
+}
+.ris-h1 {
+  font-family: var(--ris-font-display);
+  font-size: var(--ris-text-2xl);
+  font-weight: var(--ris-w-bold);
+  line-height: 1.05;
+  letter-spacing: var(--ris-track-tight);
+  color: var(--ris-fg1);
+  text-transform: uppercase;
+}
+.ris-h2 {
+  font-family: var(--ris-font-display);
+  font-size: var(--ris-text-xl);
+  font-weight: var(--ris-w-semi);
+  line-height: 1.1;
+  letter-spacing: var(--ris-track-normal);
+  color: var(--ris-fg1);
+  text-transform: uppercase;
+}
+.ris-h3 {
+  font-family: var(--ris-font-display);
+  font-size: var(--ris-text-lg);
+  font-weight: var(--ris-w-semi);
+  line-height: 1.15;
+  color: var(--ris-fg1);
+}
+.ris-body {
+  font-family: var(--ris-font-body);
+  font-size: var(--ris-text-md);
+  font-weight: var(--ris-w-med);
+  line-height: 1.55;
+  letter-spacing: 0.005em;
+  color: var(--ris-fg2);
+}
+.ris-small {
+  font-family: var(--ris-font-body);
+  font-size: var(--ris-text-sm);
+  font-weight: var(--ris-w-med);
+  line-height: 1.5;
+  letter-spacing: 0.005em;
+  color: var(--ris-fg3);
+}
+/* Small uppercase label — the workhorse of this system */
+.ris-label {
+  font-family: var(--ris-font-body);
+  font-size: var(--ris-text-xs);
+  font-weight: var(--ris-w-semi);
+  line-height: 1;
+  letter-spacing: var(--ris-track-wider);
+  text-transform: uppercase;
+  color: var(--ris-fg3);
+}
+/* Tiny eyebrow / system tag */
+.ris-eyebrow {
+  font-family: var(--ris-font-mono);
+  font-size: var(--ris-text-xs);
+  font-weight: var(--ris-w-med);
+  letter-spacing: var(--ris-track-max);
+  text-transform: uppercase;
+  color: var(--ris-fg3);
+}
+/* Monospace metadata / telemetry / values */
+.ris-mono {
+  font-family: var(--ris-font-mono);
+  font-size: var(--ris-text-sm);
+  font-weight: var(--ris-w-med);
+  letter-spacing: var(--ris-track-normal);
+  color: var(--ris-fg2);
+  font-variant-numeric: tabular-nums;
+}
+/* Big HUD numeric readout */
+.ris-numeric {
+  font-family: var(--ris-font-display);
+  font-weight: var(--ris-w-bold);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--ris-track-tight);
+  color: var(--ris-fg1);
+}

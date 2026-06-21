@@ -1,0 +1,13 @@
+<svg width="240" height="64" viewBox="0 0 240 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  
+  <g>
+    <path d="M6 8 L44 8 L52 16 L52 56 L14 56 L6 48 Z" fill="#0f1316" stroke="#2a343b" stroke-width="1.5"></path>
+    <path d="M6 8 L44 8 L52 16" fill="none" stroke="#f2e205" stroke-width="1.5"></path>
+    
+    <path d="M18 20 L34 20 L38 24 L38 32 L34 36 L40 44 L33 44 L28 37 L25 37 L25 44 L18 44 Z M25 26 L25 31 L31 31 L31 26 Z" fill="#f2e205"></path>
+    <rect x="14" y="49" width="24" height="2" fill="#16e0e0"></rect>
+  </g>
+  
+  <text x="68" y="32" font-family="&#39;Chakra Petch&#39;, sans-serif" font-size="22" font-weight="700" letter-spacing="2" fill="#e6ebe8">RELIC</text>
+  <text x="68" y="48" font-family="&#39;JetBrains Mono&#39;, monospace" font-size="9" letter-spacing="4.5" fill="#717d82">INTERFACE SYSTEM</text>
+</svg>

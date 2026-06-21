@@ -1,0 +1,105 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "$description": "RIS — Relic Interface System v2. Source of truth mirrored by css/ris-tokens.css and compose/Color.kt. Themes: dark (default), light. Contextual accents are AA-safe (>=4.5:1) on bg/surface of their theme; *-fill accents are always bright and pair with fg-invert text.",
+  "color": {
+    "surface": {
+      "void":     { "$type": "color", "$value": "#060708", "$extensions": { "ris.light": "#d9dfe3" } },
+      "bg":       { "$type": "color", "$value": "#0a0c0e", "$extensions": { "ris.light": "#e9edef" } },
+      "surface1": { "$type": "color", "$value": "#0f1316", "$extensions": { "ris.light": "#f4f6f7" } },
+      "surface2": { "$type": "color", "$value": "#141a1e", "$extensions": { "ris.light": "#fafbfc" } },
+      "surface3": { "$type": "color", "$value": "#1b2228", "$extensions": { "ris.light": "#ffffff" } },
+      "surface4": { "$type": "color", "$value": "#232c33", "$extensions": { "ris.light": "#ffffff" } }
+    },
+    "line": {
+      "default": { "$type": "color", "$value": "#2a343b", "$extensions": { "ris.light": "#c3ccd2" } },
+      "strong":  { "$type": "color", "$value": "#3b4750", "$extensions": { "ris.light": "#9aa7b0" } },
+      "faint":   { "$type": "color", "$value": "#1a2126", "$extensions": { "ris.light": "#dde3e7" } }
+    },
+    "fg": {
+      "fg1": { "$type": "color", "$value": "#e6ebe8", "$extensions": { "ris.light": "#11181c" } },
+      "fg2": { "$type": "color", "$value": "#aab4b2", "$extensions": { "ris.light": "#3d4a52" } },
+      "fg3": { "$type": "color", "$value": "#98a3a5", "$extensions": { "ris.light": "#5d6b74" } },
+      "fg4": { "$type": "color", "$value": "#4a555b", "$extensions": { "ris.light": "#97a4ad" }, "$description": "disabled/placeholder only — below AA by design" },
+      "invert": { "$type": "color", "$value": "#07090a", "$extensions": { "ris.light": "#f6f8f8" } }
+    },
+    "accent-fill": {
+      "$description": "Forensic/archival instrument palette. Theme-independent.",
+      "yellow":  { "$type": "color", "$value": "#e6a23c" },
+      "cyan":    { "$type": "color", "$value": "#6fb3c9" },
+      "red":     { "$type": "color", "$value": "#d45565" },
+      "green":   { "$type": "color", "$value": "#5fae84" },
+      "violet":  { "$type": "color", "$value": "#8479be" },
+      "magenta": { "$type": "color", "$value": "#b274c0" },
+      "orange":  { "$type": "color", "$value": "#d08a4e" }
+    },
+    "accent": {
+      "$description": "Contextual: dark value / light ink value.",
+      "yellow":  { "$type": "color", "$value": "#e6a23c", "$extensions": { "ris.light": "#8a5a12" } },
+      "cyan":    { "$type": "color", "$value": "#6fb3c9", "$extensions": { "ris.light": "#216270" } },
+      "red":     { "$type": "color", "$value": "#da6171", "$extensions": { "ris.light": "#b52f3d" } },
+      "green":   { "$type": "color", "$value": "#5fae84", "$extensions": { "ris.light": "#1f6e47" } },
+      "violet":  { "$type": "color", "$value": "#938ac8", "$extensions": { "ris.light": "#534a9e" } },
+      "magenta": { "$type": "color", "$value": "#b274c0", "$extensions": { "ris.light": "#8a3f9a" } },
+      "orange":  { "$type": "color", "$value": "#d08a4e", "$extensions": { "ris.light": "#925312" } }
+    },
+    "brand": {
+      "$description": "data-brand accent pairs: primary / secondary.",
+      "relic":   { "$type": "color", "$value": "{color.accent.yellow}",  "$extensions": { "ris.secondary": "{color.accent.cyan}" } },
+      "biohub":  { "$type": "color", "$value": "{color.accent.cyan}",    "$extensions": { "ris.secondary": "{color.accent.green}" } },
+      "vivokey": { "$type": "color", "$value": "{color.accent.red}",     "$extensions": { "ris.secondary": "{color.accent.yellow}" } },
+      "neutral": { "$type": "color", "$value": "{color.accent.violet}",  "$extensions": { "ris.secondary": "{color.accent.cyan}" } }
+    },
+    "stream": {
+      "evidence":   { "$type": "color", "$value": "{color.accent.cyan}" },
+      "inference":  { "$type": "color", "$value": "{color.accent.violet}" },
+      "pending":    { "$type": "color", "$value": "{color.accent.yellow}" },
+      "approved":   { "$type": "color", "$value": "{color.accent.green}" },
+      "blocked":    { "$type": "color", "$value": "{color.accent.red}" },
+      "gumi":       { "$type": "color", "$value": "{color.accent.magenta}" },
+      "correction": { "$type": "color", "$value": "{color.accent.orange}" }
+    }
+  },
+  "font": {
+    "display": { "$type": "fontFamily", "$value": ["Archivo", "system-ui", "sans-serif"] },
+    "body":    { "$type": "fontFamily", "$value": ["Archivo", "system-ui", "sans-serif"] },
+    "mono":    { "$type": "fontFamily", "$value": ["JetBrains Mono", "ui-monospace", "monospace"] }
+  },
+  "fontSize": {
+    "3xl": { "$type": "dimension", "$value": "44px" },
+    "2xl": { "$type": "dimension", "$value": "32px" },
+    "xl":  { "$type": "dimension", "$value": "24px" },
+    "lg":  { "$type": "dimension", "$value": "19px" },
+    "md":  { "$type": "dimension", "$value": "16px" },
+    "sm":  { "$type": "dimension", "$value": "14px" },
+    "xs":  { "$type": "dimension", "$value": "11px", "$description": "floor — hard metadata only" }
+  },
+  "space": {
+    "s1": { "$type": "dimension", "$value": "4px" },
+    "s2": { "$type": "dimension", "$value": "8px" },
+    "s3": { "$type": "dimension", "$value": "12px" },
+    "s4": { "$type": "dimension", "$value": "16px" },
+    "s5": { "$type": "dimension", "$value": "20px" },
+    "s6": { "$type": "dimension", "$value": "24px" },
+    "s7": { "$type": "dimension", "$value": "32px" },
+    "s8": { "$type": "dimension", "$value": "48px" }
+  },
+  "shape": {
+    "radius":  { "$type": "dimension", "$value": "0px", "$description": "hard-edged; corners are clipped, never rounded" },
+    "clipSm":  { "$type": "dimension", "$value": "6px" },
+    "clip":    { "$type": "dimension", "$value": "10px" },
+    "clipLg":  { "$type": "dimension", "$value": "16px" }
+  },
+  "motion": {
+    "ease":     { "$type": "cubicBezier", "$value": [0.2, 0.8, 0.2, 1] },
+    "easeSnap": { "$type": "cubicBezier", "$value": [0.16, 1, 0.3, 1] },
+    "durFast":  { "$type": "duration", "$value": "90ms" },
+    "dur":      { "$type": "duration", "$value": "160ms" }
+  },
+  "layout": {
+    "topbarHeight":    { "$type": "dimension", "$value": "52px" },
+    "railWidth":       { "$type": "dimension", "$value": "64px" },
+    "bottomnavHeight": { "$type": "dimension", "$value": "60px" },
+    "contentMax":      { "$type": "dimension", "$value": "1280px" },
+    "breakpointMobile":{ "$type": "dimension", "$value": "768px" }
+  }
+}
