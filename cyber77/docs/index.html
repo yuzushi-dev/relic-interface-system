@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it" data-theme="dark" data-brand="relic">
+<html lang="it" data-theme="dark" data-brand="relic" data-skin="cyber">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="../css/ris-tokens.css">
 <link rel="stylesheet" href="../css/ris.css">
 <link rel="stylesheet" href="../css/ris-fx.css">
+<link rel="stylesheet" href="../css/ris-skin-cyber.css">
 <style>
   /* Specimen-only chrome */
   .spec-shell { max-width: 1180px; margin: 0 auto; padding: 88px 24px 96px; }
@@ -26,8 +27,13 @@
   .type-row { display: flex; align-items: baseline; gap: 18px; padding: 10px 0; border-bottom: 1px solid var(--ris-line-faint); }
   .type-row code { font-family: var(--ris-font-mono); font-size: 10px; color: var(--ris-fg3); width: 110px; flex: 0 0 110px; }
   @media (max-width: 700px) {
-    .ris-topbar .ris-eyebrow { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 30vw; }
+    .ris-topbar { gap: 8px; }
+    .ris-topbar .ris-eyebrow { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 26vw; }
     .ris-topbar .ris-label { display: none; }
+    .ris-topbar > .ris-chip { display: none; }            /* nascondi versione, fai spazio ai controlli */
+    .ris-topbar #brand { width: 92px; }
+    .ris-topbar #skin { font-size: 9px; padding: 4px 7px; }
+    .spec-shell { padding: 72px 14px 84px; }
   }
 </style>
 </head>
@@ -54,8 +60,15 @@
       </optgroup>
     </select>
   </label>
+  <button id="skin" class="ris-btn ris-btn--sm ris-btn--secondary" aria-pressed="true">▞ Skin: Cyber</button>
   <button id="theme" class="ris-btn ris-btn--sm" aria-pressed="false">◐ Tema</button>
 </header>
+
+<!-- Chrome decorativo skin cyber (invisibile quando skin off) -->
+<div class="ris-ruler ris-ruler--left" aria-hidden="true"></div>
+<div class="ris-ruler ris-ruler--right" aria-hidden="true"></div>
+<div class="ris-ticker" aria-hidden="true">00:32 05 54 08 CP · 00:32 05 54 08 CP
+LOAD 0x8D0012:44 · REL 6fed4000</div>
 
 <main id="main" class="spec-shell">
 
@@ -69,6 +82,63 @@
       Conformità WCAG 2.2 AA: contrasti verificati, focus visibile,
       <code class="ris-kbd">prefers-reduced-motion</code>, target ≥24px.
     </p>
+  </section>
+
+  <section class="spec-section">
+    <h2 class="ris-h2">Skin Cyber</h2>
+    <span class="ris-eyebrow">data-skin="cyber" · opt-in · ris-skin-cyber.css caricato per ultimo · toggle in topbar</span>
+    <p class="ris-body" style="max-width:72ch">
+      Riporta il look&amp;feel Cyberpunk 2077 sopra il default forensic senza toccarlo:
+      rosso strutturale, gradiente crimson→nero, scanline + grana, glow su chrome
+      chiave, font display techno (Chakra Petch), chrome dati. Neon temperati per
+      restare WCAG AA. Spegni lo skin per confrontare col default disciplinato.
+    </p>
+    <p class="ris-body" style="max-width:72ch;margin-top:0">
+      <b>Mobile:</b> questo intero specimen è responsive — aprilo sul telefono
+      (o restringi la finestra &lt;768px) e <b>tutti</b> i componenti si
+      riadattano, con la <b>bottomnav</b> al posto della rail. Il bottone qui
+      sotto apre invece un esempio app-shell compatto (contatti).
+    </p>
+    <p class="spec-demo"><a class="ris-btn ris-btn--secondary ris-btn--sm" href="mobile.html" target="_blank" rel="noopener">📱 Esempio app-shell (topbar + bottomnav)</a></p>
+
+    <div class="ris-grid ris-grid--2" style="margin-top:18px">
+      <div class="spec-col" style="max-width:none">
+        <span class="ris-label">List-row · selezione = fill pieno</span>
+        <div>
+          <div class="ris-listrow" data-selected="true">
+            <div class="thumb" aria-hidden="true"></div>
+            <div class="body"><div class="title">Automatic Love — AutoSave-7</div><div class="meta">Northside · Streetkid · Level 12</div></div>
+            <div class="time">15:10</div>
+          </div>
+          <div class="ris-listrow">
+            <div class="thumb" aria-hidden="true"></div>
+            <div class="body"><div class="title">Gig: Hippocratic Oath — AutoSave-6</div><div class="meta">Northside · Streetkid · Level 12</div></div>
+            <div class="time">15:08</div>
+          </div>
+          <div class="ris-listrow">
+            <div class="thumb" aria-hidden="true"></div>
+            <div class="body"><div class="title">Gig: Flight of the Cheetah — AutoSave-4</div><div class="meta">Northside · Streetkid · Level 12</div></div>
+            <div class="time">14:52</div>
+          </div>
+        </div>
+      </div>
+      <div class="spec-col" style="max-width:none">
+        <span class="ris-label">Stat topbar · chrome dati</span>
+        <div class="ris-panel"><div class="ris-panel-body ris-bracket">
+          <div class="spec-demo" style="margin-top:0">
+            <span class="ris-stat"><span class="v">12</span><span class="n">Level</span><span class="ris-segmeter" role="meter" aria-label="Level"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></span>
+            <span class="ris-stat"><span class="v">19</span><span class="n">Street Cred</span><span class="ris-segmeter" role="meter" aria-label="Street Cred"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></span>
+          </div>
+          <p class="ris-serial" style="margin:14px 0 0" aria-hidden="true"><b>PROTOCOL 6520-A44</b> · TRN_TLCAS_8D0095 · TASK_MANAGER_S011S</p>
+          <pre class="ris-hex" aria-hidden="true">0x00 0f 04 0c 10 00 00 00 00 00   00 01 00 00 bf 22 ee dd ee
+0x10 1f 69 05 00 00 00 0f cc 99   dd 00 cc 00 13 03 13 03</pre>
+        </div></div>
+        <div class="spec-demo">
+          <span class="ris-binary" aria-hidden="true">1001 0110 1101 0010</span>
+          <span class="ris-small">↞ stream binario · righello sui bordi schermo · ticker in basso a sinistra</span>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section class="spec-section">
@@ -467,6 +537,14 @@
 
 </main>
 
+<!-- Bottom nav: chrome mobile dell'app-shell (visibile solo <768px via ris.css) -->
+<nav class="ris-bottomnav" aria-label="Navigazione (mobile)">
+  <a class="ris-nav-link" aria-current="page" href="#main"><svg class="ris-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M4 11l8-6 8 6v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg>Home</a>
+  <a class="ris-nav-link" href="#"><svg class="ris-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="12" cy="8" r="3"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>Contatti</a>
+  <a class="ris-nav-link" href="#"><svg class="ris-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2"/></svg>Mappa</a>
+  <a class="ris-nav-link" href="#"><svg class="ris-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M6 4h11a1 1 0 0 1 1 1v15H7a1 1 0 0 1-1-1z"/><path d="M9 4v16"/></svg>Diario</a>
+</nav>
+
 <!-- Modal demo -->
 <div class="ris-modal-backdrop" id="modal" hidden>
   <div class="ris-modal ris-scanlines" role="dialog" aria-modal="true" aria-labelledby="modal-title">
@@ -559,6 +637,13 @@ themeBtn.onclick = () => {
   const light = root.dataset.theme !== 'light';
   root.dataset.theme = light ? 'light' : 'dark';
   themeBtn.setAttribute('aria-pressed', String(light));
+};
+const skinBtn = document.getElementById('skin');
+skinBtn.onclick = () => {
+  const on = root.dataset.skin !== 'cyber';
+  if (on) root.dataset.skin = 'cyber'; else delete root.dataset.skin;
+  skinBtn.setAttribute('aria-pressed', String(on));
+  skinBtn.textContent = on ? '▞ Skin: Cyber' : '▟ Skin: Off';
 };
 document.getElementById('brand').onchange = e => root.dataset.brand = e.target.value;
 

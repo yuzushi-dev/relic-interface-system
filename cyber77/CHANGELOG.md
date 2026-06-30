@@ -1,5 +1,39 @@
 # Changelog — RIS
 
+## 2.5.1 — 2026-06-30
+
+- **Skin `cyber` responsive/mobile**: blocco `@media (max-width:767px)` in
+  `ris-skin-cyber.css` — righello nascosto, ticker sopra la bottomnav,
+  `background-attachment:scroll` (no jank iOS), bottomnav con riga rossa glow +
+  attivo glow (come la topbar), list-row compatta (thumb 56px), `.ris-stat` con
+  solo valore + barra corta. Demo app-shell mobile `docs/mobile.html` (topbar +
+  bottomnav, apribile da telefono) + card gallery `preview/cyber-mobile.html`.
+- **Specimen = preview mobile completa**: aggiunta `.ris-bottomnav` (visibile
+  <768px) a `docs/index.html` → aprendolo sul telefono si vedono **tutti** i
+  componenti riadattati + chrome mobile. Topbar fix anti-overflow su ≤700px
+  (versione nascosta, brand/skin compatti). `mobile.html` resta esempio app-shell.
+
+## 2.5.0 — 2026-06-30
+
+- **Skin `data-skin="cyber"`** (`css/ris-skin-cyber.css`): look&feel Cyberpunk
+  2077 come layer **opt-in**, caricato per ultimo, sopra il default forensic
+  de-slopped senza toccarlo. Togli l'attributo/il `<link>` → torna il default.
+  Solo dark. Contenuto:
+  - Palette neon ri-saturata ma **temperata WCAG AA** su near-black (red `#ff003c`
+    fill / `#ff4d62` testo, cyan `#00e5ff`/`#3df0ff`, green `#00e57e`, yellow
+    `#ffe23a`); **rosso strutturale** (`--ris-line*` rossi); superfici near-black
+    tinte rosso; sfondo gradiente crimson→nero + scanline + grana (layer di
+    background statici, reduced-motion safe).
+  - **Glow di default** su chrome chiave: riga topbar, selezione (fill pieno),
+    bottone primario, brackets. Font display → **Chakra Petch** (techno).
+  - Chrome decorativo opt-in: `.ris-serial` `.ris-hex` `.ris-binary` `.ris-ruler`
+    (tacche bordo) `.ris-ticker` (angolo dati).
+  - Componenti nuovi skin-scoped: `.ris-listrow` (thumb + titolo + meta + ora,
+    selezione fill pieno), `.ris-stat` (LEVEL/STREET CRED topbar, riusa `.ris-segmeter`).
+  - Tooltip `.ris-tip` con bordo giallo; slider/focus con alone.
+- **Specimen**: toggle "Skin: Cyber" in topbar + sezione Skin Cyber. Scelta
+  deliberata documentata in GUIDELINES §7 (eccezione consapevole al de-slop).
+
 ## 2.4.1 — 2026-06-17
 
 - **Fix contrasto `.ris-btn--primary` in light theme**: il testo usava

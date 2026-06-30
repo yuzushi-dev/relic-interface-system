@@ -21,7 +21,8 @@ ris/
 ├── css/
 │   ├── ris-tokens.css   ← token: temi dark/light + brand + classi tipografiche
 │   ├── ris.css          ← componenti + layout chrome + a11y baseline
-│   └── ris-fx.css       ← FX opzionali: glitch, CRT, noise, boot reveal, glow
+│   ├── ris-fx.css       ← FX opzionali: boot reveal, glow, caret, holo
+│   └── ris-skin-cyber.css ← skin opt-in CP2077 (data-skin="cyber", load LAST)
 ├── js/
 │   └── ris-charts.js    ← grafici SVG zero-dipendenze (line/bars/spark/gauge/EEG)
 ├── icons/
@@ -50,6 +51,8 @@ ris/
 
 - Tema: `data-theme="dark|light"` (default dark).
 - Brand: `data-brand="relic|biohub|vivokey|neutral"` (default relic).
+- Skin CP2077 (opt-in): `data-skin="cyber"` + `<link href="css/ris-skin-cyber.css">`
+  **per ultimo**. Solo dark, reversibile. Vedi GUIDELINES §8.
 - Specimen: `cd ris && python3 -m http.server 8080` → `http://localhost:8080/docs/`.
 
 ## Android / Compose

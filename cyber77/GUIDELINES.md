@@ -123,3 +123,22 @@ orchidea su grafite porpora). Nessuna skin abbonda di FX.
 5. Documentalo in `COMPONENTS.md` (anatomia, ARIA, do/don't) e aggiungilo allo
    specimen.
 6. Versiona: bump in `CHANGELOG.md`.
+
+## 8. Skin `cyber` — eccezione consapevole al de-slop
+
+`data-skin="cyber"` + `css/ris-skin-cyber.css` (caricato **per ultimo**) riporta
+il look&feel Cyberpunk 2077 come **layer opt-in**, sopra il default forensic
+de-slopped, senza modificarlo. È una scelta esplicita: dove §1 dice "niente neon
+saturo / graphite mai nero / glow eccezione", lo skin fa l'opposto **di
+proposito**. La disciplina non sparisce, si sposta:
+
+- **AA resta vincolante** (§4): i neon sono temperati per ≥4.5:1 su near-black
+  (es. red testo `#ff4d62`, non `#ff003c`); lo stato resta con label/icona.
+- **Solo dark**: lo skin non si applica in `data-theme="light"`.
+- **Reversibile**: tutto è scoped a `[data-skin="cyber"]`; togli l'attributo e
+  il sistema torna al default. Brand e light intatti.
+- **Texture statiche**: scanline/grana sono layer di background, non animazioni →
+  reduced-motion safe per natura.
+
+Quando usarlo: prodotti/viste che vogliono dichiaratamente l'estetica di genere.
+Quando no: tutto ciò che deve leggere come strumento sobrio → resta sul default.

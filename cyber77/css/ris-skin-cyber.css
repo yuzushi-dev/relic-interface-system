@@ -1,0 +1,341 @@
+/* ============================================================================
+   RELIC INTERFACE SYSTEM v2 — ris-skin-cyber.css
+   Skin OPT-IN "cyber" — riporta il look&feel Cyberpunk 2077 sopra il default
+   forensic de-slopped, SENZA toccarlo. Load LAST:
+
+     <html data-theme="dark" data-brand="vivokey" data-skin="cyber">
+       <link rel="stylesheet" href="css/ris-tokens.css">
+       <link rel="stylesheet" href="css/ris.css">
+       <link rel="stylesheet" href="css/ris-fx.css">
+       <link rel="stylesheet" href="css/ris-skin-cyber.css">  <!-- ultimo -->
+
+   L'attivazione e' `data-skin="cyber"` su <html>. Togli l'attributo (o il
+   <link>) e torna il default disciplinato: zero regressioni, multi-brand e
+   light intatti. Tutto qui dentro e' scoped a [data-skin="cyber"].
+
+   Disciplina mantenuta (scelta utente: "Mantieni AA"):
+     · neon ri-saturati ma temperati per WCAG 2.2 AA su near-black
+     · glow acceso di DEFAULT solo su chrome chiave (topbar/selezione/primario)
+     · stato mai solo colore: i componenti base conservano label/icona
+     · ogni texture e' STATICA (niente motion) → reduced-motion safe per natura
+
+   Riferimento: CP2077 HUD — rosso strutturale, cyan/verde/ambra accent,
+   gradiente crimson→nero, scanline+grana, chrome dati (serial/hex/binary).
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap');
+
+/* ----------------------------------------------------------------------------
+   1. TOKEN OVERRIDE — palette CP2077 AA-temperata + rosso strutturale.
+   Solo dark (lo skin e' un look notturno; in light non si applica).
+   -------------------------------------------------------------------------- */
+:root[data-skin="cyber"]:not([data-theme="light"]) {
+  /* Superfici: near-black tinto rosso, mai piatto */
+  --ris-void:      #070406;
+  --ris-bg:        #0a0608;
+  --ris-surface-1: #120a0d;
+  --ris-surface-2: #1a0e12;
+  --ris-surface-3: #241318;
+  --ris-surface-4: #2c171d;
+
+  /* LINEE = struttura, e la struttura e' ROSSA (firma CP2077) */
+  --ris-line:        #6e2d38;
+  --ris-line-strong: #9a3a48;
+  --ris-line-faint:  #3a1820;
+  --ris-scanline:    rgba(255,40,70,0.05);
+
+  /* Testo: bianco freddo leggermente caldo */
+  --ris-fg1: #f3eef0;
+  --ris-fg2: #c8b9bd;
+  --ris-fg3: #b09aa0;   /* AA su surface-1 */
+  --ris-fg4: #6a5258;
+  --ris-on-accent: #0a0608;
+
+  /* Accenti neon — fill BRIGHT, contestuale (-X) AA su near-black.
+     red/cyan/green/yellow verificati ≥4.5:1 su bg/surface-1. */
+  --ris-red:     #ff4d62;   --ris-red-fill:     #ff003c;
+  --ris-cyan:    #3df0ff;   --ris-cyan-fill:    #00e5ff;
+  --ris-green:   #34f08c;   --ris-green-fill:   #00e57e;
+  --ris-yellow:  #ffd83a;   --ris-yellow-fill:  #ffe23a;
+  --ris-violet:  #b08aff;   --ris-violet-fill:  #9a5cff;
+  --ris-magenta: #ff5fd2;   --ris-magenta-fill: #ff42c8;
+  --ris-orange:  #ff9f4a;   --ris-orange-fill:  #ff9230;
+
+  --ris-red-dim:     #8f1f30; --ris-cyan-dim:   #1f8a99;
+  --ris-green-dim:   #1f8a52; --ris-yellow-dim: #9a8016;
+  --ris-violet-dim:  #5a3f9a; --ris-magenta-dim:#9a2f7f; --ris-orange-dim: #9a5616;
+
+  /* Glow piu' presenti (-glow fill, -line bordi) */
+  --ris-red-glow:     rgba(255,0,60,0.22);   --ris-red-line:     rgba(255,0,60,0.55);
+  --ris-cyan-glow:    rgba(0,229,255,0.18);  --ris-cyan-line:    rgba(0,229,255,0.50);
+  --ris-green-glow:   rgba(0,229,126,0.16);  --ris-green-line:   rgba(0,229,126,0.48);
+  --ris-yellow-glow:  rgba(255,226,58,0.18); --ris-yellow-line:  rgba(255,226,58,0.50);
+  --ris-violet-glow:  rgba(154,92,255,0.16); --ris-violet-line:  rgba(154,92,255,0.48);
+  --ris-magenta-glow: rgba(255,66,200,0.16); --ris-magenta-line: rgba(255,66,200,0.48);
+  --ris-orange-glow:  rgba(255,146,48,0.16); --ris-orange-line:  rgba(255,146,48,0.48);
+
+  /* Tipografia display → techno largo (body/mono invariati: leggibilita') */
+  --ris-font-display: 'Chakra Petch', 'Rajdhani', system-ui, sans-serif;
+
+  /* Glow piu' ampio: lo skin alza il raggio dei token glow */
+  --ris-glow-accent: 0 0 0 1px var(--ris-accent-line), 0 0 22px var(--ris-accent-glow);
+  --ris-glow-cyan:   0 0 0 1px var(--ris-cyan-line),   0 0 22px var(--ris-cyan-glow);
+  --ris-glow-red:    0 0 0 1px var(--ris-red-line),    0 0 22px var(--ris-red-glow);
+  --ris-live:        0 0 0 1px var(--ris-red-line),    0 0 16px var(--ris-red-glow);
+}
+
+/* ----------------------------------------------------------------------------
+   2. SFONDO — gradiente crimson→nero + scanline + grana, tutto come layer di
+   background (niente overlay che copre il contenuto, niente stacking issue,
+   niente motion). Sovrascrive .ris-grid-bg dentro lo skin.
+   -------------------------------------------------------------------------- */
+[data-skin="cyber"] body.ris,
+[data-skin="cyber"] body.ris.ris-grid-bg {
+  background-color: var(--ris-bg);
+  background-image:
+    /* grana fine desaturata */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E"),
+    /* scanline orizzontali */
+    repeating-linear-gradient(0deg, transparent 0 2px, var(--ris-scanline) 2px 3px),
+    /* alone crimson dall'alto */
+    radial-gradient(125% 80% at 50% -12%, rgba(255,0,60,0.20), transparent 60%),
+    /* riverbero dal basso */
+    radial-gradient(95% 55% at 50% 118%, rgba(255,0,60,0.06), transparent 55%);
+  background-size: 140px 140px, 100% 3px, 100% 100%, 100% 100%;
+  background-attachment: fixed;
+  background-repeat: repeat, repeat, no-repeat, no-repeat;
+}
+
+/* ----------------------------------------------------------------------------
+   3. GLOW DI DEFAULT sul chrome chiave (scelta utente: "Glow diffuso topbar").
+   -------------------------------------------------------------------------- */
+
+/* Topbar: riga rossa glow + base scura */
+[data-skin="cyber"] .ris-topbar {
+  background: color-mix(in srgb, var(--ris-surface-1) 92%, transparent);
+  border-bottom: 1px solid var(--ris-red-fill);
+  box-shadow: 0 1px 0 var(--ris-red-fill), 0 8px 22px -8px var(--ris-red-glow);
+}
+[data-skin="cyber"] .ris-rail,
+[data-skin="cyber"] .ris-bottomnav { border-color: var(--ris-red-line); }
+
+/* Bottone primario: alone accent */
+[data-skin="cyber"] .ris-btn--primary {
+  box-shadow: 0 0 0 1px var(--ris-accent-line), 0 0 16px var(--ris-accent-glow);
+}
+[data-skin="cyber"] .ris-btn--primary:hover { box-shadow: 0 0 0 1px var(--ris-on-accent), 0 0 22px var(--ris-accent-glow); }
+
+/* Selezione = FILL PIENO (liste/tabelle/nav/tab) come nelle reference */
+[data-skin="cyber"] .ris-table tbody tr[data-selected="true"] {
+  background: color-mix(in srgb, var(--ris-red-fill) 22%, transparent);
+  box-shadow: inset 3px 0 0 var(--ris-red-fill), 0 0 18px -6px var(--ris-red-glow);
+}
+[data-skin="cyber"] .ris-nav-link[data-active="true"],
+[data-skin="cyber"] .ris-nav-link[aria-current="page"] {
+  box-shadow: inset 2px 0 0 var(--ris-accent), 0 0 16px -4px var(--ris-accent-glow);
+}
+[data-skin="cyber"] .ris-tab[aria-selected="true"],
+[data-skin="cyber"] .ris-tab[data-active="true"] {
+  text-shadow: 0 0 12px var(--ris-accent-glow);
+}
+
+/* Pannelli: bordo rosso + alone interno + brackets accesi */
+[data-skin="cyber"] .ris-panel {
+  border-color: var(--ris-line);
+  box-shadow: inset 0 0 28px rgba(255,0,60,0.04);
+}
+[data-skin="cyber"] .ris-panel-head { border-bottom-color: var(--ris-red-line); }
+[data-skin="cyber"] .ris-bracket::before,
+[data-skin="cyber"] .ris-bracket::after {
+  border-color: var(--ris-red-fill);
+  filter: drop-shadow(0 0 4px var(--ris-red-glow));
+}
+
+/* Link/label accent: leggero glow testo (AA preservato: colore gia' ≥4.5:1) */
+[data-skin="cyber"] a:hover,
+[data-skin="cyber"] .ris-chip--cyan,
+[data-skin="cyber"] .ris-chip--accent { text-shadow: 0 0 10px var(--ris-accent-2-glow); }
+
+/* Tooltip: bordo GIALLO + titolo cyan (reference "Hard Reset") */
+[data-skin="cyber"] .ris-tip::after {
+  border-color: var(--ris-yellow);
+  color: var(--ris-yellow);
+  box-shadow: var(--ris-elev-2), 0 0 14px var(--ris-yellow-glow);
+}
+
+/* Input focus: ring cyan glow */
+[data-skin="cyber"] .ris-input:focus,
+[data-skin="cyber"] .ris-select:focus,
+[data-skin="cyber"] .ris-textarea:focus {
+  box-shadow: inset 0 0 0 1px var(--ris-cyan-line), 0 0 14px -2px var(--ris-cyan-glow);
+}
+
+/* Slider: traccia piu' alta, thumb accent con alone (filled-portion: skip) */
+/* ponytail: niente fill-portion (serve JS per --val cross-browser); add se serve */
+[data-skin="cyber"] .ris-slider { height: 10px; border-color: var(--ris-red-line); }
+[data-skin="cyber"] .ris-slider::-webkit-slider-thumb {
+  width: 16px; height: 22px; box-shadow: 0 0 10px var(--ris-accent-glow);
+}
+[data-skin="cyber"] .ris-slider::-moz-range-thumb {
+  width: 16px; height: 22px; box-shadow: 0 0 10px var(--ris-accent-glow);
+}
+
+/* ----------------------------------------------------------------------------
+   4. CHROME DECORATIVO — utility opt-in (scelta utente: garnish + righello).
+   Puro decoro: applica a elementi con testo. aria-hidden consigliato.
+   -------------------------------------------------------------------------- */
+
+/* Serial / codici device — PROTOCOL 6520-A44, TRN_TLCAS_8D0095 ... */
+[data-skin="cyber"] .ris-serial {
+  font-family: var(--ris-font-mono);
+  font-size: 9px; font-weight: 500;
+  letter-spacing: var(--ris-track-wide);
+  text-transform: uppercase;
+  color: var(--ris-red-dim);
+  line-height: 1.45;
+}
+[data-skin="cyber"] .ris-serial b { color: var(--ris-red); font-weight: 600; }
+
+/* Hex dump — blocco mono dim (usa <pre class="ris-hex">) */
+[data-skin="cyber"] .ris-hex {
+  font-family: var(--ris-font-mono);
+  font-size: 9px; line-height: 1.4;
+  color: var(--ris-red-dim);
+  white-space: pre; overflow: hidden;
+  opacity: 0.7;
+}
+
+/* Stream binario — colonna 1001 0110 negli angoli */
+[data-skin="cyber"] .ris-binary {
+  font-family: var(--ris-font-mono);
+  font-size: 8.5px; line-height: 1.5;
+  letter-spacing: 0.12em;
+  color: var(--ris-cyan-dim);
+  writing-mode: vertical-rl;
+  opacity: 0.6;
+}
+
+/* Righello bordo — tacche verticali fisse sui lati schermo */
+[data-skin="cyber"] .ris-ruler {
+  position: fixed; top: var(--ris-topbar-h); bottom: 0; width: 10px;
+  pointer-events: none; z-index: 80; opacity: 0.5;
+  background-image: repeating-linear-gradient(
+    to bottom, var(--ris-red-line) 0 1px, transparent 1px 7px);
+}
+[data-skin="cyber"] .ris-ruler--left  { left: 0;  background-position: left;  }
+[data-skin="cyber"] .ris-ruler--right { right: 0; background-image: repeating-linear-gradient(
+    to bottom, var(--ris-red-line) 0 1px, transparent 1px 13px); }
+
+/* Ticker dati angolo — blocchetto mono tiny */
+[data-skin="cyber"] .ris-ticker {
+  position: fixed; bottom: 6px; left: 14px; z-index: 80;
+  font-family: var(--ris-font-mono); font-size: 8.5px; line-height: 1.5;
+  color: var(--ris-fg4); pointer-events: none; white-space: pre;
+}
+
+/* ----------------------------------------------------------------------------
+   5. COMPONENTI NUOVI (skin-scoped) — list-row con thumbnail + stat topbar.
+   -------------------------------------------------------------------------- */
+
+/* List-row: thumb + titolo cyan + meta rosso + ora; selezione = fill pieno.
+   Reference: Load Game / Contacts / Inventory weapon list. */
+[data-skin="cyber"] .ris-listrow {
+  position: relative;
+  display: flex; align-items: center; gap: var(--ris-s3);
+  padding: 10px 14px;
+  background: var(--ris-surface-1);
+  border: 1px solid var(--ris-line);
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  transition: background var(--ris-dur-fast) var(--ris-ease), box-shadow var(--ris-dur-fast) var(--ris-ease);
+}
+[data-skin="cyber"] .ris-listrow + .ris-listrow { margin-top: 6px; }
+[data-skin="cyber"] .ris-listrow .thumb {
+  width: 84px; height: 48px; flex: 0 0 84px;
+  object-fit: cover;
+  background: var(--ris-surface-3);
+  border: 1px solid var(--ris-line);
+}
+[data-skin="cyber"] .ris-listrow .body { flex: 1; min-width: 0; }
+[data-skin="cyber"] .ris-listrow .title {
+  font-family: var(--ris-font-display); font-weight: var(--ris-w-semi);
+  font-size: var(--ris-text-md); letter-spacing: 0.02em;
+  color: var(--ris-cyan);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+[data-skin="cyber"] .ris-listrow .meta {
+  font-family: var(--ris-font-mono); font-size: var(--ris-text-xs);
+  letter-spacing: var(--ris-track-wide); text-transform: uppercase;
+  color: var(--ris-red);
+}
+[data-skin="cyber"] .ris-listrow .time {
+  margin-left: auto; align-self: flex-start; flex: 0 0 auto;
+  font-family: var(--ris-font-mono); font-size: var(--ris-text-sm);
+  color: var(--ris-red);
+}
+[data-skin="cyber"] .ris-listrow:hover { background: var(--ris-surface-2); }
+[data-skin="cyber"] .ris-listrow[data-selected="true"] {
+  background: var(--ris-red-fill);
+  border-color: var(--ris-red-fill);
+  box-shadow: var(--ris-live);
+}
+[data-skin="cyber"] .ris-listrow[data-selected="true"] .title,
+[data-skin="cyber"] .ris-listrow[data-selected="true"] .meta,
+[data-skin="cyber"] .ris-listrow[data-selected="true"] .time { color: var(--ris-on-accent); }
+
+/* Stat topbar — LEVEL / STREET CRED con barra segmentata (riusa .ris-segmeter) */
+[data-skin="cyber"] .ris-stat { display: inline-flex; align-items: center; gap: 8px; }
+[data-skin="cyber"] .ris-stat .v {
+  font-family: var(--ris-font-display); font-weight: var(--ris-w-bold);
+  font-size: var(--ris-text-lg); line-height: 1;
+  color: var(--ris-cyan); font-variant-numeric: tabular-nums;
+}
+[data-skin="cyber"] .ris-stat .n {
+  font-family: var(--ris-font-body); font-size: var(--ris-text-xs);
+  font-weight: var(--ris-w-semi); letter-spacing: var(--ris-track-wide);
+  text-transform: uppercase; color: var(--ris-green);
+}
+[data-skin="cyber"] .ris-stat .ris-segmeter { width: 84px; height: 8px; }
+[data-skin="cyber"] .ris-stat .ris-segmeter > i.on { background: var(--ris-green); box-shadow: 0 0 6px var(--ris-green-glow); }
+
+/* ----------------------------------------------------------------------------
+   6. RESPONSIVE / MOBILE — il sistema base gia' commuta a topbar + bottomnav
+   sotto 768px; qui adattiamo SOLO il chrome aggiunto dallo skin.
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  /* Righello: niente spazio sui lati di un telefono → via */
+  [data-skin="cyber"] .ris-ruler { display: none; }
+  /* Ticker: sopra la bottomnav, piu' piccolo, niente overlap */
+  [data-skin="cyber"] .ris-ticker {
+    left: 8px; bottom: calc(var(--ris-bottomnav-h) + 6px); font-size: 8px;
+  }
+  /* iOS: background-attachment:fixed = jank/repaint → scroll su mobile */
+  [data-skin="cyber"] body.ris,
+  [data-skin="cyber"] body.ris.ris-grid-bg { background-attachment: scroll; }
+
+  /* Bottomnav: stesso trattamento glow della topbar (riga rossa + attivo) */
+  [data-skin="cyber"] .ris-bottomnav {
+    border-top: 1px solid var(--ris-red-fill);
+    box-shadow: 0 -1px 0 var(--ris-red-fill), 0 -8px 22px -8px var(--ris-red-glow);
+  }
+  [data-skin="cyber"] .ris-bottomnav .ris-nav-link[aria-current="page"],
+  [data-skin="cyber"] .ris-bottomnav .ris-nav-link[data-active="true"] {
+    box-shadow: inset 0 2px 0 var(--ris-accent), 0 0 16px -4px var(--ris-accent-glow);
+  }
+
+  /* List-row: piu' compatta, thumb piu' piccola, titolo sm (tap target ok) */
+  [data-skin="cyber"] .ris-listrow { padding: 9px 12px; gap: 10px; }
+  [data-skin="cyber"] .ris-listrow .thumb { width: 56px; height: 42px; flex-basis: 56px; }
+  [data-skin="cyber"] .ris-listrow .title { font-size: var(--ris-text-sm); }
+
+  /* Stat topbar: solo valore + barra corta (la label etichetta sparisce) */
+  [data-skin="cyber"] .ris-stat .n { display: none; }
+  [data-skin="cyber"] .ris-stat .ris-segmeter { width: 48px; }
+}
+
+/* ----------------------------------------------------------------------------
+   7. REDUCED MOTION — qui non c'e' motion (texture statiche), ma neutralizziamo
+   i drop-shadow animati ereditati per sicurezza. Lasciamo intatto il LOOK.
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  [data-skin="cyber"] * { transition-duration: 0.01ms !important; }
+}

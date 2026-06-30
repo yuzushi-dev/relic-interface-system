@@ -165,3 +165,32 @@ biofeedback (`heart`, `heart-pulse`, `ecg`, `hrv`, `pulse`, `bp`, `blood-drop`,
 `github`, `medium` — questi ultimi sovrascrivono il default dello sprite con
 `fill="currentColor" stroke="none"`. Usali **solo** per un link reale verso quella
 piattaforma (mai come decorazione generica).
+
+## Skin `cyber` (`css/ris-skin-cyber.css`, opt-in)
+
+Attiva con `data-skin="cyber"` su `<html>` + `<link>` caricato **per ultimo**.
+Solo dark. Vedi GUIDELINES §8 (è un'eccezione consapevole al de-slop, AA mantenuta).
+
+**Componenti skin-scoped:**
+- `.ris-listrow` — riga lista con `.thumb` (img/box 84×48) + `.body` (`.title`
+  display/cyan + `.meta` mono/rosso) + `.time`. Selezione: `data-selected="true"`
+  → **fill pieno** + testo invert. Reference: Load Game / Contacts / Inventory.
+  Per liste navigabili usa `role="listbox"`/`option` + `aria-selected` sul markup.
+- `.ris-stat` — stat da topbar: `.v` (valore display/cyan) + `.n` (label/verde) +
+  `.ris-segmeter` (riusa il meter segmentato). Dai sempre `aria-label` al meter.
+
+**Utility decorative** (puro decoro → `aria-hidden="true"`):
+- `.ris-serial` — codici device (`<b>` per la parte accesa). Es. `PROTOCOL 6520-A44`.
+- `.ris-hex` — blocco hex dump (usa `<pre>`).
+- `.ris-binary` — stream binario verticale per gli angoli.
+- `.ris-ruler` + `--left`/`--right` — tacche-righello fisse sui bordi schermo.
+- `.ris-ticker` — blocchetto dati mono fisso (default in basso a sinistra).
+
+**Override automatici** (nessuna classe da aggiungere): topbar con riga rossa
+glow, `.ris-btn--primary` con alone, selezione tabella a fill, `.ris-tip` con
+bordo giallo, `.ris-panel`/`.ris-bracket` rossi, focus input con glow cyan.
+
+**Mobile** (`@media ≤767px`): il sistema base commuta a topbar + `.ris-bottomnav`;
+lo skin nasconde `.ris-ruler`, alza il ticker sopra la nav, dà alla bottomnav la
+riga rossa glow, compatta `.ris-listrow` e `.ris-stat`, e passa a
+`background-attachment:scroll` (no jank iOS). Demo: `docs/mobile.html`.
