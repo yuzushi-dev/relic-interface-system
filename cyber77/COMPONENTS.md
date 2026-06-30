@@ -149,6 +149,16 @@ CRT su shell/panel, mai su testo denso; un FX non porta mai significato
 | `.ris-data-updated` | flash riga/cella al refresh del dato (toggle via JS) |
 | `.ris-holo` | shimmer olografico per loghi |
 
+**Stati attivi / live** — il moto accompagna **sempre** label/icona (mai da solo,
+WCAG 1.4.1); fallback statico ma riconoscibile sotto reduced-motion.
+
+| Classe | Stato | Markup |
+|---|---|---|
+| `.ris-rec` | recording | `<span class="ris-rec">Rec · 00:42</span>` (dot rosso pulsante via `::before`) |
+| `.ris-acquiring` | acquisizione live | su un `.ris-panel` → bordo che respira (glow in/out) |
+| `.ris-playing` | riproduzione | `<span class="ris-playing"><i></i><i></i><i></i><i></i></span>` (equalizer) |
+| `.ris-scan` | scanning/connessione | su un contenitore → riga di sweep verticale (richiede `overflow:hidden`, già nella classe) |
+
 ## Icone
 
 `<svg class="ris-icon" aria-hidden="true"><use href="icons/ris-icons.svg#ris-NAME"/></svg>`

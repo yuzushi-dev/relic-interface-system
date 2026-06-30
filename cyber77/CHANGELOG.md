@@ -1,5 +1,14 @@
 # Changelog — RIS
 
+## 2.6.0 — 2026-06-30
+
+- **Animazioni di stato attivo/live** in `css/ris-fx.css`: `.ris-rec` (recording,
+  dot rosso pulsante), `.ris-acquiring` (acquisizione live, bordo che respira),
+  `.ris-playing` (equalizer 4 barre), `.ris-scan` (sweep di scansione/connessione).
+  Il moto è sempre enhancement (accompagna label/icona, mai da solo — WCAG 1.4.1);
+  ognuna ha fallback statico ma riconoscibile sotto `prefers-reduced-motion`.
+  Demo nella sezione FX dello specimen. Documentate in COMPONENTS.md §FX.
+
 ## 2.5.1 — 2026-06-30
 
 - **Skin `cyber` responsive/mobile**: blocco `@media (max-width:767px)` in

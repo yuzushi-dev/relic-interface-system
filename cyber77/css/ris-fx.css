@@ -81,6 +81,57 @@
 @keyframes ris-holo { to { background-position: -240% 0; } }
 
 /* ----------------------------------------------------------------------------
+   STATI ATTIVI / LIVE — cue di moto per stati genuinamente in corso.
+   Il moto e' SEMPRE enhancement: accompagna label/icona, non le sostituisce.
+   Tutti hanno fallback statico sotto reduced-motion (in fondo).
+   -------------------------------------------------------------------------- */
+
+/* RECORDING — badge REC con dot rosso che pulsa (square, on-brand). */
+.ris-rec {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-family: var(--ris-font-mono); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--ris-red);
+}
+.ris-rec::before {
+  content: ""; width: 9px; height: 9px; flex: 0 0 9px;
+  background: var(--ris-red-fill);
+  animation: ris-rec 1.4s var(--ris-ease) infinite;
+}
+@keyframes ris-rec {
+  0%, 100% { opacity: 1;   box-shadow: 0 0 10px var(--ris-red-glow); }
+  50%      { opacity: 0.5; box-shadow: 0 0 0 transparent; }
+}
+
+/* LIVE ACQUISITION — bordo che respira (glow in/out). Applica a un pannello. */
+.ris-acquiring { animation: ris-acquiring 2.2s var(--ris-ease) infinite; }
+@keyframes ris-acquiring {
+  0%, 100% { box-shadow: 0 0 0 1px var(--ris-red-line), 0 0 8px var(--ris-red-glow); }
+  50%      { box-shadow: 0 0 0 1px var(--ris-red-line), 0 0 24px var(--ris-red-glow); }
+}
+
+/* PLAYING — equalizer 4 barre (audio/EEG in riproduzione). 4 <i> figli. */
+.ris-playing { display: inline-flex; align-items: flex-end; gap: 2px; height: 14px; }
+.ris-playing > i {
+  width: 3px; height: 100%; flex: 0 0 3px;
+  background: var(--ris-accent-2, var(--ris-cyan)); transform-origin: bottom;
+  animation: ris-eq 0.9s var(--ris-ease) infinite;
+}
+.ris-playing > i:nth-child(2) { animation-delay: 0.15s; }
+.ris-playing > i:nth-child(3) { animation-delay: 0.30s; }
+.ris-playing > i:nth-child(4) { animation-delay: 0.45s; }
+@keyframes ris-eq { 0%, 100% { transform: scaleY(0.3); } 50% { transform: scaleY(1); } }
+
+/* SCANNING — riga di sweep che attraversa il contenitore (scan BLE/ricerca). */
+.ris-scan { position: relative; overflow: hidden; }
+.ris-scan::after {
+  content: ""; position: absolute; left: 0; right: 0; top: -28%; height: 28%;
+  background: linear-gradient(var(--ris-cyan-glow), transparent);
+  border-top: 1px solid var(--ris-cyan); pointer-events: none; z-index: 1;
+  animation: ris-scan 2.4s var(--ris-ease) infinite;
+}
+@keyframes ris-scan { to { top: 100%; } }
+
+/* ----------------------------------------------------------------------------
    REDUCED MOTION — static fallbacks that keep the aesthetic.
    (ris.css already kills all animation; here we undo layout-breaking states.)
    -------------------------------------------------------------------------- */
@@ -90,4 +141,11 @@
   .ris-data-updated { animation: none; }
   .ris-pulse-glow { animation: none; }
   .ris-holo { animation: none; background-position: 50% 0; }
+  /* stati live: fermi ma riconoscibili */
+  .ris-rec::before { animation: none; box-shadow: 0 0 8px var(--ris-red-glow); }
+  .ris-acquiring   { animation: none; box-shadow: 0 0 0 1px var(--ris-red-line), 0 0 12px var(--ris-red-glow); }
+  .ris-playing > i { animation: none; }
+  .ris-playing > i:nth-child(odd)  { transform: scaleY(0.5); }
+  .ris-playing > i:nth-child(even) { transform: scaleY(0.85); }
+  .ris-scan::after { animation: none; display: none; }
 }
