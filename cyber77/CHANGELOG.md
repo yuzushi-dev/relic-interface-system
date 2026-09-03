@@ -1,5 +1,24 @@
 # Changelog — RIS
 
+## 2.7.0 — 2026-09-03
+
+- **Allineamento Token JSON (`ris.tokens.json`)**: introdotto il ramo `skin.cyber`
+  nei design tokens ufficiali per modellare esplicitamente la palette Cyberpunk 2077
+  (superfici dark crimson, linee rosse, accenti saturi e font Chakra Petch).
+- **Port Jetpack Compose completo (`compose/`)**:
+  - `Color.kt`: aggiunta `RisCyberSkin` allineata ai token della skin.
+  - `Shape.kt`: implementazione nativa dei chamfer cut angolari a 45° (`risClip`, `risClipMirror`, `RisClipSm/RisClip/RisClipLg`).
+  - `Type.kt`: stili tipografici con fallback a font di sistema.
+  - `Theme.kt`: `RisTheme` e `cyberBackdrop` per Compose.
+  - `Components.kt`: primitive canoniche `RisButton` (4 varianti con cyber glow), `RisTextField` squadrato, `RisSubTabs` (anche scrollable), `RisProgressBar` (nastro neon continuo), `RisPanel`, `RisMeter`, `RisChip`.
+  - `Charts.kt`: grafici Canvas nativi `RisLineChart` e `RisTimeSeriesChart` con calcolo dinamico dello step dei giorni per evitare overlap delle label.
+- **Componenti Web**:
+  - Nuova progress bar lineare `.ris-progress` (determinate + indeterminate a nastro scorrevole) in `css/ris.css` e `css/ris-skin-cyber.css`.
+  - Nuova variante scrollabile `.ris-subtabs--scrollable` per schermi stretti (<768px).
+  - Estratte le classi `.ris-listrow` e `.ris-stat` nel CSS core `ris.css` con styling tematico in `ris-skin-cyber.css`.
+- **Linee Guida Mobile OLED Safety**:
+  - Formalizzato in `GUIDELINES.md §9` il divieto tassativo di utilizzare righelli laterali a tutta altezza (`.ris-ruler`) su display mobile OLED per prevenire artefatti ottici assimilabili a pixel bruciati.
+
 ## 2.6.0 — 2026-06-30
 
 - **Animazioni di stato attivo/live** in `css/ris-fx.css`: `.ris-rec` (recording,

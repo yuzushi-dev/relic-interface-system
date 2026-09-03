@@ -101,5 +101,45 @@
     "bottomnavHeight": { "$type": "dimension", "$value": "60px" },
     "contentMax":      { "$type": "dimension", "$value": "1280px" },
     "breakpointMobile":{ "$type": "dimension", "$value": "768px" }
+  },
+  "skin": {
+    "cyber": {
+      "$description": "Opt-in Cyberpunk 2077 HUD theme (data-skin='cyber'). Dark-only; crimson near-black surfaces, structural red lines, high-saturation neon accents, and Chakra Petch display font.",
+      "color": {
+        "surface": {
+          "void":     { "$type": "color", "$value": "#070406" },
+          "bg":       { "$type": "color", "$value": "#0a0608" },
+          "surface1": { "$type": "color", "$value": "#120a0d" },
+          "surface2": { "$type": "color", "$value": "#1a0e12" },
+          "surface3": { "$type": "color", "$value": "#241318" },
+          "surface4": { "$type": "color", "$value": "#2c171d" }
+        },
+        "line": {
+          "default": { "$type": "color", "$value": "#6e2d38" },
+          "strong":  { "$type": "color", "$value": "#9a3a48" },
+          "faint":   { "$type": "color", "$value": "#3a1820" },
+          "scanline":{ "$type": "color", "$value": "rgba(255,40,70,0.05)" }
+        },
+        "fg": {
+          "fg1":      { "$type": "color", "$value": "#f3eef0" },
+          "fg2":      { "$type": "color", "$value": "#c8b9bd" },
+          "fg3":      { "$type": "color", "$value": "#b09aa0" },
+          "fg4":      { "$type": "color", "$value": "#6a5258" },
+          "onAccent": { "$type": "color", "$value": "#0a0608" }
+        },
+        "accent": {
+          "red":     { "$type": "color", "$value": "#ff4d62", "$extensions": { "ris.fill": "#ff003c" } },
+          "cyan":    { "$type": "color", "$value": "#3df0ff", "$extensions": { "ris.fill": "#00e5ff" } },
+          "green":   { "$type": "color", "$value": "#34f08c", "$extensions": { "ris.fill": "#00e57e" } },
+          "yellow":  { "$type": "color", "$value": "#ffd83a", "$extensions": { "ris.fill": "#ffe23a" } },
+          "violet":  { "$type": "color", "$value": "#b08aff", "$extensions": { "ris.fill": "#9a5cff" } },
+          "magenta": { "$type": "color", "$value": "#ff5fd2", "$extensions": { "ris.fill": "#ff42c8" } },
+          "orange":  { "$type": "color", "$value": "#ff9f4a", "$extensions": { "ris.fill": "#ff9230" } }
+        }
+      },
+      "font": {
+        "display": { "$type": "fontFamily", "$value": ["Chakra Petch", "Rajdhani", "system-ui", "sans-serif"] }
+      }
+    }
   }
 }

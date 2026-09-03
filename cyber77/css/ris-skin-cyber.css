@@ -180,6 +180,15 @@
   width: 16px; height: 22px; box-shadow: 0 0 10px var(--ris-accent-glow);
 }
 
+/* Progress bar: bordo rosso strutturale, background dark crimson, alone neon sulla barra */
+[data-skin="cyber"] .ris-progress {
+  border-color: var(--ris-line);
+  background: var(--ris-surface-2);
+}
+[data-skin="cyber"] .ris-progress > .bar {
+  box-shadow: 0 0 10px var(--ris-accent-glow);
+}
+
 /* ----------------------------------------------------------------------------
    4. CHROME DECORATIVO — utility opt-in (scelta utente: garnish + righello).
    Puro decoro: applica a elementi con testo. aria-hidden consigliato.

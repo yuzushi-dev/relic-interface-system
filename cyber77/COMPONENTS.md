@@ -76,7 +76,7 @@ Wrapper `.ris-table-wrap` (scroll x, opz. max-height per sticky head).
 ## Navigazione secondaria
 
 - **Tabs**: `.ris-tabs[role=tablist]` > `.ris-tab[role=tab][aria-selected]`.
-- **Subtabs** (segmented): `.ris-subtabs` stesso pattern.
+- **Subtabs** (segmented): `.ris-subtabs` stesso pattern; `.ris-subtabs--scrollable` per gestione orizzontale su schermi stretti (<768px).
 - **Breadcrumb**: `nav.ris-breadcrumb[aria-label]`; corrente `aria-current="page"`.
 - **Pagination**: `nav.ris-pagination`; pagina corrente `aria-current="page"`;
   prev/next con `aria-label`.
@@ -85,10 +85,13 @@ Wrapper `.ris-table-wrap` (scroll x, opz. max-height per sticky head).
 
 - **KPI** `.ris-kpi`: `.kpi-label` + `.kpi-value` (+`small` unità) + `.kpi-delta.up/.down`.
   Accent per metrica: `--ris-kpi-accent`.
+- **Progress bar** `.ris-progress`: barra lineare continua cyber; determinata (`> .bar` con larghezza %) o indeterminata (`.ris-progress--indeterminate > .bar` con scorrimento continuo a nastro). Sostituisce i loader circolari M3.
 - **Meter** `.ris-meter` / **SegMeter** `.ris-segmeter`: `role="meter"` +
   `aria-valuenow/min/max` + `aria-label`.
 - **Confidence** `.ris-conf--high|medium|low`.
 - **Facet** `.ris-facet`: head (nome+stat), row (anchor/track/needle), conf.
+- **List row** `.ris-listrow`: card orizzontale con `.thumb`, `.body` / `.content`, `.title`, `.meta`, `.time` (selezione: `data-selected="true"`).
+- **Stat HUD** `.ris-stat`: valore numerico compatto `.v` con label `.n` e `.ris-segmeter` per topbar/header.
 - **Log** `.ris-log` (span `.t/.ok/.warn/.err`), **Code** `.ris-code`, **Kbd** `.ris-kbd`.
 
 ## Avanzati

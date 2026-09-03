@@ -155,3 +155,65 @@ val RisAmberDim = RisYellowDim
 val RisAmberGlow = RisYellowGlow
 @Deprecated("v2: use RisYellowLine", ReplaceWith("RisYellowLine"))
 val RisAmberLine = RisYellowLine
+
+// ═══════════════════════════ CYBERPUNK 2077 SKIN ════════════════════════════
+// Opt-in Cyber HUD theme (mirrors css/ris-skin-cyber.css). Dark only.
+
+object RisCyberSkin {
+    val Void = Color(0xFF070406)
+    val Bg = Color(0xFF0A0608)
+    val Surface1 = Color(0xFF120A0D)
+    val Surface2 = Color(0xFF1A0E12)
+    val Surface3 = Color(0xFF241318)
+    val Surface4 = Color(0xFF2C171D)
+
+    // Structural crimson lines
+    val Line = Color(0xFF6E2D38)
+    val LineStrong = Color(0xFF9A3A48)
+    val LineFaint = Color(0xFF3A1820)
+    val Scanline = Color(0x0DFF2846)
+
+    // Text & on-accent
+    val Fg1 = Color(0xFFF3EEF0)
+    val Fg2 = Color(0xFFC8B9BD)
+    val Fg3 = Color(0xFFB09AA0) // AA-safe on Surface1
+    val Fg4 = Color(0xFF6A5258)
+    val OnAccent = Color(0xFF0A0608)
+
+    // Saturated neon accents (fills: bright; bare: AA-safe on dark crimson)
+    val Red = Color(0xFFFF4D62)
+    val RedFill = Color(0xFFFF003C)
+    val Cyan = Color(0xFF3DF0FF)
+    val CyanFill = Color(0xFF00E5FF)
+    val Green = Color(0xFF34F08C)
+    val GreenFill = Color(0xFF00E57E)
+    val Yellow = Color(0xFFFFD83A)
+    val YellowFill = Color(0xFFFFE23A)
+    val Violet = Color(0xFFB08AFF)
+    val VioletFill = Color(0xFF9A5CFF)
+    val Magenta = Color(0xFFFF5FD2)
+    val MagentaFill = Color(0xFFFF42C8)
+    val Orange = Color(0xFFFF9F4A)
+    val OrangeFill = Color(0xFFFF9230)
+
+    val RedDim = Color(0xFF8F1F30)
+    val CyanDim = Color(0xFF1F8A99)
+    val GreenDim = Color(0xFF1F8A52)
+    val YellowDim = Color(0xFF9A8016)
+    val VioletDim = Color(0xFF5A3F9A)
+    val MagentaDim = Color(0xFF9A2F7F)
+    val OrangeDim = Color(0xFF9A5616)
+
+    // Neon glow and edge line fills
+    val RedGlow = Color(0x38FF003C)
+    val CyanGlow = Color(0x2E00E5FF)
+    val GreenGlow = Color(0x2900E57E)
+    val YellowGlow = Color(0x2EFFE23A)
+    val VioletGlow = Color(0x299A5CFF)
+    val MagentaGlow = Color(0x29FF42C8)
+    val OrangeGlow = Color(0x29FF9230)
+
+    val RedLine = Color(0x8CFF003C)
+    val CyanLine = Color(0x8000E5FF)
+    val YellowLine = Color(0x80FFE23A)
+}

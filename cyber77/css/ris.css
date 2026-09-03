@@ -625,6 +625,21 @@ button { font: inherit; cursor: pointer; }
   border-color: var(--ris-accent-line);
 }
 
+/* Scrollable sub-tabs for narrow screens / many tabs */
+.ris-subtabs--scrollable {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.ris-subtabs--scrollable::-webkit-scrollbar {
+  display: none;
+}
+.ris-subtabs--scrollable .ris-subtab {
+  flex-shrink: 0;
+}
+
 /* ============================================================================
    TOOLTIP + DROPDOWN
    ========================================================================== */
@@ -1005,3 +1020,82 @@ button { font: inherit; cursor: pointer; }
   border-top-color: var(--ris-accent);
   animation: ris-spin 0.7s linear infinite;
 }
+
+/* Progress bar — linear cyber progress (determinate or indeterminate) */
+.ris-progress {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  background: var(--ris-surface-2);
+  border: 1px solid var(--ris-line);
+  overflow: hidden;
+}
+.ris-progress > .bar {
+  height: 100%;
+  background: var(--ris-accent-fill);
+  transition: width var(--ris-dur) var(--ris-ease);
+}
+.ris-progress--indeterminate > .bar {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 35%;
+  background: var(--ris-accent-fill);
+  animation: ris-progress-slide 1.2s linear infinite;
+}
+@keyframes ris-progress-slide {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(350%); }
+}
+
+/* ============================================================================
+   LIST ROW & HUD STAT
+   ========================================================================== */
+.ris-listrow {
+  position: relative;
+  display: flex; align-items: center; gap: var(--ris-s3);
+  padding: 10px 14px;
+  background: var(--ris-surface-1);
+  border: 1px solid var(--ris-line);
+  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+  transition: background var(--ris-dur-fast) var(--ris-ease), border-color var(--ris-dur-fast) var(--ris-ease);
+}
+.ris-listrow:hover { background: var(--ris-surface-2); }
+.ris-listrow[data-selected="true"] {
+  background: var(--ris-surface-3);
+  border-color: var(--ris-accent);
+}
+.ris-listrow .thumb {
+  width: 64px; height: 48px; flex-shrink: 0;
+  background: var(--ris-surface-2);
+  border: 1px solid var(--ris-line-faint);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.ris-listrow .content,
+.ris-listrow .body { flex: 1; min-width: 0; }
+.ris-listrow .title {
+  font-family: var(--ris-font-body); font-weight: var(--ris-w-bold);
+  font-size: var(--ris-text-md); color: var(--ris-fg1);
+}
+.ris-listrow .meta {
+  font-family: var(--ris-font-mono); font-size: var(--ris-text-xs);
+  color: var(--ris-fg3);
+}
+.ris-listrow .time {
+  font-family: var(--ris-font-mono); font-size: var(--ris-text-xs);
+  color: var(--ris-fg4); margin-left: auto;
+}
+
+/* Stat topbar — LEVEL / CRED with segmented bar */
+.ris-stat { display: inline-flex; align-items: center; gap: 8px; }
+.ris-stat .v {
+  font-family: var(--ris-font-display); font-weight: var(--ris-w-bold);
+  font-size: var(--ris-text-lg); line-height: 1;
+  color: var(--ris-accent); font-variant-numeric: tabular-nums;
+}
+.ris-stat .n {
+  font-family: var(--ris-font-body); font-size: var(--ris-text-xs);
+  font-weight: var(--ris-w-semi); letter-spacing: var(--ris-track-wide);
+  text-transform: uppercase; color: var(--ris-fg3);
+}
+.ris-stat .ris-segmeter { width: 84px; height: 8px; }

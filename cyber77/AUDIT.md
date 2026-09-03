@@ -49,8 +49,8 @@ multi-brand (Relic / BioHub / VivoKey / general use), palette più vicina a Cybe
 6. **Specimen.** `index.html` alla radice del kit: palette, type, tutti i componenti,
    griglia icone, con toggle tema e brand live. Sostituisce la verifica "apri i prototipi".
 
-## Non incluso in v2 (follow-up)
+## Risoluzione v2.7.0 (2026-09-03)
 
-- Port Compose della palette v2 oltre `Color.kt` (Type/Theme invariati, nessun impatto).
-- Aggiornamento dei prototipi `ui_kits/*` ai nuovi hex (restano riferimento v1).
-- Propagazione ai codebase reali (BioHub `ui/theme/Color.kt`, relic-oss `globals.css`).
+- **Port Compose completo (`compose/`)**: Implementati `Color.kt` (con `RisCyberSkin`), `Shape.kt` (chamfer cut 45°), `Type.kt`, `Theme.kt`, `Components.kt` (bottoni 4 varianti, text field squadrati, subtabs scrollable, linear progress bar canvas, panels, chips) e `Charts.kt` con dynamic stride.
+- **Modularizzazione Skin CP2077**: Formalizzata la coesistenza tra la base forensic de-slopped (`ris-tokens.css`, `ris.tokens.json`) e la skin Cyberpunk 2077 (`data-skin="cyber"`, `ris-skin-cyber.css`, `RisCyberSkin` in Compose).
+- **Mobile Display Safety**: Formalizzato il divieto di righelli laterali e ticker fissi sui display mobile OLED per prevenire difetti visivi.

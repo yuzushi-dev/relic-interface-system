@@ -142,3 +142,17 @@ proposito**. La disciplina non sparisce, si sposta:
 
 Quando usarlo: prodotti/viste che vogliono dichiaratamente l'estetica di genere.
 Quando no: tutto ciò che deve leggere come strumento sobrio → resta sul default.
+
+## 9. Mobile Safety & Regole Display OLED
+
+Nei dispositivi handheld e mobile (<768px o app native), il design system impone regole ferree per evitare degradazioni ottiche dovute alle tecnologie dei pannelli moderni (in particolare OLED / AMOLED):
+
+1. **Divieto Assoluto di Righelli Laterali a Schermo Intero (`.ris-ruler`)**:
+   - I righelli con tacche verticali a 1px lungo i margini fisici dello schermo (`.ris-ruler--left`, `.ris-ruler--right`) sono adatti **esclusivamente** a display desktop widescreen o mockup HUD cinematici.
+   - Su schermi mobile OLED ad altissima densità (400–500+ ppi), una riga di tacche fisse a filo cornice crea un'immediata illusione di **subpixel bruciati, difetto del display o digitalizzatore guasto**.
+   - Regola vincolante: su mobile (`<768px` in CSS e in qualsiasi app nativa Android/iOS) `.ris-ruler` va SEMPRE impostato su `display: none` o rimosso dalla gerarchia.
+2. **Niente Ticker Fissi Sovrapposti alla Navigazione**:
+   - `.ris-ticker` deve posizionarsi al di sopra della bottom-nav o sparire per non intralciare i gesti di sistema (pillola di navigazione Android/iOS).
+3. **SubTabs Scrollabili (`.ris-subtabs--scrollable`)**:
+   - I selettori a segmenti orizzontali non devono mai comprimere le etichette di testo sotto il target touch minimo (48dp / 44px). Se le opzioni sono più di 3, usare sempre la modalità scrollabile a scomparsa barra.
+

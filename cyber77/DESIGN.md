@@ -75,7 +75,8 @@ Togli `data-skin="cyber"` + l'ultimo `<link>` → torna il default forensic disc
 ## Note
 
 - **Non è una libreria** React/Vue: è CSS + classi. Su React/JSX usi le stesse
-  classi in `className`. Per Android c'è il port Compose in `../design_handoff/`.
+  classi in `className`. Per Android c'è il port completo Jetpack Compose in `compose/`
+  (`Color.kt`, `Shape.kt`, `Type.kt`, `Theme.kt`, `Components.kt`, `Charts.kt`).
 - Cartella rinominata `ris`→`cyber77` (2026-06-30): i nomi file interni
   (`ris-tokens.css`, classi `.ris-*`, `data-skin`) **restano invariati**.
 - Specimen live: `cd cyber77 && python3 -m http.server 8080` → `http://localhost:8080/docs/`.
