@@ -289,16 +289,16 @@
 }
 
 /* ----------------------------------------------------------------------------
-   5b. CASE-CONTEXT SKINS — full skins for evidence-handling contexts. Oltre
-   alla coppia accent tingono anche superfici e linee (solo in dark; in light
-   cambiano solo gli accent ink). Identità forensi/archivistiche (le chiavi
-   data-brand restano stabili per compat con i consumer):
-     arasaka  → "sealed" : dossier sigillato, rosso evidenziario su grafite
-                fredda, secondario steel-ice (catena di custodia)
-     militech → "field"  : raccolta sul campo, ambra-sodio su antracite calda,
-                secondario oliva (annotazione)
-     edgerunners → "archive" : archivio notturno, orchidea su grafite porpora,
-                secondario steel-ice (cross-reference)
+   5b. CASE-CONTEXT SKINS — full skins for evidence-handling contexts. In addition
+   to accent pairs, they tint surfaces and lines (in dark mode only; in light
+   mode only accent inks change). Forensic/archival identities (data-brand keys
+   remain stable for backwards compatibility with consumers):
+     arasaka     → "sealed"  : sealed dossier, evidentiary red on cold graphite,
+                   secondary steel-ice (chain of custody)
+     militech    → "field"   : field collection, sodium amber on warm anthracite,
+                   secondary olive (annotation)
+     edgerunners → "archive" : night archive, orchid on purple graphite,
+                   secondary steel-ice (cross-reference)
    -------------------------------------------------------------------------- */
 
 /* ── SEALED (arasaka key) ── */

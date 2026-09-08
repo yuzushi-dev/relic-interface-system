@@ -1,84 +1,76 @@
-# cyber77 — handoff per Claude
+# cyber77 — Agent Handoff Guide
 
-Design system **RIS** con skin **Cyberpunk 2077** attiva (`data-skin="cyber"`).
-Questo file serve a far costruire a Claude un'app che usa questo design senza
-reinventare nulla. Copia il prompt qui sotto e adattalo.
+**RIS** design system with active **Cyberpunk 2077** skin (`data-skin="cyber"`).
+Use this document to instruct agents or engineers to build applications using this design system without reinventing any components or styles. Copy and adapt the prompt below.
 
-> Path relativi: questo file è alla radice di `cyber77/`. I CSS stanno in `css/`,
-> le regole in `GUIDELINES.md`, i componenti in `COMPONENTS.md`, i riferimenti
-> visivi in `docs/index.html` (desktop) e `docs/mobile.html` (mobile).
+> Relative paths: this file is at the root of `cyber77/`. CSS files are in `css/`, design rules in `GUIDELINES.md`, component specs in `COMPONENTS.md`, and visual references in `docs/index.html` (desktop) and `docs/mobile.html` (mobile).
 
 ---
 
-## Prompt pronto (copia, sostituisci `<APP>`)
+## Ready-to-use Agent Prompt (copy, replace `<APP>`)
 
-> Costruisci `<APP>` usando il design system in questa cartella `cyber77/` (RIS,
-> skin Cyberpunk 2077 attiva). **Non** inventare uno stile nuovo: usa quello esistente.
+> Build `<APP>` using the design system in this `cyber77/` directory (RIS with active Cyberpunk 2077 skin). **Do not** invent a new style: use the existing architecture.
 >
-> Setup obbligatorio:
-> - Aggancia i CSS in `cyber77/css/` **in quest'ordine esatto**:
->   `ris-tokens.css` → `ris.css` → `ris-fx.css` (opzionale) → `ris-skin-cyber.css` (ULTIMO).
+> Mandatory setup:
+> - Link CSS in `cyber77/css/` **in this exact order**:
+>   `ris-tokens.css` → `ris.css` → `ris-fx.css` (optional) → `ris-skin-cyber.css` (LAST).
 > - Root: `<html data-theme="dark" data-brand="vivokey" data-skin="cyber">`.
 > - Body: `<body class="ris ris-grid-bg">`.
 >
-> Regole **non negoziabili**:
-> 1. Usa **solo** le classi `.ris-*` e i token CSS (`var(--ris-*)`). **Mai hex**
->    nei componenti; CSS custom ammesso solo per il layout della pagina.
-> 2. Componenti, anatomia, ARIA, do/don't → segui `cyber77/COMPONENTS.md`.
->    Principi (identità, temi, brand, a11y) → `cyber77/GUIDELINES.md`.
-> 3. **WCAG 2.2 AA**: contrasti, `:focus-visible`, target ≥24px,
->    `prefers-reduced-motion`. **Stato mai solo colore**: sempre label o icona.
-> 4. Layout: topbar + rail (desktop) / `.ris-bottomnav` (<768px). Responsive obbligatorio.
-> 5. Riferimento visivo: `cyber77/docs/index.html` e `cyber77/docs/mobile.html`.
+> **Non-negotiable** rules:
+> 1. Use **only** `.ris-*` classes and CSS tokens (`var(--ris-*)`). **Never raw hex**
+>    in components; custom CSS allowed only for page-level layout grids.
+> 2. Components, anatomy, ARIA, do/don't → follow `cyber77/COMPONENTS.md`.
+>    Core principles (identity, themes, brands, a11y) → `cyber77/GUIDELINES.md`.
+> 3. **WCAG 2.2 AA**: contrast ratios, `:focus-visible`, target ≥24px,
+>    `prefers-reduced-motion`. **State is never color alone**: always labeled or iconified.
+> 4. Layout: topbar + rail (desktop) / `.ris-bottomnav` (<768px). Responsive behavior is mandatory.
+> 5. Visual references: `cyber77/docs/index.html` and `cyber77/docs/mobile.html`.
 >
-> Dimmi quali schermate servono; parti dai componenti già pronti in `COMPONENTS.md`
-> (panel, btn, listrow, table, modal, tabs, kpi, form, ecc.). Se ti serve un
-> componente non coperto, costruiscilo con gli stessi token e clip-path angolari,
-> poi annotalo.
+> Specify required views; start from ready components in `COMPONENTS.md`
+> (panel, btn, listrow, table, modal, tabs, kpi, form, etc.). If an uncovered
+> component is required, build it using the same tokens and angular chamfer clips,
+> then document it.
 
 ---
 
-## Wiring (web)
+## Wiring (Web)
 
 ```html
 <html data-theme="dark" data-brand="vivokey" data-skin="cyber">
 <head>
   <link rel="stylesheet" href="css/ris-tokens.css">
   <link rel="stylesheet" href="css/ris.css">
-  <link rel="stylesheet" href="css/ris-fx.css">          <!-- opzionale: boot/glow/holo -->
-  <link rel="stylesheet" href="css/ris-skin-cyber.css">  <!-- ULTIMO = look CP2077 -->
+  <link rel="stylesheet" href="css/ris-fx.css">          <!-- optional: boot/glow/holo -->
+  <link rel="stylesheet" href="css/ris-skin-cyber.css">  <!-- LAST = CP2077 aesthetics -->
 </head>
 <body class="ris ris-grid-bg">
-  <!-- usa classi .ris-* -->
+  <!-- use .ris-* classes -->
 </body>
 </html>
 ```
 
-Togli `data-skin="cyber"` + l'ultimo `<link>` → torna il default forensic disciplinato.
+Remove `data-skin="cyber"` + the final `<link>` → reverts to the disciplined forensic default.
 
-## Tema · Brand · Skin
+## Theme · Brand · Skin
 
-| Attributo su `<html>` | Valori | Effetto |
+| Attribute on `<html>` | Values | Effect |
 |---|---|---|
-| `data-theme` | `dark` (default) · `light` | lo skin cyber è **solo dark** |
-| `data-brand` | `relic` · `biohub` · `vivokey` · `neutral` (+ `arasaka`/`militech`/`edgerunners`) | cambia solo la coppia accent. `vivokey` = rosso/giallo (più CP) |
-| `data-skin` | assente · `cyber` | `cyber` = look Cyberpunk 2077 (rosso strutturale, glow, scanline, font techno) |
+| `data-theme` | `dark` (default) · `light` | cyber skin applies to **dark only** |
+| `data-brand` | `relic` · `biohub` · `vivokey` · `neutral` (+ `arasaka`/`militech`/`edgerunners`) | modifies accent pair only. `vivokey` = red/yellow (most CP) |
+| `data-skin` | omitted · `cyber` | `cyber` = Cyberpunk 2077 aesthetics (structural red, glow, scanlines, techno font) |
 
 ## Do / Don't
 
 - ✅ `.ris-btn--primary`, `.ris-panel`, `.ris-listrow`, `var(--ris-accent)`, `var(--ris-red)`…
-- ✅ Stato con label+icona (`.ris-stream`, `.ris-risk`, `.ris-chip`).
-- ❌ `style="color:#ff003c"` o colori hardcoded → usa i token.
-- ❌ Inventare bottoni/card custom quando esiste la classe `.ris-*`.
-- ❌ Glow ovunque: nello skin il glow di default è già sul chrome chiave; non aggiungerne a caso.
+- ✅ State with label+icon (`.ris-stream`, `.ris-risk`, `.ris-chip`).
+- ❌ `style="color:#ff003c"` or hardcoded colors → use tokens.
+- ❌ Inventing custom buttons/cards when a `.ris-*` class exists.
+- ❌ Indiscriminate glows: the skin already enables default glow on key chrome; avoid clutter.
 
-## Note
+## Notes
 
-- **Non è una libreria** React/Vue: è CSS + classi. Su React/JSX usi le stesse
-  classi in `className`. Per Android c'è il port completo Jetpack Compose in `compose/`
-  (`Color.kt`, `Shape.kt`, `Type.kt`, `Theme.kt`, `Components.kt`, `Charts.kt`).
-- Cartella rinominata `ris`→`cyber77` (2026-06-30): i nomi file interni
-  (`ris-tokens.css`, classi `.ris-*`, `data-skin`) **restano invariati**.
-- Specimen live: `cd cyber77 && python3 -m http.server 8080` → `http://localhost:8080/docs/`.
-- Lo skin cyber è un'eccezione **consapevole** al default de-slopped (vedi
-  `GUIDELINES.md §8`): AA mantenuta, neon temperati, reversibile.
+- **Not a framework-bound library**: CSS + class contract. In React/JSX use the same classes in `className`. For Android, a complete Jetpack Compose port is available in `compose/` (`Color.kt`, `Shape.kt`, `Type.kt`, `Theme.kt`, `Components.kt`, `Charts.kt`).
+- Directory renamed `ris`→`cyber77` (2026-06-30): internal filenames (`ris-tokens.css`, `.ris-*` classes, `data-skin`) **remain unchanged**.
+- Live specimen: `cd cyber77 && python3 -m http.server 8080` → `http://localhost:8080/docs/`.
+- The cyber skin is an **intentional opt-in** over the forensic default (see `GUIDELINES.md §8`): AA preserved, neons tempered, fully reversible.

@@ -1,250 +1,246 @@
-# RIS v2 — Componenti
+# RIS v2 — Components Reference
 
-Riferimento d'uso. Ogni componente: classi, anatomia, ARIA richiesto, note.
-Demo live: `docs/index.html` (servire la cartella `ris/` via HTTP).
+Component usage guide. Each component details: classes, anatomy, required ARIA attributes, implementation notes.
+Live specimen: `docs/index.html` (serve the `cyber77/` directory via HTTP).
 
-## Chrome di layout
+## Layout Chrome
 
-| Classe | Ruolo | Note |
+| Class | Role | Notes |
 |---|---|---|
-| `.ris-topbar` | status bar fissa 52px | `<header>`; contiene brand, contesto, azioni globali |
-| `.ris-rail` | rail desktop 64px | `<nav aria-label>`; nascosta <768px |
-| `.ris-bottomnav` | nav mobile 60px | visibile solo <768px; item = `.ris-nav-link`, ≥44px |
-| `.ris-nav-link` | voce nav | attivo: `data-active="true"` o `aria-current="page"` |
-| `.ris-shell-content` | area contenuto | padding compensa topbar/rail/bottomnav |
+| `.ris-topbar` | Fixed 52px status bar | `<header>`; contains brand, context, global actions |
+| `.ris-rail` | Desktop 64px rail | `<nav aria-label>`; hidden on viewports <768px |
+| `.ris-bottomnav` | Mobile 60px nav | visible only on <768px; items = `.ris-nav-link`, ≥44px |
+| `.ris-nav-link` | Nav item | active: `data-active="true"` or `aria-current="page"` |
+| `.ris-shell-content` | Content stage | padding offsets topbar/rail/bottomnav |
 
-## Contenitori
+## Containers
 
-- **`.ris-panel`** (+`--2`, `--flat`, `--accent`) — anatomia: `.ris-panel-head` /
-  `.ris-panel-body` / `.ris-panel-foot`. Head con `.ris-h3` o `.ris-label`.
-- **`.ris-bracket`** — angoli L accent su elemento `position:relative`. Solo per
-  evidenziare 1 elemento per vista.
-- **`.ris-grid--2/3/4`** — griglie responsive; **`.ris-row`/`.ris-stack`/`.ris-wrap`** utility flex.
+- **`.ris-panel`** (+`--2`, `--flat`, `--accent`) — anatomy: `.ris-panel-head` /
+  `.ris-panel-body` / `.ris-panel-foot`. Head with `.ris-h3` or `.ris-label`.
+- **`.ris-bracket`** — accent corner L-brackets on `position:relative` elements. Used to highlight max 1 item per view.
+- **`.ris-grid--2/3/4`** — responsive grids; **`.ris-row`/`.ris-stack`/`.ris-wrap`** flex utilities.
 
-## Bottoni `.ris-btn`
+## Buttons `.ris-btn`
 
-Varianti: `--primary` (fill accent, 1 per vista), `--secondary` (outline accent-2),
-default (graphite), `--ghost`, `--danger`. Taglie: `--sm` 28px, default 36px,
-`--lg` 46px, `--icon` (quadrato; richiede `aria-label`), `--block`.
-Disabled: attributo `disabled` (non solo classe). Loading: affiancare `.ris-spinner`
-con `role="status"`.
+Variants: `--primary` (accent fill, 1 per view), `--secondary` (accent-2 outline),
+default (graphite), `--ghost`, `--danger`. Sizes: `--sm` 28px, default 36px,
+`--lg` 46px, `--icon` (square; requires `aria-label`), `--block`.
+Disabled: `disabled` attribute (never class alone). Loading: pair with `.ris-spinner`
+bearing `role="status"`.
 
-## Chip e stato
+## Chips and State
 
-- `.ris-chip` + `--accent|yellow|cyan|red|green|violet|magenta|orange`; dot opzionale `<i class="dot">`.
+- `.ris-chip` + `--accent|yellow|cyan|red|green|violet|magenta|orange`; optional dot `<i class="dot">`.
 - `.ris-stream[data-stream="evidence|inference|pending|approved|blocked|gumi|runtime|correction|neutral"]` — provenance tag.
 - `.ris-risk[data-risk="none|low|medium|high"]`.
-- `.ris-badge-count` (+`--danger`) — contatori; per notifiche usare anche testo sr-only.
-- Regola dura: il testo del chip dice lo stato; il colore lo rinforza soltanto.
+- `.ris-badge-count` (+`--danger`) — counters; for notifications include sr-only text.
+- Strict rule: chip copy declares the state; color merely reinforces it.
 
-## Form
+## Forms
 
-Wrapper **`.ris-field`**: `<label for>` sempre presente e visibile;
-help `.ris-field-help`; errore `.ris-field-error` + `data-invalid` sul field +
-`aria-invalid` e `aria-describedby` sull'input.
+Wrapper **`.ris-field`**: `<label for>` always present and visible;
+help text `.ris-field-help`; error text `.ris-field-error` + `data-invalid` on field +
+`aria-invalid` and `aria-describedby` on input.
 
-| Controllo | Classe | ARIA/note |
+| Control | Class | ARIA / Notes |
 |---|---|---|
-| Testo | `.ris-input` | — |
-| Search | `.ris-search` > svg + `.ris-input` | `aria-label` se senza label |
-| Select | `.ris-select` | nativo, freccia custom |
-| Textarea | `.ris-textarea` | resize verticale |
-| Checkbox | `label.ris-checkbox > input[type=checkbox]` | label = target (≥24px) |
-| Radio | `label.ris-radio > input[type=radio]` | rombo clip; stesso pattern |
+| Text | `.ris-input` | — |
+| Search | `.ris-search` > svg + `.ris-input` | `aria-label` when unlabelled |
+| Select | `.ris-select` | native, custom chevron |
+| Textarea | `.ris-textarea` | vertical resize |
+| Checkbox | `label.ris-checkbox > input[type=checkbox]` | label = hit target (≥24px) |
+| Radio | `label.ris-radio > input[type=radio]` | diamond clip; same hit target pattern |
 | Switch | `label.ris-switch > input[type=checkbox][role=switch]` | on = accent |
-| Slider | `input[type=range].ris-slider` | mostrare il valore corrente accanto alla label |
+| Slider | `input[type=range].ris-slider` | display live numeric value adjacent to label |
 
-## Tabella `.ris-table`
+## Tables `.ris-table`
 
-Wrapper `.ris-table-wrap` (scroll x, opz. max-height per sticky head).
-`th` sortabile: `aria-sort="ascending|descending"`. Celle numeriche: classe `num`
-(mono, tabular, right). Riga selezionata: `data-selected="true"`.
+Wrapper `.ris-table-wrap` (horizontal scroll, optional max-height for sticky head).
+Sortable `th`: `aria-sort="ascending|descending"`. Numeric cells: `num` class
+(monospace, tabular nums, right aligned). Selected row: `data-selected="true"`.
 
-## Overlay
+## Overlays
 
 - **Modal**: `.ris-modal-backdrop` > `.ris-modal[role=dialog][aria-modal=true][aria-labelledby]`
-  con head/body/foot. Chiusura: Esc, click backdrop, bottone con `aria-label`.
-  Focus trap a carico dell'app (o `<dialog>` nativo).
+  with head/body/foot. Dismiss: Esc key, backdrop click, button with `aria-label`.
+  Focus trap handled by application (or native `<dialog>`).
 - **Toast**: stack `.ris-toast-stack[role=status][aria-live=polite]`;
-  item `.ris-toast` + `--success|warning|danger`, titolo `.title`. Auto-dismiss ≥4s.
-- **Alert inline**: `.ris-alert` + varianti; icona + `.title` + testo.
-- **Tooltip**: `.ris-tip[data-tip]` — appare su hover E focus-visible; solo testo
-  supplementare, mai contenuto essenziale.
-- **Menu**: `.ris-menu` > `.ris-menu-item` (+`--danger`), separatore `.ris-menu-sep[role=separator]`.
-  Per dropdown reali: `role="menu"/"menuitem"` + gestione frecce a carico dell'app.
+  item `.ris-toast` + `--success|warning|danger`, title `.title`. Auto-dismiss ≥4s.
+- **Inline Alert**: `.ris-alert` + variants; icon + `.title` + message copy.
+- **Tooltip**: `.ris-tip[data-tip]` — renders on hover AND focus-visible; supplementary text only, never critical copy.
+- **Menu**: `.ris-menu` > `.ris-menu-item` (+`--danger`), separator `.ris-menu-sep[role=separator]`.
+  For interactive dropdowns: `role="menu"/"menuitem"` + arrow key handling managed by application.
 
-## Navigazione secondaria
+## Secondary Navigation
 
 - **Tabs**: `.ris-tabs[role=tablist]` > `.ris-tab[role=tab][aria-selected]`.
-- **Subtabs** (segmented): `.ris-subtabs` stesso pattern; `.ris-subtabs--scrollable` per gestione orizzontale su schermi stretti (<768px).
-- **Breadcrumb**: `nav.ris-breadcrumb[aria-label]`; corrente `aria-current="page"`.
-- **Pagination**: `nav.ris-pagination`; pagina corrente `aria-current="page"`;
-  prev/next con `aria-label`.
+- **Subtabs** (segmented): `.ris-subtabs` same pattern; `.ris-subtabs--scrollable` for horizontal scrolling on narrow viewports (<768px).
+- **Breadcrumb**: `nav.ris-breadcrumb[aria-label]`; current page `aria-current="page"`.
+- **Pagination**: `nav.ris-pagination`; current page `aria-current="page"`; prev/next with `aria-label`.
 
-## Dati e telemetria
+## Data and Telemetry
 
-- **KPI** `.ris-kpi`: `.kpi-label` + `.kpi-value` (+`small` unità) + `.kpi-delta.up/.down`.
-  Accent per metrica: `--ris-kpi-accent`.
-- **Progress bar** `.ris-progress`: barra lineare continua cyber; determinata (`> .bar` con larghezza %) o indeterminata (`.ris-progress--indeterminate > .bar` con scorrimento continuo a nastro). Sostituisce i loader circolari M3.
+- **KPI** `.ris-kpi`: `.kpi-label` + `.kpi-value` (+`small` unit) + `.kpi-delta.up/.down`.
+  Per-metric accent: `--ris-kpi-accent`.
+- **Progress bar** `.ris-progress`: continuous linear cyber bar; determinate (`> .bar` with % width) or indeterminate (`.ris-progress--indeterminate > .bar` with continuous ribbon sweep). Replaces Material circular spinners.
 - **Meter** `.ris-meter` / **SegMeter** `.ris-segmeter`: `role="meter"` +
   `aria-valuenow/min/max` + `aria-label`.
 - **Confidence** `.ris-conf--high|medium|low`.
-- **Facet** `.ris-facet`: head (nome+stat), row (anchor/track/needle), conf.
-- **List row** `.ris-listrow`: card orizzontale con `.thumb`, `.body` / `.content`, `.title`, `.meta`, `.time` (selezione: `data-selected="true"`).
-- **Stat HUD** `.ris-stat`: valore numerico compatto `.v` con label `.n` e `.ris-segmeter` per topbar/header.
+- **Facet** `.ris-facet`: head (name+stat), row (anchor/track/needle), conf.
+- **List row** `.ris-listrow`: horizontal card with `.thumb`, `.body`, `.title`, `.meta`, `.time` (selection: `data-selected="true"`).
+- **HUD Stat** `.ris-stat`: compact numeric value `.v` with label `.n` and `.ris-segmeter` for topbar/header.
 - **Log** `.ris-log` (span `.t/.ok/.warn/.err`), **Code** `.ris-code`, **Kbd** `.ris-kbd`.
 
-## Avanzati
+## Advanced Components
 
-- **Accordion** `.ris-accordion` > `<details>/<summary>` nativi + `.body` —
-  tastiera e semantica gratis; aperto = barra accent sinistra.
-- **Stepper** `.ris-stepper` > `.ris-step[data-state="done|active|"]` con
-  `.bar` + `.name[data-n]`. Per wizard/onboarding.
+- **Accordion** `.ris-accordion` > native `<details>/<summary>` + `.body` — built-in keyboard accessibility and semantics; open = left accent indicator.
+- **Stepper** `.ris-stepper` > `.ris-step[data-state="done|active|"]` with
+  `.bar` + `.name[data-n]`. For multi-step wizard flows.
 - **Drawer** `.ris-drawer[data-open]` + `.ris-drawer-backdrop` —
-  `role="dialog" aria-modal` + chiusura Esc/backdrop come la modale.
+  `role="dialog" aria-modal` + dismiss via Esc/backdrop identical to modal dialogs.
 - **Command palette** `.ris-cmdk` (input + `.ris-cmdk-list` > `.ris-cmdk-item`) —
-  selezione `aria-selected`; navigazione frecce a carico dell'app.
+  selection `aria-selected`; arrow key navigation managed by application.
 - **Dropzone** `.ris-dropzone[data-drag]` — `role="button"` + `tabindex="0"`,
-  hint formato/limite in `.hint`.
+  format/size constraints indicated in `.hint`.
 
-## Feedback di caricamento / vuoto
+## Loading and Empty Feedback
 
-- **Skeleton** `.ris-skeleton` (shimmer; spento con reduced-motion).
-- **Empty** `.ris-empty`: icona + `.title` + testo + CTA.
-- **Spinner** `.ris-spinner` con `role="status"` + `aria-label`.
+- **Skeleton** `.ris-skeleton` (shimmer; static under reduced-motion).
+- **Empty** `.ris-empty`: icon + `.title` + message copy + action CTA.
+- **Spinner** `.ris-spinner` with `role="status"` + `aria-label`.
 
-## Grafici (`js/ris-charts.js`)
+## Charts (`js/ris-charts.js`)
 
-SVG, zero dipendenze, stile RIS (grid dura, stroke neon + glow, marker quadrati,
-label mono). Tutte le animazioni rispettano `prefers-reduced-motion`.
-Un grafico è decorativo: fornire SEMPRE alternativa testuale/tabellare;
-`opts.label` diventa `aria-label` riassuntivo.
-Tutti i grafici supportano la telemetria Kiroshi HUD al 100% su dati reali,
-scrubber tattico interattivo (hover mouse, touch drag, frecce tastiera)
-e micro-sweep phosphor continuo (4.5s) con trigger su viewport scroll.
+SVG, zero dependencies, RIS aesthetic (hard grid, neon stroke + glow, square markers,
+monospace labels). All animations respect `prefers-reduced-motion`.
+A chart is decorative: ALWAYS provide an adjacent textual or tabular alternative;
+`opts.label` becomes the summarizing `aria-label`.
+All charts support 100% real data Kiroshi HUD telemetry, interactive tactical scrubber
+(mouse hover, touch drag, keyboard arrows), and continuous 4.5s phosphor micro-sweep
+triggered on viewport scroll.
 
-| Funzione | Uso | Opzioni chiave |
+| Function | Purpose | Key Options |
 |---|---|---|
-| `RisCharts.line(el, points, opts)` | serie temporali (HR, peso…) con scrubber tattico | `unit`, `categories`, `color`, `area`, `gridX/Y`, `interactive`, `ambientSweep`, `animate` |
-| `RisCharts.bars(el, values, opts)` | conteggi con column focus overdrive & HUD callout | `unit`, `categories`, `color`, `highlight`, `gap`, `interactive`, `ambientSweep`, `animate` |
-| `RisCharts.spark(el, points)` | sparkline inline 96×28 (compatto, non-interattivo) | come line |
-| `RisCharts.gauge(el, value01, opts)` | gauge segmentato HUD con breathing pulse attivo | `segments`, `caption`, `unit`, `interactive` |
-| `RisCharts.wave(el, opts)` | waveform EEG animata continua (RAF) | `freq`, `amp`, `animate:false` per statica |
-| `RisCharts.bands(el, bands, opts)` | bande EEG / barre orizzontali animate | `[{name,value,color}]`, `animate` |
-| `RisCharts.eegWaveform(el, channels, opts)` | waveform EEG multi-canale da dati reali (EEG live) | `[[v,…],…]`, `colors`, `width`, `height` |
-| `RisCharts.intraday(el, points, opts)` | trend del giorno con baseline band, peak markers & HUD scrubber | `[{t,v}]`, `baseline:{median,lo,hi}`, `peakThreshold`, `unit`, `hourStep`, `color`, `interactive` |
-| `RisCharts.replay(elOrSvg)` | riesegue a comando le animazioni di ingresso | accetta SVG o contenitore genitore |
+| `RisCharts.line(el, points, opts)` | Time series (HR, weight…) with tactical scrubber | `unit`, `categories`, `color`, `area`, `gridX/Y`, `interactive`, `ambientSweep`, `animate` |
+| `RisCharts.bars(el, values, opts)` | Category counts with column focus overdrive & HUD callout | `unit`, `categories`, `color`, `highlight`, `gap`, `interactive`, `ambientSweep`, `animate` |
+| `RisCharts.spark(el, points)` | Inline 96×28 sparkline (compact, non-interactive) | same as line |
+| `RisCharts.gauge(el, value01, opts)` | Segmented HUD gauge with active breathing pulse | `segments`, `caption`, `unit`, `interactive` |
+| `RisCharts.wave(el, opts)` | Continuous animated EEG waveform (RAF) | `freq`, `amp`, `animate:false` for static |
+| `RisCharts.bands(el, bands, opts)` | EEG bands / animated horizontal bars | `[{name,value,color}]`, `animate` |
+| `RisCharts.eegWaveform(el, channels, opts)` | Multi-channel real-data EEG waveform (live EEG) | `[[v,…],…]`, `colors`, `width`, `height` |
+| `RisCharts.intraday(el, points, opts)` | Daily trend with baseline band, peak markers & HUD scrubber | `[{t,v}]`, `baseline:{median,lo,hi}`, `peakThreshold`, `unit`, `hourStep`, `color`, `interactive` |
+| `RisCharts.replay(elOrSvg)` | Replays entrance animations on command | accepts SVG or container element |
 
 ## FX — Glitch / CRT (`css/ris-fx.css`)
 
-Layer opzionale, decorativo, opt-in. Regole: max **1 hero glitch per vista**;
-CRT su shell/panel, mai su testo denso; un FX non porta mai significato
-(WCAG 1.4.1); tutto si spegne o degrada a statico con reduced-motion.
+Optional, decorative, opt-in layer. Rules: max **1 hero glitch per view**;
+CRT on shell/panel, never behind dense copy; FX never conveys state or meaning
+(WCAG 1.4.1); all FX deactivate or degrade to static under reduced-motion.
 
-| Classe | Effetto |
+| Class | Effect |
 |---|---|
-| `.ris-glitch[data-text]` | RGB split + slice jitter periodico (≤3 flash/s — 2.3.1) |
-| `.ris-glitch--hover` | glitch solo su hover (0.45s one-shot) |
-| `.ris-crt` (+ figlio `.ris-crt-band`) | fosfori RGB + scanline + vignetta tubo + banda scansione |
-| `.ris-noise` | neve analogica (turbolenza SVG) per no-signal/empty |
-| `.ris-signal-lost` | jitter orizzontale + chroma tear per stati errore |
-| `.ris-boot` | reveal scaglionato dei figli (power-on) |
-| `.ris-poweron` | flash CRT di accensione vista (one-shot) |
-| `.ris-glow-text` / `--2` / `.ris-glow-border` | bagliore fosforo accent |
-| `.ris-pulse-glow` | respiro neon (armed/listening) |
-| `.ris-caret` | cursore terminale lampeggiante |
-| `.ris-data-updated` | flash riga/cella al refresh del dato (toggle via JS) |
-| `.ris-holo` | shimmer olografico per loghi |
+| `.ris-glitch[data-text]` | RGB split + slice jitter (≤3 flashes/s — 2.3.1) |
+| `.ris-glitch--hover` | Glitch on hover only (0.45s one-shot) |
+| `.ris-crt` (+ child `.ris-crt-band`) | RGB phosphors + scanlines + vignette + sweep band |
+| `.ris-noise` | Analog static noise (SVG turbulence) for no-signal/empty states |
+| `.ris-signal-lost` | Horizontal jitter + chroma tear for error states |
+| `.ris-boot` | Staggered children reveal (power-on sequence) |
+| `.ris-poweron` | CRT power-on flash (one-shot) |
+| `.ris-glow-text` / `--2` / `.ris-glow-border` | Accent phosphor glow |
+| `.ris-pulse-glow` | Neon breathing pulse (armed/listening) |
+| `.ris-caret` | Blinking terminal cursor |
+| `.ris-data-updated` | Row/cell flash on data refresh (toggled via JS) |
+| `.ris-holo` | Holographic shimmer for brand marks |
 
-**Stati attivi / live** — il moto accompagna **sempre** label/icona (mai da solo,
-WCAG 1.4.1); fallback statico ma riconoscibile sotto reduced-motion.
+**Active / live states** — motion **always** accompanies a label or icon (never color alone,
+WCAG 1.4.1); static fallback recognizable under reduced-motion.
 
-| Classe | Stato | Markup |
+| Class | State | Markup |
 |---|---|---|
-| `.ris-rec` | recording | `<span class="ris-rec">Rec · 00:42</span>` (dot rosso pulsante via `::before`) |
-| `.ris-acquiring` | acquisizione live | su un `.ris-panel` → bordo che respira (glow in/out) |
-| `.ris-playing` | riproduzione | `<span class="ris-playing"><i></i><i></i><i></i><i></i></span>` (equalizer) |
-| `.ris-scan` | scanning/connessione | su un contenitore → riga di sweep verticale (richiede `overflow:hidden`, già nella classe) |
+| `.ris-rec` | recording | `<span class="ris-rec">Rec · 00:42</span>` (pulsing red dot via `::before`) |
+| `.ris-acquiring` | live acquisition | on `.ris-panel` → breathing border (glow in/out) |
+| `.ris-playing` | streaming playback | `<span class="ris-playing"><i></i><i></i><i></i><i></i></span>` (equalizer) |
+| `.ris-scan` | scanning/connection | on container → vertical sweep beam (requires `overflow:hidden`) |
 
-## Icone (Tabler Icons · Licenza MIT)
+## Icons (Tabler Icons · MIT License)
 
-Il set iconografico del sistema è basato sulla libreria open-source **Tabler Icons** (Licenza MIT pura, griglia 24×24px, `stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round;`).
-Garantisce massima precisione geometrica, qualità vettoriale professionale ed eleganza costante su HUD, telemetria e mobile.
+The system iconographic set is built on the open-source **Tabler Icons** library (pure MIT License, 24×24px grid, `stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round;`).
+Ensures geometric precision, professional vector rendering, and optical consistency across HUDs, telemetry, and mobile interfaces.
 
 `<svg class="ris-icon" aria-hidden="true"><use href="icons/ris-icons.svg#ris-NAME"/></svg>`
-Taglie: `--sm` 14px, default 18px, `--lg` 24px, `--xl` 32px.
-Set completo di 132 icone: generiche (nav, azioni, stato, sistema, connettività, chart) +
+Sizes: `--sm` 14px, default 18px, `--lg` 24px, `--xl` 32px.
+Complete set of 132 icons: generic (nav, actions, state, system, connectivity, charts) +
 biofeedback (`heart`, `heart-pulse`, `ecg`, `hrv`, `pulse`, `bp`, `blood-drop`,
 `spo2`, `brain`, `eeg`, `meditation`, `stress`, `focus`, `sleep`, `bed`, `lungs`,
 `respiration`, `wind`, `steps`, `run`, `walk`, `flame`, `vo2`, `pai`, `dumbbell`,
 `scale`, `body`, `bia`, `muscle`, `bone`, `water`, `temperature`, `dna`, `pill`,
-`stethoscope`) + dispositivi/implant (`nfc`, `implant`, `chip-card`, `hand-chip`,
+`stethoscope`) + devices/implants (`nfc`, `implant`, `chip-card`, `hand-chip`,
 `watch`, `sensor`, `scan`, `fingerprint`).
 
-**Brand/social**: `mail` (glifo stroke generico) + i loghi solidi `linkedin`,
-`github`, `medium` — questi ultimi sovrascrivono il default dello sprite con
-`fill="currentColor" stroke="none"`. Usali **solo** per un link reale verso quella
-piattaforma (mai come decorazione generica).
+**Brand / Social**: `mail` (stroke glyph) + solid marks `linkedin`,
+`github`, `medium` — solid logos override sprite defaults with
+`fill="currentColor" stroke="none"`. Use **only** for links navigating to those
+platforms (never as generic decoration).
 
 ## Skin `cyber` (`css/ris-skin-cyber.css`, opt-in)
 
-Attiva con `data-skin="cyber"` su `<html>` + `<link>` caricato **per ultimo**.
-Solo dark. Vedi GUIDELINES §8 (è un'eccezione consapevole al de-slop, AA mantenuta).
+Active with `data-skin="cyber"` on `<html>` + `<link>` loaded **last**.
+Dark mode only. See GUIDELINES §8 (intentional opt-in over de-slop, AA preserved).
 
-**Componenti skin-scoped:**
-- `.ris-listrow` — riga lista con `.thumb` (img/box 84×48) + `.body` (`.title`
-  display/cyan + `.meta` mono/rosso) + `.time`. Selezione: `data-selected="true"`
-  → **fill pieno** + testo invert. Reference: Load Game / Contacts / Inventory.
-  Per liste navigabili usa `role="listbox"`/`option` + `aria-selected` sul markup.
-- `.ris-stat` — stat da topbar: `.v` (valore display/cyan) + `.n` (label/verde) +
-  `.ris-segmeter` (riusa il meter segmentato). Dai sempre `aria-label` al meter.
+**Skin-scoped components:**
+- `.ris-listrow` — list row with `.thumb` (img/box 84×48) + `.body` (`.title`
+  display/cyan + `.meta` mono/red) + `.time`. Selection: `data-selected="true"`
+  → **solid fill** + inverted text. Reference: Load Game / Contacts / Inventory.
+  For navigable lists use `role="listbox"`/`option` + `aria-selected` in markup.
+- `.ris-stat` — topbar stat: `.v` (value display/cyan) + `.n` (label/green) +
+  `.ris-segmeter` (segmented meter). Always assign `aria-label` to the meter.
 
-**Utility decorative** (puro decoro → `aria-hidden="true"`):
-- `.ris-serial` — codici device (`<b>` per la parte accesa). Es. `PROTOCOL 6520-A44`.
-- `.ris-hex` — blocco hex dump (usa `<pre>`).
-- `.ris-binary` — stream binario verticale per gli angoli.
-- `.ris-ruler` + `--left`/`--right` — tacche-righello fisse sui bordi schermo.
-- `.ris-ticker` — blocchetto dati mono fisso (default in basso a sinistra).
+**Decorative utilities** (pure decor → `aria-hidden="true"`):
+- `.ris-serial` — device serial codes (`<b>` for illuminated portion). E.g. `PROTOCOL 6520-A44`.
+- `.ris-hex` — hex dump block (use `<pre>`).
+- `.ris-binary` — vertical binary stream for viewport corners.
+- `.ris-ruler` + `--left`/`--right` — fixed edge notch rulers on desktop viewport margins.
+- `.ris-ticker` — fixed monospace telemetry block (bottom-left default).
 
-**Override automatici** (nessuna classe da aggiungere): topbar con riga rossa
-glow, `.ris-btn--primary` con alone, selezione tabella a fill, `.ris-tip` con
-bordo giallo, `.ris-panel`/`.ris-bracket` rossi, focus input con glow cyan.
+**Automatic overrides** (no additional classes required): topbar with red
+glow line, `.ris-btn--primary` with accent glow, solid table row selection, `.ris-tip` with
+yellow border, red `.ris-panel`/`.ris-bracket`, cyan glow on input focus.
 
-**Mobile** (`@media ≤767px`): il sistema base commuta a topbar + `.ris-bottomnav`;
-lo skin nasconde `.ris-ruler`, alza il ticker sopra la nav, dà alla bottomnav la
-riga rossa glow, compatta `.ris-listrow` e `.ris-stat`, e passa a
-`background-attachment:scroll` (no jank iOS). Demo: `docs/mobile.html`.
+**Mobile** (`@media ≤767px`): base system switches to topbar + `.ris-bottomnav`;
+the skin hides `.ris-ruler`, elevates ticker above navigation bar, applies red glow
+line to bottomnav, compacts `.ris-listrow` and `.ris-stat`, and switches to
+`background-attachment:scroll` (prevents iOS repaint jank). Demo: `docs/mobile.html`.
 
-## Componenti Animati & Motion System (v2)
+## Motion System & Animated Components (v2)
 
-Integrazione Kiroshi Tactical HUD + ingegneria del movimento Emil Kowalski (zero reflow, 60fps, WCAG 2.2 AA).
+Integration of Kiroshi Tactical HUD + Emil Kowalski motion engineering (zero reflow, 60fps, WCAG 2.2 AA).
 
 ### 1. Accordion Disclosure (`.ris-acc`)
-Transizione a **CSS Grid (`grid-template-rows: 0fr → 1fr`)** in 200ms (`--ris-dur-base`) con `--ris-ease-out`:
+Transition via **CSS Grid (`grid-template-rows: 0fr → 1fr`)** in 200ms (`--ris-dur-base`) with `--ris-ease-out`:
 ```html
 <div class="ris-acc">
   <div class="ris-acc-item" data-open="false">
     <button class="ris-acc-trigger" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded')==='true'?'false':'true'); this.parentElement.setAttribute('data-open', this.getAttribute('aria-expanded'))">
-      <span>[ PARTE 01 ] // CANALE CRITTOGRAFICO</span>
+      <span>[ PART 01 ] // ENCRYPTED CHANNEL</span>
       <span class="ris-acc-chevron">▼</span>
     </button>
     <div class="ris-acc-drawer">
       <div class="ris-acc-body">
-        <div class="ris-acc-body-inner">Contenuto fluido a zero reflow.</div>
+        <div class="ris-acc-body-inner">Zero reflow fluid disclosure.</div>
       </div>
     </div>
   </div>
 </div>
 ```
 
-### 2. Bottom Sheet Mobile (`.ris-sheet`)
-Sostituisce le modali centrate su schermi `<768px`. Scivola dal basso (`translateY(100%) → translateY(0)`) in 240ms (`--ris-dur-enter` con `--ris-ease-out`):
+### 2. Mobile Bottom Sheet (`.ris-sheet`)
+Replaces centered modals on viewports `<768px`. Slides from bottom (`translateY(100%) → translateY(0)`) in 240ms (`--ris-dur-enter` with `--ris-ease-out`):
 ```html
 <div class="ris-sheet-backdrop">
   <div class="ris-sheet">
     <div class="ris-sheet-handle"></div>
     <div class="ris-sheet-head">
-      <div class="title">[ HUD // AZIONI RAPIDE ]</div>
+      <div class="title">[ HUD // QUICK ACTIONS ]</div>
       <button class="ris-btn ris-btn--sm">&times;</button>
     </div>
     <div class="ris-sheet-body">...</div>
@@ -253,8 +249,8 @@ Sostituisce le modali centrate su schermi `<768px`. Scivola dal basso (`translat
 </div>
 ```
 
-### 3. Switch Meccanico (`.ris-switch`)
-Slitta fisica angolare a 140ms (`--ris-dur-fast` con `--ris-ease-snap`):
+### 3. Tactical Mechanical Switch (`.ris-switch`)
+Physical 140ms sliding snap (`--ris-dur-fast` with `--ris-ease-snap`):
 ```html
 <label class="ris-switch">
   <input type="checkbox" checked>
@@ -263,23 +259,22 @@ Slitta fisica angolare a 140ms (`--ris-dur-fast` con `--ris-ease-snap`):
 ```
 
 ### 4. Radar Sweep HUD (`.ris-radar`)
-Scanning beam continuo a 2.2s con reticolo ottico e degradazione statica sotto `prefers-reduced-motion`:
+Continuous 2.2s scanning beam with optical reticle and static fallback under `prefers-reduced-motion`:
 ```html
 <div class="ris-panel ris-radar" style="min-height:120px;">
-  <!-- contenuto telemetrico con z-index:2 -->
+  <!-- telemetry copy with z-index:2 -->
 </div>
 ```
 
-### 5. Toast Stack di Sistema (`.ris-toast-stack`)
-Impilamento a cascata con scale progressivo (`scale(0.96)`) stile Sonner:
+### 5. System Toast Stack (`.ris-toast-stack`)
+Cascading stacked layout with progressive scale (`scale(0.96)`) Sonner-style:
 ```html
 <div class="ris-toast-stack">
   <div class="ris-toast">
     <div>
-      <span class="title">[ TELEMETRIA AGGIORNATA ]</span>
-      <div>Pacchetto #084-K ricevuto e validato.</div>
+      <span class="title">[ TELEMETRY UPDATED ]</span>
+      <div>Packet #084-K received and validated.</div>
     </div>
   </div>
 </div>
 ```
-

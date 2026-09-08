@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it" data-theme="dark" data-brand="relic" data-skin="cyber">
+<html lang="en" data-theme="dark" data-brand="relic" data-skin="cyber">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -169,7 +169,7 @@
   :root[data-theme="dark"] .kiroshi-btn:hover,
   :root:not([data-theme="light"]) .kiroshi-btn:hover {
     background: var(--ris-accent-fill) !important;
-    color: #05070a !important; /* Testo nero assoluto su ambra/ciano: contrasto 14:1 AAA */
+    color: #05070a !important; /* Pure black text on amber/cyan: 14:1 AAA contrast */
     border-color: var(--ris-accent-fill) !important;
     box-shadow: 0 0 20px var(--ris-accent-glow) !important;
   }
@@ -438,13 +438,13 @@
 
   <div style="margin-left:auto; display:flex; gap:12px; align-items:center;">
     <!-- Speed toggle (slow motion inspection) -->
-    <select class="ris-select" id="speed-select" onchange="setSpeed(this.value)" title="Velocità animazione per ispezione curve">
-      <option value="normal">Velocità: 1x (Snappy)</option>
-      <option value="slow">Velocità: 0.3x (Slow-Mo)</option>
+    <select class="ris-select" id="speed-select" onchange="setSpeed(this.value)" title="Animation speed for curve inspection">
+      <option value="normal">Speed: 1x (Snappy)</option>
+      <option value="slow">Speed: 0.3x (Slow-Mo)</option>
     </select>
 
     <!-- Reduced Motion -->
-    <label class="tactical-switch" title="Simula prefers-reduced-motion (WCAG 2.2 AA)">
+    <label class="tactical-switch" title="Simulate prefers-reduced-motion (WCAG 2.2 AA)">
       <input type="checkbox" id="toggle-reduced" onchange="toggleReducedMotion(this.checked)">
       <div class="tactical-switch-track"><div class="tactical-switch-thumb"></div></div>
       <span>REDUCED MOTION</span>
@@ -465,7 +465,7 @@
 
     <!-- Theme toggle -->
     <button class="ris-btn ris-btn--sm ris-btn--primary" onclick="toggleTheme()" id="theme-btn">
-      ◐ TEMA: DARK
+      ◐ THEME: DARK
     </button>
   </div>
 </header>
@@ -473,22 +473,22 @@
 <main class="lab-shell">
   <!-- Hero banner -->
   <div class="hero-banner">
-    <div class="ris-eyebrow" style="color:var(--ris-accent)">[ STANDARD DI SISTEMA ]</div>
+    <div class="ris-eyebrow" style="color:var(--ris-accent)">[ SYSTEM STANDARD ]</div>
     <h1>Kiroshi Tactical Forensic (A &times; C)</h1>
     <p>
-      Abbiamo unificato l'<strong>impatto visivo di Kiroshi (A)</strong> — angoli smussati, bracket HUD, scansione radar e griglie tattiche — con l'<strong>ingegneria del movimento di Emil Kowalski (C)</strong>.
-      Inoltre, la <strong>versione Light</strong> è stata completamente riprogettata con inchiostri freddi ad alta densità per superare tutti i test <strong>WCAG 2.2 AA</strong> (contrasti fino a 15:1).
+      We unified the <strong>visual impact of Kiroshi (A)</strong> — clipped corners, HUD brackets, radar sweeps, and tactical grids — with <strong>Emil Kowalski's motion engineering (C)</strong>.
+      In addition, the <strong>Light theme</strong> has been engineered with cold high-density technical inks to pass all <strong>WCAG 2.2 AA</strong> criteria (contrast up to 15:1).
     </p>
   </div>
 
   <!-- A11y & Contrast Bar -->
   <div class="a11y-bar">
-    <span style="font-weight:700; text-transform:uppercase; color:var(--ris-fg1);">Audit Contrasti WCAG 2.2:</span>
-    <span class="a11y-score">Testo Primario: <strong>15.6:1</strong> <span class="a11y-badge-pass">AAA PASS</span></span>
-    <span class="a11y-score">Testo Secondario: <strong>8.1:1</strong> <span class="a11y-badge-pass">AAA PASS</span></span>
-    <span class="a11y-score">Accento Ink / Brand: <strong>5.2:1</strong> <span class="a11y-badge-pass">AA PASS</span></span>
-    <span class="a11y-score">Controlli &amp; Bordi: <strong>4.8:1</strong> <span class="a11y-badge-pass">AA PASS</span></span>
-    <span class="a11y-score" style="margin-left:auto;">Target Touch: <strong>&ge;44px</strong> <span class="a11y-badge-pass">PASS</span></span>
+    <span style="font-weight:700; text-transform:uppercase; color:var(--ris-fg1);">WCAG 2.2 Contrast Audit:</span>
+    <span class="a11y-score">Primary Text: <strong>15.6:1</strong> <span class="a11y-badge-pass">AAA PASS</span></span>
+    <span class="a11y-score">Secondary Text: <strong>8.1:1</strong> <span class="a11y-badge-pass">AAA PASS</span></span>
+    <span class="a11y-score">Accent Ink / Brand: <strong>5.2:1</strong> <span class="a11y-badge-pass">AA PASS</span></span>
+    <span class="a11y-score">Controls &amp; Borders: <strong>4.8:1</strong> <span class="a11y-badge-pass">AA PASS</span></span>
+    <span class="a11y-score" style="margin-left:auto;">Touch Target: <strong>&ge;44px</strong> <span class="a11y-badge-pass">PASS</span></span>
   </div>
 
   <!-- UNIFIED STAGE DEMO -->
@@ -496,11 +496,11 @@
     <div class="unified-stage-header">
       <div>
         <span class="stage-badge">[ KIROSHI // OPTICAL FORENSIC HUD ]</span>
-        <h2 class="ris-h2" style="margin:8px 0 0; color:var(--ris-fg1);">Componenti Tattici dal Vivo</h2>
+        <h2 class="ris-h2" style="margin:8px 0 0; color:var(--ris-fg1);">Live Tactical Components</h2>
       </div>
       <div style="display:flex; gap:10px;">
-        <button class="kiroshi-btn" onclick="openTacticalModal()">APRI MODAL HUD</button>
-        <button class="kiroshi-btn kiroshi-btn--primary" onclick="triggerTelemetryUpdate()">SIMULA DATA FLOW</button>
+        <button class="kiroshi-btn" onclick="openTacticalModal()">OPEN HUD MODAL</button>
+        <button class="kiroshi-btn kiroshi-btn--primary" onclick="triggerTelemetryUpdate()">SIMULATE DATA FLOW</button>
       </div>
     </div>
 
@@ -508,10 +508,10 @@
       <!-- Col 1: Tactical Buttons & Switch -->
       <div style="display:flex; flex-direction:column; gap:18px;">
         <div>
-          <div class="ris-eyebrow" style="margin-bottom:8px;">1. TATTILITÀ BOTTONI KIROSHI HUD (80ms SNAP &middot; SCALE 0.97)</div>
+          <div class="ris-eyebrow" style="margin-bottom:8px;">1. KIROSHI HUD BUTTON TACTILITY (80ms SNAP &middot; SCALE 0.97)</div>
           <div style="display:flex; flex-direction:column; gap:10px;">
             <button class="kiroshi-btn kiroshi-btn--primary">
-              <span>[ 01 ]</span> CONFERMA AZIONE (PRIMARY)
+              <span>[ 01 ]</span> CONFIRM ACTION (PRIMARY)
             </button>
             <button class="kiroshi-btn">
               <span>[ 02 ]</span> INVERT HIGHLIGHT (CP2077)
@@ -526,17 +526,17 @@
         </div>
 
         <div>
-          <div class="ris-eyebrow" style="margin-bottom:8px;">1B. BOTTONI REGULAR RIS v2 (.ris-btn STANDARD)</div>
+          <div class="ris-eyebrow" style="margin-bottom:8px;">1B. STANDARD RIS v2 BUTTONS (.ris-btn STANDARD)</div>
           <div style="display:flex; flex-direction:column; gap:10px;">
-            <button class="ris-btn ris-btn--primary">BOTTONE PRIMARIO (.ris-btn--primary)</button>
-            <button class="ris-btn">BOTTONE DEFAULT (.ris-btn)</button>
-            <button class="ris-btn ris-btn--secondary">BOTTONE SECONDARIO (.ris-btn--secondary)</button>
-            <button class="ris-btn ris-btn--danger">BOTTONE DANGER (.ris-btn--danger)</button>
+            <button class="ris-btn ris-btn--primary">PRIMARY BUTTON (.ris-btn--primary)</button>
+            <button class="ris-btn">DEFAULT BUTTON (.ris-btn)</button>
+            <button class="ris-btn ris-btn--secondary">SECONDARY BUTTON (.ris-btn--secondary)</button>
+            <button class="ris-btn ris-btn--danger">DANGER BUTTON (.ris-btn--danger)</button>
           </div>
         </div>
 
         <div>
-          <div class="ris-eyebrow" style="margin-bottom:8px;">2. INTERRUTTORE MECCANICO TATTICO</div>
+          <div class="ris-eyebrow" style="margin-bottom:8px;">2. TACTICAL MECHANICAL SWITCH</div>
           <div style="display:flex; flex-direction:column; gap:10px;">
             <label class="tactical-switch">
               <input type="checkbox" checked>
@@ -546,7 +546,7 @@
             <label class="tactical-switch">
               <input type="checkbox" checked>
               <div class="tactical-switch-track"><div class="tactical-switch-thumb"></div></div>
-              <span>AUTO-CORREZIONE FLUSSO NEURALE</span>
+              <span>NEURAL FLOW AUTO-CORRECTION</span>
             </label>
           </div>
         </div>
@@ -555,14 +555,14 @@
       <!-- Col 2: Radar Viewport & Telemetry Flash -->
       <div style="display:flex; flex-direction:column; gap:18px;">
         <div>
-          <div class="ris-eyebrow" style="margin-bottom:8px;">3. RADAR SWEEP ATTIVO (2.2s LINEARE)</div>
+          <div class="ris-eyebrow" style="margin-bottom:8px;">3. ACTIVE RADAR SWEEP (2.2s LINEAR)</div>
           <div class="tactical-viewport tactical-grid-bg">
             <div style="display:flex; justify-content:space-between; font-family:var(--ris-font-mono); font-size:10px; color:var(--hud-data-text); z-index:2;">
               <span>FREQ: 14.82 GHz</span>
               <span>BEARING: 084&deg; // LOCK</span>
             </div>
             <div style="font-family:var(--ris-font-mono); font-size:11px; font-weight:700; color:var(--ris-accent); text-align:center; z-index:2;">
-              &bull; ACQUISIZIONE DATI SENSORI IN CORSO &bull;
+              &bull; SENSOR DATA ACQUISITION IN PROGRESS &bull;
             </div>
             <div style="display:flex; justify-content:space-between; font-family:var(--ris-font-mono); font-size:10px; color:var(--ris-fg3); z-index:2;">
               <span>BUFFER: 98.4%</span>
@@ -572,7 +572,7 @@
         </div>
 
         <div>
-          <div class="ris-eyebrow" style="margin-bottom:8px;">4. TELEMETRIA CON PHOSPHOR/INK AFTERGLOW</div>
+          <div class="ris-eyebrow" style="margin-bottom:8px;">4. TELEMETRY WITH PHOSPHOR/INK AFTERGLOW</div>
           <div class="data-cell">
             <span class="ris-label" style="margin:0;">TRANSFER BITRATE:</span>
             <span id="data-display" class="data-val">4,812 pkt/s</span>
@@ -586,21 +586,21 @@
           <div class="ris-eyebrow" style="margin-bottom:8px;">5. ACCORDION DISCLOSURE (CSS GRID 0fr &rarr; 1fr)</div>
           <div class="tactical-acc" id="tac-acc">
             <div class="tactical-acc-trigger" onclick="toggleTacAcc('tac-acc')">
-              <span>[ PARTE 01 ] // CANALE CRITTOGRAFICO</span>
+              <span>[ PART 01 ] // ENCRYPTED CHANNEL</span>
               <span class="tactical-acc-chevron">&blacktriangledown;</span>
             </div>
             <div class="tactical-acc-drawer">
               <div class="tactical-acc-body">
-                Nessun salto visivo: transizione fluida calibrata a <strong>220ms <code>--ease-out</code></strong> con CSS Grid. Anche in Light Mode il testo rispetta il contrasto <strong>8.1:1 AAA</strong>.
+                Zero visual jank: fluid transition calibrated at <strong>220ms <code>--ease-out</code></strong> with CSS Grid. Even in Light Mode, copy adheres to <strong>8.1:1 AAA</strong> contrast.
               </div>
             </div>
           </div>
         </div>
 
         <div>
-          <div class="ris-eyebrow" style="margin-bottom:8px;">6. TOAST TEMPORIZZATO DI SISTEMA</div>
+          <div class="ris-eyebrow" style="margin-bottom:8px;">6. TIMED SYSTEM TOAST</div>
           <button class="kiroshi-btn" onclick="spawnTacticalToast()" style="width:100%; justify-content:center;">
-            EMETTI NOTIFICA HUD (4s)
+            EMIT HUD TOAST (4s)
           </button>
         </div>
       </div>
@@ -608,10 +608,10 @@
 
     <!-- Skin Cyber Live Palette Showcase -->
     <div style="margin-top:28px; padding-top:20px; border-top:1px solid var(--ris-line);">
-      <div class="ris-eyebrow" style="margin-bottom:12px;">7. COMPONENTI SKIN CYBER — [ DARK: CRIMSON // LIGHT: AZZURRO FORENSE ]</div>
+      <div class="ris-eyebrow" style="margin-bottom:12px;">7. CYBER SKIN COMPONENTS — [ DARK: CRIMSON // LIGHT: FORENSIC CYAN ]</div>
       <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:20px; align-items:start;">
         <div>
-          <span class="ris-label" style="margin-bottom:6px; display:block;">List-row Cyber (Selezione attiva):</span>
+          <span class="ris-label" style="margin-bottom:6px; display:block;">Cyber List-row (Active selection):</span>
           <div class="ris-listrow" data-selected="true">
             <div class="thumb" aria-hidden="true" style="display:flex; align-items:center; justify-content:center; font-family:var(--ris-font-mono); font-size:10px; font-weight:700;">HUD</div>
             <div class="body">
@@ -623,7 +623,7 @@
         </div>
 
         <div>
-          <span class="ris-label" style="margin-bottom:6px; display:block;">Serial &amp; Metadata Telemetrico:</span>
+          <span class="ris-label" style="margin-bottom:6px; display:block;">Serial &amp; Telemetry Metadata:</span>
           <div class="ris-panel" style="padding:10px 14px;">
             <div class="ris-serial">
               NODE_ID: <b>0x7F9B</b> · REV: <b>2.4-A</b> · BUFFER: <b>99.4%</b>
@@ -646,7 +646,7 @@
   <!-- Comparison & Token Documentation -->
   <div class="ris-panel">
     <div class="ris-panel-head">
-      <h3 class="ris-h3">Specifiche Token di Movimento Definitivi</h3>
+      <h3 class="ris-h3">Definitive Motion Token Specifications</h3>
       <span class="ris-chip ris-chip--accent">WCAG 2.2 AA VERIFIED</span>
     </div>
     <div class="ris-panel-body" style="padding:0; overflow-x:auto;">
@@ -654,8 +654,8 @@
         <thead>
           <tr>
             <th>Token</th>
-            <th>Valore</th>
-            <th>Ruolo &amp; Comportamento</th>
+            <th>Value</th>
+            <th>Role &amp; Behavior</th>
             <th>A11y Fallback</th>
           </tr>
         </thead>
@@ -663,37 +663,37 @@
           <tr>
             <td><code>--ris-dur-instant</code></td>
             <td><code>80ms</code></td>
-            <td>Micro-feedback fisico su bottoni (<code>:active scale(0.97)</code>), switch, checkbox. Zero percezione di ritardo.</td>
-            <td>Istantaneo (0ms)</td>
+            <td>Physical micro-feedback on buttons (<code>:active scale(0.97)</code>), switches, checkboxes. Zero perceived latency.</td>
+            <td>Instant (0ms)</td>
           </tr>
           <tr>
             <td><code>--ris-dur-fast</code></td>
             <td><code>140ms</code></td>
-            <td>Hover di selezione, micro-flash dati telemetrici, tooltip e popup leggeri.</td>
-            <td>Istantaneo (0ms)</td>
+            <td>Selection hover, telemetry micro-flash, tooltips, lightweight popups.</td>
+            <td>Instant (0ms)</td>
           </tr>
           <tr>
             <td><code>--ris-dur-base</code></td>
             <td><code>200ms</code></td>
-            <td>Apertura accordion (CSS Grid), transizione orizzontale tab, drawer laterali.</td>
-            <td>Apertura istantanea senza transizione</td>
+            <td>Accordion expansion (CSS Grid), horizontal tab transitions, slide drawers.</td>
+            <td>Instant toggle without transition</td>
           </tr>
           <tr>
             <td><code>--ris-dur-enter</code></td>
             <td><code>240ms</code></td>
-            <td>Entrata finestre modali (<code>scale(0.96) &rarr; scale(1)</code>), toast stack. Mai <code>ease-in</code>.</td>
-            <td>Opacit&agrave; immediata a 1</td>
+            <td>Modal dialog entry (<code>scale(0.96) &rarr; scale(1)</code>), toast stacks. Never <code>ease-in</code>.</td>
+            <td>Immediate opacity to 1</td>
           </tr>
           <tr>
             <td><code>--ris-ease-snap</code></td>
             <td><code>cubic-bezier(0.16, 1, 0.3, 1)</code></td>
-            <td>Curva a scatto meccanico HUD: inizio fulmineo, decelerazione dura senza rimbalzo gommoso.</td>
+            <td>HUD mechanical snap: lightning launch, hard deceleration without rubber rebound.</td>
             <td>N/A</td>
           </tr>
           <tr>
             <td><code>--ris-ease-out</code></td>
             <td><code>cubic-bezier(0.22, 1, 0.36, 1)</code></td>
-            <td>Curva naturale per entrate a schermo: reattivit&agrave; immediata fin dal primo frame.</td>
+            <td>Natural entry curve: immediate responsiveness from the very first frame.</td>
             <td>N/A</td>
           </tr>
         </tbody>
@@ -707,17 +707,17 @@
   <div class="tactical-modal-box" onclick="event.stopPropagation()">
     <div class="ris-panel-head" style="border-bottom: 1px solid var(--ris-line);">
       <h3 class="ris-h3" style="margin:0; color:var(--ris-accent); font-family:var(--ris-font-mono);">
-        [ OVERRIDE // AUTORIZZAZIONE NEURALE ]
+        [ OVERRIDE // NEURAL AUTHORIZATION ]
       </h3>
       <button class="ris-btn ris-btn--sm" onclick="closeTacticalModalDirect()">&times;</button>
     </div>
     <div class="ris-panel-body" style="padding: 24px;">
       <p style="margin: 0 0 16px; font-size:13px; color:var(--ris-fg1); line-height:1.6;">
-        La finestra modale entra con <code>scale(0.96) &rarr; scale(1)</code> in <strong>220ms <code>--ease-out</code></strong>. Sia in Dark che in Light mode, il contrasto del testo &egrave; certificato <strong>AAA (&gt;15:1)</strong>.
+        Modal dialog scales in with <code>scale(0.96) &rarr; scale(1)</code> in <strong>220ms <code>--ease-out</code></strong>. In both Dark and Light modes, text contrast is certified <strong>AAA (&gt;15:1)</strong>.
       </p>
       <div style="display:flex; justify-content:flex-end; gap:12px;">
-        <button class="kiroshi-btn" onclick="closeTacticalModalDirect()">ANNULLA</button>
-        <button class="kiroshi-btn kiroshi-btn--primary" onclick="closeTacticalModalDirect()">CONFERMA ACCESSO</button>
+        <button class="kiroshi-btn" onclick="closeTacticalModalDirect()">CANCEL</button>
+        <button class="kiroshi-btn kiroshi-btn--primary" onclick="closeTacticalModalDirect()">CONFIRM ACCESS</button>
       </div>
     </div>
   </div>
@@ -735,7 +735,7 @@
     const el = document.getElementById('data-display');
     el.classList.remove('flashing');
     void el.offsetWidth;
-    el.innerText = (Math.floor(4200 + Math.random() * 1100)).toLocaleString('it-IT') + ' pkt/s';
+    el.innerText = (Math.floor(4200 + Math.random() * 1100)).toLocaleString('en-US') + ' pkt/s';
     el.classList.add('flashing');
     setTimeout(() => el.classList.remove('flashing'), 600);
   }
@@ -767,10 +767,10 @@
     toast.innerHTML = `
       <div>
         <div style="font-family:var(--ris-font-mono); font-weight:700; font-size:11px; text-transform:uppercase; color:var(--ris-accent);">
-          [ TELEMETRIA AGGIORNATA ]
+          [ TELEMETRY UPDATED ]
         </div>
         <div style="font-size:11px; color:var(--ris-fg2); margin-top:2px;">
-          Pacchetto #084-K ricevuto e validato.
+          Packet #084-K received and validated.
         </div>
       </div>
     `;
@@ -786,7 +786,7 @@
     const curr = html.getAttribute('data-theme') || 'dark';
     const next = curr === 'dark' ? 'light' : 'dark';
     html.setAttribute('data-theme', next);
-    document.getElementById('theme-btn').innerText = next === 'dark' ? '◐ TEMA: DARK' : '◐ TEMA: LIGHT';
+    document.getElementById('theme-btn').innerText = next === 'dark' ? '◐ THEME: DARK' : '◐ THEME: LIGHT';
   }
 
   function toggleSkin() {

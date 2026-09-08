@@ -1016,7 +1016,7 @@ button, a, input, select, textarea, .ris-btn, .ris-nav-link, .ris-listrow, .ris-
 .ris-accordion details[open] > summary::after { content: "−"; color: var(--ris-accent); }
 .ris-accordion .body { padding: 14px 16px; font-size: var(--ris-text-sm); color: var(--ris-fg2); border-top: 1px solid var(--ris-line-faint); }
 
-/* Accordion modernizzato con CSS Grid (0fr -> 1fr, zero reflow a 60fps) */
+/* Modernized accordion with CSS Grid (0fr -> 1fr, zero reflow at 60fps) */
 .ris-acc {
   border: 1px solid var(--ris-line);
   background: var(--ris-surface-1);

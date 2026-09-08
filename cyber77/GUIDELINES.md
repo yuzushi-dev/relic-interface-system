@@ -1,160 +1,132 @@
 # RIS v2 — Guidelines
 
-Principi del Relic Interface System. Vale per web (css/), Android (compose/) e
-qualsiasi nuovo target. I token sono l'unica fonte di verità
-(`tokens/ris.tokens.json` ↔ `css/ris-tokens.css` ↔ `compose/Color.kt`): mai
-hardcodare hex nei componenti.
+Principles of the Relic Interface System. Applies to Web (css/), Android (compose/), and
+any new target platforms. Tokens are the single source of truth
+(`tokens/ris.tokens.json` ↔ `css/ris-tokens.css` ↔ `compose/Color.kt`): never
+hardcode hex values in components.
 
-## 1. Identità
+## 1. Identity
 
-- **Graphite, mai nero puro.** Stack superfici `#060708 → #232c33`; la struttura
-  la danno i bordi 1px, non le ombre morbide.
-- **Angoli clippati, mai arrotondati.** Radius 0; corner-cut 6px (chip/input/btn),
+- **Graphite, never pure black.** Surface stack `#060708 → #232c33`; structure is
+  provided by 1px hard borders, never fuzzy drop-shadows.
+- **Clipped corners, never rounded.** Radius 0; 45° corner cuts: 6px (chip/input/btn),
   10px (panel), 16px (modal/hero).
-- **Accento = significato.** Amber-sodio: attivo/CTA/pending. Steel-ice: dati/link/scan.
-  Rosso: pericolo/blocco. Verde: online/approvato. Violet: inferenza.
-  Orchidea: runtime Gumi. Orange: correzioni. Un accento che non significa nulla
-  non va usato.
-- **Palette forense / strumento d'archivio**: colori dati freddi e precisi, un solo
-  accento caldo confidente (amber-sodio `#e6a23c`), steel-ice `#6fb3c9` per i dati,
-  red `#d45565` — usati come *fill*; le varianti contestuali sono tarate AA per tema.
-  Niente neon saturo: la riconoscibilità viene dal rigore, non dal genere.
-- **Glow = eccezione, non default.** Lo stato si segnala con contrasto + peso del
-  bordo (`--ris-line*`, `--ris-accent-line`), non col bagliore. Un'unica via glow
-  sanzionata: `--ris-live` per stati genuinamente critici/live (es. acquisizione
-  in corso). Le utility glow (`.ris-glow-text/-border`, `.ris-pulse-glow`) restano
-  opt-in e non vengono mai applicate dai componenti di default.
-- **Texture con parsimonia**: grid 32px sul background, scanline solo su superfici
-  hero/modal. Mai sopra testo denso.
+- **Accent = Meaning.** Sodium amber: active/CTA/pending. Steel ice: data/links/scan.
+  Red: danger/blocked. Green: online/approved. Violet: inference.
+  Orchid: Gumi runtime. Orange: corrections. An accent that carries no semantic meaning
+  must not be used.
+- **Forensic / Archival Tool Palette**: cold and precise data colors, a single confident
+  warm accent (sodium amber `#e6a23c`), steel ice `#6fb3c9` for telemetry,
+  red `#d45565` — used as *fills*; contextual variants are AA-calibrated per theme.
+  No oversaturated neon: recognition stems from rigor, not genre cliches.
+- **Glow = Exception, not default.** State is signaled through contrast + border weight
+  (`--ris-line*`, `--ris-accent-line`), not luminescence. A single sanctioned glow utility:
+  `--ris-live` for genuinely critical/live states (e.g., active sensor acquisition).
+  Glow utilities (`.ris-glow-text/-border`, `.ris-pulse-glow`) remain opt-in and are
+  never applied by default components.
+- **Restrained textures**: 32px grid on background, scanlines only on hero/modal surfaces.
+  Never behind dense data copy.
 - **Motion System (Kiroshi Tactical HUD + Emil Kowalski)**:
-  1. *Durate vincolanti per layer*: 80ms micro-feedback (`:active scale(0.97)`), 140ms hover/switch, 200ms accordion/tabs, 240ms modal/sheet enter.
-  2. *Divieto di `ease-in` per elementi che entrano*: l'utente si aspetta reattività immediata; usa sempre `--ris-ease-out` (`cubic-bezier(0.22, 1, 0.36, 1)`) o `--ris-ease-snap` (`cubic-bezier(0.16, 1, 0.3, 1)`).
-  3. *Proprietà composited-only*: animare solo `transform` e `opacity`. Per accordion e disclosure usa CSS Grid (`grid-template-rows: 0fr → 1fr`) evitando ricalcoli di layout (`height`) a 60fps.
-  4. *Mobile Ergonomics*: `@media (hover: hover)` per evitare lo "sticky hover" su touchscreen; target touch ≥44px; modali adattate a Bottom Sheet (`.ris-sheet`) con maniglia tattica e gesture touch nativo leggero.
-  5. *Light Mode drafting*: gli effetti continui in Light Mode usano tonalità azzurro/ardesia a bassa opacità (10-15%) stile cianografia tecnica per preservare il comfort visivo.
-- **Tipografia**: Archivo (display + body, grotesk da strumento), JetBrains
-  Mono (telemetria/valori). Floor 11px solo per metadati.
+  1. *Layer-bound timing tokens*: 80ms micro-feedback (`:active scale(0.97)`), 140ms hover/switch, 200ms accordion/tabs, 240ms modal/sheet enter.
+  2. *No `ease-in` for entering elements*: users expect immediate responsiveness; always use `--ris-ease-out` (`cubic-bezier(0.22, 1, 0.36, 1)`) or `--ris-ease-snap` (`cubic-bezier(0.16, 1, 0.3, 1)`).
+  3. *Composited-only properties*: animate only `transform` and `opacity`. For accordions and disclosures use CSS Grid (`grid-template-rows: 0fr → 1fr`) avoiding layout reflows (`height`) at 60fps.
+  4. *Mobile Ergonomics*: `@media (hover: hover)` prevents "sticky hover" on touchscreens; touch targets ≥44px; modals adapt to Bottom Sheets (`.ris-sheet`) with tactical handles and lightweight native touch gestures.
+  5. *Light Mode drafting*: continuous ambient effects in Light Mode utilize low-opacity slate/cyan (10-15%) technical blueprint styling to safeguard optical comfort.
+- **Typography**: Archivo (display + body, instrument-grade grotesk), JetBrains
+  Mono (telemetry/values). 11px floor reserved for metadata only.
 
-## 2. Temi
+## 2. Themes
 
-- Dark è il default (`data-theme` assente o `"dark"`). Light: `data-theme="light"`.
-- I componenti referenziano SOLO token contestuali (`--ris-cyan`, `--ris-fg2`…):
-  il tema giusto arriva da solo.
-- Riempimenti accesi: `--ris-X-fill` + testo `--ris-fg-invert` (identici nei due
-  temi — il CTA giallo resta giallo).
-- Mai mescolare: un componente non legge i token dell'altro tema.
+- Dark is default (omitted `data-theme` or `"dark"`). Light: `data-theme="light"`.
+- Components reference ONLY contextual tokens (`--ris-cyan`, `--ris-fg2`…): the appropriate theme resolves automatically.
+- Saturated fills: `--ris-X-fill` + text `--ris-fg-invert` (identical across both themes — yellow CTA remains yellow).
+- Never mix: a component must never reference tokens belonging to the opposite theme.
 
 ## 3. Brand
 
-`data-brand` su `<html>`: cambia solo `--ris-accent*` e `--ris-accent-2*`.
+`data-brand` on `<html>`: modifies only `--ris-accent*` and `--ris-accent-2*`.
 
-| Brand | Primario | Secondario | Uso |
+| Brand | Primary | Secondary | Purpose |
 |---|---|---|---|
-| `relic` (default) | yellow | cyan | workbench di ricerca, command surfaces |
-| `biohub` | cyan | green | biofeedback, telemetria salute |
-| `vivokey` | red | yellow | auth, fattore di possesso, implant |
-| `neutral` | violet | cyan | general use / progetti terzi |
+| `relic` (default) | yellow | cyan | research workbench, command surfaces |
+| `biohub` | cyan | green | biofeedback, health telemetry |
+| `vivokey` | red | yellow | authentication, possession factor, implants |
+| `neutral` | violet | cyan | general purpose / third-party projects |
 
-I colori *semantici* (danger, success, stream…) non cambiano mai col brand.
+*Semantic* colors (danger, success, stream…) never vary with brand.
 
-### Skin di contesto-caso (skin complete)
+### Case-Context Skins (Full Skins)
 
-Oltre ai brand prodotto, tre skin per i contesti di trattamento delle prove —
-cambiano accent **e** tinta delle superfici (solo in dark; in light solo gli
-accent ink, sempre AA). Le chiavi `data-brand` restano stabili per compat con i
-consumer; cambiano solo i valori che lo switch alterna.
+In addition to product brands, three full skins exist for evidentiary handling contexts —
+they alter accent **and** surface tint (in dark mode only; in light mode only AA ink accents adapt).
+The `data-brand` keys remain stable for backwards compatibility:
 
-| Chiave (`data-brand`) | Contesto | Superfici (dark) | Accent | Accent-2 |
+| Key (`data-brand`) | Context | Surfaces (dark) | Accent | Accent-2 |
 |---|---|---|---|---|
-| `arasaka` → "sealed" | dossier sigillato — catena di custodia | grafite fredda a punta porpora | red `#d45565` (ctx `#cf5e6b`) | steel-ice `#6fb3c9` |
-| `militech` → "field" | raccolta sul campo — annotazione | antracite calda | amber-sodio `#d99a4a` | oliva `#9fae6b` |
-| `edgerunners` → "archive" | archivio notturno — cross-reference | grafite porpora | orchidea `#b274c0` (ctx `#be7ecf`) | steel-ice `#6fb3c9` |
+| `arasaka` → "sealed" | sealed dossier — chain of custody | cold graphite with purple tint | red `#d45565` (ctx `#cf5e6b`) | steel ice `#6fb3c9` |
+| `militech` → "field" | field gathering — annotation | warm anthracite | sodium amber `#d99a4a` | olive `#9fae6b` |
+| `edgerunners` → "archive" | night archive — cross-reference | purple graphite | orchid `#b274c0` (ctx `#be7ecf`) | steel ice `#6fb3c9` |
 
-Regia per renderli identitari (sempre contrasto + bordo, mai glow): sealed =
-severità evidenziaria (bracket rossi, densità sobria); field = densità di campo
-(segmeter, stepper, chip annotazione); archive = profondità d'archivio (accenti
-orchidea su grafite porpora). Nessuna skin abbonda di FX.
+Styling direction relies on contrast and borders, never excess glows: sealed = evidentiary austerity (red brackets, dense sobriety); field = field density (segmeter, stepper, annotation chips); archive = archival depth (orchid accents on purple graphite).
 
-## 4. Accessibilità (WCAG 2.2 AA — vincolante)
+## 4. Accessibility (WCAG 2.2 AA — Non-negotiable)
 
-- **Contrasto**: ogni token contestuale è ≥4.5:1 su `bg`, `surface-1..3` del suo
-  tema (verificato; vedi tabella in AUDIT/specimen). `--ris-fg4` è sotto soglia
-  *by design*: solo placeholder/disabled, mai contenuto.
-- **1.4.1 Use of Color**: lo stato non è mai solo colore — sempre etichetta o
-  icona accanto (chip, stream, risk, alert lo fanno già).
-- **2.4.7 Focus Visible**: ring 2px `--ris-focus-ring` via `:focus-visible`,
-  offset 2px. Non rimuoverlo mai; per stili custom mantenere ≥3:1 col fondo.
-- **2.5.8 Target Size**: bottoni ≥36px, controlli form: l'intera label è il
-  target (min-height 24px). Su mobile bottom-nav item ≥44px.
-- **2.3.3 / motion**: tutte le animazioni si disattivano con
-  `prefers-reduced-motion: reduce` (già nel CSS base). Flicker/blink restano
-  sotto le 3 lampi/secondo (1.1s steps — conforme 2.3.1).
-- **2.4.1 Bypass Blocks**: `.ris-skip-nav` come primo figlio del body.
-- **4.1.2**: pattern ARIA per componente documentati in `COMPONENTS.md`
-  (dialog, tablist, meter, switch, sort…). I prototipi nello specimen li usano.
-- **1.4.4 Resize**: tutto in px ma layout fluido; verificare zoom 200% senza
-  perdita di contenuto (lo specimen regge).
-- Test minimi prima di rilasciare una vista: tab-walk completo, screen reader
-  spot-check (NVDA/TalkBack), zoom 200%, entrambi i temi.
+- **Contrast**: every contextual token is ≥4.5:1 against `bg` and `surface-1..3` of its theme (verified; see table in AUDIT/specimen). `--ris-fg4` sits below threshold *by design*: placeholder/disabled only, never informative content.
+- **1.4.1 Use of Color**: state is never conveyed by color alone — always paired with an adjacent label or icon.
+- **2.4.7 Focus Visible**: 2px `--ris-focus-ring` via `:focus-visible`, 2px offset. Never remove it; custom overrides must maintain ≥3:1 against background.
+- **2.5.8 Target Size**: buttons ≥36px, form controls: the entire label is interactive (min-height 24px). Mobile bottom-nav items ≥44px.
+- **2.3.3 / Motion**: all motion transitions deactivate under `prefers-reduced-motion: reduce`. Flashes remain strictly below 3 flashes per second (conforming with 2.3.1).
+- **2.4.1 Bypass Blocks**: `.ris-skip-nav` as the first child of `<body>`.
+- **4.1.2**: ARIA patterns documented per component in `COMPONENTS.md` (dialog, tablist, meter, switch, sort…).
+- **1.4.4 Resize**: layout remains fluid; supports 200% zoom without clipping or loss of functionality.
+- Minimum release checklist: complete keyboard tab walk, screen reader spot check (NVDA/TalkBack), 200% zoom test, both themes verified.
 
-## 5. Layout responsive
+## 5. Responsive Layout
 
-- Breakpoint unico di struttura: **768px**.
-  - ≥768: topbar 52px + rail sinistra 64px (`.ris-rail`), contenuto max 1280px.
-  - <768: rail nascosta, bottom-nav 60px (`.ris-bottomnav`) con safe-area inset.
-- Griglie: `.ris-grid--2/3/4` collassano automaticamente (1024px, 640px).
-- Tabelle dense: wrapper `.ris-table-wrap` con scroll orizzontale, mai layout rotto.
-- Touch: su mobile niente hover-only (tooltip ha anche `:focus-visible`).
+- Primary layout breakpoint: **768px**.
+  - ≥768px: 52px topbar + 64px left rail (`.ris-rail`), max 1280px content container.
+  - <768px: rail hidden, sticky 60px bottom navigation (`.ris-bottomnav`) with safe-area insets.
+- Grids: `.ris-grid--2/3/4` collapse automatically at 1024px and 640px.
+- Dense tables: wrapped in `.ris-table-wrap` for horizontal scroll without breaking layouts.
+- Touch ergonomics: no hover-only behaviors on touch viewports.
 
-## 6. Icone
+## 6. Icons
 
-- Sprite proprio `icons/ris-icons.svg`: 24×24, stroke 1.75, square caps,
-  geometria angolare. `currentColor` sempre.
-- Decorative: `aria-hidden="true"`. Significanti: `role="img"` + `<title>`.
-- Accent color solo su attivo/alert; default `--ris-fg2/fg3`.
-- Niente emoji nelle UI. Lucide ammesso come riserva per glifi mancanti
-  (stesso stroke), ma preferire l'estensione dello sprite.
+- Native sprite `icons/ris-icons.svg`: 24×24, 1.75 stroke, square caps, angular geometry. Always `currentColor`.
+- Decorative: `aria-hidden="true"`. Informative: `role="img"` + `<title>`.
+- Accent color applied only to active/alert states; default is `--ris-fg2/fg3`.
+- No emojis in UI. Tabler Icons (MIT) form the canonical open-source base.
 
-## 7. Scrivere un nuovo componente
+## 7. Writing a New Component
 
-1. Solo token; nessun valore magico.
-2. Stati obbligatori: default, hover, focus-visible, active, disabled (+
-   selected/invalid dove sensato).
-3. Verifica nei 2 temi × 4 brand (lo specimen ha i toggle).
-4. Contrasto e target size come da §4.
-5. Documentalo in `COMPONENTS.md` (anatomia, ARIA, do/don't) e aggiungilo allo
-   specimen.
-6. Versiona: bump in `CHANGELOG.md`.
+1. Tokens only; zero magic numbers.
+2. Required states: default, hover, focus-visible, active, disabled (+ selected/invalid where applicable).
+3. Verify across 2 themes × 4 brands.
+4. Verify contrast and target sizes per §4.
+5. Document in `COMPONENTS.md` (anatomy, ARIA, do/don't) and add specimen demo.
+6. Track in `CHANGELOG.md`.
 
-## 8. Skin `cyber` — eccezione consapevole al de-slop
+## 8. Skin `cyber` — Intentional Exception to De-Slop
 
-`data-skin="cyber"` + `css/ris-skin-cyber.css` (caricato **per ultimo**) riporta
-il look&feel Cyberpunk 2077 come **layer opt-in**, sopra il default forensic
-de-slopped, senza modificarlo. È una scelta esplicita: dove §1 dice "niente neon
-saturo / graphite mai nero / glow eccezione", lo skin fa l'opposto **di
-proposito**. La disciplina non sparisce, si sposta:
+`data-skin="cyber"` + `css/ris-skin-cyber.css` (loaded **last**) re-applies the Cyberpunk 2077 look & feel as an **opt-in layer** over the forensic baseline without altering its core. It is an explicit design choice: where §1 prescribes restrained palettes, the skin intentionally introduces structural red and glowing accents. The discipline remains intact:
 
-- **AA resta vincolante** (§4): i neon sono temperati per ≥4.5:1 su near-black
-  (es. red testo `#ff4d62`, non `#ff003c`); lo stato resta con label/icona.
-- **Solo dark**: lo skin non si applica in `data-theme="light"`.
-- **Reversibile**: tutto è scoped a `[data-skin="cyber"]`; togli l'attributo e
-  il sistema torna al default. Brand e light intatti.
-- **Texture statiche**: scanline/grana sono layer di background, non animazioni →
-  reduced-motion safe per natura.
+- **WCAG AA remains mandatory** (§4): neons are calibrated for ≥4.5:1 on near-black; state remains paired with text/icons.
+- **Dark mode only**: skin does not apply when `data-theme="light"`.
+- **Fully reversible**: everything is scoped to `[data-skin="cyber"]`; removing the attribute reverts to the disciplined baseline.
+- **Static textures**: scanlines and grain are static background layers, not animation loops → reduced-motion safe by design.
 
-Quando usarlo: prodotti/viste che vogliono dichiaratamente l'estetica di genere.
-Quando no: tutto ciò che deve leggere come strumento sobrio → resta sul default.
+When to use: products or views explicitly demanding full cyberpunk immersion.
+When not: tools requiring sterile or archival sobriety.
 
-## 9. Mobile Safety & Regole Display OLED
+## 9. Mobile Safety & OLED Display Guidelines
 
-Nei dispositivi handheld e mobile (<768px o app native), il design system impone regole ferree per evitare degradazioni ottiche dovute alle tecnologie dei pannelli moderni (in particolare OLED / AMOLED):
+On handheld devices (<768px or native mobile apps), strict rules prevent optical distortions on high-density OLED / AMOLED panels:
 
-1. **Divieto Assoluto di Righelli Laterali a Schermo Intero (`.ris-ruler`)**:
-   - I righelli con tacche verticali a 1px lungo i margini fisici dello schermo (`.ris-ruler--left`, `.ris-ruler--right`) sono adatti **esclusivamente** a display desktop widescreen o mockup HUD cinematici.
-   - Su schermi mobile OLED ad altissima densità (400–500+ ppi), una riga di tacche fisse a filo cornice crea un'immediata illusione di **subpixel bruciati, difetto del display o digitalizzatore guasto**.
-   - Regola vincolante: su mobile (`<768px` in CSS e in qualsiasi app nativa Android/iOS) `.ris-ruler` va SEMPRE impostato su `display: none` o rimosso dalla gerarchia.
-2. **Niente Ticker Fissi Sovrapposti alla Navigazione**:
-   - `.ris-ticker` deve posizionarsi al di sopra della bottom-nav o sparire per non intralciare i gesti di sistema (pillola di navigazione Android/iOS).
-3. **SubTabs Scrollabili (`.ris-subtabs--scrollable`)**:
-   - I selettori a segmenti orizzontali non devono mai comprimere le etichette di testo sotto il target touch minimo (48dp / 44px). Se le opzioni sono più di 3, usare sempre la modalità scrollabile a scomparsa barra.
-
+1. **Strict Prohibition of Edge Rulers on Mobile Viewports (`.ris-ruler`)**:
+   - 1px vertical edge notch rulers (`.ris-ruler--left`, `.ris-ruler--right`) are intended **strictly** for widescreen desktop monitors or cinematic HUD staging.
+   - On high-density mobile OLED screens (400–500+ ppi), edge notch lines create an illusion of **dead subpixels, panel cracking, or digitizer failure**.
+   - Mandatory rule: on mobile viewports (<768px in CSS and all native mobile apps), `.ris-ruler` must ALWAYS be set to `display: none` or omitted.
+2. **No Fixed Tickers Overlapping System Gestures**:
+   - `.ris-ticker` must be positioned above the bottom navigation bar or omitted to avoid interfering with system navigation handles (Android/iOS home pills).
+3. **Scrollable SubTabs (`.ris-subtabs--scrollable`)**:
+   - Segmented buttons must never compress labels below the minimum touch target (44px / 48dp). When exceeding 3 options, always utilize scrollable mode.

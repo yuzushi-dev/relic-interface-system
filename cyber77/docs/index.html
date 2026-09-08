@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it" data-theme="dark" data-brand="relic" data-skin="cyber">
+<html lang="en" data-theme="dark" data-brand="relic" data-skin="cyber">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -213,10 +213,10 @@
   </label>
   <a href="motion-lab.html" class="ris-btn ris-btn--sm ris-btn--primary" style="text-decoration:none">⚡ Motion Lab</a>
   <button id="skin" class="ris-btn ris-btn--sm ris-btn--secondary" aria-pressed="true">▞ Skin: Cyber</button>
-  <button id="theme" class="ris-btn ris-btn--sm" aria-pressed="false">◐ Tema</button>
+  <button id="theme" class="ris-btn ris-btn--sm" aria-pressed="false">◐ Theme</button>
 </header>
 
-<!-- Chrome decorativo skin cyber (invisibile quando skin off) -->
+<!-- Decorative cyber skin chrome (invisible when skin off) -->
 <div class="ris-ruler ris-ruler--left" aria-hidden="true"></div>
 <div class="ris-ruler ris-ruler--right" aria-hidden="true"></div>
 <div class="ris-ticker" aria-hidden="true">00:32 05 54 08 CP · 00:32 05 54 08 CP
@@ -227,35 +227,35 @@ LOAD 0x8D0012:44 · REL 6fed4000</div>
   <section class="spec-section">
     <h1 class="ris-h1">Relic Interface System</h1>
     <p class="ris-body" style="max-width:70ch">
-      Linguaggio visivo cyberpunk/HUD: superfici graphite, bordi 1px duri, angoli
-      clippati, accenti neon disciplinati (palette Cyberpunk 2077), texture grid +
-      scanline, motion meccanico 90–160ms. Dark e light, desktop e mobile,
-      multi-brand. Lo stato non è mai solo colore: sempre etichetta o icona.
-      Conformità WCAG 2.2 AA: contrasti verificati, focus visibile,
+      Cyberpunk/HUD visual language: graphite surfaces, sharp 1px borders, clipped
+      corners, disciplined neon accents (Cyberpunk 2077 palette), grid +
+      scanline textures, mechanical 90–160ms motion. Dark and light, desktop and mobile,
+      multi-brand. State is never color alone: always accompanied by label or icon.
+      WCAG 2.2 AA compliant: verified contrast, visible focus,
       <code class="ris-kbd">prefers-reduced-motion</code>, target ≥24px.
     </p>
   </section>
 
   <section class="spec-section">
     <h2 class="ris-h2">Skin Cyber</h2>
-    <span class="ris-eyebrow">data-skin="cyber" · opt-in · ris-skin-cyber.css caricato per ultimo · toggle in topbar</span>
+    <span class="ris-eyebrow">data-skin="cyber" · opt-in · ris-skin-cyber.css loaded last · toggle in topbar</span>
     <p class="ris-body" style="max-width:72ch">
-      Riporta il look&amp;feel Cyberpunk 2077 sopra il default forensic senza toccarlo:
-      rosso strutturale, gradiente crimson→nero, scanline + grana, glow su chrome
-      chiave, font display techno (Chakra Petch), chrome dati. Neon temperati per
-      restare WCAG AA. Spegni lo skin per confrontare col default disciplinato.
+      Applies Cyberpunk 2077 look &amp; feel over the default forensic base without altering its core:
+      structural red, crimson-to-black gradient, scanlines + grain, key chrome glows,
+      techno display font (Chakra Petch), telemetry chrome. Neons calibrated to
+      remain WCAG AA compliant. Toggle off to inspect the disciplined default.
     </p>
     <p class="ris-body" style="max-width:72ch;margin-top:0">
-      <b>Mobile:</b> questo intero specimen è responsive — aprilo sul telefono
-      (o restringi la finestra &lt;768px) e <b>tutti</b> i componenti si
-      riadattano, con la <b>bottomnav</b> al posto della rail. Il bottone qui
-      sotto apre invece un esempio app-shell compatto (contatti).
+      <b>Mobile:</b> this specimen is fully responsive — open it on a phone
+      (or shrink window to &lt;768px) and <b>all</b> components adapt,
+      swapping rail navigation for a sticky <b>bottomnav</b>. The button below
+      opens a compact mobile app-shell (contacts).
     </p>
-    <p class="spec-demo"><a class="ris-btn ris-btn--secondary ris-btn--sm" href="mobile.html" target="_blank" rel="noopener">📱 Esempio app-shell (topbar + bottomnav)</a></p>
+    <p class="spec-demo"><a class="ris-btn ris-btn--secondary ris-btn--sm" href="mobile.html" target="_blank" rel="noopener">📱 Mobile App-Shell Specimen (topbar + bottomnav)</a></p>
 
     <div class="ris-grid ris-grid--2" style="margin-top:18px">
       <div class="spec-col" style="max-width:none">
-        <span class="ris-label">List-row · selezione = fill pieno</span>
+        <span class="ris-label">List-row · selection = solid fill</span>
         <div>
           <div class="ris-listrow" data-selected="true">
             <div class="thumb" aria-hidden="true"></div>
@@ -275,7 +275,7 @@ LOAD 0x8D0012:44 · REL 6fed4000</div>
         </div>
       </div>
       <div class="spec-col" style="max-width:none">
-        <span class="ris-label">Stat topbar · chrome dati</span>
+        <span class="ris-label">Topbar stats · telemetry chrome</span>
         <div class="ris-panel"><div class="ris-panel-body ris-bracket">
           <div class="spec-demo" style="margin-top:0">
             <span class="ris-stat"><span class="v">12</span><span class="n">Level</span><span class="ris-segmeter" role="meter" aria-label="Level"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></span>
@@ -287,7 +287,7 @@ LOAD 0x8D0012:44 · REL 6fed4000</div>
         </div></div>
         <div class="spec-demo">
           <span class="ris-binary" aria-hidden="true">1001 0110 1101 0010</span>
-          <span class="ris-small">↞ stream binario · righello sui bordi schermo · ticker in basso a sinistra</span>
+          <span class="ris-small">↞ binary stream · screen edge rulers · bottom-left ticker</span>
         </div>
       </div>
     </div>
@@ -295,56 +295,56 @@ LOAD 0x8D0012:44 · REL 6fed4000</div>
 
   <section class="spec-section">
     <h2 class="ris-h2">Palette</h2>
-    <span class="ris-eyebrow">token contestuali — AA su bg/surface in entrambi i temi · i fill restano bright</span>
+    <span class="ris-eyebrow">contextual tokens — AA on bg/surface across both themes · fills remain high-contrast</span>
     <div class="ris-grid ris-grid--4" id="swatches"></div>
   </section>
 
   <section class="spec-section">
-    <h2 class="ris-h2">Tipografia</h2>
+    <h2 class="ris-h2">Typography</h2>
     <span class="ris-eyebrow">Archivo · JetBrains Mono</span>
     <div class="type-row"><code>.ris-hero 44</code><span class="ris-hero">Netrunner</span></div>
-    <div class="type-row"><code>.ris-h1 32</code><span class="ris-h1">Interfaccia di sistema</span></div>
-    <div class="type-row"><code>.ris-h2 24</code><span class="ris-h2">Telemetria biometrica</span></div>
-    <div class="type-row"><code>.ris-h3 19</code><span class="ris-h3">Sessione di acquisizione</span></div>
-    <div class="type-row"><code>.ris-body 16</code><span class="ris-body">Il corpo del testo usa Archivo: grotesk, leggibile, da strumento.</span></div>
-    <div class="type-row"><code>.ris-label 11</code><span class="ris-label">Etichetta uppercase — il cavallo da lavoro</span></div>
+    <div class="type-row"><code>.ris-h1 32</code><span class="ris-h1">System Interface</span></div>
+    <div class="type-row"><code>.ris-h2 24</code><span class="ris-h2">Biometric Telemetry</span></div>
+    <div class="type-row"><code>.ris-h3 19</code><span class="ris-h3">Acquisition Session</span></div>
+    <div class="type-row"><code>.ris-body 16</code><span class="ris-body">Body copy uses Archivo: grotesk, legible, instrument-grade.</span></div>
+    <div class="type-row"><code>.ris-label 11</code><span class="ris-label">Uppercase label — the system workhorse</span></div>
     <div class="type-row"><code>.ris-mono 14</code><span class="ris-mono">HR 62 bpm · HRV 48 ms · SpO₂ 98%</span></div>
     <div class="type-row"><code>.ris-numeric</code><span class="ris-numeric" style="font-size:40px">87.05<small style="font-size:16px;color:var(--ris-fg3)"> KG</small></span></div>
   </section>
 
   <section class="spec-section">
-    <h2 class="ris-h2">Bottoni</h2>
+    <h2 class="ris-h2">Buttons</h2>
     <span class="ris-eyebrow">36px min · clip 7px · hover inset accent</span>
     <div class="spec-demo">
-      <button class="ris-btn ris-btn--primary">Primario</button>
-      <button class="ris-btn ris-btn--secondary">Secondario</button>
+      <button class="ris-btn ris-btn--primary">Primary</button>
+      <button class="ris-btn ris-btn--secondary">Secondary</button>
       <button class="ris-btn">Default</button>
       <button class="ris-btn ris-btn--ghost">Ghost</button>
-      <button class="ris-btn ris-btn--danger">Elimina</button>
-      <button class="ris-btn" disabled>Disabilitato</button>
+      <button class="ris-btn ris-btn--danger">Delete</button>
+      <button class="ris-btn" disabled>Disabled</button>
     </div>
     <div class="spec-demo">
       <button class="ris-btn ris-btn--primary ris-btn--lg">Large</button>
       <button class="ris-btn ris-btn--sm">Small</button>
-      <button class="ris-btn ris-btn--icon" aria-label="Sincronizza"><svg class="ris-icon" aria-hidden="true"><use href="#ris-sync"/></svg></button>
-      <button class="ris-btn ris-btn--secondary"><svg class="ris-icon ris-icon--sm" aria-hidden="true"><use href="#ris-download"/></svg>Esporta</button>
-      <span class="ris-spinner" role="status" aria-label="Caricamento"></span>
+      <button class="ris-btn ris-btn--icon" aria-label="Synchronize"><svg class="ris-icon" aria-hidden="true"><use href="#ris-sync"/></svg></button>
+      <button class="ris-btn ris-btn--secondary"><svg class="ris-icon ris-icon--sm" aria-hidden="true"><use href="#ris-download"/></svg>Export</button>
+      <span class="ris-spinner" role="status" aria-label="Loading"></span>
     </div>
   </section>
 
   <section class="spec-section">
     <h2 class="ris-h2">Chip · Stream · Risk · Badge</h2>
-    <span class="ris-eyebrow">stato mai solo colore — sempre etichetta</span>
+    <span class="ris-eyebrow">state never color alone — always labeled</span>
     <div class="spec-demo">
-      <span class="ris-chip"><i class="dot"></i>Neutro</span>
+      <span class="ris-chip"><i class="dot"></i>Neutral</span>
       <span class="ris-chip ris-chip--accent"><i class="dot"></i>Accent</span>
       <span class="ris-chip ris-chip--yellow">Pending</span>
       <span class="ris-chip ris-chip--cyan">Sync</span>
       <span class="ris-chip ris-chip--green"><i class="dot"></i>Online</span>
-      <span class="ris-chip ris-chip--red">Errore</span>
-      <span class="ris-chip ris-chip--violet">Inferenza</span>
+      <span class="ris-chip ris-chip--red">Error</span>
+      <span class="ris-chip ris-chip--violet">Inference</span>
       <span class="ris-chip ris-chip--magenta">Gumi</span>
-      <span class="ris-chip ris-chip--orange">Correzione</span>
+      <span class="ris-chip ris-chip--orange">Correction</span>
     </div>
     <div class="spec-demo">
       <span class="ris-stream" data-stream="evidence">evidence</span>
@@ -357,10 +357,10 @@ LOAD 0x8D0012:44 · REL 6fed4000</div>
       <span class="ris-stream" data-stream="correction">correction</span>
     </div>
     <div class="spec-demo">
-      <span class="ris-risk" data-risk="none">Rischio: nessuno</span>
-      <span class="ris-risk" data-risk="low">Rischio: basso</span>
-      <span class="ris-risk" data-risk="medium">Rischio: medio</span>
-      <span class="ris-risk" data-risk="high">Rischio: alto</span>
+      <span class="ris-risk" data-risk="none">Risk: none</span>
+      <span class="ris-risk" data-risk="low">Risk: low</span>
+      <span class="ris-risk" data-risk="medium">Risk: medium</span>
+      <span class="ris-risk" data-risk="high">Risk: high</span>
       <span class="ris-badge-count">3</span>
       <span class="ris-badge-count ris-badge-count--danger">12</span>
       <span class="ris-avatar">YZ</span>
@@ -369,43 +369,43 @@ LOAD 0x8D0012:44 · REL 6fed4000</div>
 
   <section class="spec-section">
     <h2 class="ris-h2">Form</h2>
-    <span class="ris-eyebrow">label sempre visibili · errori testuali, non solo bordo · target ≥24px</span>
+    <span class="ris-eyebrow">always-visible labels · textual errors, not border alone · target ≥24px</span>
     <div class="ris-grid ris-grid--2">
       <div class="spec-col">
         <div class="ris-field">
-          <label for="f1">Identificativo soggetto</label>
+          <label for="f1">Subject identifier</label>
           <input id="f1" class="ris-input" placeholder="subj_001">
-          <span class="ris-field-help">Formato: subj_NNN</span>
+          <span class="ris-field-help">Format: subj_NNN</span>
         </div>
         <div class="ris-field" data-invalid>
           <label for="f2">Email</label>
           <input id="f2" class="ris-input" value="not-an-email" aria-invalid="true" aria-describedby="f2-err">
-          <span class="ris-field-error" id="f2-err">⚠ Indirizzo email non valido</span>
+          <span class="ris-field-error" id="f2-err">⚠ Invalid email address</span>
         </div>
         <div class="ris-field">
-          <label for="f3">Sorgente dati</label>
+          <label for="f3">Data source</label>
           <select id="f3" class="ris-select">
             <option>Health Connect</option><option>Zepp Cloud</option><option>GadgetBridge</option><option>Muse 2 (OSC)</option>
           </select>
         </div>
         <div class="ris-field">
-          <label for="f4">Note sessione</label>
-          <textarea id="f4" class="ris-textarea" placeholder="Marker, condizioni, anomalie…"></textarea>
+          <label for="f4">Session notes</label>
+          <textarea id="f4" class="ris-textarea" placeholder="Markers, conditions, anomalies…"></textarea>
         </div>
         <div class="ris-search">
           <svg aria-hidden="true"><use href="#ris-search"/></svg>
-          <input class="ris-input" placeholder="Cerca metrica…" aria-label="Cerca metrica">
+          <input class="ris-input" placeholder="Search metric…" aria-label="Search metric">
         </div>
       </div>
       <div class="spec-col">
-        <label class="ris-checkbox"><input type="checkbox" checked> Ricorda credenziali (cifrate)</label>
-        <label class="ris-checkbox"><input type="checkbox"> Includi dati grezzi EEG</label>
-        <label class="ris-radio"><input type="radio" name="r" checked> Sync automatico ogni 3h</label>
-        <label class="ris-radio"><input type="radio" name="r"> Solo manuale</label>
+        <label class="ris-checkbox"><input type="checkbox" checked> Remember credentials (encrypted)</label>
+        <label class="ris-checkbox"><input type="checkbox"> Include raw EEG data</label>
+        <label class="ris-radio"><input type="radio" name="r" checked> Auto-sync every 3h</label>
+        <label class="ris-radio"><input type="radio" name="r"> Manual only</label>
         <label class="ris-switch"><input type="checkbox" checked role="switch"> Booster online · VivoKey /validate</label>
         <label class="ris-switch"><input type="checkbox" role="switch"> Scanline overlay</label>
         <div class="ris-field">
-          <label for="f5">Soglia HR — <span class="ris-mono" id="f5v">120</span> bpm</label>
+          <label for="f5">HR threshold — <span class="ris-mono" id="f5v">120</span> bpm</label>
           <input id="f5" type="range" class="ris-slider" min="60" max="200" value="120"
                  oninput="document.getElementById('f5v').textContent=this.value">
         </div>
@@ -414,18 +414,18 @@ LOAD 0x8D0012:44 · REL 6fed4000</div>
   </section>
 
   <section class="spec-section">
-    <h2 class="ris-h2">Tabella</h2>
-    <span class="ris-eyebrow">densa · sticky head · sort aria-sort · selezione con barra accent</span>
+    <h2 class="ris-h2">Table</h2>
+    <span class="ris-eyebrow">dense · sticky head · aria-sort sorting · selection with accent bar</span>
     <div class="ris-table-wrap" style="max-height:260px;overflow-y:auto">
       <table class="ris-table">
         <thead><tr>
-          <th aria-sort="descending">Timestamp</th><th>Metrica</th><th>Sorgente</th><th class="num">Valore</th><th>Stato</th>
+          <th aria-sort="descending">Timestamp</th><th>Metric</th><th>Source</th><th class="num">Value</th><th>Status</th>
         </tr></thead>
         <tbody>
           <tr><td class="ris-mono">06-10 23:41</td><td>HRV (RMSSD)</td><td>Helio Ring</td><td class="num">48 ms</td><td><span class="ris-stream" data-stream="evidence">evidence</span></td></tr>
-          <tr data-selected="true"><td class="ris-mono">06-10 23:40</td><td>Frequenza cardiaca</td><td>TicWatch Pro 5</td><td class="num">62 bpm</td><td><span class="ris-stream" data-stream="approved">approved</span></td></tr>
+          <tr data-selected="true"><td class="ris-mono">06-10 23:40</td><td>Heart rate</td><td>TicWatch Pro 5</td><td class="num">62 bpm</td><td><span class="ris-stream" data-stream="approved">approved</span></td></tr>
           <tr><td class="ris-mono">06-10 23:38</td><td>SpO₂</td><td>Zepp Cloud</td><td class="num">98 %</td><td><span class="ris-stream" data-stream="pending">pending</span></td></tr>
-          <tr><td class="ris-mono">06-10 23:31</td><td>Peso + BIA</td><td>OKOK C0 (BLE)</td><td class="num">87.05 kg</td><td><span class="ris-stream" data-stream="evidence">evidence</span></td></tr>
+          <tr><td class="ris-mono">06-10 23:31</td><td>Weight + BIA</td><td>OKOK C0 (BLE)</td><td class="num">87.05 kg</td><td><span class="ris-stream" data-stream="evidence">evidence</span></td></tr>
           <tr><td class="ris-mono">06-10 23:15</td><td>EEG alpha</td><td>Muse 2</td><td class="num">0.82</td><td><span class="ris-stream" data-stream="inference">inference</span></td></tr>
         </tbody>
       </table>
@@ -433,29 +433,29 @@ LOAD 0x8D0012:44 · REL 6fed4000</div>
   </section>
 
   <section class="spec-section">
-    <h2 class="ris-h2">Modale · Toast · Alert</h2>
+    <h2 class="ris-h2">Modal · Toast · Alert</h2>
     <span class="ris-eyebrow">role="dialog" aria-modal · toast role="status" in aria-live stack</span>
     <div class="spec-demo">
-      <button class="ris-btn" id="open-modal">Apri modale</button>
-      <button class="ris-btn ris-btn--secondary" onclick="toast('Sync completato','success','142 campioni importati')">Toast success</button>
-      <button class="ris-btn ris-btn--ghost" onclick="toast('Connessione persa','danger','Retry tra 30s — backoff esponenziale')">Toast danger</button>
+      <button class="ris-btn" id="open-modal">Open Modal</button>
+      <button class="ris-btn ris-btn--secondary" onclick="toast('Sync complete','success','142 samples imported')">Toast success</button>
+      <button class="ris-btn ris-btn--ghost" onclick="toast('Connection lost','danger','Retry in 30s — exponential backoff')">Toast danger</button>
     </div>
     <div class="spec-col" style="max-width:560px">
-      <div class="ris-alert"><svg class="ris-icon" aria-hidden="true"><use href="#ris-info"/></svg><div><span class="title">Info</span>Worker auto-sync attivo: intervallo 3h, policy KEEP.</div></div>
-      <div class="ris-alert ris-alert--warning"><svg class="ris-icon" aria-hidden="true"><use href="#ris-warning"/></svg><div><span class="title">Attenzione</span>Credenziali Zepp in scadenza. Rinnova il login.</div></div>
-      <div class="ris-alert ris-alert--danger"><svg class="ris-icon" aria-hidden="true"><use href="#ris-error"/></svg><div><span class="title">Errore</span>SecurityException: permesso READ_HEART_RATE mancante.</div></div>
-      <div class="ris-alert ris-alert--success"><svg class="ris-icon" aria-hidden="true"><use href="#ris-shield-check"/></svg><div><span class="title">OK</span>Database deduplicato: 731 505 → 12 410 righe.</div></div>
+      <div class="ris-alert"><svg class="ris-icon" aria-hidden="true"><use href="#ris-info"/></svg><div><span class="title">Info</span>Auto-sync worker active: 3h interval, KEEP policy.</div></div>
+      <div class="ris-alert ris-alert--warning"><svg class="ris-icon" aria-hidden="true"><use href="#ris-warning"/></svg><div><span class="title">Warning</span>Zepp credentials expiring. Renew login.</div></div>
+      <div class="ris-alert ris-alert--danger"><svg class="ris-icon" aria-hidden="true"><use href="#ris-error"/></svg><div><span class="title">Error</span>SecurityException: READ_HEART_RATE permission missing.</div></div>
+      <div class="ris-alert ris-alert--success"><svg class="ris-icon" aria-hidden="true"><use href="#ris-shield-check"/></svg><div><span class="title">OK</span>Database deduplicated: 731,505 → 12,410 rows.</div></div>
     </div>
   </section>
 
   <section class="spec-section">
-    <h2 class="ris-h2">Tabs · Navigazione</h2>
+    <h2 class="ris-h2">Tabs · Navigation</h2>
     <span class="ris-eyebrow">role="tablist" · breadcrumb aria-current · pagination</span>
     <div class="ris-tabs" role="tablist" style="margin-bottom:16px">
       <button class="ris-tab" role="tab" aria-selected="true">Dashboard</button>
       <button class="ris-tab" role="tab" aria-selected="false">Inspector</button>
       <button class="ris-tab" role="tab" aria-selected="false">Muse</button>
-      <button class="ris-tab" role="tab" aria-selected="false">Dati</button>
+      <button class="ris-tab" role="tab" aria-selected="false">Data</button>
     </div>
     <div class="spec-demo">
       <div class="ris-subtabs" role="tablist">
@@ -465,25 +465,25 @@ LOAD 0x8D0012:44 · REL 6fed4000</div>
       </div>
     </div>
     <div class="spec-demo">
-      <nav class="ris-breadcrumb" aria-label="Percorso">
-        <a href="#">Soggetti</a><span class="sep">▸</span><a href="#">subj_001</a><span class="sep">▸</span><span aria-current="page">Baseline</span>
+      <nav class="ris-breadcrumb" aria-label="Breadcrumb">
+        <a href="#">Subjects</a><span class="sep">▸</span><a href="#">subj_001</a><span class="sep">▸</span><span aria-current="page">Baseline</span>
       </nav>
     </div>
-    <nav class="ris-pagination" aria-label="Paginazione">
-      <a class="ris-page" href="#" aria-label="Precedente">‹</a>
+    <nav class="ris-pagination" aria-label="Pagination">
+      <a class="ris-page" href="#" aria-label="Previous">‹</a>
       <a class="ris-page" href="#">1</a>
       <a class="ris-page" href="#" aria-current="page">2</a>
       <a class="ris-page" href="#">3</a>
       <span class="ris-page" aria-hidden="true">…</span>
       <a class="ris-page" href="#">12</a>
-      <a class="ris-page" href="#" aria-label="Successiva">›</a>
+      <a class="ris-page" href="#" aria-label="Next">›</a>
     </nav>
     <div class="spec-demo" style="margin-top:16px">
       <div class="ris-menu" style="display:inline-block">
-        <button class="ris-menu-item"><svg class="ris-icon ris-icon--sm" aria-hidden="true"><use href="#ris-edit"/></svg>Rinomina</button>
-        <button class="ris-menu-item"><svg class="ris-icon ris-icon--sm" aria-hidden="true"><use href="#ris-copy"/></svg>Duplica</button>
+        <button class="ris-menu-item"><svg class="ris-icon ris-icon--sm" aria-hidden="true"><use href="#ris-edit"/></svg>Rename</button>
+        <button class="ris-menu-item"><svg class="ris-icon ris-icon--sm" aria-hidden="true"><use href="#ris-copy"/></svg>Duplicate</button>
         <div class="ris-menu-sep" role="separator"></div>
-        <button class="ris-menu-item ris-menu-item--danger"><svg class="ris-icon ris-icon--sm" aria-hidden="true"><use href="#ris-trash"/></svg>Elimina</button>
+        <button class="ris-menu-item ris-menu-item--danger"><svg class="ris-icon ris-icon--sm" aria-hidden="true"><use href="#ris-trash"/></svg>Delete</button>
       </div>
       <button class="ris-btn ris-btn--ghost ris-tip" data-tip="JetBrains Mono · 11px">Tooltip hover/focus</button>
     </div>
@@ -491,24 +491,24 @@ LOAD 0x8D0012:44 · REL 6fed4000</div>
 
   <section class="spec-section">
     <h2 class="ris-h2">Meter · KPI · Facet</h2>
-    <span class="ris-eyebrow">role="meter"/"progressbar" con aria-valuenow</span>
+    <span class="ris-eyebrow">role="meter"/"progressbar" with aria-valuenow</span>
     <div class="ris-grid ris-grid--4" style="margin-bottom:18px">
-      <div class="ris-kpi"><span class="kpi-label">Passi oggi</span><div class="kpi-value">8 412</div><span class="kpi-delta up">▲ 12% vs 7gg</span></div>
-      <div class="ris-kpi" style="--ris-kpi-accent:var(--ris-accent-2)"><span class="kpi-label">FC riposo</span><div class="kpi-value">54<small>bpm</small></div><span class="kpi-delta down">▼ 2 bpm</span></div>
-      <div class="ris-kpi" style="--ris-kpi-accent:var(--ris-violet)"><span class="kpi-label">HRV notte</span><div class="kpi-value">48<small>ms</small></div><span class="kpi-delta up">▲ 6 ms</span></div>
-      <div class="ris-kpi" style="--ris-kpi-accent:var(--ris-magenta)"><span class="kpi-label">Sonno</span><div class="kpi-value">7:24<small>h</small></div><span class="kpi-delta">— stabile</span></div>
+      <div class="ris-kpi"><span class="kpi-label">Steps Today</span><div class="kpi-value">8 412</div><span class="kpi-delta up">▲ 12% vs 7d</span></div>
+      <div class="ris-kpi" style="--ris-kpi-accent:var(--ris-accent-2)"><span class="kpi-label">Resting HR</span><div class="kpi-value">54<small>bpm</small></div><span class="kpi-delta down">▼ 2 bpm</span></div>
+      <div class="ris-kpi" style="--ris-kpi-accent:var(--ris-violet)"><span class="kpi-label">Night HRV</span><div class="kpi-value">48<small>ms</small></div><span class="kpi-delta up">▲ 6 ms</span></div>
+      <div class="ris-kpi" style="--ris-kpi-accent:var(--ris-magenta)"><span class="kpi-label">Sleep</span><div class="kpi-value">7:24<small>h</small></div><span class="kpi-delta">— stable</span></div>
     </div>
     <div class="spec-col" style="max-width:560px">
-      <div class="ris-meter" role="meter" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100" aria-label="Batteria dispositivo"><i style="width:68%"></i></div>
-      <div class="ris-segmeter" role="meter" aria-valuenow="7" aria-valuemin="0" aria-valuemax="10" aria-label="Carico allenamento">
+      <div class="ris-meter" role="meter" aria-valuenow="68" aria-valuemin="0" aria-valuemax="100" aria-label="Device battery"><i style="width:68%"></i></div>
+      <div class="ris-segmeter" role="meter" aria-valuenow="7" aria-valuemin="0" aria-valuemax="10" aria-label="Training load">
         <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i>
       </div>
       <div class="ris-facet">
-        <div class="ris-facet-head"><span class="ris-facet-name">Apertura ↔ Cautela</span><span class="ris-facet-stat">conf <b>0.82</b> · n=14</span></div>
+        <div class="ris-facet-head"><span class="ris-facet-name">Openness ↔ Caution</span><span class="ris-facet-stat">conf <b>0.82</b> · n=14</span></div>
         <div class="ris-facet-row">
-          <span class="ris-facet-anchor">Apertura</span>
+          <span class="ris-facet-anchor">Openness</span>
           <div class="ris-facet-track"><div class="ris-facet-needle" style="left:64%"></div></div>
-          <span class="ris-facet-anchor">Cautela</span>
+          <span class="ris-facet-anchor">Caution</span>
         </div>
         <div class="ris-conf ris-conf--high"><i style="width:82%"></i></div>
       </div>
@@ -524,9 +524,9 @@ LOAD 0x8D0012:44 · REL 6fed4000</div>
         <div class="ris-skeleton" style="height:12px;width:80%"></div>
         <div class="ris-empty">
           <svg aria-hidden="true"><use href="#ris-database"/></svg>
-          <span class="title">Nessuna sessione registrata</span>
-          <span class="ris-small">Avvia una registrazione Muse o importa un CSV Mind Monitor.</span>
-          <button class="ris-btn ris-btn--primary ris-btn--sm">Nuova sessione</button>
+          <span class="title">No recorded sessions</span>
+          <span class="ris-small">Start a Muse recording or import a Mind Monitor CSV.</span>
+          <button class="ris-btn ris-btn--primary ris-btn--sm">New Session</button>
         </div>
       </div>
       <div class="spec-col">
@@ -536,104 +536,104 @@ LOAD 0x8D0012:44 · REL 6fed4000</div>
 )</pre>
         <div class="ris-log">
           <div><span class="t">23:41:02</span> <span class="ok">[OK]</span> BLE scan: OKOK C0 A0:77:9E:58:BA:2A</div>
-          <div><span class="t">23:41:04</span> <span class="warn">[WARN]</span> frame instabile, bit0=0 — retry</div>
-          <div><span class="t">23:41:07</span> <span class="ok">[OK]</span> peso 87.05 kg · Z 600.0 Ω → BIA</div>
-          <div><span class="t">23:41:08</span> <span class="err">[ERR]</span> profilo utente mancante: altezza richiesta</div>
+          <div><span class="t">23:41:04</span> <span class="warn">[WARN]</span> frame unstable, bit0=0 — retry</div>
+          <div><span class="t">23:41:07</span> <span class="ok">[OK]</span> weight 87.05 kg · Z 600.0 Ω → BIA</div>
+          <div><span class="t">23:41:08</span> <span class="err">[ERR]</span> missing user profile: height required</div>
         </div>
-        <p class="ris-small">Scorciatoie: <span class="ris-kbd">Ctrl</span> <span class="ris-kbd">K</span> palette comandi · <span class="ris-kbd">/</span> ricerca</p>
+        <p class="ris-small">Shortcuts: <span class="ris-kbd">Ctrl</span> <span class="ris-kbd">K</span> command palette · <span class="ris-kbd">/</span> search</p>
       </div>
     </div>
   </section>
 
   <section class="spec-section">
-    <h2 class="ris-h2">Componenti avanzati</h2>
+    <h2 class="ris-h2">Advanced Components</h2>
     <span class="ris-eyebrow">accordion · stepper · drawer · command palette · dropzone</span>
     <div class="ris-grid ris-grid--2">
       <div class="spec-col">
-        <div class="ris-stepper" aria-label="Avanzamento setup">
-          <div class="ris-step" data-state="done"><div class="bar"></div><span class="name" data-n="01 ">Profilo</span></div>
-          <div class="ris-step" data-state="done"><div class="bar"></div><span class="name" data-n="02 ">Permessi</span></div>
-          <div class="ris-step" data-state="active"><div class="bar"></div><span class="name" data-n="03 ">Sorgenti</span></div>
+        <div class="ris-stepper" aria-label="Setup progress">
+          <div class="ris-step" data-state="done"><div class="bar"></div><span class="name" data-n="01 ">Profile</span></div>
+          <div class="ris-step" data-state="done"><div class="bar"></div><span class="name" data-n="02 ">Permissions</span></div>
+          <div class="ris-step" data-state="active"><div class="bar"></div><span class="name" data-n="03 ">Sources</span></div>
           <div class="ris-step"><div class="bar"></div><span class="name" data-n="04 ">Sync</span></div>
         </div>
         <div class="ris-accordion">
           <details open>
             <summary>Health Connect</summary>
-            <div class="body">14 tipi di record sincronizzati. Ultimo sync 23:41 — 142 campioni.</div>
+            <div class="body">14 record types synced. Last sync 23:41 — 142 samples.</div>
           </details>
           <details>
             <summary>Zepp Cloud</summary>
-            <div class="body">Login email+password (AES 2-step). Eventi stress + SpO₂.</div>
+            <div class="body">Login email+password (AES 2-step). Stress + SpO₂ events.</div>
           </details>
           <details>
             <summary>Muse 2 — EEG</summary>
-            <div class="body">OSC UDP listener su :5000 + import CSV Mind Monitor.</div>
+            <div class="body">OSC UDP listener on :5000 + Mind Monitor CSV import.</div>
           </details>
         </div>
-        <div class="ris-dropzone" id="dz" tabindex="0" role="button" aria-label="Carica Gadgetbridge.db">
+        <div class="ris-dropzone" id="dz" tabindex="0" role="button" aria-label="Upload Gadgetbridge.db">
           <svg aria-hidden="true"><use href="#ris-upload"/></svg>
-          <span class="ris-label" style="color:inherit">Trascina Gadgetbridge.db</span>
-          <span class="hint">oppure click — SQLite, max 256 MB</span>
+          <span class="ris-label" style="color:inherit">Drop Gadgetbridge.db</span>
+          <span class="hint">or click — SQLite, max 256 MB</span>
         </div>
       </div>
       <div class="spec-col">
-        <div class="ris-cmdk" role="dialog" aria-label="Palette comandi (demo statica)">
+        <div class="ris-cmdk" role="dialog" aria-label="Command palette (static demo)">
           <div class="ris-cmdk-input">
             <svg aria-hidden="true"><use href="#ris-terminal"/></svg>
-            <input placeholder="Comando o ricerca… " aria-label="Cerca comando">
+            <input placeholder="Command or search… " aria-label="Search command">
             <span class="ris-kbd">ESC</span>
           </div>
           <div class="ris-cmdk-list">
-            <button class="ris-cmdk-item" aria-selected="true"><svg class="ris-icon ris-icon--sm" aria-hidden="true"><use href="#ris-sync"/></svg>Sync Health Connect adesso<span class="hint ris-kbd">↵</span></button>
-            <button class="ris-cmdk-item"><svg class="ris-icon ris-icon--sm" aria-hidden="true"><use href="#ris-scale"/></svg>Pesati ora (scan BLE)</button>
-            <button class="ris-cmdk-item"><svg class="ris-icon ris-icon--sm" aria-hidden="true"><use href="#ris-eeg"/></svg>Nuova sessione Muse</button>
-            <button class="ris-cmdk-item"><svg class="ris-icon ris-icon--sm" aria-hidden="true"><use href="#ris-export"/></svg>Esporta CSV ultimo mese</button>
+            <button class="ris-cmdk-item" aria-selected="true"><svg class="ris-icon ris-icon--sm" aria-hidden="true"><use href="#ris-sync"/></svg>Sync Health Connect now<span class="hint ris-kbd">↵</span></button>
+            <button class="ris-cmdk-item"><svg class="ris-icon ris-icon--sm" aria-hidden="true"><use href="#ris-scale"/></svg>Weigh now (BLE scan)</button>
+            <button class="ris-cmdk-item"><svg class="ris-icon ris-icon--sm" aria-hidden="true"><use href="#ris-eeg"/></svg>New Muse session</button>
+            <button class="ris-cmdk-item"><svg class="ris-icon ris-icon--sm" aria-hidden="true"><use href="#ris-export"/></svg>Export last month CSV</button>
           </div>
         </div>
-        <button class="ris-btn" id="open-drawer">Apri drawer ▸</button>
+        <button class="ris-btn" id="open-drawer">Open Drawer ▸</button>
       </div>
     </div>
   </section>
 
   <section class="spec-section">
-    <h2 class="ris-h2">Stati interattivi</h2>
+    <h2 class="ris-h2">Interactive States</h2>
     <span class="ris-eyebrow">default · hover · focus-visible · active · disabled · selected · invalid · loading</span>
     <div class="ris-table-wrap">
       <table class="ris-table">
-        <thead><tr><th>Stato</th><th>Bottone</th><th>Input</th><th>Nav link</th></tr></thead>
+        <thead><tr><th>State</th><th>Button</th><th>Input</th><th>Nav Link</th></tr></thead>
         <tbody>
-          <tr><td>Default</td><td><button class="ris-btn ris-btn--sm">Azione</button></td><td><input class="ris-input" style="max-width:160px" placeholder="valore"></td><td><a class="ris-nav-link" style="width:64px" href="#"><svg class="ris-icon" aria-hidden="true"><use href="#ris-home"/></svg>Home</a></td></tr>
-          <tr><td>Hover / Focus</td><td class="ris-small">bordo + inset accent, ring cyan 2px su <code>:focus-visible</code></td><td class="ris-small">bordo cyan + inset glow</td><td class="ris-small">fg1 + surface-2</td></tr>
-          <tr><td>Selected / Active</td><td><button class="ris-btn ris-btn--sm ris-btn--primary">Primario</button></td><td><input class="ris-input" style="max-width:160px" value="confermato"></td><td><a class="ris-nav-link" style="width:64px" href="#" data-active="true" aria-current="page"><svg class="ris-icon" aria-hidden="true"><use href="#ris-home"/></svg>Home</a></td></tr>
-          <tr><td>Disabled</td><td><button class="ris-btn ris-btn--sm" disabled>Azione</button></td><td><input class="ris-input" style="max-width:160px" disabled placeholder="disabilitato"></td><td class="ris-small">fg4, niente hover</td></tr>
+          <tr><td>Default</td><td><button class="ris-btn ris-btn--sm">Action</button></td><td><input class="ris-input" style="max-width:160px" placeholder="value"></td><td><a class="ris-nav-link" style="width:64px" href="#"><svg class="ris-icon" aria-hidden="true"><use href="#ris-home"/></svg>Home</a></td></tr>
+          <tr><td>Hover / Focus</td><td class="ris-small">border + inset accent, 2px cyan ring on <code>:focus-visible</code></td><td class="ris-small">cyan border + inset glow</td><td class="ris-small">fg1 + surface-2</td></tr>
+          <tr><td>Selected / Active</td><td><button class="ris-btn ris-btn--sm ris-btn--primary">Primario</button></td><td><input class="ris-input" style="max-width:160px" value="confirmed"></td><td><a class="ris-nav-link" style="width:64px" href="#" data-active="true" aria-current="page"><svg class="ris-icon" aria-hidden="true"><use href="#ris-home"/></svg>Home</a></td></tr>
+          <tr><td>Disabled</td><td><button class="ris-btn ris-btn--sm" disabled>Azione</button></td><td><input class="ris-input" style="max-width:160px" disabled placeholder="disabled"></td><td class="ris-small">fg4, no hover</td></tr>
           <tr><td>Invalid</td><td class="ris-small">—</td><td><div class="ris-field" data-invalid style="max-width:160px"><input class="ris-input" value="!!" aria-invalid="true"></div></td><td class="ris-small">—</td></tr>
           <tr><td>Loading</td><td><button class="ris-btn ris-btn--sm" aria-busy="true"><span class="ris-spinner" style="width:12px;height:12px"></span>Sync…</button></td><td><div class="ris-skeleton" style="height:32px;max-width:160px"></div></td><td class="ris-small">skeleton</td></tr>
-          <tr><td>Updated</td><td colspan="3"><button class="ris-btn ris-btn--ghost ris-btn--sm" onclick="this.closest('tr').classList.remove('ris-data-updated');void this.closest('tr').offsetWidth;this.closest('tr').classList.add('ris-data-updated')">Simula refresh dato → flash riga</button></td></tr>
+          <tr><td>Updated</td><td colspan="3"><button class="ris-btn ris-btn--ghost ris-btn--sm" onclick="this.closest('tr').classList.remove('ris-data-updated');void this.closest('tr').offsetWidth;this.closest('tr').classList.add('ris-data-updated')">Simulate data refresh → row flash</button></td></tr>
         </tbody>
       </table>
     </div>
   </section>
 
   <section class="spec-section">
-    <h2 class="ris-h2">Grafici</h2>
-    <span class="ris-eyebrow">js/ris-charts.js · SVG, zero dipendenze · glow neon · Kiroshi Tactical Scrubber (hover/touch o frecce tastiera) · micro-sweep phosphor · dati 100% reali</span>
+    <h2 class="ris-h2">Charts</h2>
+    <span class="ris-eyebrow">js/ris-charts.js · SVG, zero dependencies · neon glow · Kiroshi Tactical Scrubber (hover/touch or keyboard arrows) · phosphor micro-sweep · 100% real data</span>
     <div style="display:flex; gap:10px; margin-bottom:14px; align-items:center; flex-wrap:wrap;">
       <button class="ris-btn ris-btn--secondary ris-btn--sm" id="btn-replay-charts">
         <svg class="ris-icon"><use href="#ris-refresh"></use></svg>
-        Replay animazioni
+        Replay Animations
       </button>
       <button class="ris-btn ris-btn--secondary ris-btn--sm" id="btn-stream-charts">
         <svg class="ris-icon"><use href="#ris-pulse"></use></svg>
-        <span id="txt-stream-charts">Avvia stream telemetrico live</span>
+        <span id="txt-stream-charts">Start Live Telemetry Stream</span>
       </button>
-      <span class="ris-mono" style="font-size:10px; color:var(--ris-fg-meta)">Sweep phosphor continuo 4.5s · animazione d'ingresso su scroll viewport</span>
+      <span class="ris-mono" style="font-size:10px; color:var(--ris-fg-meta)">Continuous 4.5s phosphor sweep · entry animation on viewport scroll</span>
     </div>
     <div class="ris-grid ris-grid--2">
-      <div class="ris-panel"><div class="ris-panel-head"><span class="ris-label">HR · 7 giorni</span><span class="ris-chip ris-chip--cyan">line</span></div><div class="ris-panel-body" id="ch-line"></div></div>
-      <div class="ris-panel"><div class="ris-panel-head"><span class="ris-label">Passi · settimana</span><span class="ris-chip ris-chip--accent">bars</span></div><div class="ris-panel-body" id="ch-bars"></div></div>
-      <div class="ris-panel"><div class="ris-panel-head"><span class="ris-label">EEG live</span><span class="ris-chip ris-chip--violet">wave</span></div><div class="ris-panel-body" id="ch-wave"></div></div>
-      <div class="ris-panel"><div class="ris-panel-head"><span class="ris-label">Bande EEG</span><span class="ris-chip ris-chip--violet">bands</span></div><div class="ris-panel-body" id="ch-bands"></div></div>
-      <div class="ris-panel"><div class="ris-panel-head"><span class="ris-label">Stress · oggi</span><span class="ris-chip ris-chip--cyan">intraday</span></div><div class="ris-panel-body" id="ch-intraday"></div></div>
+      <div class="ris-panel"><div class="ris-panel-head"><span class="ris-label">HR · 7 Days</span><span class="ris-chip ris-chip--cyan">line</span></div><div class="ris-panel-body" id="ch-line"></div></div>
+      <div class="ris-panel"><div class="ris-panel-head"><span class="ris-label">Steps · Weekly</span><span class="ris-chip ris-chip--accent">bars</span></div><div class="ris-panel-body" id="ch-bars"></div></div>
+      <div class="ris-panel"><div class="ris-panel-head"><span class="ris-label">Live EEG</span><span class="ris-chip ris-chip--violet">wave</span></div><div class="ris-panel-body" id="ch-wave"></div></div>
+      <div class="ris-panel"><div class="ris-panel-head"><span class="ris-label">EEG Bands</span><span class="ris-chip ris-chip--violet">bands</span></div><div class="ris-panel-body" id="ch-bands"></div></div>
+      <div class="ris-panel"><div class="ris-panel-head"><span class="ris-label">Stress · Today</span><span class="ris-chip ris-chip--cyan">intraday</span></div><div class="ris-panel-body" id="ch-intraday"></div></div>
     </div>
     <div class="spec-demo" style="margin-top:14px">
       <span class="ris-mono">sparkline:</span><span id="ch-spark" style="width:96px"></span>
@@ -643,61 +643,61 @@ LOAD 0x8D0012:44 · REL 6fed4000</div>
 
   <section class="spec-section">
     <h2 class="ris-h2">FX — minimal · opt-in</h2>
-    <span class="ris-eyebrow">css/ris-fx.css · decorativi, opt-in, mai applicati dai componenti · spenti con reduced-motion</span>
+    <span class="ris-eyebrow">css/ris-fx.css · decorative, opt-in, never enforced by components · disabled under reduced-motion</span>
     <div class="spec-demo" style="gap:28px">
       <span class="ris-h1 ris-holo">RELIC</span>
-      <span class="ris-mono">caricamento<span class="ris-caret"></span></span>
+      <span class="ris-mono">loading<span class="ris-caret"></span></span>
     </div>
 
-    <span class="ris-label" style="display:block;margin:18px 0 8px">Stati attivi / live — moto = enhancement, sempre con etichetta · fermi sotto reduced-motion</span>
+    <span class="ris-label" style="display:block;margin:18px 0 8px">Active / live states — motion = enhancement, always labeled · motionless under reduced-motion</span>
     <div class="ris-grid ris-grid--4">
       <div class="ris-panel ris-acquiring"><div class="ris-panel-body">
         <span class="ris-label" style="color:var(--ris-red)">Live acquisition</span>
-        <p class="ris-small" style="margin:6px 0 0">Bordo che respira · <code>.ris-acquiring</code> su pannello.</p>
+        <p class="ris-small" style="margin:6px 0 0">Breathing border · <code>.ris-acquiring</code> on panel.</p>
         <span class="ris-rec" style="margin-top:10px">Rec</span>
       </div></div>
       <div class="ris-panel"><div class="ris-panel-body">
         <span class="ris-label">Recording</span>
-        <p class="ris-small" style="margin:6px 0 8px">Dot rosso pulsante · <code>.ris-rec</code>.</p>
+        <p class="ris-small" style="margin:6px 0 8px">Pulsing red dot · <code>.ris-rec</code>.</p>
         <span class="ris-rec">Rec · 00:42</span>
       </div></div>
       <div class="ris-panel"><div class="ris-panel-body">
         <span class="ris-label">Playing</span>
         <p class="ris-small" style="margin:6px 0 8px">Equalizer · <code>.ris-playing</code> (4 <code>&lt;i&gt;</code>).</p>
-        <span class="ris-row" style="gap:8px"><span class="ris-playing"><i></i><i></i><i></i><i></i></span><span class="ris-mono">EEG live</span></span>
+        <span class="ris-row" style="gap:8px"><span class="ris-playing"><i></i><i></i><i></i><i></i></span><span class="ris-mono">Live EEG</span></span>
       </div></div>
       <div class="ris-panel ris-scan" style="min-height:118px"><div class="ris-panel-body">
         <span class="ris-label" style="color:var(--ris-cyan)">Scanning</span>
-        <p class="ris-small" style="margin:6px 0 0">Sweep · <code>.ris-scan</code> · scan BLE / ricerca.</p>
+        <p class="ris-small" style="margin:6px 0 0">Sweep · <code>.ris-scan</code> · BLE scan / search.</p>
       </div></div>
     </div>
     <div class="ris-grid ris-grid--3" style="margin-top:14px">
       <div class="ris-panel" style="min-height:150px">
         <div class="ris-panel-body">
-          <span class="ris-label">Holo (solo loghi/marchi)</span>
-          <p class="ris-small">Unica firma di brand: shimmer del marchio. L'unico gradient-text del sistema.</p>
-          <span class="ris-chip ris-chip--green"><i class="dot"></i>Segnale OK</span>
+          <span class="ris-label">Holo (logos/brands only)</span>
+          <p class="ris-small">Signature brand accent: trademark shimmer. The only gradient-text in the system.</p>
+          <span class="ris-chip ris-chip--green"><i class="dot"></i>Signal OK</span>
         </div>
       </div>
       <div class="ris-panel" style="min-height:150px">
         <div class="ris-panel-body">
-          <span class="ris-label">Caret terminale</span>
-          <p class="ris-small">Cursore di streaming per output testuale / log live.</p>
+          <span class="ris-label">Terminal caret</span>
+          <p class="ris-small">Streaming cursor for live console / text output.</p>
           <span class="ris-chip ris-chip--red">NO SIGNAL</span>
         </div>
       </div>
       <div class="ris-panel" style="min-height:150px">
         <div class="ris-panel-body">
           <span class="ris-label">Boot reveal</span>
-          <p class="ris-small">Stagger sobrio all'apertura vista (opt-in, spento con reduced-motion).</p>
+          <p class="ris-small">Subtle entrance stagger on view mount (opt-in, disabled under reduced-motion).</p>
           <button class="ris-btn ris-btn--sm ris-btn--secondary" id="boot-demo">Replay boot reveal ▶</button>
         </div>
       </div>
     </div>
     <div class="ris-grid ris-grid--3" id="boot-target" style="margin-top:14px">
-      <div class="ris-kpi"><span class="kpi-label">Modulo 1</span><div class="kpi-value">ON</div></div>
-      <div class="ris-kpi" style="--ris-kpi-accent:var(--ris-accent-2)"><span class="kpi-label">Modulo 2</span><div class="kpi-value">ON</div></div>
-      <div class="ris-kpi" style="--ris-kpi-accent:var(--ris-green)"><span class="kpi-label">Modulo 3</span><div class="kpi-value">ON</div></div>
+      <div class="ris-kpi"><span class="kpi-label">Module 1</span><div class="kpi-value">ON</div></div>
+      <div class="ris-kpi" style="--ris-kpi-accent:var(--ris-accent-2)"><span class="kpi-label">Module 2</span><div class="kpi-value">ON</div></div>
+      <div class="ris-kpi" style="--ris-kpi-accent:var(--ris-green)"><span class="kpi-label">Module 3</span><div class="kpi-value">ON</div></div>
     </div>
   </section>
 
@@ -708,7 +708,7 @@ LOAD 0x8D0012:44 · REL 6fed4000</div>
         <span class="ris-eyebrow">Zero reflow · 60fps · CSS Grid disclosure · HUD Radar Sweep · WCAG 2.2 AA</span>
       </div>
       <a href="motion-lab.html" class="ris-btn ris-btn--primary ris-btn--sm" style="text-decoration:none;">
-        ⚡ Apri Motion Lab Interattivo (Test A11y &amp; LAN) &rarr;
+        ⚡ Open Interactive Motion Lab (A11y &amp; LAN Test) &rarr;
       </a>
     </div>
 
@@ -719,26 +719,26 @@ LOAD 0x8D0012:44 · REL 6fed4000</div>
         <div class="ris-acc" id="doc-acc-1" style="margin-top:6px;">
           <div class="ris-acc-item" data-open="true">
             <button class="ris-acc-trigger" aria-expanded="true" onclick="toggleDocAcc(this)">
-              <span>[ 01 ] // CANALE CRITTOGRAFICO</span>
+              <span>[ 01 ] // ENCRYPTED CHANNEL</span>
               <span class="ris-acc-chevron">▼</span>
             </button>
             <div class="ris-acc-drawer">
               <div class="ris-acc-body">
                 <div class="ris-acc-body-inner">
-                  Transizione fluida a CSS Grid <code>0fr &rarr; 1fr</code> in 200ms (<code>--ris-dur-base</code>). Zero reflow/jank.
+                  Smooth CSS Grid <code>0fr &rarr; 1fr</code> transition in 200ms (<code>--ris-dur-base</code>). Zero reflow/jank.
                 </div>
               </div>
             </div>
           </div>
           <div class="ris-acc-item" data-open="false">
             <button class="ris-acc-trigger" aria-expanded="false" onclick="toggleDocAcc(this)">
-              <span>[ 02 ] // FIRMA NEURALE</span>
+              <span>[ 02 ] // NEURAL SIGNATURE</span>
               <span class="ris-acc-chevron">▼</span>
             </button>
             <div class="ris-acc-drawer">
               <div class="ris-acc-body">
                 <div class="ris-acc-body-inner">
-                  Chiave di decifrazione asimmetrica verificata.
+                  Asymmetric decryption key verified.
                 </div>
               </div>
             </div>
@@ -755,7 +755,7 @@ LOAD 0x8D0012:44 · REL 6fed4000</div>
             <span>FREQ: 14.82 GHz</span>
           </div>
           <div style="text-align:center; font-family:var(--ris-font-mono); font-size:11px; font-weight:700; color:var(--ris-fg1); z-index:3;">
-            &bull; SCANSIONE ATTIVA (2.2s) &bull;
+            &bull; ACTIVE SWEEP (2.2s) &bull;
           </div>
           <div class="ris-serial" style="margin:0; z-index:3;">
             TARGETS: <b>0 IDENTIFIED</b> · STATUS: <b>LOCK</b>
@@ -765,14 +765,14 @@ LOAD 0x8D0012:44 · REL 6fed4000</div>
 
       <!-- Toast & Switch Demo -->
       <div class="spec-col" style="max-width:none;">
-        <span class="ris-label">3. Micro-Interazioni &amp; Toast HUD</span>
+        <span class="ris-label">3. Micro-Interactions &amp; HUD Toast</span>
         <div class="ris-panel" style="margin-top:6px; padding:14px; display:flex; flex-direction:column; gap:14px;">
           <label class="ris-switch">
             <input type="checkbox" checked>
-            <span>OVERLAY NEURALE ATTIVO</span>
+            <span>ACTIVE NEURAL OVERLAY</span>
           </label>
           <button class="ris-btn ris-btn--secondary ris-btn--sm" onclick="spawnDocToast()">
-            🔔 EMETTI TOAST HUD (4s)
+            🔔 EMIT HUD TOAST (4s)
           </button>
           <div class="ris-serial" style="margin:0;">
             PRESS FEEDBACK: <b>80ms SNAP</b> · <b>SCALE 0.97</b>
@@ -783,48 +783,48 @@ LOAD 0x8D0012:44 · REL 6fed4000</div>
   </section>
 
   <section class="spec-section">
-    <h2 class="ris-h2">Icone (Tabler Icons · Licenza MIT)</h2>
+    <h2 class="ris-h2">Icons (Tabler Icons · MIT License)</h2>
     <span class="ris-eyebrow" id="icon-count">sprite ris-icons.svg · Tabler Icons MIT · 24×24 · stroke 1.75 currentColor</span>
     <div class="icon-grid" id="icons"></div>
   </section>
 
   <section class="spec-section">
-    <h2 class="ris-h2">Accessibilità — riepilogo</h2>
+    <h2 class="ris-h2">Accessibility — Summary</h2>
     <div class="spec-col" style="max-width:72ch">
       <p class="ris-body">
-        Contrasti token verificati ≥4.5:1 (testo normale) su bg/surface in entrambi
-        i temi; fg4 solo per placeholder/disabled. Focus ring 2px cyan su
-        <code class="ris-kbd">:focus-visible</code>. Tutte le animazioni si spengono con
-        <code class="ris-kbd">prefers-reduced-motion</code>. Target minimi: bottoni 36px,
-        controlli form ≥24px (WCAG 2.5.8). Stato mai affidato al solo colore.
-        Skip-nav incluso. Pattern ARIA documentati in COMPONENTS.md.
+        Token contrast verified ≥4.5:1 (normal text) on bg/surface across both
+        themes; fg4 reserved for placeholder/disabled. 2px cyan focus ring on
+        <code class="ris-kbd">:focus-visible</code>. All animations halt under
+        <code class="ris-kbd">prefers-reduced-motion</code>. Minimum targets: buttons 36px,
+        form controls ≥24px (WCAG 2.5.8). State never communicated by color alone.
+        Skip-nav included. ARIA patterns documented in COMPONENTS.md.
       </p>
     </div>
   </section>
 
 </main>
 
-<!-- Bottom nav: chrome mobile dell'app-shell (visibile solo <768px via ris.css) -->
-<nav class="ris-bottomnav" aria-label="Navigazione (mobile)">
+<!-- Bottom nav: mobile app-shell chrome (visible only <768px via ris.css) -->
+<nav class="ris-bottomnav" aria-label="Navigation (mobile)">
   <a class="ris-nav-link" aria-current="page" href="#main"><svg class="ris-icon" aria-hidden="true"><use href="#ris-home"/></svg>Home</a>
-  <a class="ris-nav-link" href="#"><svg class="ris-icon" aria-hidden="true"><use href="#ris-users"/></svg>Contatti</a>
-  <a class="ris-nav-link" href="#"><svg class="ris-icon" aria-hidden="true"><use href="#ris-crosshair"/></svg>Mappa</a>
-  <a class="ris-nav-link" href="#"><svg class="ris-icon" aria-hidden="true"><use href="#ris-file"/></svg>Diario</a>
+  <a class="ris-nav-link" href="#"><svg class="ris-icon" aria-hidden="true"><use href="#ris-users"/></svg>Contacts</a>
+  <a class="ris-nav-link" href="#"><svg class="ris-icon" aria-hidden="true"><use href="#ris-crosshair"/></svg>Radar</a>
+  <a class="ris-nav-link" href="#"><svg class="ris-icon" aria-hidden="true"><use href="#ris-file"/></svg>Journal</a>
 </nav>
 
 <!-- Modal demo -->
 <div class="ris-modal-backdrop" id="modal" hidden>
   <div class="ris-modal ris-scanlines" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="ris-modal-head">
-      <span class="ris-h3" id="modal-title">Conferma eliminazione</span>
-      <button class="ris-btn ris-btn--ghost ris-btn--sm ris-btn--icon" aria-label="Chiudi" onclick="modal.hidden=true"><svg class="ris-icon" aria-hidden="true"><use href="#ris-close"/></svg></button>
+      <span class="ris-h3" id="modal-title">Confirm Deletion</span>
+      <button class="ris-btn ris-btn--ghost ris-btn--sm ris-btn--icon" aria-label="Close" onclick="modal.hidden=true"><svg class="ris-icon" aria-hidden="true"><use href="#ris-close"/></svg></button>
     </div>
     <div class="ris-modal-body">
-      <p class="ris-body">Eliminare la sessione <span class="ris-mono">muse_2026-06-10_2315</span>? L'operazione non è reversibile.</p>
+      <p class="ris-body">Delete session <span class="ris-mono">muse_2026-06-10_2315</span>? This action cannot be undone.</p>
     </div>
     <div class="ris-modal-foot">
-      <button class="ris-btn ris-btn--ghost" onclick="modal.hidden=true">Annulla</button>
-      <button class="ris-btn ris-btn--danger" onclick="modal.hidden=true">Elimina</button>
+      <button class="ris-btn ris-btn--ghost" onclick="modal.hidden=true">Cancel</button>
+      <button class="ris-btn ris-btn--danger" onclick="modal.hidden=true">Delete</button>
     </div>
   </div>
 </div>
@@ -833,17 +833,17 @@ LOAD 0x8D0012:44 · REL 6fed4000</div>
 
 <!-- Drawer demo -->
 <div class="ris-drawer-backdrop" id="drawer-bd" hidden></div>
-<aside class="ris-drawer" id="drawer" role="dialog" aria-label="Dettaglio sessione" aria-modal="true">
+<aside class="ris-drawer" id="drawer" role="dialog" aria-label="Session Details" aria-modal="true">
   <div class="ris-drawer-head">
-    <span class="ris-h3">Dettaglio sessione</span>
-    <button class="ris-btn ris-btn--ghost ris-btn--sm ris-btn--icon" aria-label="Chiudi drawer" id="drawer-close"><svg class="ris-icon" aria-hidden="true"><use href="#ris-close"/></svg></button>
+    <span class="ris-h3">Session Details</span>
+    <button class="ris-btn ris-btn--ghost ris-btn--sm ris-btn--icon" aria-label="Close drawer" id="drawer-close"><svg class="ris-icon" aria-hidden="true"><use href="#ris-close"/></svg></button>
   </div>
   <div class="ris-drawer-body">
     <div class="ris-stack">
       <span class="ris-chip ris-chip--violet">muse_2026-06-10_2315</span>
-      <p class="ris-small">Durata 22 min · 4 marker · alpha dominante.</p>
-      <div class="ris-field"><label>Note</label><textarea class="ris-textarea" placeholder="Aggiungi nota…"></textarea></div>
-      <button class="ris-btn ris-btn--primary">Salva</button>
+      <p class="ris-small">Duration 22 min · 4 markers · dominant alpha.</p>
+      <div class="ris-field"><label>Notes</label><textarea class="ris-textarea" placeholder="Add note…"></textarea></div>
+      <button class="ris-btn ris-btn--primary">Save</button>
     </div>
   </div>
 </aside>
@@ -854,31 +854,31 @@ const root = document.documentElement;
 
 /* Charts demo */
 RisCharts.line(document.getElementById('ch-line'),
-  [62,58,64,61,57,55,59,63,60,56,54,58,61,57], { label: 'HR 7 giorni, media 59 bpm', unit: ' bpm' });
+  [62,58,64,61,57,55,59,63,60,56,54,58,61,57], { label: '7-day HR, mean 59 bpm', unit: ' bpm' });
 RisCharts.bars(document.getElementById('ch-bars'),
-  [6400,8200,5100,9800,7400,11200,8412], { label: 'Passi settimana', highlight: 6, unit: ' passi', categories: ['LUN', 'MAR', 'MER', 'GIO', 'VEN', 'SAB', 'DOM'] });
-RisCharts.wave(document.getElementById('ch-wave'), { label: 'EEG live (demo)' });
+  [6400,8200,5100,9800,7400,11200,8412], { label: 'Steps weekly', highlight: 6, unit: ' steps', categories: ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'] });
+RisCharts.wave(document.getElementById('ch-wave'), { label: 'Live EEG (demo)' });
 RisCharts.bands(document.getElementById('ch-bands'), [
   { name: 'delta', value: 0.34, color: 'var(--ris-cyan)' },
   { name: 'theta', value: 0.48, color: 'var(--ris-green)' },
   { name: 'alpha', value: 0.82, color: 'var(--ris-violet)' },
   { name: 'beta',  value: 0.41, color: 'var(--ris-magenta)' },
   { name: 'gamma', value: 0.22, color: 'var(--ris-orange)' },
-], { label: 'Bande EEG: alpha dominante 0.82' });
-/* intraday: andamento del giorno con banda baseline + marcatori picco */
+], { label: 'EEG Bands: dominant alpha 0.82' });
+/* intraday: daily trend with baseline band + peak markers */
 (function () {
   const day = new Date(); day.setHours(0, 0, 0, 0);
   const pts = [];
   for (let m = 6 * 60; m <= 22 * 60; m += 20) {
     const t = day.getTime() + m * 60000;
-    // profilo demo: calmo al mattino, picchi pomeridiani
+    // demo profile: calm morning, afternoon peaks
     const base = 34 + 8 * Math.sin((m - 600) / 280);
     const peak = (m > 740 && m < 960) ? 22 * Math.exp(-Math.pow((m - 870) / 70, 2)) : 0;
     pts.push({ t, v: Math.round(base + peak + (Math.random() * 4 - 2)) });
   }
   RisCharts.intraday(document.getElementById('ch-intraday'), pts, {
     baseline: { median: 36, lo: 30, hi: 48 }, peakThreshold: 55, unit: ' pts',
-    label: 'Stress oggi, picchi pomeridiani 12-16',
+    label: 'Stress today, afternoon peaks 12-16',
   });
 })();
 RisCharts.spark(document.getElementById('ch-spark'), [3,5,4,7,6,9,8,11]);
@@ -901,10 +901,10 @@ if (streamBtn) {
     if (streamTimer) {
       clearInterval(streamTimer);
       streamTimer = null;
-      streamTxt.textContent = 'Avvia stream telemetrico live';
+      streamTxt.textContent = 'Start Live Telemetry Stream';
       streamBtn.classList.remove('ris-btn--primary');
     } else {
-      streamTxt.textContent = 'Arresta stream live';
+      streamTxt.textContent = 'Stop Live Stream';
       streamBtn.classList.add('ris-btn--primary');
       streamTimer = setInterval(() => {
         const last = hrPoints[hrPoints.length - 1];
@@ -914,7 +914,7 @@ if (streamBtn) {
         if (hrPoints.length > 20) hrPoints.shift();
         hrLineEl.innerHTML = '';
         RisCharts.line(hrLineEl, hrPoints, {
-          label: `HR live, ultimo ${next} bpm`,
+          label: `Live HR, latest ${next} bpm`,
           unit: ' bpm',
           animate: false
         });
@@ -974,7 +974,7 @@ function toggleDocAcc(btn) {
 }
 
 function spawnDocToast() {
-  toast('TELEMETRIA HUD AGGIORNATA', '', 'Pacchetto di sincronizzazione sensori ricevuto.');
+  toast('HUD TELEMETRY UPDATED', '', 'Sensor telemetry synchronization packet received.');
 }
 
 /* Palette swatches — read computed token values live (theme/brand reactive) */
@@ -996,7 +996,7 @@ new MutationObserver(renderSwatches).observe(root, { attributes: true });
     `<div class="icon-cell"><svg class="ris-icon ris-icon--lg" aria-hidden="true"><use href="#${id}"/></svg><span>${id.slice(4)}</span></div>`
   ).join('');
   document.getElementById('icon-count').textContent =
-    `Tabler Icons (MIT) · ${ids.length} glifi · 24×24 · stroke 1.75 currentColor`;
+    `Tabler Icons (MIT) · ${ids.length} glyphs · 24×24 · stroke 1.75 currentColor`;
   renderSwatches();
 })();
 </script>

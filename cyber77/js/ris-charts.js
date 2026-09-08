@@ -15,7 +15,7 @@
      RisCharts.replay(svgOrContainer)    — replays entrance animations on-demand
 
    opts.color: any CSS color (default var(--ris-accent-2)).
-   opts.unit: optional string unit (e.g. ' bpm', ' passi', ' µV') appended to real telemetry.
+   opts.unit: optional string unit (e.g. ' bpm', ' steps', ' µV') appended to real telemetry.
    opts.categories: optional array of strings for point/bar labels.
    opts.interactive: boolean (default true for line, intraday, bars, gauge).
    opts.ambientSweep: boolean (default true; subtle phosphor micro-sweep across grid).
@@ -40,7 +40,7 @@
   function base(el, w, h, label) {
     const svg = svgEl('svg', {
       viewBox: `0 0 ${w} ${h}`, width: '100%', role: 'img',
-      'aria-label': label || 'grafico', preserveAspectRatio: 'none',
+      'aria-label': label || 'chart', preserveAspectRatio: 'none',
     });
     svg.style.display = 'block';
     svg.style.overflow = 'hidden';
@@ -281,7 +281,7 @@
       svg.classList.add('ris-chart-interactive');
       svg.setAttribute('tabindex', '0');
       svg.setAttribute('role', 'region');
-      svg.setAttribute('aria-label', `${opts.label || 'grafico a linee'}, usa frecce sinistra e destra per esplorare i punti`);
+      svg.setAttribute('aria-label', `${opts.label || 'line chart'}, use left and right arrow keys to inspect data points`);
 
       const scrubber = createScrubberOverlay(svg, w, h, color);
       let activeIdx = -1;
@@ -402,7 +402,7 @@
       svg.classList.add('ris-chart-interactive');
       svg.setAttribute('tabindex', '0');
       svg.setAttribute('role', 'region');
-      svg.setAttribute('aria-label', `${opts.label || 'grafico a barre'}, usa frecce per esplorare le colonne`);
+      svg.setAttribute('aria-label', `${opts.label || 'bar chart'}, use arrow keys to inspect columns`);
 
       const badge = svgEl('g', { class: 'ris-scrubber-badge', style: 'display: none; pointer-events: none;' });
       const bg = svgEl('rect', { class: 'ris-scrubber-badge-bg', x: 0, y: 0, width: 80, height: 26, rx: 2 });
@@ -432,7 +432,7 @@
         t2.textContent = `VAL: ${valStr}`;
         let badgeH = 26;
         if (isMax) {
-          t3.textContent = '[PICCO MAX]';
+          t3.textContent = '[MAX PEAK]';
           t3.style.display = '';
           badgeH = 36;
         } else {
@@ -625,7 +625,7 @@
     const w = opts.width || 360, h = opts.height || 132;
     const padX = 6, padTop = 12, padBot = 16;
     const color = opts.color || 'var(--ris-accent-2)';
-    const svg = base(el, w, h, opts.label || 'andamento intraday');
+    const svg = base(el, w, h, opts.label || 'intraday trend');
     if (!points || points.length < 2) return svg;
 
     const t0 = points[0].t, t1 = points[points.length - 1].t;
@@ -641,14 +641,14 @@
     grid(svg, w, h, 0, 4);
     if (opts.ambientSweep !== false) ambientSweep(svg, w, h);
 
-    // Banda baseline (mediana ± banda) + mediana tratteggiata.
+    // Baseline band (median ± band) + dashed median.
     if (bl) {
       const top = Y(bl.hi), bot = Y(bl.lo);
       svg.appendChild(svgEl('rect', { x: padX, y: top, width: w - 2 * padX, height: Math.max(1, bot - top), fill: color, opacity: 0.08 }));
       svg.appendChild(svgEl('line', { x1: padX, y1: Y(bl.median), x2: w - padX, y2: Y(bl.median), stroke: color, 'stroke-width': 1, opacity: 0.5, 'stroke-dasharray': '4 4' }));
     }
 
-    // Tick orari (mezzanotte locale ogni ~ora multipla) con label mono.
+    // Hourly ticks (local time step) with mono label.
     const stepH = opts.hourStep || 3;
     const d0 = new Date(t0);
     let tick = new Date(d0); tick.setMinutes(0, 0, 0);
@@ -664,7 +664,7 @@
       tick.setHours(tick.getHours() + 1);
     }
 
-    // Area + linea andamento.
+    // Area + trend line.
     const d = points.map((p, i) => (i ? 'L' : 'M') + X(p.t).toFixed(1) + ' ' + Y(p.v).toFixed(1)).join(' ');
     svg.appendChild(svgEl('path', { d: `${d} L ${X(t1).toFixed(1)} ${h - padBot} L ${X(t0).toFixed(1)} ${h - padBot} Z`, fill: color, opacity: 0.10 }));
     const path = svgEl('path', { d, fill: 'none', stroke: color, 'stroke-width': 1.75, filter: glowFilter(svg, color) });
@@ -685,7 +685,7 @@
     runWhenVisible(svg, playIntradayEntry);
     svg._risReplay = playIntradayEntry;
 
-    // Marcatori picco: quadrato pieno sui punti oltre soglia con micro-pulse
+    // Peak markers: solid square on points exceeding threshold with micro-pulse
     const thr = opts.peakThreshold ?? (bl ? bl.hi : vMax);
     points.forEach(p => {
       if (p.v >= thr) {
@@ -710,7 +710,7 @@
       svg.classList.add('ris-chart-interactive');
       svg.setAttribute('tabindex', '0');
       svg.setAttribute('role', 'region');
-      svg.setAttribute('aria-label', `${opts.label || 'andamento intraday'}, usa frecce per esplorare orari e valori`);
+      svg.setAttribute('aria-label', `${opts.label || 'intraday trend'}, use arrow keys to inspect timestamps and values`);
 
       const scrubber = createScrubberOverlay(svg, w, h, color);
       let activeIdx = -1;
@@ -725,7 +725,7 @@
         const d = new Date(p.t);
         const hh = String(d.getHours()).padStart(2, '0');
         const mm = String(d.getMinutes()).padStart(2, '0');
-        const timeStr = `ORE: ${hh}:${mm}`;
+        const timeStr = `TIME: ${hh}:${mm}`;
 
         let valStr = `VAL: ${p.v}${opts.unit || ''}`;
         if (bl) {
@@ -735,12 +735,12 @@
         }
 
         const isPeak = p.v >= thr;
-        const alertText = isPeak ? 'ALERTA PICCO' : null;
+        const alertText = isPeak ? 'PEAK ALERT' : null;
 
         scrubber.update(px, py, timeStr, valStr, alertText);
         scrubber.show();
         svg.setAttribute('aria-valuenow', String(p.v));
-        svg.setAttribute('aria-valuetext', `${timeStr}, ${valStr}${isPeak ? ', picco' : ''}`);
+        svg.setAttribute('aria-valuetext', `${timeStr}, ${valStr}${isPeak ? ', peak' : ''}`);
       }
 
       function findClosest(svgX) {
@@ -832,7 +832,7 @@
 
   function bands(el, data, opts = {}) {
     const w = opts.width || 320, rowH = 22, pad = 64;
-    const svg = base(el, w, data.length * rowH, opts.label || 'bande');
+    const svg = base(el, w, data.length * rowH, opts.label || 'bands');
     const fillRects = [];
     data.forEach((b, i) => {
       const y = i * rowH;

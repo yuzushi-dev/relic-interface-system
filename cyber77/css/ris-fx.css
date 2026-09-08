@@ -81,12 +81,12 @@
 @keyframes ris-holo { to { background-position: -240% 0; } }
 
 /* ----------------------------------------------------------------------------
-   STATI ATTIVI / LIVE — cue di moto per stati genuinamente in corso.
-   Il moto e' SEMPRE enhancement: accompagna label/icona, non le sostituisce.
-   Tutti hanno fallback statico sotto reduced-motion (in fondo).
+   ACTIVE / LIVE STATES — motion cues for genuinely ongoing background operations.
+   Motion is ALWAYS an enhancement: accompanies label/icon, never replaces them.
+   All states feature static fallbacks under prefers-reduced-motion (at bottom).
    -------------------------------------------------------------------------- */
 
-/* RECORDING — badge REC con dot rosso che pulsa (square, on-brand). */
+/* RECORDING — REC badge with pulsing red square dot (on-brand). */
 .ris-rec {
   display: inline-flex; align-items: center; gap: 7px;
   font-family: var(--ris-font-mono); font-size: 11px; font-weight: 600;
@@ -102,14 +102,14 @@
   50%      { opacity: 0.5; box-shadow: 0 0 0 transparent; }
 }
 
-/* LIVE ACQUISITION — bordo che respira (glow in/out). Applica a un pannello. */
+/* LIVE ACQUISITION — breathing border (glow in/out). Apply to a panel. */
 .ris-acquiring { animation: ris-acquiring 2.2s var(--ris-ease) infinite; }
 @keyframes ris-acquiring {
   0%, 100% { box-shadow: 0 0 0 1px var(--ris-red-line), 0 0 8px var(--ris-red-glow); }
   50%      { box-shadow: 0 0 0 1px var(--ris-red-line), 0 0 24px var(--ris-red-glow); }
 }
 
-/* PLAYING — equalizer 4 barre (audio/EEG in riproduzione). 4 <i> figli. */
+/* PLAYING — 4-bar equalizer (audio/EEG streaming). 4 <i> children. */
 .ris-playing { display: inline-flex; align-items: flex-end; gap: 2px; height: 14px; }
 .ris-playing > i {
   width: 3px; height: 100%; flex: 0 0 3px;
@@ -121,7 +121,7 @@
 .ris-playing > i:nth-child(4) { animation-delay: 0.45s; }
 @keyframes ris-eq { 0%, 100% { transform: scaleY(0.3); } 50% { transform: scaleY(1); } }
 
-/* SCANNING — riga di sweep che attraversa il contenitore (scan BLE/ricerca). */
+/* SCANNING — sweep line traversing container (BLE scan/search). */
 .ris-scan { position: relative; overflow: hidden; }
 .ris-scan::after {
   content: ""; position: absolute; left: 0; right: 0; top: -28%; height: 28%;
@@ -131,7 +131,7 @@
 }
 @keyframes ris-scan { to { top: 100%; } }
 
-/* RADAR SWEEP HUD — scanning tattico continuo a 2.2s lineare con reticolo */
+/* RADAR SWEEP HUD — continuous tactical scanning at 2.2s linear with grid */
 .ris-radar {
   position: relative;
   overflow: hidden;
