@@ -11,6 +11,7 @@
 ### Brutalist tactical HUD & telemetry design system for Web and Jetpack Compose.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-e6a23c.svg?style=flat-square)](LICENSE)
+[![RIS Pro: Available](https://img.shields.io/badge/RIS%20Pro-Figma%20%2B%20Next.js-6fb3c9.svg?style=flat-square)](docs/COMMERCIAL_PRICING.md)
 [![WCAG 2.2 AA](https://img.shields.io/badge/Accessibility-WCAG%202.2%20AA-2fe48a.svg?style=flat-square)](GUIDELINES.md)
 [![Compose 1.7+](https://img.shields.io/badge/Android-Jetpack%20Compose-6fb3c9.svg?style=flat-square)](compose/)
 [![Zero Reflow](https://img.shields.io/badge/Motion-Zero%20Reflow%20%4060fps-ff2d3c.svg?style=flat-square)](docs/motion-lab.html)
@@ -66,7 +67,36 @@ python3 -m http.server 8080
 - **Figma UI Kit**: Tokens Studio JSON, turnkey plugin generator, and vector shapes in [`figma/`](figma/README.md).
 - **Tailwind CSS Plugin**: Ready preset with `.chamfer-*` utilities and design tokens in [`tailwind/`](tailwind/README.md).
 - **Android / Compose**: Direct drop-in Gradle library module with Maven/JitPack publishing in [`compose/`](compose/README.md).
+- **Pro Next.js Template**: Production-ready Forensic Telemetry Dashboard in [`templates/forensic-dashboard/`](templates/forensic-dashboard/README.md).
 - **Agent Prompt**: If building with Claude Code, Cursor, or Codex, pass [`DESIGN.md`](DESIGN.md) directly as the system prompt.
+
+---
+
+## ◈ RIS Core (Free) vs RIS Pro (Commercial)
+
+Relic Interface System follows an open-core architecture. The foundational design system and primitives are 100% free and open-source under the [MIT License](LICENSE), while turn-key application templates, the consolidated Figma Studio kit, and enterprise support are governed by the [Commercial Software License](LICENSE_PRO.md).
+
+| Deliverable | Core (Open Source · MIT) | Pro Suite (Commercial License) |
+| :--- | :---: | :---: |
+| **Design Tokens & CSS** | Full Dark & Light tokens, 4 Brands | + 3 High-density Case-Context skins (`sealed`, `field`, `archive`) |
+| **Figma UI Kit** | Community Preview tokens & generator script | **Figma Studio Kit Pro**: Master `.fig` with 150+ components, Auto Layout 5.0, variables |
+| **React Components** | Buttons, Panels, Switches, Tabs, Modals | Full `@relic-ui/react` library + Sonner-style Toasts, 60fps EEG Canvas engine |
+| **Next.js Templates** | Specimen pages | **Forensic Telemetry Dashboard**: Complete App Router application with Docker container |
+| **Android Compose** | Core library module | Production suite with hardware-accelerated Canvas charts |
+| **Commercial Usage** | Unlimited (MIT) | Unlimited commercial products & SaaS without attribution |
+
+### Commercial Pricing Tiers
+
+All Pro licenses are **perpetual (one-time purchase)** with lifetime v2.x updates. Tax and VAT are handled automatically via Merchant of Record (Lemon Squeezy / Polar.sh):
+
+| License Tier | Launch Early-Bird (First 100) | Standard Price | Included Deliverables |
+| :--- | :---: | :---: | :--- |
+| **Figma Studio Kit** | **$39** | **$49** | Complete `.fig` bundle, 150+ components, tokens & pre-assembled layouts |
+| **Next.js Forensic Dashboard** | **$49** | **$69** | Turn-key Next.js 14 App Router template, interactive scrubber, Docker ready |
+| **RIS Pro All-Access** | **$99** | **$129** | **All templates + Figma Studio + React Pro + Compose + Tailwind** |
+| **Team License** | **$249** | **$299** | All-Access for up to 10 developers/designers in an organization |
+
+> Full strategic analysis & competitor benchmarks: see [`docs/COMMERCIAL_PRICING.md`](docs/COMMERCIAL_PRICING.md) and [`LICENSE_PRO.md`](LICENSE_PRO.md).
 
 ---
 
