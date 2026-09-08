@@ -1,0 +1,38 @@
+{
+  "name": "@relic-ui/forensic-dashboard",
+  "version": "2.8.0",
+  "description": "Production-ready Next.js App Router Forensic Dashboard template built on Relic Interface System (RIS v2.8.0)",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@relic-ui/tailwind": "file:../../tailwind",
+    "next": "^14.2.24",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.5.4"
+  },
+  "keywords": [
+    "nextjs",
+    "app-router",
+    "relic-interface-system",
+    "ris",
+    "forensics",
+    "telemetry",
+    "tactical-cyber",
+    "hud"
+  ]
+}

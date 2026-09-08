@@ -1,0 +1,240 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "$description": "RIS — Relic Interface System v2.8.0 Community Preview Design Tokens (Tokens Studio & W3C DTCG). Includes Foundations, Dark/Light Core, Relic and BioHub brands.",
+  "global": {
+    "fontFamily": {
+      "display": {
+        "$type": "fontFamily",
+        "$value": "Archivo",
+        "$description": "Off-genre grotesk for display, headings, and HUD numerics"
+      },
+      "body": {
+        "$type": "fontFamily",
+        "$value": "Archivo",
+        "$description": "Body copy, labels, UI text"
+      },
+      "mono": {
+        "$type": "fontFamily",
+        "$value": "JetBrains Mono",
+        "$description": "Metadata, telemetry, code, logs"
+      },
+      "cyber-display": {
+        "$type": "fontFamily",
+        "$value": "Chakra Petch",
+        "$description": "Tactical Cyber HUD display typeface"
+      }
+    },
+    "fontWeight": {
+      "regular": { "$type": "fontWeight", "$value": "400" },
+      "medium": { "$type": "fontWeight", "$value": "500" },
+      "semibold": { "$type": "fontWeight", "$value": "600" },
+      "bold": { "$type": "fontWeight", "$value": "700" }
+    },
+    "fontSize": {
+      "3xl": { "$type": "dimension", "$value": "44px", "$description": "Hero display numbers & headings" },
+      "2xl": { "$type": "dimension", "$value": "32px", "$description": "H1 page headings" },
+      "xl": { "$type": "dimension", "$value": "24px", "$description": "H2 section headings" },
+      "lg": { "$type": "dimension", "$value": "19px", "$description": "H3 card titles & large values" },
+      "md": { "$type": "dimension", "$value": "16px", "$description": "Body base size" },
+      "sm": { "$type": "dimension", "$value": "14px", "$description": "Small text, secondary UI labels" },
+      "xs": { "$type": "dimension", "$value": "11px", "$description": "Floor — hard metadata only" }
+    },
+    "lineHeight": {
+      "3xl": { "$type": "dimension", "$value": "44px" },
+      "2xl": { "$type": "dimension", "$value": "34px" },
+      "xl": { "$type": "dimension", "$value": "26px" },
+      "lg": { "$type": "dimension", "$value": "22px" },
+      "md": { "$type": "dimension", "$value": "25px" },
+      "sm": { "$type": "dimension", "$value": "21px" },
+      "xs": { "$type": "dimension", "$value": "11px" }
+    },
+    "letterSpacing": {
+      "tight": { "$type": "dimension", "$value": "-0.01em" },
+      "normal": { "$type": "dimension", "$value": "0em" },
+      "wide": { "$type": "dimension", "$value": "0.08em" },
+      "wider": { "$type": "dimension", "$value": "0.16em" },
+      "max": { "$type": "dimension", "$value": "0.28em" }
+    },
+    "space": {
+      "s1": { "$type": "dimension", "$value": "4px", "$description": "Base grid unit" },
+      "s2": { "$type": "dimension", "$value": "8px" },
+      "s3": { "$type": "dimension", "$value": "12px" },
+      "s4": { "$type": "dimension", "$value": "16px" },
+      "s5": { "$type": "dimension", "$value": "20px" },
+      "s6": { "$type": "dimension", "$value": "24px" },
+      "s7": { "$type": "dimension", "$value": "32px" },
+      "s8": { "$type": "dimension", "$value": "48px" }
+    },
+    "shape": {
+      "radius": {
+        "$type": "dimension",
+        "$value": "0px",
+        "$description": "Hard-edged; corners are clipped, never rounded"
+      },
+      "chamfer-sm": {
+        "$type": "dimension",
+        "$value": "6px",
+        "$description": "45° chamfer cut for chips, inputs, buttons"
+      },
+      "chamfer-md": {
+        "$type": "dimension",
+        "$value": "10px",
+        "$description": "45° chamfer cut for panels, cards"
+      },
+      "chamfer-lg": {
+        "$type": "dimension",
+        "$value": "16px",
+        "$description": "45° chamfer cut for modals, hero blocks"
+      }
+    },
+    "layout": {
+      "topbarHeight": { "$type": "dimension", "$value": "52px" },
+      "railWidth": { "$type": "dimension", "$value": "64px" },
+      "bottomnavHeight": { "$type": "dimension", "$value": "60px" },
+      "contentMax": { "$type": "dimension", "$value": "1280px" },
+      "breakpointMobile": { "$type": "dimension", "$value": "768px" }
+    },
+    "motion": {
+      "durInstant": { "$type": "duration", "$value": "80ms", "$description": "Tactile micro-feedback" },
+      "durFast": { "$type": "duration", "$value": "140ms", "$description": "Hover, selection, telemetry flash" },
+      "durBase": { "$type": "duration", "$value": "200ms", "$description": "Accordion disclosure, tabs" },
+      "durEnter": { "$type": "duration", "$value": "240ms", "$description": "Modal dialogs, bottom sheets" }
+    },
+    "color": {
+      "accent-fill": {
+        "yellow": { "$type": "color", "$value": "#e6a23c", "$description": "Amber-sodium — active/CTA/pending" },
+        "cyan": { "$type": "color", "$value": "#6fb3c9", "$description": "Steel-ice — data/link/scan" },
+        "red": { "$type": "color", "$value": "#d45565" },
+        "green": { "$type": "color", "$value": "#5fae84" },
+        "violet": { "$type": "color", "$value": "#8479be" }
+      }
+    }
+  },
+  "theme-dark": {
+    "surface": {
+      "void": { "$type": "color", "$value": "#060708", "$description": "Deepest backdrop, input wells" },
+      "bg": { "$type": "color", "$value": "#0a0c0e", "$description": "App graphite background" },
+      "surface1": { "$type": "color", "$value": "#0f1316", "$description": "Panel base container" },
+      "surface2": { "$type": "color", "$value": "#141a1e", "$description": "Raised panel, row hover, cards" },
+      "surface3": { "$type": "color", "$value": "#1b2228", "$description": "Elevated / selected row" },
+      "surface4": { "$type": "color", "$value": "#232c33", "$description": "Tooltips, popovers" }
+    },
+    "line": {
+      "default": { "$type": "color", "$value": "#2a343b", "$description": "Borders carry structure, not shadows" },
+      "strong": { "$type": "color", "$value": "#3b4750", "$description": "Active boundaries, emphasized rules" },
+      "faint": { "$type": "color", "$value": "#1a2126", "$description": "Inner cell dividers" },
+      "scanline": { "$type": "color", "$value": "rgba(255, 255, 255, 0.025)" }
+    },
+    "fg": {
+      "fg1": { "$type": "color", "$value": "#e6ebe8", "$description": "Primary high-contrast text" },
+      "fg2": { "$type": "color", "$value": "#aab4b2", "$description": "Secondary body text" },
+      "fg3": { "$type": "color", "$value": "#98a3a5", "$description": "Metadata — AA-safe on surface1" },
+      "fg4": { "$type": "color", "$value": "#4a555b", "$description": "Disabled / placeholder only" },
+      "invert": { "$type": "color", "$value": "#07090a", "$description": "Text on bright accent fills" },
+      "onAccent": { "$type": "color", "$value": "#07090a", "$description": "Dark ink on accent fills" }
+    },
+    "accent": {
+      "yellow": { "$type": "color", "$value": "#e6a23c" },
+      "cyan": { "$type": "color", "$value": "#6fb3c9" },
+      "red": { "$type": "color", "$value": "#da6171", "$description": "AA-safe on surface3" },
+      "green": { "$type": "color", "$value": "#5fae84" },
+      "violet": { "$type": "color", "$value": "#938ac8" }
+    },
+    "glow": {
+      "yellow": { "$type": "color", "$value": "rgba(230, 162, 60, 0.16)" },
+      "cyan": { "$type": "color", "$value": "rgba(111, 179, 201, 0.13)" },
+      "red": { "$type": "color", "$value": "rgba(212, 85, 101, 0.16)" },
+      "green": { "$type": "color", "$value": "rgba(95, 174, 132, 0.13)" }
+    },
+    "accent-line": {
+      "yellow": { "$type": "color", "$value": "rgba(230, 162, 60, 0.45)" },
+      "cyan": { "$type": "color", "$value": "rgba(111, 179, 201, 0.45)" },
+      "red": { "$type": "color", "$value": "rgba(212, 85, 101, 0.50)" },
+      "green": { "$type": "color", "$value": "rgba(95, 174, 132, 0.42)" }
+    }
+  },
+  "theme-light": {
+    "surface": {
+      "void": { "$type": "color", "$value": "#d9dfe3" },
+      "bg": { "$type": "color", "$value": "#e9edef", "$description": "Cold blue-grey paper backdrop" },
+      "surface1": { "$type": "color", "$value": "#f4f6f7", "$description": "Panel base container" },
+      "surface2": { "$type": "color", "$value": "#fafbfc", "$description": "Raised card / row hover" },
+      "surface3": { "$type": "color", "$value": "#ffffff" }
+    },
+    "line": {
+      "default": { "$type": "color", "$value": "#c3ccd2" },
+      "strong": { "$type": "color", "$value": "#9aa7b0" },
+      "faint": { "$type": "color", "$value": "#dde3e7" }
+    },
+    "fg": {
+      "fg1": { "$type": "color", "$value": "#11181c", "$description": "Primary high-contrast ink" },
+      "fg2": { "$type": "color", "$value": "#3d4a52", "$description": "Secondary body ink" },
+      "fg3": { "$type": "color", "$value": "#5d6b74", "$description": "Metadata — AA-safe on light surfaces" },
+      "fg4": { "$type": "color", "$value": "#97a4ad" },
+      "invert": { "$type": "color", "$value": "#f6f8f8" }
+    },
+    "accent": {
+      "yellow": { "$type": "color", "$value": "#8a5a12", "$description": "Ink value >=4.5:1 on light surfaces" },
+      "cyan": { "$type": "color", "$value": "#216270" },
+      "red": { "$type": "color", "$value": "#b52f3d" },
+      "green": { "$type": "color", "$value": "#1f6e47" }
+    }
+  },
+  "brand-relic": {
+    "$description": "Relic brand — workbench & telemetry command (Yellow / Cyan)",
+    "brand": {
+      "accent": { "$type": "color", "$value": "{accent.yellow}" },
+      "accent-fill": { "$type": "color", "$value": "{global.color.accent-fill.yellow}" },
+      "accent-2": { "$type": "color", "$value": "{accent.cyan}" }
+    }
+  },
+  "brand-biohub": {
+    "$description": "BioHub brand — biofeedback & neural data (Cyan / Green)",
+    "brand": {
+      "accent": { "$type": "color", "$value": "{accent.cyan}" },
+      "accent-fill": { "$type": "color", "$value": "{global.color.accent-fill.cyan}" },
+      "accent-2": { "$type": "color", "$value": "{accent.green}" }
+    }
+  },
+  "$themes": [
+    {
+      "id": "dark-relic",
+      "name": "Dark / Relic (Default)",
+      "selectedTokenSets": {
+        "global": "enabled",
+        "theme-dark": "enabled",
+        "brand-relic": "enabled"
+      }
+    },
+    {
+      "id": "light-relic",
+      "name": "Light / Relic",
+      "selectedTokenSets": {
+        "global": "enabled",
+        "theme-light": "enabled",
+        "brand-relic": "enabled"
+      }
+    },
+    {
+      "id": "dark-biohub",
+      "name": "Dark / BioHub",
+      "selectedTokenSets": {
+        "global": "enabled",
+        "theme-dark": "enabled",
+        "brand-biohub": "enabled"
+      }
+    }
+  ],
+  "$metadata": {
+    "tokenSetOrder": [
+      "global",
+      "theme-dark",
+      "theme-light",
+      "brand-relic",
+      "brand-biohub"
+    ],
+    "edition": "community-preview",
+    "version": "2.8.0",
+    "upgradeInfo": "Upgrade to RIS v2.8.0 Pro Studio for complete token sets: VivoKey & Neutral brands, Case-Context Skins (Sealed Dossier, Field Collection, Night Archive), Tactical Cyber HUD neon system, and semantic stream taxonomy."
+  }
+}

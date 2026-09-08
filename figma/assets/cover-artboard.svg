@@ -1,0 +1,399 @@
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- ===================================================================== -->
+  <!-- RELIC INTERFACE SYSTEM (RIS v2.8.0) — OFFICIAL STORE & COMMUNITY COVER -->
+  <!-- 1920x1080 (16:9) Cover Artwork: Cybernetic Brutalist UI & Telemetry HUD -->
+  <!-- ===================================================================== -->
+
+  <defs>
+    <!-- Tactical Dot Grid Pattern -->
+    <pattern id="dot-grid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1" fill="#2a343b" fill-opacity="0.35" />
+    </pattern>
+
+    <!-- Linear Scanline Pattern -->
+    <pattern id="scanlines" x="0" y="0" width="10" height="4" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="10" y2="0" stroke="#ffffff" stroke-opacity="0.015" stroke-width="1" />
+    </pattern>
+
+    <!-- Amber Neon Glow Filter -->
+    <filter id="glow-amber" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur1" />
+      <feGaussianBlur stdDeviation="2" result="blur2" />
+      <feMerge>
+        <feMergeNode in="blur1" />
+        <feMergeNode in="blur2" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Cyan Neon Glow Filter -->
+    <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur1" />
+      <feGaussianBlur stdDeviation="2" result="blur2" />
+      <feMerge>
+        <feMergeNode in="blur1" />
+        <feMergeNode in="blur2" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Linear Gradient for Radar Sweep -->
+    <radialGradient id="radar-sweep" cx="1400" cy="540" r="380" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3df0ff" stop-opacity="0.22" />
+      <stop offset="65%" stop-color="#6fb3c9" stop-opacity="0.08" />
+      <stop offset="100%" stop-color="#6fb3c9" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Sweep Sector Clip -->
+    <clipPath id="sweep-clip">
+      <path d="M 1400 540 L 1720 350 A 380 380 0 0 1 1780 540 Z" />
+    </clipPath>
+
+    <!-- Chamfer Clip for Floating Preview Card -->
+    <clipPath id="panel-chamfer-clip">
+      <polygon points="0,0 480,0 500,20 500,320 500,320 20,320 0,300" />
+    </clipPath>
+  </defs>
+
+  <!-- Base Dark Graphite Void -->
+  <rect width="1920" height="1080" fill="#060708" />
+
+  <!-- Tactical Dot Grid Background -->
+  <rect width="1920" height="1080" fill="url(#dot-grid)" />
+
+  <!-- Subtle Scanline Layer -->
+  <rect width="1920" height="1080" fill="url(#scanlines)" />
+
+  <!-- Tactical Decorative Radial Gradients -->
+  <circle cx="1400" cy="540" r="450" fill="#6fb3c9" fill-opacity="0.04" />
+  <circle cx="380" cy="360" r="400" fill="#e6a23c" fill-opacity="0.03" />
+
+  <!-- ===================================================================== -->
+  <!-- 1. 45° CHAMFER OUTER FRAME & CORNER BRACKETS -->
+  <!-- ===================================================================== -->
+  <!-- Signature 45° chamfer cut on top-right (x=1872, y=48) and bottom-left (x=48, y=1032) -->
+  <path d="M 48 48 L 1848 48 L 1872 72 L 1872 1032 L 72 1032 L 48 1008 Z" 
+        stroke="#2a343b" stroke-width="2" fill="none" />
+
+  <!-- Inner Structural Accent Line -->
+  <path d="M 64 64 L 1832 64 L 1856 88 L 1856 1016 L 88 1016 L 64 992 Z" 
+        stroke="#1a2126" stroke-width="1" fill="none" stroke-dasharray="16 8" />
+
+  <!-- Corner Brackets (Amber & Cyan) -->
+  <!-- Top-Left Bracket -->
+  <path d="M 40 76 L 40 40 L 76 40" stroke="#e6a23c" stroke-width="3" fill="none" />
+  <rect x="44" y="44" width="4" height="4" fill="#e6a23c" />
+
+  <!-- Top-Right Chamfered Bracket -->
+  <path d="M 1840 40 L 1880 80 L 1880 116" stroke="#6fb3c9" stroke-width="3" fill="none" />
+  <rect x="1860" y="56" width="4" height="4" fill="#6fb3c9" />
+
+  <!-- Bottom-Left Chamfered Bracket -->
+  <path d="M 40 964 L 40 1000 L 80 1040 L 116 1040" stroke="#6fb3c9" stroke-width="3" fill="none" />
+  <rect x="56" y="1020" width="4" height="4" fill="#6fb3c9" />
+
+  <!-- Bottom-Right Bracket -->
+  <path d="M 1880 1004 L 1880 1040 L 1844 1040" stroke="#e6a23c" stroke-width="3" fill="none" />
+  <rect x="1872" y="1032" width="4" height="4" fill="#e6a23c" />
+
+  <!-- Calibration Rulers on Outer Edge -->
+  <g stroke="#3b4750" stroke-width="1">
+    <line x1="120" y1="48" x2="120" y2="40" />
+    <line x1="180" y1="48" x2="180" y2="43" />
+    <line x1="240" y1="48" x2="240" y2="40" />
+    <line x1="300" y1="48" x2="300" y2="43" />
+    <line x1="360" y1="48" x2="360" y2="40" />
+    <line x1="1560" y1="48" x2="1560" y2="40" />
+    <line x1="1620" y1="48" x2="1620" y2="43" />
+    <line x1="1680" y1="48" x2="1680" y2="40" />
+    <line x1="1740" y1="48" x2="1740" y2="43" />
+    <line x1="1800" y1="48" x2="1800" y2="40" />
+
+    <line x1="48" y1="120" x2="40" y2="120" />
+    <line x1="48" y1="180" x2="43" y2="180" />
+    <line x1="48" y1="240" x2="40" y2="240" />
+    <line x1="48" y1="840" x2="40" y2="840" />
+    <line x1="48" y1="900" x2="43" y2="900" />
+    <line x1="48" y1="960" x2="40" y2="960" />
+  </g>
+
+  <!-- ===================================================================== -->
+  <!-- 2. TOP METADATA & TELEMETRY BAR -->
+  <!-- ===================================================================== -->
+  <g font-family="'JetBrains Mono', monospace" font-size="11" letter-spacing="0.12em">
+    <text x="96" y="86" fill="#e6a23c" font-weight="700">SYS.ID // RIS-V280-PRO</text>
+    <text x="320" y="86" fill="#98a3a5">ENV: PRODUCTION // COMMERCE EDITION</text>
+    <text x="680" y="86" fill="#4a555b">LAT: 45°28'00"N · LON: 09°11'24"E · AZ: 042°</text>
+
+    <!-- Node Status Pill -->
+    <rect x="1590" y="70" width="130" height="24" fill="#0f1316" stroke="#5fae84" stroke-width="1" />
+    <circle cx="1606" cy="82" r="3.5" fill="#5fae84" />
+    <text x="1618" y="86" fill="#5fae84" font-size="10" font-weight="700">ALL SYNCED [●]</text>
+
+    <text x="1750" y="86" fill="#6fb3c9" font-weight="600">FIGMA 2026</text>
+  </g>
+  <line x1="96" y1="104" x2="1824" y2="104" stroke="#2a343b" stroke-width="1" />
+
+  <!-- ===================================================================== -->
+  <!-- 3. RIGHT SIDE: GIANT TACTICAL RADAR & AZIMUTH TARGETING RETICLE -->
+  <!-- ===================================================================== -->
+  <g transform="translate(1380, 540)">
+    <!-- Radar Sweep Glow Background -->
+    <circle cx="0" cy="0" r="340" fill="#0a0d10" stroke="#2a343b" stroke-width="2" />
+    <circle cx="0" cy="0" r="340" fill="url(#radar-sweep)" clip-path="url(#sweep-clip)" />
+    <line x1="0" y1="0" x2="294" y2="-170" stroke="#3df0ff" stroke-width="2" filter="url(#glow-cyan)" />
+
+    <!-- Concentric Range Rings -->
+    <circle cx="0" cy="0" r="80" stroke="#1f282e" stroke-width="1.5" />
+    <circle cx="0" cy="0" r="160" stroke="#2a343b" stroke-width="1.5" />
+    <circle cx="0" cy="0" r="240" stroke="#2a343b" stroke-width="1.5" stroke-dasharray="8 6" />
+    <circle cx="0" cy="0" r="320" stroke="#3b4750" stroke-width="2" />
+
+    <!-- Primary Axes -->
+    <line x1="-360" y1="0" x2="360" y2="0" stroke="#3b4750" stroke-width="1.5" stroke-dasharray="12 6" />
+    <line x1="0" y1="-360" x2="0" y2="360" stroke="#3b4750" stroke-width="1.5" stroke-dasharray="12 6" />
+
+    <!-- Diagonal 45° Guidelines -->
+    <line x1="-240" y1="-240" x2="240" y2="240" stroke="#1f282e" stroke-width="1" stroke-dasharray="4 6" />
+    <line x1="240" y1="-240" x2="-240" y2="240" stroke="#1f282e" stroke-width="1" stroke-dasharray="4 6" />
+
+    <!-- Targeting Locks / Crosshairs -->
+    <!-- Target 1: Cyan -->
+    <g transform="translate(130, -90)">
+      <circle cx="0" cy="0" r="16" stroke="#3df0ff" stroke-width="2" fill="none" stroke-dasharray="6 4" filter="url(#glow-cyan)" />
+      <circle cx="0" cy="0" r="3" fill="#3df0ff" />
+      <line x1="-22" y1="0" x2="-10" y2="0" stroke="#3df0ff" stroke-width="1.5" />
+      <line x1="10" y1="0" x2="22" y2="0" stroke="#3df0ff" stroke-width="1.5" />
+      <line x1="0" y1="-22" x2="0" y2="-10" stroke="#3df0ff" stroke-width="1.5" />
+      <line x1="0" y1="10" x2="0" y2="22" stroke="#3df0ff" stroke-width="1.5" />
+      <text x="26" y="4" fill="#3df0ff" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700">TGT-ALPHA // ACQ</text>
+    </g>
+
+    <!-- Target 2: Amber -->
+    <g transform="translate(-110, 140)">
+      <circle cx="0" cy="0" r="14" stroke="#e6a23c" stroke-width="2" fill="none" stroke-dasharray="4 4" filter="url(#glow-amber)" />
+      <circle cx="0" cy="0" r="2.5" fill="#e6a23c" />
+      <text x="-120" y="4" fill="#e6a23c" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700">NODE-07 // 98.4%</text>
+    </g>
+
+    <!-- Target 3: Red Beacon -->
+    <g transform="translate(190, 110)">
+      <rect x="-8" y="-8" width="16" height="16" stroke="#da6171" stroke-width="1.5" fill="#da6171" fill-opacity="0.2" />
+      <circle cx="0" cy="0" r="2" fill="#da6171" />
+      <text x="14" y="4" fill="#da6171" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="700">EVID-LOCK</text>
+    </g>
+
+    <!-- Degree Calibrations -->
+    <text x="0" y="-328" fill="#e6a23c" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" text-anchor="middle">N 000°</text>
+    <text x="336" y="4" fill="#6fb3c9" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700">E 090°</text>
+    <text x="0" y="336" fill="#6fb3c9" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" text-anchor="middle">S 180°</text>
+    <text x="-344" y="4" fill="#6fb3c9" font-family="'JetBrains Mono', monospace" font-size="10" font-weight="700" text-anchor="end">W 270°</text>
+  </g>
+
+  <!-- ===================================================================== -->
+  <!-- 4. FLOATING UI COMPONENT PREVIEWS (LAYERED TELEMETRY ARTIFACTS) -->
+  <!-- ===================================================================== -->
+  <!-- Floating Panel: Active Telemetry Buffer (Slightly tilted / elevated) -->
+  <g transform="translate(1080, 240)">
+    <!-- Shadow -->
+    <polygon points="0,0 420,0 436,16 436,250 16,250 0,234" fill="#000000" fill-opacity="0.6" />
+    
+    <!-- Base Chamfered Container -->
+    <polygon points="0,0 420,0 436,16 436,250 16,250 0,234" 
+             fill="#0f1316" stroke="#3b4750" stroke-width="1.5" />
+    
+    <!-- Accent Line on Top -->
+    <line x1="0" y1="0" x2="420" y2="0" stroke="#e6a23c" stroke-width="3" />
+
+    <!-- Corner Brackets -->
+    <path d="M 8 20 L 8 8 L 20 8" stroke="#6fb3c9" stroke-width="2" fill="none" />
+    <path d="M 428 20 L 428 8 L 416 8" stroke="#6fb3c9" stroke-width="2" fill="none" />
+
+    <!-- Header Content -->
+    <g transform="translate(28, 28)">
+      <text x="0" y="0" fill="#e6ebe8" font-family="'Archivo', sans-serif" font-size="13" font-weight="700" letter-spacing="0.08em">ACTIVE TELEMETRY BUFFER</text>
+      
+      <!-- Live Chip -->
+      <rect x="270" y="-12" width="76" height="20" fill="#141a1e" stroke="#5fae84" stroke-width="1" />
+      <circle cx="282" cy="-2" r="3" fill="#5fae84" />
+      <text x="292" y="2" fill="#5fae84" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="700">LIVE [●]</text>
+    </g>
+
+    <line x1="24" y1="44" x2="412" y2="44" stroke="#2a343b" stroke-width="1" />
+
+    <!-- Metrics Body -->
+    <g transform="translate(28, 70)" font-family="'JetBrains Mono', monospace">
+      <text x="0" y="0" fill="#98a3a5" font-size="10">INGESTION // PROTOCOL_6520 · NODE-01</text>
+      <text x="0" y="24" fill="#3df0ff" font-size="16" font-weight="700">1.44 GB/s <tspan fill="#5fae84" font-size="11">▲ OPTIMAL</tspan></text>
+      <text x="0" y="48" fill="#aab4b2" font-size="9.5">JITTER: &lt;0.18ms · PACKET DROP: 0.00%</text>
+      <text x="0" y="66" fill="#e6a23c" font-size="9.5">SHA-256: 0x889F...771B [VALIDATED]</text>
+      
+      <!-- Segmented Bar -->
+      <g transform="translate(0, 84)">
+        <rect x="0" y="0" width="36" height="8" fill="#e6a23c" />
+        <rect x="42" y="0" width="36" height="8" fill="#e6a23c" />
+        <rect x="84" y="0" width="36" height="8" fill="#e6a23c" />
+        <rect x="126" y="0" width="36" height="8" fill="#e6a23c" />
+        <rect x="168" y="0" width="36" height="8" fill="#e6a23c" />
+        <rect x="210" y="0" width="36" height="8" fill="#3df0ff" />
+        <rect x="252" y="0" width="36" height="8" fill="#2a343b" />
+        <rect x="294" y="0" width="36" height="8" fill="#2a343b" />
+        <rect x="336" y="0" width="36" height="8" fill="#2a343b" />
+      </g>
+    </g>
+
+    <!-- Chamfered Button in Card -->
+    <g transform="translate(28, 190)">
+      <polygon points="0,0 154,0 160,6 160,34 6,34 0,28" fill="#e6a23c" />
+      <text x="80" y="21" fill="#07090a" font-family="'Archivo', sans-serif" font-size="11" font-weight="700" letter-spacing="0.1em" text-anchor="middle">SYNC TELEMETRY ▶</text>
+    </g>
+
+    <g transform="translate(204, 190)">
+      <polygon points="0,0 184,0 190,6 190,34 6,34 0,28" fill="#141a1e" stroke="#3b4750" stroke-width="1.2" />
+      <text x="95" y="21" fill="#e6ebe8" font-family="'Archivo', sans-serif" font-size="10.5" font-weight="700" letter-spacing="0.1em" text-anchor="middle">PURGE BUFFER</text>
+    </g>
+  </g>
+
+  <!-- Floating KPI Stat Card: Biometric VivoKey -->
+  <g transform="translate(1000, 560)">
+    <polygon points="0,0 260,0 270,10 270,140 10,140 0,130" 
+             fill="#141a1e" stroke="#2a343b" stroke-width="1.5" />
+    
+    <rect x="16" y="16" width="3" height="14" fill="#da6171" />
+    <text x="26" y="28" fill="#98a3a5" font-family="'Archivo', sans-serif" font-size="10.5" font-weight="600" letter-spacing="0.1em">BIOMETRICS // VIVOKEY</text>
+    
+    <text x="24" y="78" fill="#e6ebe8" font-family="'Archivo', sans-serif" font-size="36" font-weight="800">74 <tspan fill="#98a3a5" font-size="14" font-weight="500">BPM</tspan></text>
+    <text x="24" y="106" fill="#5fae84" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700">▲ STABLE // 24H DELTA</text>
+  </g>
+
+  <!-- Floating KPI Stat Card: Neural Bandwidth -->
+  <g transform="translate(1310, 620)">
+    <polygon points="0,0 260,0 270,10 270,140 10,140 0,130" 
+             fill="#141a1e" stroke="#2a343b" stroke-width="1.5" />
+    
+    <rect x="16" y="16" width="3" height="14" fill="#5fae84" />
+    <text x="26" y="28" fill="#98a3a5" font-family="'Archivo', sans-serif" font-size="10.5" font-weight="600" letter-spacing="0.1em">NEURAL BANDWIDTH</text>
+    
+    <text x="24" y="78" fill="#3df0ff" font-family="'Archivo', sans-serif" font-size="36" font-weight="800">94.8 <tspan fill="#98a3a5" font-size="14" font-weight="500">%</tspan></text>
+    <text x="24" y="106" fill="#5fae84" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700">▲ OPTIMAL // NOISE &lt;1%</text>
+  </g>
+
+  <!-- Floating Mechanical Switch Preview -->
+  <g transform="translate(1140, 780)">
+    <rect x="0" y="0" width="120" height="34" fill="#0f1316" stroke="#e6a23c" stroke-width="1.5" />
+    <!-- Armed Track Glow -->
+    <rect x="4" y="4" width="70" height="26" fill="#e6a23c" fill-opacity="0.15" />
+    <!-- 3px Chamfered Thumb -->
+    <polygon points="76,4 113,4 116,7 116,27 113,30 76,30 73,27 73,7" fill="#e6a23c" filter="url(#glow-amber)" />
+    <!-- Thumb Knurl Lines -->
+    <line x1="92" y1="9" x2="92" y2="25" stroke="#07090a" stroke-width="1.5" />
+    <line x1="97" y1="9" x2="97" y2="25" stroke="#07090a" stroke-width="1.5" />
+    <text x="135" y="22" fill="#e6a23c" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700">ARMED [ON]</text>
+  </g>
+
+  <!-- ===================================================================== -->
+  <!-- 5. LEFT HERO TYPOGRAPHY & VALUE PROPOSITION -->
+  <!-- ===================================================================== -->
+  <g transform="translate(100, 240)">
+    <!-- Top HUD Eyebrow Tag -->
+    <g transform="translate(0, 0)">
+      <rect x="0" y="0" width="310" height="26" fill="#0f1316" stroke="#2a343b" stroke-width="1" />
+      <line x1="0" y1="0" x2="4" y2="26" stroke="#e6a23c" stroke-width="3" />
+      <text x="14" y="17" fill="#6fb3c9" font-family="'JetBrains Mono', monospace" font-size="10.5" font-weight="700" letter-spacing="0.16em">
+        PRECISION FORENSIC INSTRUMENT
+      </text>
+    </g>
+
+    <!-- Main Title -->
+    <text x="0" y="110" fill="#f0f4f2" font-family="'Archivo', sans-serif" font-size="82" font-weight="900" letter-spacing="-0.02em">
+      RELIC INTERFACE
+    </text>
+    <text x="0" y="196" fill="#f0f4f2" font-family="'Archivo', sans-serif" font-size="82" font-weight="900" letter-spacing="-0.02em">
+      SYSTEM
+    </text>
+
+    <!-- Version & Tier Badge (RIS v2.8.0 PRO STUDIO) -->
+    <g transform="translate(0, 230)">
+      <polygon points="0,0 300,0 310,10 310,48 10,48 0,38" fill="#e6a23c" />
+      <polygon points="3,3 297,3 307,13 307,45 13,45 3,35" fill="#07090a" />
+      <circle cx="24" cy="24" r="5" fill="#e6a23c" filter="url(#glow-amber)" />
+      <text x="38" y="30" fill="#e6a23c" font-family="'Chakra Petch', sans-serif" font-size="18" font-weight="700" letter-spacing="0.12em">
+        RIS v2.8.0 PRO STUDIO
+      </text>
+    </g>
+
+    <!-- Tagline -->
+    <text x="0" y="340" fill="#6fb3c9" font-family="'Archivo', sans-serif" font-size="28" font-weight="700" letter-spacing="0.04em">
+      Cybernetic Brutalist Design System &amp; Telemetry HUD
+    </text>
+
+    <!-- Body Subtitle -->
+    <text x="0" y="390" fill="#aab4b2" font-family="'Archivo', sans-serif" font-size="17" font-weight="500" line-height="28">
+      Hard-edged forensic aesthetics. 45° angular chamfer vectors, dual-theme engine
+    </text>
+    <text x="0" y="420" fill="#aab4b2" font-family="'Archivo', sans-serif" font-size="17" font-weight="500">
+      (WCAG 2.2 AA calibrated), 4 brand matrix, and turnkey multi-page layout engine.
+    </text>
+
+    <!-- Feature Pillars / Badges Row -->
+    <g transform="translate(0, 480)">
+      <!-- Badge 1 -->
+      <g transform="translate(0, 0)">
+        <polygon points="0,0 200,0 206,6 206,38 6,38 0,32" fill="#0f1316" stroke="#2a343b" stroke-width="1.2" />
+        <rect x="12" y="10" width="3" height="18" fill="#e6a23c" />
+        <text x="22" y="24" fill="#e6ebe8" font-family="'JetBrains Mono', monospace" font-size="10.5" font-weight="700">W3C DTCG TOKENS</text>
+      </g>
+
+      <!-- Badge 2 -->
+      <g transform="translate(220, 0)">
+        <polygon points="0,0 220,0 226,6 226,38 6,38 0,32" fill="#0f1316" stroke="#2a343b" stroke-width="1.2" />
+        <rect x="12" y="10" width="3" height="18" fill="#3df0ff" />
+        <text x="22" y="24" fill="#e6ebe8" font-family="'JetBrains Mono', monospace" font-size="10.5" font-weight="700">DUAL THEME (DARK/LT)</text>
+      </g>
+
+      <!-- Badge 3 -->
+      <g transform="translate(460, 0)">
+        <polygon points="0,0 210,0 216,6 216,38 6,38 0,32" fill="#0f1316" stroke="#2a343b" stroke-width="1.2" />
+        <rect x="12" y="10" width="3" height="18" fill="#5fae84" />
+        <text x="22" y="24" fill="#e6ebe8" font-family="'JetBrains Mono', monospace" font-size="10.5" font-weight="700">4 BRANDS · 3 SKINS</text>
+      </g>
+
+      <!-- Badge 4 -->
+      <g transform="translate(690, 0)">
+        <polygon points="0,0 210,0 216,6 216,38 6,38 0,32" fill="#0f1316" stroke="#2a343b" stroke-width="1.2" />
+        <rect x="12" y="10" width="3" height="18" fill="#da6171" />
+        <text x="22" y="24" fill="#e6ebe8" font-family="'JetBrains Mono', monospace" font-size="10.5" font-weight="700">45° CHAMFER CUTS</text>
+      </g>
+    </g>
+
+    <!-- CTAs Row -->
+    <g transform="translate(0, 560)">
+      <!-- Primary Amber CTA Button -->
+      <g>
+        <polygon points="0,0 234,0 244,10 244,52 10,52 0,42" fill="#e6a23c" filter="url(#glow-amber)" />
+        <text x="122" y="32" fill="#07090a" font-family="'Archivo', sans-serif" font-size="14" font-weight="800" letter-spacing="0.1em" text-anchor="middle">
+          EXPLORE UI KIT ▶
+        </text>
+      </g>
+
+      <!-- Secondary Cyan Outline Button -->
+      <g transform="translate(260, 0)">
+        <polygon points="0,0 234,0 244,10 244,52 10,52 0,42" fill="#0f1316" stroke="#6fb3c9" stroke-width="1.5" />
+        <text x="122" y="32" fill="#6fb3c9" font-family="'Archivo', sans-serif" font-size="14" font-weight="700" letter-spacing="0.1em" text-anchor="middle">
+          TOKENS STUDIO ⚡
+        </text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ===================================================================== -->
+  <!-- 6. FOOTER VERIFICATION & AUDIT BAR -->
+  <!-- ===================================================================== -->
+  <line x1="96" y1="990" x2="1824" y2="990" stroke="#2a343b" stroke-width="1" />
+  <g font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="0.1em">
+    <text x="96" y="1012" fill="#98a3a5">FIGMA COMMUNITY &amp; LEMON SQUEEZY COMMERCIAL BUNDLE</text>
+    <text x="760" y="1012" fill="#5fae84">WCAG 2.2 AA / AAA CERTIFIED</text>
+    <text x="1100" y="1012" fill="#4a555b">ZERO ROUNDED CORNERS // PURE 45° ANGULAR GEOMETRY</text>
+    <text x="1640" y="1012" fill="#e6a23c" font-weight="700">© 2026 RELIC INTERFACE SYSTEM</text>
+  </g>
+</svg>
