@@ -4,16 +4,16 @@ Cyberpunk/HUD multi-product design system (Relic · BioHub · VivoKey/Spark2 ·
 general use). Graphite surfaces, sharp borders, clipped corners, disciplined
 Cyberpunk 2077 accents. Dark + light, desktop + mobile, WCAG 2.2 AA compliant.
 
-Evolution of the v1 handoff package (`../design_handoff/`) into a full design system:
-see `AUDIT.md` for delta and `CHANGELOG.md` for history.
+Full production design system: see `AUDIT.md` for architectural decisions and `CHANGELOG.md` for release history.
 
 ## Structure
 
 ```
-ris/
+relic-interface-system/
 ├── README.md            ← this file
-├── AUDIT.md             ← v1 → v2 audit (gaps and decisions)
-├── CHANGELOG.md
+├── DESIGN.md            ← agent & developer handoff guide
+├── AUDIT.md             ← architectural audit and decisions
+├── CHANGELOG.md         ← release log
 ├── GUIDELINES.md        ← principles, themes, brands, accessibility, responsive
 ├── COMPONENTS.md        ← component reference (classes, ARIA, do/don't)
 ├── tokens/
@@ -21,7 +21,7 @@ ris/
 ├── css/
 │   ├── ris-tokens.css   ← tokens: dark/light themes + brands + typography classes
 │   ├── ris.css          ← components + layout chrome + a11y baseline
-│   ├── ris-fx.css       ← optional FX: boot reveal, glow, caret, holo
+│   ├── ris-fx.css       ← optional FX: boot reveal, glow, caret, holo, radar
 │   └── ris-skin-cyber.css ← opt-in CP2077 skin (data-skin="cyber", load LAST)
 ├── js/
 │   └── ris-charts.js    ← zero-dependency SVG charts (line/bars/spark/gauge/EEG)
@@ -46,13 +46,13 @@ ris/
 ```html
 <html data-theme="dark" data-brand="biohub">
 <head>
-  <link rel="stylesheet" href="ris/css/ris-tokens.css">
-  <link rel="stylesheet" href="ris/css/ris.css">
+  <link rel="stylesheet" href="css/ris-tokens.css">
+  <link rel="stylesheet" href="css/ris.css">
 </head>
 <body class="ris ris-grid-bg">
   <a class="ris-skip-nav" href="#main">Skip to main content</a>
   <button class="ris-btn ris-btn--primary">Start scan</button>
-  <svg class="ris-icon" aria-hidden="true"><use href="ris/icons/ris-icons.svg#ris-heart-pulse"/></svg>
+  <svg class="ris-icon" aria-hidden="true"><use href="icons/ris-icons.svg#ris-heart-pulse"/></svg>
 </body>
 </html>
 ```
@@ -61,7 +61,7 @@ ris/
 - Brand: `data-brand="relic|biohub|vivokey|neutral"` (default relic).
 - Skin CP2077 (opt-in): `data-skin="cyber"` + `<link href="css/ris-skin-cyber.css">`
   **loaded last**. Supports Dark HUD and Light drafting themes, fully reversible. See GUIDELINES §8.
-- Specimen: `cd cyber77 && python3 -m http.server 8080` → `http://localhost:8080/docs/index.html`.
+- Specimen: `python3 -m http.server 8080` → `http://localhost:8080/docs/index.html`.
 
 ## Android / Compose
 
