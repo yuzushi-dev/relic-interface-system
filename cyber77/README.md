@@ -31,8 +31,14 @@ ris/
 │   ├── index.html       ← interactive desktop specimen (theme + brand toggles)
 │   ├── mobile.html      ← interactive mobile app-shell (bottom sheet, touch radar)
 │   └── motion-lab.html  ← interactive Kiroshi motion & contrast lab
-└── compose/
-    └── Color.kt         ← Android port of v2 tokens
+└── compose/             ← Jetpack Compose v2.8.0 native Android port
+    ├── Color.kt         ← palette, semantic tokens, brands (Relic/BioHub/VivoKey)
+    ├── Theme.kt         ← RisTheme, LocalRisColors, LocalRisShapes, LocalRisTypography
+    ├── Type.kt          ← typography scale (display/hud/body/caption/telemetry)
+    ├── Shape.kt         ← chamfered cut-corner shapes (RisCutCornerShape)
+    ├── Components.kt    ← buttons, chips, HUD toasts, accordions, bottom sheets, meters
+    ├── Charts.kt        ← hardware-accelerated Canvas line, spark, gauge, bar charts
+    └── README.md        ← Android integration guide & specimen code
 ```
 
 ## Quick start (web)
@@ -59,8 +65,7 @@ ris/
 
 ## Android / Compose
 
-`compose/Color.kt` contains the v2 tokens (dark + light + brand). The components
-(Theme/Type/Shape/Components/Charts/Scaffold) align with Compose specifications.
+`compose/` contains the full Jetpack Compose port with complete token, typography, shape, motion, component, and telemetry chart parity. See `compose/README.md` for the full implementation guide, architecture breakdown, and code specimens.
 
 ## Non-negotiable rules
 
