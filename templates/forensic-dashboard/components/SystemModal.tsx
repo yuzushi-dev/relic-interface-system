@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef, useState } from 'react';
+import { Button } from '@relic-ui/react';
 import { IconShield, IconX, IconAlertTriangle } from './Icons';
 
 export interface SystemModalProps {
@@ -187,30 +188,23 @@ export const SystemModal: React.FC<SystemModalProps> = ({
 
         {/* Modal Foot */}
         <div className="ris-modal-foot p-3 bg-ris-surface1 border-t border-ris-line flex items-center justify-end gap-2">
-          <button
-            type="button"
+          <Button
+            variant="default"
+            size="sm"
             onClick={onClose}
-            className="ris-btn ris-btn--ghost ris-btn--sm"
           >
             ABORT
-          </button>
-          <button
-            type="button"
+          </Button>
+          <Button
+            variant="danger"
+            size="sm"
             onClick={handleExecute}
             disabled={isArming}
-            className={`ris-btn ris-btn--danger ris-btn--sm flex items-center gap-1.5 ${
-              isArming ? 'opacity-70 cursor-wait' : ''
-            }`}
+            loading={isArming}
+            leftIcon={!isArming ? <IconShield size={13} /> : undefined}
           >
-            {isArming ? (
-              <span>COMMITTING...</span>
-            ) : (
-              <>
-                <IconShield size={13} />
-                <span>CONFIRM OVERRIDE</span>
-              </>
-            )}
-          </button>
+            {isArming ? 'COMMITTING...' : 'CONFIRM OVERRIDE'}
+          </Button>
         </div>
       </div>
     </div>

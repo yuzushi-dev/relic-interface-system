@@ -23,6 +23,8 @@ export default function ForensicDashboardPage() {
   const [isMobileSheetOpen, setIsMobileSheetOpen] = useState<boolean>(false);
   const [lastOverrideAction, setLastOverrideAction] = useState<string | null>(null);
 
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState<boolean>(false);
+
   const handleConfirmOverride = (action: string) => {
     setLastOverrideAction(action);
   };
@@ -37,12 +39,19 @@ export default function ForensicDashboardPage() {
 
       <div className="flex-1 flex pt-[52px]">
         {/* 2. Desktop Tactical Navigation Rail */}
-        <Sidebar activeItem={activeNav} onSelectItem={setActiveNav} />
+        <Sidebar
+          activeItem={activeNav}
+          onSelectItem={setActiveNav}
+          collapsed={isSidebarCollapsed}
+          onToggleCollapse={setIsSidebarCollapsed}
+        />
 
         {/* 3. Main Forensics Workspace Container (Zero Reflow) */}
         <main
           id="main-content"
-          className="flex-1 px-3 sm:px-6 py-4 md:ml-[64px] lg:ml-[230px] transition-all duration-fast space-y-4 max-w-[1600px] mx-auto w-full"
+          className={`flex-1 px-3 sm:px-6 py-4 transition-all duration-fast space-y-4 max-w-[1600px] mx-auto w-full ${
+            isSidebarCollapsed ? 'md:ml-[64px]' : 'md:ml-[230px]'
+          }`}
         >
           {/* Breadcrumb & System Sub-header */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-ris-line/80 font-mono text-xs">

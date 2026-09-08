@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { Button } from '@relic-ui/react';
 import { IconLock, IconSun, IconMoon, IconMenu, IconShield } from './Icons';
 
 export interface TopBarProps {
@@ -112,35 +113,27 @@ export const TopBar: React.FC<TopBarProps> = ({ onOpenModal, onOpenMobileSheet }
       </div>
 
       {/* Theme Toggle (Dark HUD / Light Drafting) */}
-      <button
-        type="button"
+      <Button
+        variant="outline"
+        size="sm"
         onClick={handleToggleTheme}
-        className="ris-btn ris-btn--ghost ris-btn--sm flex items-center gap-1.5 min-h-[32px] px-2.5"
         title={`Switch to ${theme === 'dark' ? 'Light drafting' : 'Dark HUD'} theme`}
         aria-label="Toggle Theme"
+        leftIcon={theme === 'dark' ? <IconSun size={14} className="text-ris-yellow" /> : <IconMoon size={14} className="text-ris-cyan" />}
+        className="min-h-[32px] px-2.5"
       >
-        {theme === 'dark' ? (
-          <>
-            <IconSun size={14} className="text-ris-yellow" />
-            <span className="hidden md:inline font-mono text-[11px]">LIGHT</span>
-          </>
-        ) : (
-          <>
-            <IconMoon size={14} className="text-ris-cyan" />
-            <span className="hidden md:inline font-mono text-[11px]">DARK</span>
-          </>
-        )}
-      </button>
+        <span className="hidden md:inline font-mono text-[11px]">{theme === 'dark' ? 'LIGHT' : 'DARK'}</span>
+      </Button>
 
       {/* Tactical Override Trigger Button */}
-      <button
-        type="button"
+      <Button
+        variant="primary"
+        size="sm"
         onClick={onOpenModal}
-        className="ris-btn ris-btn--primary ris-btn--sm flex items-center gap-1.5"
+        leftIcon={<IconShield size={14} />}
       >
-        <IconShield size={14} />
         <span className="hidden sm:inline">OVERRIDE</span>
-      </button>
+      </Button>
     </header>
   );
 };

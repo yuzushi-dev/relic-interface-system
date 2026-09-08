@@ -63,5 +63,23 @@ export type {
   ScrubPoint,
 } from './components/Charts';
 
+export { Input } from './components/Input';
+export type { InputProps } from './components/Input';
+
+export { Select } from './components/Select';
+export type { SelectProps, SelectOption } from './components/Select';
+
+export { Textarea } from './components/Textarea';
+export type { TextareaProps } from './components/Textarea';
+
+export { Checkbox } from './components/Checkbox';
+export type { CheckboxProps } from './components/Checkbox';
+
+export { Table } from './components/Table';
+export type { TableProps, TableColumn } from './components/Table';
+
+export { Alert } from './components/Alert';
+export type { AlertProps, AlertVariant } from './components/Alert';
+
 // Core utilities
 export { RisChartsCore } from './utils/risChartsCore';

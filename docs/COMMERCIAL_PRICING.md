@@ -42,13 +42,15 @@ Relic Interface System (RIS) operates on a **dual-tier commercial model** inspir
 
 To maximize conversion without cognitive overload, RIS offers **3 focused SKUs** with an early-bird launch incentive:
 
-| Product SKU | Launch Early-Bird (First 100) | Standard Price | Included Deliverables | Target Audience |
-| :--- | :---: | :---: | :--- | :--- |
-| **Figma Studio Kit** | **$39** | **$49** | • Master `.fig` file (3 artboards)<br>• 150+ Auto Layout components<br>• Full Dark/Light & 4 Brand variables<br>• 3 Case-Context skins (`sealed`, `field`, `archive`)<br>• 132+ HUD SVG glyphs<br>• Turnkey Generator Script (`figma/code.js`) | UI/UX Designers, Product Designers, Design Agencies |
-| **Next.js Forensic Dashboard** | **$49** | **$69** | • Complete Next.js 14 App Router template<br>• Docker standalone container config<br>• Interactive Telemetry Scrubber with alerts<br>• Live Event Log Stream circular buffer<br>• KPI grid with inline sparklines<br>• Tactical collapsible navigation rail<br>• Dual-theme switch (*Dark HUD* / *Light Drafting*) | Full-stack Developers, Indie Hackers, DevOps/SRE |
-| **RIS Pro All-Access Bundle** *(Best Seller)* | **$99** | **$129** | • **Figma Studio Kit** (Full .fig)<br>• **Next.js Forensic Dashboard Template**<br>• **React `@relic-ui/react` Pro Suite**<br>• **Android Jetpack Compose Library**<br>• **Tailwind CSS Pro Plugin Preset**<br>• Lifetime v2.x updates & private GitHub discussions | Solo Founders, Freelancers, High-performance Studios |
-| **Team License** | **$249** | **$299** | • All-Access Bundle for up to **10 team members**<br>• Commercial redistribution in unlimited client projects<br>• Priority technical support & architectural advice | Startups, Scaleups, Creative & Engineering Agencies |
-| **Enterprise License** | **$799+** | **Custom** | • Unlimited seats across organization<br>• Custom EULA & invoice payment<br>• 1-on-1 design system onboarding session | Defense, Aerospace, Enterprise Cybersecurity, IoT |
+| Product SKU | Launch Early-Bird (Coupon `EARLYBIRD100`) | Standard Price | Included Deliverables | Checkout Link |
+| :--- | :---: | :---: | :--- | :---: |
+| **Figma Studio Kit** | **$39** | $49 | • Turnkey Master Generator script (`code.js`)<br>• Tokens Studio DTCG JSON dictionary (`tokens.json`)<br>• 60+ Master component variants with properties<br>• Full Dark/Light & 4 Brand variables<br>• 3 Case-Context skins (`sealed`, `field`, `archive`)<br>• 132+ HUD SVG glyphs & brackets | [**Checkout $39**](https://yuzushi.lemonsqueezy.com/buy/figma-studio?discount=EARLYBIRD100) |
+| **Next.js Forensic Dashboard** | **$49** | $69 | • Complete Next.js 14 App Router template<br>• Docker standalone container config<br>• Interactive Telemetry Scrubber with alerts<br>• Live Event Log Stream circular buffer<br>• Dogfoods `@relic-ui/react` primitives<br>• Synchronized dynamic sidebar rail<br>• Dual-theme switch (*Dark HUD* / *Light Drafting*) | [**Checkout $49**](https://yuzushi.lemonsqueezy.com/buy/nextjs-dashboard?discount=EARLYBIRD100) |
+| **RIS Pro All-Access Bundle** *(Best Seller)* | **$99** | $129 | • **Figma Studio Kit** (Full Generator + Tokens)<br>• **Next.js Forensic Dashboard Template**<br>• **React `@relic-ui/react` Pro Suite** (with Form & Table primitives)<br>• **Android Jetpack Compose Library** (dynamic theming)<br>• **Tailwind CSS Pro Plugin Preset**<br>• Lifetime v2.x updates & private GitHub discussions | [**Checkout $99**](https://yuzushi.lemonsqueezy.com/buy/ris-pro?discount=EARLYBIRD100) |
+| **Team License** | **$249** | $299 | • All-Access Bundle for up to **10 team members**<br>• Commercial redistribution in unlimited client projects<br>• 48-hour priority technical support SLA | [**Checkout $249**](https://yuzushi.lemonsqueezy.com/buy/ris-team?discount=EARLYBIRD100) |
+| **Enterprise License** | **$799+** | Custom | • Unlimited seats across organization<br>• Custom EULA & invoice payment<br>• 1-on-1 design system onboarding session | [**Contact Enterprise**](mailto:enterprise@relic-ui.dev) |
+
+> ℹ️ **Satisfaction Guarantee & Support**: 14-day no-questions-asked refund policy. Guaranteed 48-hour SLA response time (`support@relic-ui.dev`). Perpetual license covers all future v2.x updates.
 
 ---
 

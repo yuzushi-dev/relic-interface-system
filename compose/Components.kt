@@ -48,16 +48,19 @@ import java.util.Locale
 fun RisPanel(
     modifier: Modifier = Modifier,
     cut: Dp = RisClip,
-    border: Color = RisCyberSkin.Line,
-    background: Color = RisCyberSkin.Surface1,
+    border: Color = Color.Unspecified,
+    background: Color = Color.Unspecified,
     content: @Composable BoxScope.() -> Unit,
 ) {
+    val colors = LocalRisColors.current
+    val actualBorder = if (border != Color.Unspecified) border else colors.line
+    val actualBackground = if (background != Color.Unspecified) background else colors.surface1
     val shape = risClip(cut)
     Box(
         modifier = modifier
             .clip(shape)
-            .background(background)
-            .border(1.dp, border, shape),
+            .background(actualBackground)
+            .border(1.dp, actualBorder, shape),
         content = content,
     )
 }
@@ -75,26 +78,27 @@ fun RisButton(
     leadingIcon: (@Composable () -> Unit)? = null,
     content: @Composable RowScope.() -> Unit,
 ) {
+    val colors = LocalRisColors.current
     val (bgColor, borderColor, contentColor) = when (variant) {
         RisButtonVariant.Primary -> Triple(
-            if (enabled) RisCyberSkin.YellowFill else RisCyberSkin.Surface3,
-            if (enabled) RisCyberSkin.YellowLine else RisCyberSkin.LineFaint,
-            if (enabled) RisCyberSkin.OnAccent else RisCyberSkin.Fg4,
+            if (enabled) colors.accentFill else colors.surface3,
+            if (enabled) colors.accent else colors.lineFaint,
+            if (enabled) colors.onAccent else colors.fg4,
         )
         RisButtonVariant.Secondary -> Triple(
-            if (enabled) RisCyberSkin.Surface2 else RisCyberSkin.Surface1,
-            if (enabled) RisCyberSkin.LineStrong else RisCyberSkin.LineFaint,
-            if (enabled) RisCyberSkin.Fg1 else RisCyberSkin.Fg4,
+            if (enabled) colors.surface2 else colors.surface1,
+            if (enabled) colors.lineStrong else colors.lineFaint,
+            if (enabled) colors.fg1 else colors.fg4,
         )
         RisButtonVariant.Ghost -> Triple(
             Color.Transparent,
-            if (enabled) RisCyberSkin.Line else RisCyberSkin.LineFaint,
-            if (enabled) RisCyberSkin.Fg2 else RisCyberSkin.Fg4,
+            if (enabled) colors.line else colors.lineFaint,
+            if (enabled) colors.fg2 else colors.fg4,
         )
         RisButtonVariant.Danger -> Triple(
-            if (enabled) RisCyberSkin.RedFill else RisCyberSkin.Surface3,
-            if (enabled) RisCyberSkin.RedLine else RisCyberSkin.LineFaint,
-            if (enabled) RisCyberSkin.OnAccent else RisCyberSkin.Fg4,
+            if (enabled) colors.redFill else colors.surface3,
+            if (enabled) colors.red else colors.lineFaint,
+            if (enabled) colors.onAccent else colors.fg4,
         )
     }
 
@@ -107,7 +111,7 @@ fun RisButton(
             .border(1.dp, borderColor, shape)
             .then(
                 if (enabled && variant == RisButtonVariant.Primary) {
-                    Modifier.shadow(8.dp, shape, ambientColor = RisCyberSkin.YellowGlow, spotColor = RisCyberSkin.YellowGlow)
+                    Modifier.shadow(8.dp, shape, ambientColor = colors.accent.copy(alpha = 0.25f), spotColor = colors.accent.copy(alpha = 0.25f))
                 } else Modifier
             )
             .then(if (enabled) Modifier.clickable(onClick = onClick) else Modifier)
@@ -162,15 +166,16 @@ fun RisSubTabs(
     modifier: Modifier = Modifier,
     scrollable: Boolean = false,
 ) {
+    val colors = LocalRisColors.current
     val rowModifier = if (scrollable) {
         modifier
             .horizontalScroll(rememberScrollState())
-            .border(1.dp, RisCyberSkin.LineStrong)
-            .background(RisCyberSkin.Surface1)
+            .border(1.dp, colors.lineStrong)
+            .background(colors.surface1)
     } else {
         modifier
-            .border(1.dp, RisCyberSkin.LineStrong)
-            .background(RisCyberSkin.Surface1)
+            .border(1.dp, colors.lineStrong)
+            .background(colors.surface1)
     }
 
     Row(modifier = rowModifier) {
@@ -178,13 +183,13 @@ fun RisSubTabs(
             val isSelected = index == selectedIndex
             val itemModifier = if (scrollable) {
                 Modifier
-                    .background(if (isSelected) RisCyberSkin.YellowFill else Color.Transparent)
+                    .background(if (isSelected) colors.accentFill else Color.Transparent)
                     .clickable { onSelect(index) }
                     .padding(vertical = 9.dp, horizontal = 14.dp)
             } else {
                 Modifier
                     .weight(1f)
-                    .background(if (isSelected) RisCyberSkin.YellowFill else Color.Transparent)
+                    .background(if (isSelected) colors.accentFill else Color.Transparent)
                     .clickable { onSelect(index) }
                     .padding(vertical = 9.dp, horizontal = 4.dp)
             }
@@ -198,7 +203,7 @@ fun RisSubTabs(
                         fontSize = 11.sp,
                         fontWeight = if (isSelected) FontWeight.Bold else FontWeight.SemiBold,
                     ),
-                    color = if (isSelected) RisCyberSkin.OnAccent else RisCyberSkin.Fg3,
+                    color = if (isSelected) colors.onAccent else colors.fg3,
                     maxLines = 1,
                 )
             }
@@ -207,7 +212,7 @@ fun RisSubTabs(
                     Modifier
                         .width(1.dp)
                         .height(32.dp)
-                        .background(RisCyberSkin.Line)
+                        .background(colors.line)
                 )
             }
         }
@@ -229,30 +234,31 @@ fun RisTextField(
     enabled: Boolean = true,
     isError: Boolean = false,
 ) {
+    val colors = LocalRisColors.current
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
         modifier = modifier,
         label = label?.let { { Text(it.uppercase(Locale.ENGLISH), style = RisEyebrow.copy(fontSize = 10.sp)) } },
-        placeholder = placeholder?.let { { Text(it, style = RisMono.copy(color = RisCyberSkin.Fg4)) } },
+        placeholder = placeholder?.let { { Text(it, style = RisMono.copy(color = colors.fg4)) } },
         leadingIcon = leadingIcon,
         trailingIcon = trailingIcon,
         singleLine = singleLine,
         enabled = enabled,
         isError = isError,
         shape = RectangleShape,
-        textStyle = RisMono.copy(color = RisCyberSkin.Fg1, fontSize = 14.sp),
+        textStyle = RisMono.copy(color = colors.fg1, fontSize = 14.sp),
         colors = OutlinedTextFieldDefaults.colors(
-            focusedContainerColor = RisCyberSkin.Surface2,
-            unfocusedContainerColor = RisCyberSkin.Surface1,
-            disabledContainerColor = RisCyberSkin.Void,
-            errorContainerColor = RisCyberSkin.Surface1,
-            focusedBorderColor = RisCyberSkin.Yellow,
-            unfocusedBorderColor = RisCyberSkin.Line,
-            errorBorderColor = RisCyberSkin.Red,
-            focusedLabelColor = RisCyberSkin.Yellow,
-            unfocusedLabelColor = RisCyberSkin.Fg3,
-            cursorColor = RisCyberSkin.Yellow,
+            focusedContainerColor = colors.surface2,
+            unfocusedContainerColor = colors.surface1,
+            disabledContainerColor = colors.void,
+            errorContainerColor = colors.surface1,
+            focusedBorderColor = colors.accent,
+            unfocusedBorderColor = colors.line,
+            errorBorderColor = colors.red,
+            focusedLabelColor = colors.accent,
+            unfocusedLabelColor = colors.fg3,
+            cursorColor = colors.accent,
         )
     )
 }
@@ -263,10 +269,12 @@ fun RisTextField(
 fun RisProgressBar(
     modifier: Modifier = Modifier,
     progress: Float? = null,
-    tone: Color = RisCyberSkin.Yellow,
+    tone: Color = Color.Unspecified,
 ) {
+    val colors = LocalRisColors.current
+    val actualTone = if (tone != Color.Unspecified) tone else colors.accent
     if (progress != null) {
-        RisMeter(value = progress, tone = tone, modifier = modifier)
+        RisMeter(value = progress, tone = actualTone, modifier = modifier)
     } else {
         val transition = rememberInfiniteTransition(label = "ris_progress")
         val anim by transition.animateFloat(
@@ -281,8 +289,8 @@ fun RisProgressBar(
         androidx.compose.foundation.Canvas(
             modifier = modifier
                 .height(6.dp)
-                .background(RisCyberSkin.Surface3)
-                .border(1.dp, RisCyberSkin.Line)
+                .background(colors.surface3)
+                .border(1.dp, colors.line)
         ) {
             val totalW = size.width
             val barW = totalW * 0.35f
@@ -291,7 +299,7 @@ fun RisProgressBar(
             val drawEnd = if (startX + barW > totalW) totalW else startX + barW
             val drawWidth = if (drawEnd > drawStart) drawEnd - drawStart else 0f
             drawRect(
-                color = tone,
+                color = actualTone,
                 topLeft = Offset(drawStart, 0f),
                 size = Size(drawWidth, size.height),
             )
@@ -303,21 +311,23 @@ fun RisProgressBar(
 fun RisMeter(
     value: Float,
     modifier: Modifier = Modifier,
-    tone: Color = RisCyberSkin.Cyan,
+    tone: Color = Color.Unspecified,
 ) {
+    val colors = LocalRisColors.current
+    val actualTone = if (tone != Color.Unspecified) tone else colors.cyan
     val clamped = value.coerceIn(0f, 1f)
     Box(
         modifier = modifier
             .fillMaxWidth()
             .height(6.dp)
-            .background(RisCyberSkin.Surface2)
-            .border(1.dp, RisCyberSkin.Line)
+            .background(colors.surface2)
+            .border(1.dp, colors.line)
     ) {
         Box(
             modifier = Modifier
                 .fillMaxHeight()
                 .fillMaxWidth(clamped)
-                .background(tone)
+                .background(actualTone)
         )
     }
 }
@@ -328,20 +338,22 @@ fun RisMeter(
 fun RisChip(
     label: String,
     modifier: Modifier = Modifier,
-    tone: Color = RisCyberSkin.Cyan,
+    tone: Color = Color.Unspecified,
 ) {
+    val colors = LocalRisColors.current
+    val actualTone = if (tone != Color.Unspecified) tone else colors.cyan
     Box(
         modifier = modifier
             .clip(risClip(RisClipSm))
-            .border(1.dp, tone.copy(alpha = 0.5f), risClip(RisClipSm))
-            .background(tone.copy(alpha = 0.12f))
+            .border(1.dp, actualTone.copy(alpha = 0.5f), risClip(RisClipSm))
+            .background(actualTone.copy(alpha = 0.12f))
             .padding(horizontal = 8.dp, vertical = 3.dp),
         contentAlignment = Alignment.Center,
     ) {
         Text(
             text = label.uppercase(Locale.ENGLISH),
             style = RisEyebrow.copy(fontSize = 10.sp),
-            color = tone,
+            color = actualTone,
         )
     }
 }
@@ -362,12 +374,16 @@ fun RisSegmentedMeter(
     totalSegments: Int,
     activeSegments: Int,
     modifier: Modifier = Modifier,
-    activeColor: Color = RisCyberSkin.Green,
-    inactiveColor: Color = RisCyberSkin.Surface3,
+    activeColor: Color = Color.Unspecified,
+    inactiveColor: Color = Color.Unspecified,
     segmentWidth: Dp = 8.dp,
     segmentHeight: Dp = 8.dp,
     gap: Dp = 3.dp,
 ) {
+    val colors = LocalRisColors.current
+    val actColor = if (activeColor != Color.Unspecified) activeColor else colors.green
+    val inactColor = if (inactiveColor != Color.Unspecified) inactiveColor else colors.surface3
+
     Row(
         modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(gap),
@@ -379,8 +395,8 @@ fun RisSegmentedMeter(
                 modifier = Modifier
                     .width(segmentWidth)
                     .height(segmentHeight)
-                    .background(if (isActive) activeColor else inactiveColor)
-                    .border(0.5.dp, if (isActive) activeColor.copy(alpha = 0.8f) else RisCyberSkin.LineFaint)
+                    .background(if (isActive) actColor else inactColor)
+                    .border(0.5.dp, if (isActive) actColor.copy(alpha = 0.8f) else colors.lineFaint)
             )
         }
     }
@@ -393,8 +409,11 @@ fun RisStat(
     modifier: Modifier = Modifier,
     totalSegments: Int = 5,
     activeSegments: Int = 3,
-    tone: Color = RisCyberSkin.Cyan,
+    tone: Color = Color.Unspecified,
 ) {
+    val colors = LocalRisColors.current
+    val actualTone = if (tone != Color.Unspecified) tone else colors.cyan
+
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
@@ -402,16 +421,16 @@ fun RisStat(
     ) {
         Text(
             text = value,
-            style = RisH3.copy(fontSize = 18.sp, fontWeight = FontWeight.Bold, color = tone),
+            style = RisH3.copy(fontSize = 18.sp, fontWeight = FontWeight.Bold, color = actualTone),
         )
         Text(
             text = label.uppercase(Locale.ENGLISH),
-            style = RisLabel.copy(fontSize = 10.sp, color = RisCyberSkin.Green),
+            style = RisLabel.copy(fontSize = 10.sp, color = colors.green),
         )
         RisSegmentedMeter(
             totalSegments = totalSegments,
             activeSegments = activeSegments,
-            activeColor = RisCyberSkin.Green,
+            activeColor = colors.green,
         )
     }
 }
@@ -428,12 +447,13 @@ fun RisListRow(
     thumb: (@Composable () -> Unit)? = null,
     onClick: (() -> Unit)? = null,
 ) {
+    val colors = LocalRisColors.current
     val shape = risClip(RisClipSm)
-    val bgColor = if (selected) RisCyberSkin.RedFill else RisCyberSkin.Surface1
-    val borderColor = if (selected) RisCyberSkin.RedFill else RisCyberSkin.Line
-    val titleColor = if (selected) RisCyberSkin.OnAccent else RisCyberSkin.Cyan
-    val metaColor = if (selected) RisCyberSkin.OnAccent else RisCyberSkin.Red
-    val timeColor = if (selected) RisCyberSkin.OnAccent else RisCyberSkin.Red
+    val bgColor = if (selected) colors.redFill else colors.surface1
+    val borderColor = if (selected) colors.redFill else colors.line
+    val titleColor = if (selected) colors.onAccent else colors.cyan
+    val metaColor = if (selected) colors.onAccent else colors.red
+    val timeColor = if (selected) colors.onAccent else colors.red
 
     Row(
         modifier = modifier
@@ -450,8 +470,8 @@ fun RisListRow(
             Box(
                 modifier = Modifier
                     .size(width = 56.dp, height = 40.dp)
-                    .background(RisCyberSkin.Surface3)
-                    .border(1.dp, RisCyberSkin.Line),
+                    .background(colors.surface3)
+                    .border(1.dp, colors.line),
                 contentAlignment = Alignment.Center,
             ) {
                 it()
@@ -490,18 +510,19 @@ fun RisAccordion(
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit,
 ) {
+    val colors = LocalRisColors.current
     val shape = risClip(RisClipSm)
     Column(
         modifier = modifier
             .fillMaxWidth()
             .clip(shape)
-            .border(1.dp, RisCyberSkin.Line, shape)
-            .background(RisCyberSkin.Surface1),
+            .border(1.dp, colors.line, shape)
+            .background(colors.surface1),
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(if (expanded) RisCyberSkin.Surface2 else RisCyberSkin.Surface1)
+                .background(if (expanded) colors.surface2 else colors.surface1)
                 .clickable(onClick = onToggle)
                 .padding(horizontal = 14.dp, vertical = 12.dp),
             verticalAlignment = Alignment.CenterVertically,
@@ -512,12 +533,12 @@ fun RisAccordion(
                 style = RisLabel.copy(
                     fontSize = 12.sp,
                     fontWeight = FontWeight.Bold,
-                    color = if (expanded) RisCyberSkin.Yellow else RisCyberSkin.Fg1,
+                    color = if (expanded) colors.accent else colors.fg1,
                 ),
             )
             Text(
                 text = if (expanded) "▲" else "▼",
-                style = RisMono.copy(fontSize = 10.sp, color = if (expanded) RisCyberSkin.Yellow else RisCyberSkin.Fg3),
+                style = RisMono.copy(fontSize = 10.sp, color = if (expanded) colors.accent else colors.fg3),
             )
         }
 
@@ -529,7 +550,7 @@ fun RisAccordion(
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .border(0.5.dp, RisCyberSkin.LineFaint)
+                    .border(0.5.dp, colors.lineFaint)
                     .padding(14.dp)
             ) {
                 content()
@@ -547,11 +568,12 @@ fun RisBottomSheet(
     header: (@Composable RowScope.() -> Unit)? = null,
     content: @Composable ColumnScope.() -> Unit,
 ) {
+    val colors = LocalRisColors.current
     Box(
         modifier = modifier
             .fillMaxWidth()
-            .background(RisCyberSkin.Surface1)
-            .border(1.dp, RisCyberSkin.LineStrong)
+            .background(colors.surface1)
+            .border(1.dp, colors.lineStrong)
             .padding(top = 8.dp, bottom = 24.dp, start = 16.dp, end = 16.dp),
     ) {
         Column(
@@ -563,7 +585,7 @@ fun RisBottomSheet(
                 modifier = Modifier
                     .width(44.dp)
                     .height(4.dp)
-                    .background(RisCyberSkin.Fg3)
+                    .background(colors.fg3)
                     .clickable(onClick = onDismissRequest)
             )
             Spacer(Modifier.height(14.dp))
@@ -591,21 +613,23 @@ fun RisToast(
     title: String,
     message: String,
     modifier: Modifier = Modifier,
-    accentColor: Color = RisCyberSkin.Yellow,
+    accentColor: Color = Color.Unspecified,
 ) {
+    val colors = LocalRisColors.current
+    val actualAccent = if (accentColor != Color.Unspecified) accentColor else colors.accent
     val shape = risClip(RisClipSm)
     Row(
         modifier = modifier
             .fillMaxWidth()
             .clip(shape)
-            .background(RisCyberSkin.Surface1)
-            .border(1.dp, RisCyberSkin.LineStrong, shape)
+            .background(colors.surface1)
+            .border(1.dp, colors.lineStrong, shape)
     ) {
         Box(
             modifier = Modifier
                 .width(4.dp)
                 .height(48.dp)
-                .background(accentColor)
+                .background(actualAccent)
         )
         Column(
             modifier = Modifier
@@ -614,12 +638,12 @@ fun RisToast(
         ) {
             Text(
                 text = title.uppercase(Locale.ENGLISH),
-                style = RisLabel.copy(fontSize = 11.sp, fontWeight = FontWeight.Bold, color = accentColor),
+                style = RisLabel.copy(fontSize = 11.sp, fontWeight = FontWeight.Bold, color = actualAccent),
             )
             Spacer(Modifier.height(2.dp))
             Text(
                 text = message,
-                style = RisBody.copy(fontSize = 11.sp, color = RisCyberSkin.Fg2),
+                style = RisBody.copy(fontSize = 11.sp, color = colors.fg2),
             )
         }
     }

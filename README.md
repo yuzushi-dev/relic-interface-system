@@ -18,6 +18,10 @@
 
 <br />
 
+<p align="center">
+  <img src="assets/hero-banner.png" alt="Relic Interface System Hero Banner" width="100%" />
+</p>
+
 | ENGINE | COMPLIANCE | REFLOW JANK | MOTION BUDGET | PALETTE |
 | :---: | :---: | :---: | :---: | :---: |
 | **CSS + Canvas + Compose** | **WCAG 2.2 AA (≥ 4.5:1)** | **0% (Composited)** | **80ms / 140ms / 200ms** | **Dark HUD · Light Blueprint** |
@@ -52,6 +56,14 @@ No local setup is required to evaluate or start building. Launch the full enviro
 [![Mobile App--Shell](https://img.shields.io/badge/Mobile%20Shell-Touch%20Specimen-6fb3c9?style=for-the-badge)](https://yuzushi-dev.github.io/relic-interface-system/docs/mobile.html)
 [![Motion Lab](https://img.shields.io/badge/Motion%20Lab-Tactical%20HUD-ff2d3c?style=for-the-badge)](https://yuzushi-dev.github.io/relic-interface-system/docs/motion-lab.html)
 
+<br />
+
+<p align="center">
+  <img src="assets/dashboard-preview.png" alt="Forensic Telemetry Dashboard" width="65%" />
+  &nbsp;
+  <img src="assets/mobile-preview.png" alt="Tactical Mobile Shell" width="31%" />
+</p>
+
 ### Using as a Project Template
 
 Click **Use this template** on GitHub or clone the repository to spin up a new tactical app:
@@ -63,8 +75,8 @@ python3 -m http.server 8080
 ```
 
 - **Web (Vanilla CSS)**: Import `css/ris-tokens.css` + `css/ris.css` (and optional `css/ris-skin-cyber.css`). Specimen in [`docs/index.html`](docs/index.html).
-- **React + TypeScript**: Native `@relic-ui/react` components with zero-reflow CSS Grid, typed hooks, and charts in [`react/`](react/README.md).
-- **Figma UI Kit**: Tokens Studio JSON, turnkey plugin generator, and vector shapes in [`figma/`](figma/README.md).
+- **React + TypeScript**: Native `@relic-ui/react` components with zero-reflow CSS Grid, typed hooks, form primitives, and charts in [`react/`](react/README.md).
+- **Figma UI Kit**: Turnkey Master Generator script, Tokens Studio JSON, 60+ components with variants, and vector shapes in [`figma/`](figma/README.md).
 - **Tailwind CSS Plugin**: Ready preset with `.chamfer-*` utilities and design tokens in [`tailwind/`](tailwind/README.md).
 - **Android / Compose**: Direct drop-in Gradle library module with Maven/JitPack publishing in [`compose/`](compose/README.md).
 - **Pro Next.js Template**: Production-ready Forensic Telemetry Dashboard in [`templates/forensic-dashboard/`](templates/forensic-dashboard/README.md).
@@ -79,23 +91,24 @@ Relic Interface System follows an open-core architecture. The foundational desig
 | Deliverable | Core (Open Source · MIT) | Pro Suite (Commercial License) |
 | :--- | :---: | :---: |
 | **Design Tokens & CSS** | Full Dark & Light tokens, 4 Brands | + 3 High-density Case-Context skins (`sealed`, `field`, `archive`) |
-| **Figma UI Kit** | Community Preview tokens & generator script | **Figma Studio Kit Pro**: Master `.fig` with 150+ components, Auto Layout 5.0, variables |
-| **React Components** | Buttons, Panels, Switches, Tabs, Modals | Full `@relic-ui/react` library + Sonner-style Toasts, 60fps EEG Canvas engine |
+| **Figma UI Kit** | Community Preview tokens & generator script | **Figma Studio Kit Pro**: Master generator, 60+ component variants, Auto Layout, Tokens Studio DTCG |
+| **React Components** | Buttons, Panels, Switches, Tabs, Modals | Full `@relic-ui/react` library + Form controls, Data Table, Alerts, Sonner Toasts, EEG Canvas |
 | **Next.js Templates** | Specimen pages | **Forensic Telemetry Dashboard**: Complete App Router application with Docker container |
-| **Android Compose** | Core library module | Production suite with hardware-accelerated Canvas charts |
+| **Android Compose** | Core library module | Production suite with hardware-accelerated Canvas charts & dynamic theming |
 | **Commercial Usage** | Unlimited (MIT) | Unlimited commercial products & SaaS without attribution |
 
 ### Commercial Pricing Tiers
 
-All Pro licenses are **perpetual (one-time purchase)** with lifetime v2.x updates. Tax and VAT are handled automatically via Merchant of Record (Lemon Squeezy / Polar.sh):
+All Pro licenses are **perpetual (one-time purchase)** with lifetime v2.x updates. Tax and VAT are handled automatically via Merchant of Record (Lemon Squeezy):
 
-| License Tier | Launch Early-Bird (First 100) | Standard Price | Included Deliverables |
-| :--- | :---: | :---: | :--- |
-| **Figma Studio Kit** | **$39** | **$49** | Complete `.fig` bundle, 150+ components, tokens & pre-assembled layouts |
-| **Next.js Forensic Dashboard** | **$49** | **$69** | Turn-key Next.js 14 App Router template, interactive scrubber, Docker ready |
-| **RIS Pro All-Access** | **$99** | **$129** | **All templates + Figma Studio + React Pro + Compose + Tailwind** |
-| **Team License** | **$249** | **$299** | All-Access for up to 10 developers/designers in an organization |
+| License Tier | Launch Early-Bird (Code: `EARLYBIRD100`) | Standard Price | Included Deliverables | Direct Purchase |
+| :--- | :---: | :---: | :--- | :---: |
+| **Figma Studio Kit** | **$39** | $49 | Turnkey Master script (`code.js`), Tokens Studio DTCG JSON, 60+ component variants, 130+ SVG vectors | [**Buy Figma Kit**](https://yuzushi.lemonsqueezy.com/buy/figma-studio?discount=EARLYBIRD100) |
+| **Next.js Forensic Dashboard** | **$49** | $69 | Turn-key Next.js 14 App Router template, interactive telemetry scrubber, Docker container | [**Buy Dashboard**](https://yuzushi.lemonsqueezy.com/buy/nextjs-dashboard?discount=EARLYBIRD100) |
+| **RIS Pro All-Access** *(Best Seller)* | **$99** | $129 | **All templates + Figma Studio + React Pro + Compose + Tailwind + Priority Discussions** | [**Buy All-Access**](https://yuzushi.lemonsqueezy.com/buy/ris-pro?discount=EARLYBIRD100) |
+| **Team License** | **$249** | $299 | All-Access for up to 10 developers/designers in an organization + 48h SLA support | [**Buy Team License**](https://yuzushi.lemonsqueezy.com/buy/ris-team?discount=EARLYBIRD100) |
 
+> ℹ️ **Support & Guarantee**: 14-day money-back guarantee. Includes 48-hour email support SLA (`support@relic-ui.dev`) and lifetime access to v2.x major and minor updates.
 > Full strategic analysis & competitor benchmarks: see [`docs/COMMERCIAL_PRICING.md`](docs/COMMERCIAL_PRICING.md) and [`LICENSE_PRO.md`](LICENSE_PRO.md).
 
 ---

@@ -19,25 +19,66 @@ import androidx.compose.ui.graphics.Color
  */
 
 data class RisColors(
-    val bg: Color = RisCyberSkin.Bg,
-    val surface1: Color = RisCyberSkin.Surface1,
-    val surface2: Color = RisCyberSkin.Surface2,
-    val surface3: Color = RisCyberSkin.Surface3,
-    val line: Color = RisCyberSkin.Line,
-    val lineStrong: Color = RisCyberSkin.LineStrong,
-    val lineFaint: Color = RisCyberSkin.LineFaint,
-    val accent: Color = RisCyberSkin.Yellow,
-    val accentFill: Color = RisCyberSkin.YellowFill,
-    val cyan: Color = RisCyberSkin.Cyan,
-    val red: Color = RisCyberSkin.Red,
-    val green: Color = RisCyberSkin.Green,
-    val fg1: Color = RisCyberSkin.Fg1,
-    val fg2: Color = RisCyberSkin.Fg2,
-    val fg3: Color = RisCyberSkin.Fg3,
-    val fg4: Color = RisCyberSkin.Fg4,
+    val bg: Color = RisBg,
+    val void: Color = RisVoid,
+    val surface1: Color = RisSurface1,
+    val surface2: Color = RisSurface2,
+    val surface3: Color = RisSurface3,
+    val surface4: Color = RisSurface4,
+    val line: Color = RisLine,
+    val lineStrong: Color = RisLineStrong,
+    val lineFaint: Color = RisLineFaint,
+    val accent: Color = RisYellow,
+    val accentFill: Color = RisYellowFill,
+    val onAccent: Color = RisFgInvert,
+    val cyan: Color = RisCyan,
+    val cyanFill: Color = RisCyanFill,
+    val red: Color = RisRed,
+    val redFill: Color = RisRedFill,
+    val green: Color = RisGreen,
+    val greenFill: Color = RisGreenFill,
+    val fg1: Color = RisFg1,
+    val fg2: Color = RisFg2,
+    val fg3: Color = RisFg3,
+    val fg4: Color = RisFg4,
+    val isLight: Boolean = false,
+)
+
+fun risDarkColors(): RisColors = RisColors()
+
+fun risLightColors(): RisColors = RisColors(
+    bg = RisLight.Bg,
+    void = RisLight.Void,
+    surface1 = RisLight.Surface1,
+    surface2 = RisLight.Surface2,
+    surface3 = RisLight.Surface3,
+    surface4 = RisLight.Surface4,
+    line = RisLight.Line,
+    lineStrong = RisLight.LineStrong,
+    lineFaint = RisLight.LineFaint,
+    accent = RisLight.Yellow,
+    accentFill = RisYellowFill,
+    onAccent = RisLight.FgInvert,
+    cyan = RisLight.Cyan,
+    cyanFill = RisCyanFill,
+    red = RisLight.Red,
+    redFill = RisRedFill,
+    green = RisLight.Green,
+    greenFill = RisGreenFill,
+    fg1 = RisLight.Fg1,
+    fg2 = RisLight.Fg2,
+    fg3 = RisLight.Fg3,
+    fg4 = RisLight.Fg4,
+    isLight = true,
 )
 
 val LocalRisColors = staticCompositionLocalOf { RisColors() }
+
+object RisTheme {
+    val colors: RisColors
+        @Composable
+        get() = LocalRisColors.current
+}
 
 /** Subtle tactical cyber background: crimson gradient + faint scanlines */
 fun Modifier.cyberBackdrop(): Modifier = this.drawBehind {
@@ -67,14 +108,25 @@ fun RisTheme(
     colors: RisColors = RisColors(),
     content: @Composable () -> Unit,
 ) {
-    val m3Colors = darkColorScheme(
-        primary = colors.accent,
-        onPrimary = RisCyberSkin.OnAccent,
-        secondary = colors.cyan,
-        surface = colors.surface1,
-        background = colors.bg,
-        outline = colors.line,
-    )
+    val m3Colors = if (colors.isLight) {
+        darkColorScheme( // base fallback
+            primary = colors.accent,
+            onPrimary = colors.onAccent,
+            secondary = colors.cyan,
+            surface = colors.surface1,
+            background = colors.bg,
+            outline = colors.line,
+        )
+    } else {
+        darkColorScheme(
+            primary = colors.accent,
+            onPrimary = colors.onAccent,
+            secondary = colors.cyan,
+            surface = colors.surface1,
+            background = colors.bg,
+            outline = colors.line,
+        )
+    }
 
     CompositionLocalProvider(
         LocalRisColors provides colors,

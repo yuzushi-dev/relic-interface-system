@@ -22,6 +22,8 @@ export interface NavItem {
 export interface SidebarProps {
   activeItem?: string;
   onSelectItem?: (id: string) => void;
+  collapsed?: boolean;
+  onToggleCollapse?: (collapsed: boolean) => void;
 }
 
 const NAV_ITEMS: NavItem[] = [
@@ -36,8 +38,21 @@ const NAV_ITEMS: NavItem[] = [
 export const Sidebar: React.FC<SidebarProps> = ({
   activeItem = 'telemetry',
   onSelectItem,
+  collapsed: externalCollapsed,
+  onToggleCollapse,
 }) => {
-  const [collapsed, setCollapsed] = useState<boolean>(false);
+  const [internalCollapsed, setInternalCollapsed] = useState<boolean>(false);
+  const collapsed = externalCollapsed !== undefined ? externalCollapsed : internalCollapsed;
+
+  const handleToggle = () => {
+    const next = !collapsed;
+    if (onToggleCollapse) {
+      onToggleCollapse(next);
+    } else {
+      setInternalCollapsed(next);
+    }
+  };
+
   const memoryUsed = 12.4;
   const memoryTotal = 16.0;
   const memoryPercent = Math.round((memoryUsed / memoryTotal) * 100);
@@ -58,7 +73,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
         )}
         <button
           type="button"
-          onClick={() => setCollapsed(!collapsed)}
+          onClick={handleToggle}
           className="ris-btn ris-btn--ghost ris-btn--sm p-1 min-h-[28px] min-w-[28px] ml-auto"
           aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
           title={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}

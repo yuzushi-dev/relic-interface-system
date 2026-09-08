@@ -104,7 +104,7 @@ button, a, input, select, textarea, .ris-btn, .ris-nav-link, .ris-listrow, .ris-
   color: var(--ris-fg3); border: 1px solid transparent;
   font-family: var(--ris-font-body); font-size: 9px; font-weight: var(--ris-w-semi);
   letter-spacing: var(--ris-track-wide); text-transform: uppercase;
-  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+  clip-path: polygon(0 0, calc(100% - var(--ris-clip-sm)) 0, 100% var(--ris-clip-sm), 100% 100%, var(--ris-clip-sm) 100%, 0 calc(100% - var(--ris-clip-sm)));
   transition: background var(--ris-dur-fast) var(--ris-ease),
               border-color var(--ris-dur-fast) var(--ris-ease),
               color var(--ris-dur-fast) var(--ris-ease);
@@ -209,7 +209,7 @@ button, a, input, select, textarea, .ris-btn, .ris-nav-link, .ris-listrow, .ris-
   --_accent: var(--ris-accent);
   background: var(--ris-surface-2);
   border: 1px solid var(--ris-line-strong);
-  clip-path: polygon(0 0, calc(100% - 7px) 0, 100% 7px, 100% 100%, 7px 100%, 0 calc(100% - 7px));
+  clip-path: polygon(0 0, calc(100% - var(--ris-clip-sm)) 0, 100% var(--ris-clip-sm), 100% 100%, var(--ris-clip-sm) 100%, 0 calc(100% - var(--ris-clip-sm)));
   transition: background var(--ris-dur-fast) var(--ris-ease-snap),
               color var(--ris-dur-fast) var(--ris-ease-snap),
               border-color var(--ris-dur-fast) var(--ris-ease-snap),
@@ -387,7 +387,7 @@ button, a, input, select, textarea, .ris-btn, .ris-nav-link, .ris-listrow, .ris-
   background: var(--ris-void);
   border: 1px solid var(--ris-line-strong);
   outline: none;
-  clip-path: polygon(0 0, calc(100% - 7px) 0, 100% 7px, 100% 100%, 7px 100%, 0 calc(100% - 7px));
+  clip-path: polygon(0 0, calc(100% - var(--ris-clip-sm)) 0, 100% var(--ris-clip-sm), 100% 100%, var(--ris-clip-sm) 100%, 0 calc(100% - var(--ris-clip-sm)));
 }
 .ris-input::placeholder, .ris-textarea::placeholder { color: var(--ris-fg4); }
 .ris-input:focus, .ris-select:focus, .ris-textarea:focus {
@@ -677,7 +677,7 @@ button, a, input, select, textarea, .ris-btn, .ris-nav-link, .ris-listrow, .ris-
   border-left: 3px solid var(--_accent);
   box-shadow: var(--ris-elev-2);
   font-size: var(--ris-text-sm); color: var(--ris-fg1);
-  clip-path: polygon(0 0, calc(100% - 7px) 0, 100% 7px, 100% 100%, 7px 100%, 0 100%);
+  clip-path: polygon(0 0, calc(100% - var(--ris-clip-sm)) 0, 100% var(--ris-clip-sm), 100% 100%, var(--ris-clip-sm) 100%, 0 100%);
   animation: ris-toast-in var(--ris-dur) var(--ris-ease-snap);
 }
 @keyframes ris-toast-in {
@@ -975,7 +975,7 @@ button, a, input, select, textarea, .ris-btn, .ris-nav-link, .ris-listrow, .ris-
   text-transform: uppercase;
   color: var(--ris-accent); background: var(--ris-accent-glow);
   border: 1px solid var(--ris-accent-line);
-  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+  clip-path: polygon(0 0, calc(100% - var(--ris-clip-sm)) 0, 100% var(--ris-clip-sm), 100% 100%, var(--ris-clip-sm) 100%, 0 calc(100% - var(--ris-clip-sm)));
 }
 .ris-avatar--lg { width: 48px; height: 48px; font-size: 16px; }
 
@@ -1246,7 +1246,7 @@ button, a, input, select, textarea, .ris-btn, .ris-nav-link, .ris-listrow, .ris-
   padding: 10px 14px;
   background: var(--ris-surface-1);
   border: 1px solid var(--ris-line);
-  clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+  clip-path: polygon(0 0, calc(100% - var(--ris-clip-sm)) 0, 100% var(--ris-clip-sm), 100% 100%, var(--ris-clip-sm) 100%, 0 calc(100% - var(--ris-clip-sm)));
   transition: background var(--ris-dur-fast) var(--ris-ease), border-color var(--ris-dur-fast) var(--ris-ease);
 }
 .ris-listrow:hover { background: var(--ris-surface-2); }

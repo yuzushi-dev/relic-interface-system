@@ -241,10 +241,14 @@
       size = "md",
       state = "default",
       icon = "▶",
+      asComponent = false,
+      variantName = null,
+      x = 0,
+      y = 0,
     }) {
       const w = size === "sm" ? 130 : size === "lg" ? 190 : 160;
       const h = size === "sm" ? 28 : size === "lg" ? 46 : 36;
-      const cut = size === "sm" ? 4 : size === "lg" ? 8 : 6;
+      const cut = size === "sm" ? 6 : size === "lg" ? 10 : 6;
       const fontSize = size === "sm" ? 10 : size === "lg" ? 13 : 11;
 
       let fill = "#e6a23c";
@@ -293,12 +297,18 @@
         textColor = "#4a555b";
       }
 
-      const btnWrapper = figma.createFrame();
-      btnWrapper.name = `Btn / ${variant.toUpperCase()} / ${size.toUpperCase()} / ${state.toUpperCase()}`;
+      const btnWrapper = asComponent ? figma.createComponent() : figma.createFrame();
+      btnWrapper.name = variantName || `Btn / ${variant.toUpperCase()} / ${size.toUpperCase()} / ${state.toUpperCase()}`;
       btnWrapper.resize(w, h);
       btnWrapper.fills = [];
       btnWrapper.clipsContent = false;
-      parent.appendChild(btnWrapper);
+      if (x || y) {
+        btnWrapper.x = x;
+        btnWrapper.y = y;
+      }
+      if (parent) {
+        parent.appendChild(btnWrapper);
+      }
 
       const pathData = getChamferPathData(w, h, cut);
       const svgBg = `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" fill="none">
@@ -908,31 +918,57 @@
     btnSection.paddingRight = 24;
     artboard2.appendChild(btnSection);
 
-    makeText(btnSection, "01. BUTTON COMPONENT SET MATRIX (ALL VARIANTS & STATES)", FONTS.displayBold, 15, "#e6a23c", 0.1);
-    makeText(btnSection, "Variants: Primary, Default, Secondary, Danger, Cyber Neon. States: Default, Hover, Active, Disabled.", FONTS.monoMed, 10, "#98a3a5");
+    makeText(btnSection, "01. BUTTON COMPONENT SET MATRIX (ALL VARIANTS & SIZES)", FONTS.displayBold, 15, "#e6a23c", 0.1);
+    makeText(btnSection, "Native Figma Component Set with Variant properties: Variant (Primary, Default, Secondary, Danger, Cyber), Size (SM, MD, LG), State (Default, Hover, Active, Disabled).", FONTS.monoMed, 10, "#98a3a5");
 
     const btnVariants = ["primary", "default", "secondary", "danger", "cyber"];
+    const btnSizes = ["sm", "md", "lg"];
+    const btnStates = ["default", "hover", "active", "disabled"];
+
+    const buttonComponents = [];
     for (const v of btnVariants) {
-      const vRow = figma.createFrame();
-      vRow.layoutMode = "HORIZONTAL";
-      vRow.itemSpacing = 16;
-      vRow.counterAxisAlignItems = "CENTER";
-      vRow.fills = [];
-      btnSection.appendChild(vRow);
-
-      const vLabel = figma.createFrame();
-      vLabel.resize(130, 20);
-      vLabel.fills = [];
-      vRow.appendChild(vLabel);
-      makeText(vLabel, `${v.toUpperCase()}:`, FONTS.monoBold, 11, "#98a3a5");
-
-      createChamferButton({ parent: vRow, label: "DEFAULT", variant: v, size: "md", state: "default" });
-      createChamferButton({ parent: vRow, label: "HOVER", variant: v, size: "md", state: "hover" });
-      createChamferButton({ parent: vRow, label: "ACTIVE", variant: v, size: "md", state: "active" });
-      createChamferButton({ parent: vRow, label: "DISABLED", variant: v, size: "md", state: "disabled" });
+      for (const s of btnSizes) {
+        for (const st of btnStates) {
+          const comp = createChamferButton({
+            asComponent: true,
+            label: `${v.toUpperCase()}`,
+            variant: v,
+            size: s,
+            state: st,
+            variantName: `Variant=${v.charAt(0).toUpperCase() + v.slice(1)}, Size=${s.toUpperCase()}, State=${st.charAt(0).toUpperCase() + st.slice(1)}`,
+          });
+          buttonComponents.push(comp);
+        }
+      }
     }
 
-    // Sizes Row
+    try {
+      if (typeof figma.combineAsVariants === "function") {
+        const buttonComponentSet = figma.combineAsVariants(buttonComponents, btnSection);
+        buttonComponentSet.name = "RIS / Button";
+        buttonComponentSet.description = "Relic Interface System v2.8.0 Tactical Chamfered Button Component Set with 60 variants (5 variants × 3 sizes × 4 states, 45° cuts, WCAG 2.2 AA compliant).";
+        buttonComponentSet.fills = solidPaint("#07090a");
+        buttonComponentSet.strokes = solidPaint("#2a343b");
+        buttonComponentSet.strokeWeight = 1;
+        buttonComponentSet.dashPattern = [4, 4];
+        buttonComponentSet.paddingLeft = 20;
+        buttonComponentSet.paddingRight = 20;
+        buttonComponentSet.paddingTop = 20;
+        buttonComponentSet.paddingBottom = 20;
+        buttonComponentSet.itemSpacing = 16;
+      } else {
+        for (const c of buttonComponents) {
+          btnSection.appendChild(c);
+        }
+      }
+    } catch (e) {
+      console.warn("Could not combine as variants, appending as components:", e);
+      for (const c of buttonComponents) {
+        if (!c.parent) btnSection.appendChild(c);
+      }
+    }
+
+    // Sizes Specimen Quick-Reference Row
     const sizeRow = figma.createFrame();
     sizeRow.layoutMode = "HORIZONTAL";
     sizeRow.itemSpacing = 16;
@@ -944,7 +980,7 @@
     sLabel.resize(130, 20);
     sLabel.fills = [];
     sizeRow.appendChild(sLabel);
-    makeText(sLabel, "SIZE SCALES:", FONTS.monoBold, 11, "#e6a23c");
+    makeText(sLabel, "SPECIMEN SCALE:", FONTS.monoBold, 11, "#e6a23c");
 
     createChamferButton({ parent: sizeRow, label: "SM (28PX)", variant: "primary", size: "sm" });
     createChamferButton({ parent: sizeRow, label: "MD (36PX)", variant: "primary", size: "md" });
