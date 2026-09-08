@@ -212,3 +212,83 @@ fun RisTimeSeriesChart(
         )
     }
 }
+
+/**
+ * Bar chart: category columns with height proportional to value,
+ * optional highlight column overdrive, baseline line, and category labels.
+ */
+@Composable
+fun RisBarChart(
+    values: List<Float>,
+    modifier: Modifier = Modifier,
+    highlightIndex: Int = -1,
+    color: Color = RisCyberSkin.Cyan,
+    highlightColor: Color = RisCyberSkin.Yellow,
+    categories: List<String> = emptyList(),
+) {
+    if (values.isEmpty()) return
+    Canvas(modifier) {
+        val padLeft = 8f
+        val padRight = 8f
+        val padTop = 10f
+        val padBottom = 20f
+        val w = size.width
+        val h = size.height
+        val plotW = w - padLeft - padRight
+        val plotH = h - padTop - padBottom
+
+        val maxVal = values.maxOrNull()?.takeIf { it > 0f } ?: 1f
+        val count = values.size
+        val colGap = 6f
+        val colW = (plotW - (count - 1) * colGap) / count
+
+        // Baseline horizontal line
+        drawLine(
+            color = RisCyberSkin.LineFaint,
+            start = Offset(padLeft, padTop + plotH),
+            end = Offset(padLeft + plotW, padTop + plotH),
+            strokeWidth = 1f
+        )
+
+        val labelPaint = android.graphics.Paint().apply {
+            textSize = 9.dp.toPx()
+            isAntiAlias = true
+            this.color = RisCyberSkin.Fg3.toArgb()
+            typeface = android.graphics.Typeface.MONOSPACE
+        }
+
+        values.forEachIndexed { i, v ->
+            val isHighlighted = i == highlightIndex
+            val colColor = if (isHighlighted) highlightColor else color
+            val barH = (v / maxVal) * plotH
+            val x = padLeft + i * (colW + colGap)
+            val y = padTop + plotH - barH
+
+            // Bar column
+            drawRect(
+                color = colColor.copy(alpha = if (isHighlighted) 0.85f else 0.55f),
+                topLeft = Offset(x, y),
+                size = androidx.compose.ui.geometry.Size(colW, barH)
+            )
+
+            // Top highlight cap
+            drawRect(
+                color = colColor,
+                topLeft = Offset(x, y),
+                size = androidx.compose.ui.geometry.Size(colW, 2.dp.toPx())
+            )
+
+            // Category label if provided
+            if (i < categories.size) {
+                val catText = categories[i]
+                val textW = labelPaint.measureText(catText)
+                drawContext.canvas.nativeCanvas.drawText(
+                    catText,
+                    x + (colW - textW) / 2f,
+                    h - 2f,
+                    labelPaint
+                )
+            }
+        }
+    }
+}

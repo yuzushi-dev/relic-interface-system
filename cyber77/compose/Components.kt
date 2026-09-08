@@ -15,6 +15,11 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.shrinkVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -338,5 +343,284 @@ fun RisChip(
             style = RisEyebrow.copy(fontSize = 10.sp),
             color = tone,
         )
+    }
+}
+
+// ── Motion System Constants ────────────────────────────────────────────────
+
+object RisMotion {
+    const val DurInstant = 80
+    const val DurFast = 140
+    const val DurBase = 200
+    const val DurEnter = 240
+}
+
+// ── Segmented Meter & HUD Stats ────────────────────────────────────────────
+
+@Composable
+fun RisSegmentedMeter(
+    totalSegments: Int,
+    activeSegments: Int,
+    modifier: Modifier = Modifier,
+    activeColor: Color = RisCyberSkin.Green,
+    inactiveColor: Color = RisCyberSkin.Surface3,
+    segmentWidth: Dp = 8.dp,
+    segmentHeight: Dp = 8.dp,
+    gap: Dp = 3.dp,
+) {
+    Row(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.spacedBy(gap),
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        for (i in 0 until totalSegments) {
+            val isActive = i < activeSegments
+            Box(
+                modifier = Modifier
+                    .width(segmentWidth)
+                    .height(segmentHeight)
+                    .background(if (isActive) activeColor else inactiveColor)
+                    .border(0.5.dp, if (isActive) activeColor.copy(alpha = 0.8f) else RisCyberSkin.LineFaint)
+            )
+        }
+    }
+}
+
+@Composable
+fun RisStat(
+    value: String,
+    label: String,
+    modifier: Modifier = Modifier,
+    totalSegments: Int = 5,
+    activeSegments: Int = 3,
+    tone: Color = RisCyberSkin.Cyan,
+) {
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+    ) {
+        Text(
+            text = value,
+            style = RisH3.copy(fontSize = 18.sp, fontWeight = FontWeight.Bold, color = tone),
+        )
+        Text(
+            text = label.uppercase(Locale.ENGLISH),
+            style = RisLabel.copy(fontSize = 10.sp, color = RisCyberSkin.Green),
+        )
+        RisSegmentedMeter(
+            totalSegments = totalSegments,
+            activeSegments = activeSegments,
+            activeColor = RisCyberSkin.Green,
+        )
+    }
+}
+
+// ── List Row (HUD / Master-Detail Item) ─────────────────────────────────────
+
+@Composable
+fun RisListRow(
+    title: String,
+    meta: String,
+    time: String,
+    modifier: Modifier = Modifier,
+    selected: Boolean = false,
+    thumb: (@Composable () -> Unit)? = null,
+    onClick: (() -> Unit)? = null,
+) {
+    val shape = risClip(RisClipSm)
+    val bgColor = if (selected) RisCyberSkin.RedFill else RisCyberSkin.Surface1
+    val borderColor = if (selected) RisCyberSkin.RedFill else RisCyberSkin.Line
+    val titleColor = if (selected) RisCyberSkin.OnAccent else RisCyberSkin.Cyan
+    val metaColor = if (selected) RisCyberSkin.OnAccent else RisCyberSkin.Red
+    val timeColor = if (selected) RisCyberSkin.OnAccent else RisCyberSkin.Red
+
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .clip(shape)
+            .background(bgColor)
+            .border(1.dp, borderColor, shape)
+            .then(if (onClick != null) Modifier.clickable(onClick = onClick) else Modifier)
+            .padding(horizontal = 14.dp, vertical = 10.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+    ) {
+        thumb?.let {
+            Box(
+                modifier = Modifier
+                    .size(width = 56.dp, height = 40.dp)
+                    .background(RisCyberSkin.Surface3)
+                    .border(1.dp, RisCyberSkin.Line),
+                contentAlignment = Alignment.Center,
+            ) {
+                it()
+            }
+        }
+        Column(
+            modifier = Modifier.weight(1f),
+            verticalArrangement = Arrangement.Center,
+        ) {
+            Text(
+                text = title,
+                style = RisH3.copy(fontSize = 13.sp, fontWeight = FontWeight.SemiBold, color = titleColor),
+                maxLines = 1,
+            )
+            Spacer(Modifier.height(2.dp))
+            Text(
+                text = meta.uppercase(Locale.ENGLISH),
+                style = RisMono.copy(fontSize = 10.sp, color = metaColor),
+                maxLines = 1,
+            )
+        }
+        Text(
+            text = time,
+            style = RisMono.copy(fontSize = 11.sp, color = timeColor),
+        )
+    }
+}
+
+// ── Accordion Disclosure ───────────────────────────────────────────────────
+
+@Composable
+fun RisAccordion(
+    title: String,
+    expanded: Boolean,
+    onToggle: () -> Unit,
+    modifier: Modifier = Modifier,
+    content: @Composable () -> Unit,
+) {
+    val shape = risClip(RisClipSm)
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .clip(shape)
+            .border(1.dp, RisCyberSkin.Line, shape)
+            .background(RisCyberSkin.Surface1),
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(if (expanded) RisCyberSkin.Surface2 else RisCyberSkin.Surface1)
+                .clickable(onClick = onToggle)
+                .padding(horizontal = 14.dp, vertical = 12.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween,
+        ) {
+            Text(
+                text = title.uppercase(Locale.ENGLISH),
+                style = RisLabel.copy(
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = if (expanded) RisCyberSkin.Yellow else RisCyberSkin.Fg1,
+                ),
+            )
+            Text(
+                text = if (expanded) "▲" else "▼",
+                style = RisMono.copy(fontSize = 10.sp, color = if (expanded) RisCyberSkin.Yellow else RisCyberSkin.Fg3),
+            )
+        }
+
+        AnimatedVisibility(
+            visible = expanded,
+            enter = expandVertically(animationSpec = tween(RisMotion.DurBase)) + fadeIn(animationSpec = tween(RisMotion.DurBase)),
+            exit = shrinkVertically(animationSpec = tween(RisMotion.DurBase)) + fadeOut(animationSpec = tween(RisMotion.DurBase)),
+        ) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .border(0.5.dp, RisCyberSkin.LineFaint)
+                    .padding(14.dp)
+            ) {
+                content()
+            }
+        }
+    }
+}
+
+// ── Tactical Bottom Sheet ──────────────────────────────────────────────────
+
+@Composable
+fun RisBottomSheet(
+    onDismissRequest: () -> Unit,
+    modifier: Modifier = Modifier,
+    header: (@Composable RowScope.() -> Unit)? = null,
+    content: @Composable ColumnScope.() -> Unit,
+) {
+    Box(
+        modifier = modifier
+            .fillMaxWidth()
+            .background(RisCyberSkin.Surface1)
+            .border(1.dp, RisCyberSkin.LineStrong)
+            .padding(top = 8.dp, bottom = 24.dp, start = 16.dp, end = 16.dp),
+    ) {
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            // Drag Handle
+            Box(
+                modifier = Modifier
+                    .width(44.dp)
+                    .height(4.dp)
+                    .background(RisCyberSkin.Fg3)
+                    .clickable(onClick = onDismissRequest)
+            )
+            Spacer(Modifier.height(14.dp))
+
+            if (header != null) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                ) {
+                    header()
+                }
+                Spacer(Modifier.height(12.dp))
+            }
+
+            content()
+        }
+    }
+}
+
+// ── HUD Toast ──────────────────────────────────────────────────────────────
+
+@Composable
+fun RisToast(
+    title: String,
+    message: String,
+    modifier: Modifier = Modifier,
+    accentColor: Color = RisCyberSkin.Yellow,
+) {
+    val shape = risClip(RisClipSm)
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .clip(shape)
+            .background(RisCyberSkin.Surface1)
+            .border(1.dp, RisCyberSkin.LineStrong, shape)
+    ) {
+        Box(
+            modifier = Modifier
+                .width(4.dp)
+                .height(48.dp)
+                .background(accentColor)
+        )
+        Column(
+            modifier = Modifier
+                .padding(horizontal = 14.dp, vertical = 8.dp),
+            verticalArrangement = Arrangement.Center,
+        ) {
+            Text(
+                text = title.uppercase(Locale.ENGLISH),
+                style = RisLabel.copy(fontSize = 11.sp, fontWeight = FontWeight.Bold, color = accentColor),
+            )
+            Spacer(Modifier.height(2.dp))
+            Text(
+                text = message,
+                style = RisBody.copy(fontSize = 11.sp, color = RisCyberSkin.Fg2),
+            )
+        }
     }
 }
