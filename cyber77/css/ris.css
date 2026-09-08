@@ -28,7 +28,11 @@ a { color: var(--ris-link); text-decoration: none; }
 a:hover { text-decoration: underline; text-underline-offset: 3px; }
 button { font: inherit; cursor: pointer; }
 
-/* ---- Accessibility baseline --------------------------------------------- */
+/* ---- Accessibility baseline & Touch Ergonomics (WCAG 2.2 AA) ----------- */
+button, a, input, select, textarea, .ris-btn, .ris-nav-link, .ris-listrow, .ris-tab, .ris-switch {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
 :focus-visible {
   outline: 2px solid var(--ris-focus-ring);
   outline-offset: 2px;
@@ -122,7 +126,14 @@ button { font: inherit; cursor: pointer; }
   border-top: 1px solid var(--ris-line);
   backdrop-filter: blur(6px);
 }
-.ris-bottomnav .ris-nav-link { flex: 1; width: auto; height: 100%; }
+.ris-bottomnav .ris-nav-link {
+  flex: 1; width: auto; height: 100%;
+  min-height: 44px; min-width: 44px;
+}
+.ris-bottomnav .ris-nav-link:active .ris-icon {
+  transform: scale(0.88);
+  transition: transform var(--ris-dur-instant) var(--ris-ease-snap);
+}
 
 .ris-shell-content {
   padding: calc(var(--ris-topbar-h) + var(--ris-s5)) var(--ris-s5) var(--ris-s7)
@@ -195,17 +206,29 @@ button { font: inherit; cursor: pointer; }
   font-weight: var(--ris-w-semi);
   letter-spacing: var(--ris-track-wider);
   text-transform: uppercase;
-  color: var(--ris-fg1);
+  --_accent: var(--ris-accent);
   background: var(--ris-surface-2);
   border: 1px solid var(--ris-line-strong);
   clip-path: polygon(0 0, calc(100% - 7px) 0, 100% 7px, 100% 100%, 7px 100%, 0 calc(100% - 7px));
-  transition: background var(--ris-dur-fast) var(--ris-ease),
-              color var(--ris-dur-fast) var(--ris-ease),
-              border-color var(--ris-dur-fast) var(--ris-ease),
-              box-shadow var(--ris-dur-fast) var(--ris-ease);
+  transition: background var(--ris-dur-fast) var(--ris-ease-snap),
+              color var(--ris-dur-fast) var(--ris-ease-snap),
+              border-color var(--ris-dur-fast) var(--ris-ease-snap),
+              box-shadow var(--ris-dur-fast) var(--ris-ease-snap),
+              transform var(--ris-dur-instant) var(--ris-ease-snap);
 }
-.ris-btn:hover { border-color: var(--_accent); box-shadow: inset 0 0 0 1px var(--_accent); color: var(--ris-fg1); }
-.ris-btn:active { transform: translateY(1px); }
+.ris-btn:hover {
+  background: var(--ris-surface-3);
+  border-color: var(--_accent);
+  box-shadow: 0 0 12px var(--ris-accent-glow), inset 0 0 0 1px var(--_accent);
+  color: #ffffff;
+}
+:root[data-theme="light"] .ris-btn:hover {
+  background: var(--ris-surface-1);
+  color: var(--ris-fg1);
+  border-color: var(--_accent);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08), inset 0 0 0 1px var(--_accent);
+}
+.ris-btn:active { transform: scale(0.97); }
 
 .ris-btn--primary {
   --_accent: var(--ris-accent);
@@ -215,8 +238,15 @@ button { font: inherit; cursor: pointer; }
 }
 .ris-btn--primary:hover {
   background: color-mix(in srgb, var(--ris-accent-fill) 88%, #ffffff);
-  box-shadow: inset 0 0 0 1px var(--ris-on-accent);
-  color: var(--ris-on-accent);
+  box-shadow: 0 0 20px var(--ris-accent-glow), inset 0 0 0 1px var(--ris-on-accent);
+  color: #000000;
+  border-color: #ffffff;
+}
+.ris-btn--invert:hover {
+  background: var(--_accent) !important;
+  color: #000000 !important;
+  border-color: var(--_accent) !important;
+  box-shadow: 0 0 20px var(--ris-accent-glow) !important;
 }
 .ris-btn--secondary {
   --_accent: var(--ris-accent-2);
@@ -224,16 +254,31 @@ button { font: inherit; cursor: pointer; }
   border-color: var(--ris-accent-2-line);
   background: transparent;
 }
-.ris-btn--secondary:hover { background: var(--ris-accent-2-glow); box-shadow: inset 0 0 0 1px var(--ris-accent-2); color: var(--ris-accent-2); }
+.ris-btn--secondary:hover {
+  background: var(--ris-surface-3);
+  border-color: var(--_accent);
+  box-shadow: 0 0 14px var(--ris-accent-2-glow), inset 0 0 0 1.5px var(--_accent);
+  color: #ffffff;
+}
+:root[data-theme="light"] .ris-btn--secondary:hover {
+  background: var(--ris-surface-1);
+  color: var(--ris-accent-2);
+  border-color: var(--ris-accent-2);
+}
 .ris-btn--danger {
   --_accent: var(--ris-red);
   color: var(--ris-red);
   border-color: var(--ris-red-line);
   background: transparent;
 }
-.ris-btn--danger:hover { background: var(--ris-red-fill); color: #fff; box-shadow: inset 0 0 0 1px #fff; border-color: var(--ris-red-fill); }
+.ris-btn--danger:hover {
+  background: var(--ris-red-fill);
+  color: #ffffff;
+  box-shadow: 0 0 18px var(--ris-red-glow), inset 0 0 0 1px #fff;
+  border-color: var(--ris-red-fill);
+}
 .ris-btn--ghost { background: transparent; border-color: var(--ris-line); color: var(--ris-fg2); }
-.ris-btn--ghost:hover { color: var(--ris-fg1); border-color: var(--ris-line-strong); box-shadow: none; }
+.ris-btn--ghost:hover { color: #ffffff; background: var(--ris-surface-2); border-color: var(--ris-line-strong); box-shadow: none; }
 
 .ris-btn--sm { padding: 5px 10px; min-height: 28px; font-size: 10px; }
 .ris-btn--lg { padding: 13px 24px; min-height: 46px; font-size: var(--ris-text-sm); }
@@ -410,17 +455,18 @@ button { font: inherit; cursor: pointer; }
 .ris-switch { display: inline-flex; align-items: center; gap: 10px; min-height: 24px; cursor: pointer; font-size: var(--ris-text-sm); color: var(--ris-fg2); user-select: none; }
 .ris-switch input {
   appearance: none; margin: 0; position: relative;
-  width: 36px; height: 18px; flex: 0 0 36px;
+  width: 38px; height: 20px; flex: 0 0 38px;
   background: var(--ris-void);
   border: 1px solid var(--ris-line-strong);
   cursor: pointer;
-  transition: border-color var(--ris-dur) var(--ris-ease), background var(--ris-dur) var(--ris-ease);
+  transition: border-color var(--ris-dur-fast) var(--ris-ease-snap), background var(--ris-dur-fast) var(--ris-ease-snap);
 }
 .ris-switch input::before {
   content: ""; position: absolute; top: 2px; left: 2px;
-  width: 12px; height: 12px;
+  width: 14px; height: 14px;
   background: var(--ris-fg3);
-  transition: transform var(--ris-dur) var(--ris-ease-snap), background var(--ris-dur) var(--ris-ease);
+  clip-path: polygon(0 0, calc(100% - 3px) 0, 100% 3px, 100% 100%, 3px 100%, 0 calc(100% - 3px));
+  transition: transform var(--ris-dur-fast) var(--ris-ease-snap), background var(--ris-dur-fast) var(--ris-ease-snap);
 }
 .ris-switch input:checked { border-color: var(--ris-accent-line); background: var(--ris-accent-glow); }
 .ris-switch input:checked::before { transform: translateX(18px); background: var(--ris-accent); }
@@ -489,10 +535,15 @@ button { font: inherit; cursor: pointer; }
    ========================================================================== */
 .ris-modal-backdrop {
   position: fixed; inset: 0; z-index: 200;
-  background: color-mix(in srgb, var(--ris-void) 72%, transparent);
-  backdrop-filter: blur(3px);
+  background: color-mix(in srgb, var(--ris-void) 75%, transparent);
+  backdrop-filter: blur(4px);
   display: grid; place-items: center;
   padding: var(--ris-s5);
+  animation: ris-fade-in var(--ris-dur-fast) var(--ris-ease-out);
+}
+@keyframes ris-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 .ris-modal {
   width: min(560px, 100%);
@@ -508,11 +559,11 @@ button { font: inherit; cursor: pointer; }
     100% 100%,
     var(--ris-clip-lg) 100%,
     0 calc(100% - var(--ris-clip-lg)));
-  animation: ris-modal-in var(--ris-dur) var(--ris-ease-snap);
+  animation: ris-modal-in var(--ris-dur-enter) var(--ris-ease-out);
 }
 @keyframes ris-modal-in {
-  from { opacity: 0; transform: translateY(10px) scale(0.985); }
-  to   { opacity: 1; transform: none; }
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
 }
 .ris-modal-head {
   display: flex; align-items: center; justify-content: space-between; gap: var(--ris-s3);
@@ -524,6 +575,89 @@ button { font: inherit; cursor: pointer; }
   display: flex; justify-content: flex-end; gap: var(--ris-s2);
   padding: var(--ris-s4) var(--ris-s5);
   border-top: 1px solid var(--ris-line);
+}
+
+/* ============================================================================
+   BOTTOM SHEET (Mobile <768px Tactical Modal)
+   ========================================================================== */
+.ris-sheet-backdrop {
+  position: fixed; inset: 0; z-index: 220;
+  background: color-mix(in srgb, var(--ris-void) 75%, transparent);
+  backdrop-filter: blur(4px);
+  animation: ris-fade-in var(--ris-dur-fast) var(--ris-ease-out);
+  display: flex; flex-direction: column; justify-content: flex-end;
+}
+.ris-sheet {
+  position: relative;
+  width: 100%;
+  max-height: 85vh;
+  display: flex; flex-direction: column;
+  background: var(--ris-surface-2);
+  border-top: 1.5px solid var(--ris-line-strong);
+  box-shadow: var(--ris-elev-pop), 0 -8px 24px rgba(0,0,0,0.35);
+  clip-path: polygon(0 14px, 14px 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
+  animation: ris-sheet-in var(--ris-dur-enter) var(--ris-ease-out) both;
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+}
+.ris-sheet[data-dismissing="true"] {
+  animation: ris-sheet-out var(--ris-dur) var(--ris-ease-snap) both;
+}
+.ris-sheet-handle {
+  width: 44px; height: 4px;
+  background: var(--ris-fg4);
+  border-radius: 2px;
+  margin: 10px auto 6px;
+  cursor: grab;
+  transition: background var(--ris-dur-fast) var(--ris-ease-snap);
+}
+.ris-sheet-handle:hover,
+.ris-sheet-handle:active {
+  background: var(--ris-accent);
+}
+.ris-sheet-head {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--ris-s3);
+  padding: 10px 18px 12px;
+  border-bottom: 1px solid var(--ris-line);
+}
+.ris-sheet-body {
+  padding: 16px 18px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.ris-sheet-foot {
+  display: flex; align-items: center; justify-content: flex-end; gap: 10px;
+  padding: 12px 18px;
+  border-top: 1px solid var(--ris-line);
+}
+@keyframes ris-sheet-in {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+@keyframes ris-sheet-out {
+  from { transform: translateY(0); }
+  to   { transform: translateY(100%); }
+}
+
+@media (max-width: 767px) {
+  /* Su mobile, i modali centrate desktop si adattano a Bottom Sheet */
+  .ris-modal-backdrop {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0;
+  }
+  .ris-modal {
+    width: 100%;
+    max-width: 100%;
+    max-height: 85vh;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    border-top: 1.5px solid var(--ris-line-strong);
+    clip-path: polygon(0 14px, 14px 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
+    animation: ris-sheet-in var(--ris-dur-enter) var(--ris-ease-out);
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+  }
 }
 
 /* ============================================================================
@@ -845,7 +979,7 @@ button { font: inherit; cursor: pointer; }
 }
 .ris-avatar--lg { width: 48px; height: 48px; font-size: 16px; }
 
-.ris-icon       { width: 18px; height: 18px; flex-shrink: 0; }
+.ris-icon       { width: 18px; height: 18px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
 .ris-icon--sm   { width: 14px; height: 14px; }
 .ris-icon--lg   { width: 24px; height: 24px; }
 .ris-icon--xl   { width: 32px; height: 32px; }
@@ -881,6 +1015,62 @@ button { font: inherit; cursor: pointer; }
 }
 .ris-accordion details[open] > summary::after { content: "−"; color: var(--ris-accent); }
 .ris-accordion .body { padding: 14px 16px; font-size: var(--ris-text-sm); color: var(--ris-fg2); border-top: 1px solid var(--ris-line-faint); }
+
+/* Accordion modernizzato con CSS Grid (0fr -> 1fr, zero reflow a 60fps) */
+.ris-acc {
+  border: 1px solid var(--ris-line);
+  background: var(--ris-surface-1);
+}
+.ris-acc-item { border-bottom: 1px solid var(--ris-line); }
+.ris-acc-item:last-child { border-bottom: 0; }
+.ris-acc-trigger {
+  width: 100%; display: flex; align-items: center; justify-content: space-between; gap: var(--ris-s3);
+  padding: 13px 16px;
+  background: var(--ris-surface-1);
+  color: var(--ris-fg1);
+  font-family: var(--ris-font-display);
+  font-size: var(--ris-text-sm);
+  font-weight: var(--ris-w-semi);
+  letter-spacing: var(--ris-track-wide);
+  text-transform: uppercase;
+  border: none; cursor: pointer; text-align: left;
+  transition: background var(--ris-dur-fast) var(--ris-ease-snap), color var(--ris-dur-fast) var(--ris-ease-snap);
+}
+.ris-acc-trigger:hover {
+  background: var(--ris-surface-2);
+  color: var(--ris-accent);
+}
+.ris-acc-chevron {
+  font-family: var(--ris-font-mono);
+  font-size: 11px;
+  color: var(--ris-fg3);
+  transition: transform var(--ris-dur-base) var(--ris-ease-out), color var(--ris-dur-fast) var(--ris-ease-snap);
+  display: inline-block;
+}
+.ris-acc-item[data-open="true"] .ris-acc-chevron,
+.ris-acc-trigger[aria-expanded="true"] .ris-acc-chevron {
+  transform: rotate(180deg);
+  color: var(--ris-accent);
+}
+.ris-acc-drawer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--ris-dur-base) var(--ris-ease-out);
+}
+.ris-acc-item[data-open="true"] .ris-acc-drawer,
+.ris-acc-trigger[aria-expanded="true"] + .ris-acc-drawer {
+  grid-template-rows: 1fr;
+}
+.ris-acc-body {
+  overflow: hidden;
+  font-size: var(--ris-text-sm);
+  color: var(--ris-fg2);
+  line-height: 1.6;
+}
+.ris-acc-body-inner {
+  padding: 14px 16px;
+  border-top: 1px solid var(--ris-line-faint);
+}
 
 /* Stepper / wizard progress */
 .ris-stepper { display: flex; gap: 6px; }

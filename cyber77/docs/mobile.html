@@ -1,50 +1,745 @@
 <!DOCTYPE html>
-<html lang="it" data-theme="dark" data-brand="vivokey" data-skin="cyber">
+<html lang="it" data-theme="dark" data-brand="relic" data-skin="cyber">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RIS · Skin Cyber — mobile</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>RIS · Skin Cyber — Mobile App Shell</title>
 <link rel="stylesheet" href="../css/ris-tokens.css">
 <link rel="stylesheet" href="../css/ris.css">
 <link rel="stylesheet" href="../css/ris-fx.css">
 <link rel="stylesheet" href="../css/ris-skin-cyber.css">
-<style>body{margin:0}</style>
+<style>
+  body { margin: 0; overflow-x: hidden; }
+  
+  /* Mobile App Shell Layout with Master-Detail Transition Container */
+  .mobile-stage-viewport {
+    position: relative;
+    width: 100%;
+    min-height: calc(100vh - var(--ris-topbar-h) - var(--ris-bottomnav-h));
+    overflow: hidden;
+  }
+  
+  .mobile-view {
+    width: 100%;
+    box-sizing: border-box;
+    transition: transform var(--ris-dur-enter) var(--ris-ease-out),
+                opacity var(--ris-dur-enter) var(--ris-ease-out);
+  }
+  
+  .mobile-view--master {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  .mobile-view--master.pushed {
+    transform: translateX(-24%);
+    opacity: 0.35;
+    pointer-events: none;
+  }
+  
+  .mobile-view--detail {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    transform: translateX(100%);
+    opacity: 0;
+    pointer-events: none;
+    background: var(--ris-bg);
+  }
+  .mobile-view--detail.active {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  /* Touch interactive list-row micro-punch */
+  .ris-listrow {
+    cursor: pointer;
+    user-select: none;
+    transition: transform var(--ris-dur-instant) var(--ris-ease-snap),
+                background var(--ris-dur-fast) var(--ris-ease-snap);
+  }
+  .ris-listrow:active {
+    transform: scale(0.98);
+  }
+
+  /* Theme switch in mobile topbar */
+  .theme-toggle-btn {
+    background: transparent;
+    border: 1px solid var(--ris-line-strong);
+    color: var(--ris-fg1);
+    font-family: var(--ris-font-mono);
+    font-size: 11px;
+    padding: 4px 8px;
+    clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 0 100%);
+  }
+</style>
+<script src="../js/ris-charts.js"></script>
 </head>
 <body class="ris ris-grid-bg">
 
-<header class="ris-topbar">
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true" id="ris-icon-sprite">
+  <!-- ==========================================================================
+       RELIC INTERFACE SYSTEM v2 — TABLER ICONS (MIT License)
+       24x24, stroke currentColor 1.75, round caps & joins, MIT License.
+       Usage: <svg class="ris-icon" aria-hidden="true"><use href="icons/ris-icons.svg#ris-NAME"/></svg>
+       Decorative icons: aria-hidden="true". Meaningful icons: role="img" + <title>.
+       ========================================================================== -->
+  <defs>
+    <style>
+      symbol { fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <symbol id="ris-arrow-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l14 0" /> <path d="M5 12l6 6" /> <path d="M5 12l6 -6" /></symbol>
+  <symbol id="ris-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l14 0" /> <path d="M13 18l6 -6" /> <path d="M13 6l6 6" /></symbol>
+  <symbol id="ris-battery" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h11a2 2 0 0 1 2 2v.5a.5 .5 0 0 0 .5 .5a.5 .5 0 0 1 .5 .5v3a.5 .5 0 0 1 -.5 .5a.5 .5 0 0 0 -.5 .5v.5a2 2 0 0 1 -2 2h-11a2 2 0 0 1 -2 -2v-6a2 2 0 0 1 2 -2" /> <path d="M7 10l0 4" /> <path d="M10 10l0 4" /> <path d="M13 10l0 4" /></symbol>
+  <symbol id="ris-bed" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /> <path d="M22 17v-3h-20" /> <path d="M2 8v9" /> <path d="M12 14h10v-2a3 3 0 0 0 -3 -3h-7v5" /></symbol>
+  <symbol id="ris-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 5a2 2 0 1 1 4 0a7 7 0 0 1 4 6v3a4 4 0 0 0 2 3h-16a4 4 0 0 0 2 -3v-3a7 7 0 0 1 4 -6" /> <path d="M9 17v1a3 3 0 0 0 6 0v-1" /></symbol>
+  <symbol id="ris-bia" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20l10 0" /> <path d="M6 6l6 -1l6 1" /> <path d="M12 3l0 17" /> <path d="M9 12l-3 -6l-3 6a3 3 0 0 0 6 0" /> <path d="M21 12l-3 -6l-3 6a3 3 0 0 0 6 0" /></symbol>
+  <symbol id="ris-blood-drop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7.502 19.423c2.602 2.105 6.395 2.105 8.996 0c2.602 -2.105 3.262 -5.708 1.566 -8.546l-4.89 -7.26c-.42 -.625 -1.287 -.803 -1.936 -.397a1.376 1.376 0 0 0 -.41 .397l-4.893 7.26c-1.695 2.838 -1.035 6.441 1.567 8.546" /></symbol>
+  <symbol id="ris-bluetooth" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8l10 8l-5 4l0 -16l5 4l-10 8" /></symbol>
+  <symbol id="ris-body" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /> <path d="M5 20l5 -.5l1 -2" /> <path d="M18 20v-5h-5.5l2.5 -6.5l-5.5 1l1.5 2" /></symbol>
+  <symbol id="ris-bone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3a3 3 0 0 1 3 3a3 3 0 1 1 -2.12 5.122l-4.758 4.758a3 3 0 1 1 -5.117 2.297l0 -.177l-.176 0a3 3 0 1 1 2.298 -5.115l4.758 -4.758a3 3 0 0 1 2.12 -5.122l-.005 -.005" /></symbol>
+  <symbol id="ris-bookmark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 7v14l-6 -4l-6 4v-14a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4" /></symbol>
+  <symbol id="ris-bp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1l0 -10" /> <path d="M7 20h10" /> <path d="M9 16v4" /> <path d="M15 16v4" /> <path d="M7 10h2l2 3l2 -6l1 3h3" /></symbol>
+  <symbol id="ris-brain" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 13a3.5 3.5 0 0 0 -3.5 3.5v1a3.5 3.5 0 0 0 7 0v-1.8" /> <path d="M8.5 13a3.5 3.5 0 0 1 3.5 3.5v1a3.5 3.5 0 0 1 -7 0v-1.8" /> <path d="M17.5 16a3.5 3.5 0 0 0 0 -7h-.5" /> <path d="M19 9.3v-2.8a3.5 3.5 0 0 0 -7 0" /> <path d="M6.5 16a3.5 3.5 0 0 1 0 -7h.5" /> <path d="M5 9.3v-2.8a3.5 3.5 0 0 1 7 0v10" /></symbol>
+  <symbol id="ris-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12" /> <path d="M16 3v4" /> <path d="M8 3v4" /> <path d="M4 11h16" /> <path d="M11 15h1" /> <path d="M12 15v3" /></symbol>
+  <symbol id="ris-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7h1a2 2 0 0 0 2 -2a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-9a2 2 0 0 1 2 -2" /> <path d="M9 13a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /></symbol>
+  <symbol id="ris-chart-bar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -6" /> <path d="M15 9a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v10a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -10" /> <path d="M9 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v14a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -14" /> <path d="M4 20h14" /></symbol>
+  <symbol id="ris-chart-line" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19l16 0" /> <path d="M4 15l4 -6l4 2l4 -5l4 4" /></symbol>
+  <symbol id="ris-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10" /></symbol>
+  <symbol id="ris-chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6l6 -6" /></symbol>
+  <symbol id="ris-chevron-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6l6 6" /></symbol>
+  <symbol id="ris-chevron-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6l-6 6" /></symbol>
+  <symbol id="ris-chevron-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6 -6l6 6" /></symbol>
+  <symbol id="ris-chip-card" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v8a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3l0 -8" /> <path d="M3 10l18 0" /> <path d="M7 15l.01 0" /> <path d="M11 15l2 0" /></symbol>
+  <symbol id="ris-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /> <path d="M12 7v5l3 3" /></symbol>
+  <symbol id="ris-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6l-12 12" /> <path d="M6 6l12 12" /></symbol>
+  <symbol id="ris-cloud" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6.657 18c-2.572 0 -4.657 -2.007 -4.657 -4.483c0 -2.475 2.085 -4.482 4.657 -4.482c.393 -1.762 1.794 -3.2 3.675 -3.773c1.88 -.572 3.956 -.193 5.444 1c1.488 1.19 2.162 3.007 1.77 4.769h.99c1.913 0 3.464 1.56 3.464 3.486c0 1.927 -1.551 3.487 -3.465 3.487h-11.878" /></symbol>
+  <symbol id="ris-cloud-sync" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9.897c0 -1.714 1.46 -3.104 3.26 -3.104c.275 -1.22 1.255 -2.215 2.572 -2.611c1.317 -.397 2.77 -.134 3.811 .69c1.042 .822 1.514 2.08 1.239 3.3h.693a2.42 2.42 0 0 1 2.425 2.414a2.42 2.42 0 0 1 -2.425 2.414h-8.315c-1.8 0 -3.26 -1.39 -3.26 -3.103" /> <path d="M12 13v3" /> <path d="M10 18a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /> <path d="M14 18h7" /> <path d="M3 18h7" /></symbol>
+  <symbol id="ris-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8l-4 4l4 4" /> <path d="M17 8l4 4l-4 4" /> <path d="M14 4l-4 16" /></symbol>
+  <symbol id="ris-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 9.667a2.667 2.667 0 0 1 2.667 -2.667h8.666a2.667 2.667 0 0 1 2.667 2.667v8.666a2.667 2.667 0 0 1 -2.667 2.667h-8.666a2.667 2.667 0 0 1 -2.667 -2.667l0 -8.666" /> <path d="M4.012 16.737a2.005 2.005 0 0 1 -1.012 -1.737v-10c0 -1.1 .9 -2 2 -2h10c.75 0 1.158 .385 1.5 1" /></symbol>
+  <symbol id="ris-cpu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 6a1 1 0 0 1 1 -1h12a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-12a1 1 0 0 1 -1 -1l0 -12" /> <path d="M9 9h6v6h-6l0 -6" /> <path d="M3 10h2" /> <path d="M3 14h2" /> <path d="M10 3v2" /> <path d="M14 3v2" /> <path d="M21 10h-2" /> <path d="M21 14h-2" /> <path d="M14 21v-2" /> <path d="M10 21v-2" /></symbol>
+  <symbol id="ris-crosshair" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8v-2a2 2 0 0 1 2 -2h2" /> <path d="M4 16v2a2 2 0 0 0 2 2h2" /> <path d="M16 4h2a2 2 0 0 1 2 2v2" /> <path d="M16 20h2a2 2 0 0 0 2 -2v-2" /> <path d="M9 12l6 0" /> <path d="M12 9l0 6" /></symbol>
+  <symbol id="ris-dashboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1" /> <path d="M5 16h4a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1" /> <path d="M15 12h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1" /> <path d="M15 4h4a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1" /></symbol>
+  <symbol id="ris-database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6a8 3 0 1 0 16 0a8 3 0 1 0 -16 0" /> <path d="M4 6v6a8 3 0 0 0 16 0v-6" /> <path d="M4 12v6a8 3 0 0 0 16 0v-6" /></symbol>
+  <symbol id="ris-dna" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3v1c-.01 3.352 -1.68 6.023 -5.008 8.014c-3.328 1.99 3.336 -2 .008 -.014c-3.328 1.99 -5 4.662 -5.008 8.014v1" /> <path d="M17 21.014v-1c-.01 -3.352 -1.68 -6.023 -5.008 -8.014c-3.328 -1.99 3.336 2 .008 .014c-3.328 -1.991 -5 -4.662 -5.008 -8.014v-1" /> <path d="M7 4h10" /> <path d="M7 20h10" /> <path d="M8 8h8" /> <path d="M8 16h8" /></symbol>
+  <symbol id="ris-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" /> <path d="M7 11l5 5l5 -5" /> <path d="M12 4l0 12" /></symbol>
+  <symbol id="ris-dumbbell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h1" /> <path d="M6 8h-2a1 1 0 0 0 -1 1v6a1 1 0 0 0 1 1h2" /> <path d="M6 7v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1 -1v-10a1 1 0 0 0 -1 -1h-1a1 1 0 0 0 -1 1" /> <path d="M9 12h6" /> <path d="M15 7v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1 -1v-10a1 1 0 0 0 -1 -1h-1a1 1 0 0 0 -1 1" /> <path d="M18 8h2a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-2" /> <path d="M22 12h-1" /></symbol>
+  <symbol id="ris-ecg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4.5l1.5 -6l4 12l2 -9l1.5 3h4.5" /></symbol>
+  <symbol id="ris-edit" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" /> <path d="M13.5 6.5l4 4" /></symbol>
+  <symbol id="ris-eeg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12h-2c-.894 0 -1.662 -.857 -1.761 -2c-.296 -3.45 -.749 -6 -2.749 -6s-2.5 3.582 -2.5 8s-.5 8 -2.5 8s-2.452 -2.547 -2.749 -6c-.1 -1.147 -.867 -2 -1.763 -2h-2" /></symbol>
+  <symbol id="ris-error" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /> <path d="M12 8v4" /> <path d="M12 16h.01" /></symbol>
+  <symbol id="ris-export" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4" /> <path d="M11.5 21h-4.5a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v5m-5 6h7m-3 -3l3 3l-3 3" /></symbol>
+  <symbol id="ris-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" /> <path d="M11 13l9 -9" /> <path d="M15 4h5v5" /></symbol>
+  <symbol id="ris-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" /> <path d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6" /></symbol>
+  <symbol id="ris-eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10.585 10.587a2 2 0 0 0 2.829 2.828" /> <path d="M16.681 16.673a8.717 8.717 0 0 1 -4.681 1.327c-3.6 0 -6.6 -2 -9 -6c1.272 -2.12 2.712 -3.678 4.32 -4.674m2.86 -1.146a9.055 9.055 0 0 1 1.82 -.18c3.6 0 6.6 2 9 6c-.666 1.11 -1.379 2.067 -2.138 2.87" /> <path d="M3 3l18 18" /></symbol>
+  <symbol id="ris-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4" /> <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2" /></symbol>
+  <symbol id="ris-filter" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v2.172a2 2 0 0 1 -.586 1.414l-4.414 4.414v7l-6 2v-8.5l-4.48 -4.928a2 2 0 0 1 -.52 -1.345v-2.227" /></symbol>
+  <symbol id="ris-fingerprint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18.9 7a8 8 0 0 1 1.1 5v1a6 6 0 0 0 .8 3" /> <path d="M8 11a4 4 0 0 1 8 0v1a10 10 0 0 0 2 6" /> <path d="M12 11v2a14 14 0 0 0 2.5 8" /> <path d="M8 15a18 18 0 0 0 1.8 6" /> <path d="M4.9 19a22 22 0 0 1 -.9 -7v-1a8 8 0 0 1 12 -6.95" /></symbol>
+  <symbol id="ris-flame" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10.941c2.333 -3.308 .167 -7.823 -1 -8.941c0 3.395 -2.235 5.299 -3.667 6.706c-1.43 1.408 -2.333 3.294 -2.333 5.588c0 3.704 3.134 6.706 7 6.706c3.866 0 7 -3.002 7 -6.706c0 -1.712 -1.232 -4.403 -2.333 -5.588c-2.084 3.353 -3.257 3.353 -4.667 2.235" /></symbol>
+  <symbol id="ris-focus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11.5 12a.5 .5 0 1 0 1 0a.5 .5 0 1 0 -1 0" fill="currentColor" /> <path d="M5 12a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /> <path d="M12 3l0 2" /> <path d="M3 12l2 0" /> <path d="M12 19l0 2" /> <path d="M19 12l2 0" /></symbol>
+  <symbol id="ris-folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l3 3h7a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-11a2 2 0 0 1 2 -2" /></symbol>
+  <symbol id="ris-github" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" /></symbol>
+  <symbol id="ris-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /> <path d="M3.6 9h16.8" /> <path d="M3.6 15h16.8" /> <path d="M11.5 3a17 17 0 0 0 0 18" /> <path d="M12.5 3a17 17 0 0 1 0 18" /></symbol>
+  <symbol id="ris-grid" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4" /> <path d="M14 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4" /> <path d="M4 15a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4" /> <path d="M14 15a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4" /></symbol>
+  <symbol id="ris-hand-chip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4a1 1 0 0 1 1 -1h16a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1l0 -2" /> <path d="M8 14a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /> <path d="M19 7v7a7 7 0 0 1 -14 0v-7" /> <path d="M12 14l.01 0" /></symbol>
+  <symbol id="ris-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" /></symbol>
+  <symbol id="ris-heart-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4.5l1.5 -6l4 12l2 -9l1.5 3h4.5" /></symbol>
+  <symbol id="ris-help" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /> <path d="M12 16v.01" /> <path d="M12 13a2 2 0 0 0 .914 -3.782a1.98 1.98 0 0 0 -2.414 .483" /></symbol>
+  <symbol id="ris-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l-2 0l9 -9l9 9l-2 0" /> <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" /> <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" /></symbol>
+  <symbol id="ris-hrv" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 13.572l-7.5 7.428l-2.896 -2.868m-6.117 -8.104a5 5 0 0 1 9.013 -3.022a5 5 0 1 1 7.5 6.572" /> <path d="M3 13h2l2 3l2 -6l1 3h3" /></symbol>
+  <symbol id="ris-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M15 8h.01" /> <path d="M3 6a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v12a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3v-12" /> <path d="M3 16l5 -5c.928 -.893 2.072 -.893 3 0l5 5" /> <path d="M14 14l1 -1c.928 -.893 2.072 -.893 3 0l3 3" /></symbol>
+  <symbol id="ris-implant" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a6 6 0 0 1 6 -6h6a6 6 0 0 1 6 6a6 6 0 0 1 -6 6h-6a6 6 0 0 1 -6 -6" /></symbol>
+  <symbol id="ris-import" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4" /> <path d="M5 13v-8a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2h-5.5m-9.5 -2h7m-3 -3l3 3l-3 3" /></symbol>
+  <symbol id="ris-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" /> <path d="M12 9h.01" /> <path d="M11 12h1v4h1" /></symbol>
+  <symbol id="ris-key" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16.555 3.843l3.602 3.602a2.877 2.877 0 0 1 0 4.069l-2.643 2.643a2.877 2.877 0 0 1 -4.069 0l-.301 -.301l-6.558 6.558a2 2 0 0 1 -1.239 .578l-.175 .008h-1.172a1 1 0 0 1 -.993 -.883l-.007 -.117v-1.172a2 2 0 0 1 .467 -1.284l.119 -.13l.414 -.414h2v-2h2v-2l2.144 -2.144l-.301 -.301a2.877 2.877 0 0 1 0 -4.069l2.643 -2.643a2.877 2.877 0 0 1 4.069 0" /> <path d="M15 9h.01" /></symbol>
+  <symbol id="ris-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6a2 2 0 0 1 2 -2h8a2 2 0 0 1 2 2v8a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2l0 -8" /> <path d="M16 16v2a2 2 0 0 1 -2 2h-8a2 2 0 0 1 -2 -2v-8a2 2 0 0 1 2 -2h2" /></symbol>
+  <symbol id="ris-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 15l6 -6" /> <path d="M11 6l.463 -.536a5 5 0 0 1 7.071 7.072l-.534 .464" /> <path d="M13 18l-.397 .534a5.068 5.068 0 0 1 -7.127 0a4.972 4.972 0 0 1 0 -7.071l.524 -.463" /></symbol>
+  <symbol id="ris-linkedin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M8 11v5" /> <path d="M8 8v.01" /> <path d="M12 16v-5" /> <path d="M16 16v-3a2 2 0 1 0 -4 0" /> <path d="M3 7a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v10a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4l0 -10" /></symbol>
+  <symbol id="ris-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l11 0" /> <path d="M9 12l11 0" /> <path d="M9 18l11 0" /> <path d="M5 6l0 .01" /> <path d="M5 12l0 .01" /> <path d="M5 18l0 .01" /></symbol>
+  <symbol id="ris-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6" /> <path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0" /> <path d="M8 11v-4a4 4 0 1 1 8 0v4" /></symbol>
+  <symbol id="ris-lungs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6.081 20c1.612 0 2.919 -1.335 2.919 -2.98v-9.763c0 -.694 -.552 -1.257 -1.232 -1.257c-.205 0 -.405 .052 -.584 .15l-.13 .083c-1.46 1.059 -2.432 2.647 -3.404 5.824c-.42 1.37 -.636 2.962 -.648 4.775c-.012 1.675 1.261 3.054 2.877 3.161l.203 .007" /> <path d="M17.92 20c-1.613 0 -2.92 -1.335 -2.92 -2.98v-9.763c0 -.694 .552 -1.257 1.233 -1.257c.204 0 .405 .052 .584 .15l.13 .083c1.46 1.059 2.432 2.647 3.405 5.824c.42 1.37 .636 2.962 .648 4.775c.012 1.675 -1.261 3.054 -2.878 3.161l-.202 .007" /> <path d="M9 12a3 3 0 0 0 3 -3a3 3 0 0 0 3 3" /> <path d="M12 4v5" /></symbol>
+  <symbol id="ris-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10" /> <path d="M3 7l9 6l9 -6" /></symbol>
+  <symbol id="ris-meditation" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4l1.5 -3" /> <path d="M17 20l-1 -5h-5l1 -7" /> <path d="M4 10l4 -1l4 -1l4 1.5l4 1.5" /> <path d="M10.007 5a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /></symbol>
+  <symbol id="ris-medium" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2l0 -12" /> <path d="M8 9h1l3 3l3 -3h1" /> <path d="M8 15l2 0" /> <path d="M14 15l2 0" /> <path d="M9 9l0 6" /> <path d="M15 9l0 6" /></symbol>
+  <symbol id="ris-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l16 0" /> <path d="M4 12l16 0" /> <path d="M4 18l16 0" /></symbol>
+  <symbol id="ris-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5a3 3 0 0 1 3 -3a3 3 0 0 1 3 3v5a3 3 0 0 1 -3 3a3 3 0 0 1 -3 -3l0 -5" /> <path d="M5 10a7 7 0 0 0 14 0" /> <path d="M8 21l8 0" /> <path d="M12 17l0 4" /></symbol>
+  <symbol id="ris-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l14 0" /></symbol>
+  <symbol id="ris-more-h" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /> <path d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /> <path d="M18 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></symbol>
+  <symbol id="ris-more-v" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /> <path d="M11 19a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /> <path d="M11 5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></symbol>
+  <symbol id="ris-muscle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h1" /> <path d="M6 8h-2a1 1 0 0 0 -1 1v6a1 1 0 0 0 1 1h2" /> <path d="M6 7v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1 -1v-10a1 1 0 0 0 -1 -1h-1a1 1 0 0 0 -1 1" /> <path d="M9 12h6" /> <path d="M15 7v10a1 1 0 0 0 1 1h1a1 1 0 0 0 1 -1v-10a1 1 0 0 0 -1 -1h-1a1 1 0 0 0 -1 1" /> <path d="M18 8h2a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-2" /> <path d="M22 12h-1" /></symbol>
+  <symbol id="ris-nfc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20a3 3 0 0 1 -3 -3v-11l5 5" /> <path d="M13 4a3 3 0 0 1 3 3v11l-5 -5" /> <path d="M4 7a3 3 0 0 1 3 -3h10a3 3 0 0 1 3 3v10a3 3 0 0 1 -3 3h-10a3 3 0 0 1 -3 -3l0 -10" /></symbol>
+  <symbol id="ris-pai" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 10.941c2.333 -3.308 .167 -7.823 -1 -8.941c0 3.395 -2.235 5.299 -3.667 6.706c-1.43 1.408 -2.333 3.294 -2.333 5.588c0 3.704 3.134 6.706 7 6.706c3.866 0 7 -3.002 7 -6.706c0 -1.712 -1.232 -4.403 -2.333 -5.588c-2.084 3.353 -3.257 3.353 -4.667 2.235" /></symbol>
+  <symbol id="ris-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1l0 -12" /> <path d="M14 6a1 1 0 0 1 1 -1h2a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1l0 -12" /></symbol>
+  <symbol id="ris-pill" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l8 -8a4.94 4.94 0 0 1 7 7l-8 8a4.94 4.94 0 0 1 -7 -7" /> <path d="M8.5 8.5l7 7" /></symbol>
+  <symbol id="ris-play" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4v16l13 -8l-13 -8" /></symbol>
+  <symbol id="ris-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5l0 14" /> <path d="M5 12l14 0" /></symbol>
+  <symbol id="ris-power" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 6a7.75 7.75 0 1 0 10 0" /> <path d="M12 4l0 8" /></symbol>
+  <symbol id="ris-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3 8l4 -16l3 8h4" /></symbol>
+  <symbol id="ris-qr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4" /> <path d="M7 17l0 .01" /> <path d="M14 5a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4" /> <path d="M7 7l0 .01" /> <path d="M4 15a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1l0 -4" /> <path d="M17 7l0 .01" /> <path d="M14 14l3 0" /> <path d="M20 14l0 .01" /> <path d="M14 14l0 3" /> <path d="M14 20l3 0" /> <path d="M17 17l3 0" /> <path d="M20 17l0 3" /></symbol>
+  <symbol id="ris-radio-tower" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18.364 19.364a9 9 0 1 0 -12.728 0" /> <path d="M15.536 16.536a5 5 0 1 0 -7.072 0" /> <path d="M11 13a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /></symbol>
+  <symbol id="ris-record" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /></symbol>
+  <symbol id="ris-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" /> <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" /></symbol>
+  <symbol id="ris-respiration" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h8.5a2.5 2.5 0 1 0 -2.34 -3.24" /> <path d="M3 12h15.5a2.5 2.5 0 1 1 -2.34 3.24" /> <path d="M4 16h5.5a2.5 2.5 0 1 1 -2.34 3.24" /></symbol>
+  <symbol id="ris-run" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11.007 5a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /> <path d="M4 17l5 1l.75 -1.5" /> <path d="M15 21v-4l-4 -3l1 -6" /> <path d="M7 12v-3l5 -1l3 3l3 1" /></symbol>
+  <symbol id="ris-save" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2" /> <path d="M10 14a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /> <path d="M14 4l0 4l-6 0l0 -4" /></symbol>
+  <symbol id="ris-scale" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20l10 0" /> <path d="M6 6l6 -1l6 1" /> <path d="M12 3l0 17" /> <path d="M9 12l-3 -6l-3 6a3 3 0 0 0 6 0" /> <path d="M21 12l-3 -6l-3 6a3 3 0 0 0 6 0" /></symbol>
+  <symbol id="ris-scan" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14" /> <path d="M3 7v-2a2 2 0 0 1 2 -2h2" /> <path d="M3 17v2a2 2 0 0 0 2 2h2" /> <path d="M17 3h2a2 2 0 0 1 2 2v2" /> <path d="M17 21h2a2 2 0 0 0 2 -2v-2" /></symbol>
+  <symbol id="ris-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" /> <path d="M21 21l-6 -6" /></symbol>
+  <symbol id="ris-sensor" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12h-8a1 1 0 1 0 -1 1v8a9 9 0 0 0 9 -9" /> <path d="M16 9a5 5 0 1 0 -7 7" /> <path d="M20.486 9a9 9 0 1 0 -11.482 11.495" /></symbol>
+  <symbol id="ris-server" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v2a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3v-2" /> <path d="M3 15a3 3 0 0 1 3 -3h12a3 3 0 0 1 3 3v2a3 3 0 0 1 -3 3h-12a3 3 0 0 1 -3 -3l0 -2" /> <path d="M7 8l0 .01" /> <path d="M7 16l0 .01" /></symbol>
+  <symbol id="ris-settings" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065" /> <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /></symbol>
+  <symbol id="ris-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3" /></symbol>
+  <symbol id="ris-shield-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11.46 20.846a12 12 0 0 1 -7.96 -14.846a12 12 0 0 0 8.5 -3a12 12 0 0 0 8.5 3a12 12 0 0 1 -.09 7.06" /> <path d="M15 19l2 2l4 -4" /></symbol>
+  <symbol id="ris-signal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18l0 -3" /> <path d="M10 18l0 -6" /> <path d="M14 18l0 -9" /> <path d="M18 18l0 -12" /></symbol>
+  <symbol id="ris-sleep" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h6l-6 8h6" /> <path d="M14 4h6l-6 8h6" /></symbol>
+  <symbol id="ris-sliders" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /> <path d="M4 6l8 0" /> <path d="M16 6l4 0" /> <path d="M6 12a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /> <path d="M4 12l2 0" /> <path d="M10 12l10 0" /> <path d="M15 18a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /> <path d="M4 18l11 0" /> <path d="M19 18l1 0" /></symbol>
+  <symbol id="ris-sort" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l4 -4l4 4m-4 -4v14" /> <path d="M21 15l-4 4l-4 -4m4 4v-14" /></symbol>
+  <symbol id="ris-spo2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7.502 19.423c2.602 2.105 6.395 2.105 8.996 0c2.602 -2.105 3.262 -5.708 1.566 -8.546l-4.89 -7.26c-.42 -.625 -1.287 -.803 -1.936 -.397a1.376 1.376 0 0 0 -.41 .397l-4.893 7.26c-1.695 2.838 -1.035 6.441 1.567 8.546" /> <path d="M5 14h14" /></symbol>
+  <symbol id="ris-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873l-6.158 -3.245" /></symbol>
+  <symbol id="ris-steps" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h5.426a1 1 0 0 1 .863 .496l1.064 1.823a3 3 0 0 0 1.896 1.407l4.677 1.114a4 4 0 0 1 3.074 3.89v2.27a1 1 0 0 1 -1 1h-16a1 1 0 0 1 -1 -1v-10a1 1 0 0 1 1 -1" /> <path d="M14 13l1 -2" /> <path d="M8 18v-1a4 4 0 0 0 -4 -4h-1" /> <path d="M10 12l1.5 -3" /></symbol>
+  <symbol id="ris-stethoscope" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h-1a2 2 0 0 0 -2 2v3.5a5.5 5.5 0 0 0 11 0v-3.5a2 2 0 0 0 -2 -2h-1" /> <path d="M8 15a6 6 0 1 0 12 0v-3" /> <path d="M11 3v2" /> <path d="M6 3v2" /> <path d="M18 10a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" /></symbol>
+  <symbol id="ris-stop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2l0 -10" /></symbol>
+  <symbol id="ris-stress" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /> <path d="M9 10l.01 0" /> <path d="M15 10l.01 0" /> <path d="M9.5 15.25a3.5 3.5 0 0 1 5 0" /></symbol>
+  <symbol id="ris-sync" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10h14l-4 -4" /> <path d="M17 14h-14l4 4" /></symbol>
+  <symbol id="ris-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 7.5a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /> <path d="M3 6v5.172a2 2 0 0 0 .586 1.414l7.71 7.71a2.41 2.41 0 0 0 3.408 0l5.592 -5.592a2.41 2.41 0 0 0 0 -3.408l-7.71 -7.71a2 2 0 0 0 -1.414 -.586h-5.172a3 3 0 0 0 -3 3" /></symbol>
+  <symbol id="ris-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M11 12a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /> <path d="M7 12a5 5 0 1 0 10 0a5 5 0 1 0 -10 0" /> <path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /></symbol>
+  <symbol id="ris-temperature" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13.5a4 4 0 1 0 4 0v-8.5a2 2 0 0 0 -4 0v8.5" /> <path d="M10 9l4 0" /></symbol>
+  <symbol id="ris-terminal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9l3 3l-3 3" /> <path d="M13 15l3 0" /> <path d="M3 6a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2l0 -12" /></symbol>
+  <symbol id="ris-timer" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13a7 7 0 1 0 14 0a7 7 0 0 0 -14 0" /> <path d="M14.5 10.5l-2.5 2.5" /> <path d="M17 8l1 -1" /> <path d="M14 3h-4" /></symbol>
+  <symbol id="ris-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7l16 0" /> <path d="M10 11l0 6" /> <path d="M14 11l0 6" /> <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /> <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /></symbol>
+  <symbol id="ris-trend-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l6 6l4 -4l8 8" /> <path d="M21 10l0 7l-7 0" /></symbol>
+  <symbol id="ris-trend-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6 -6l4 4l8 -8" /> <path d="M14 7l7 0l0 7" /></symbol>
+  <symbol id="ris-unlock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2l0 -6" /> <path d="M11 16a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /> <path d="M8 11v-5a4 4 0 0 1 8 0" /></symbol>
+  <symbol id="ris-upload" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" /> <path d="M7 9l5 -5l5 5" /> <path d="M12 4l0 12" /></symbol>
+  <symbol id="ris-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0" /> <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /></symbol>
+  <symbol id="ris-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" /> <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" /> <path d="M16 3.13a4 4 0 0 1 0 7.75" /> <path d="M21 21v-2a4 4 0 0 0 -3 -3.85" /></symbol>
+  <symbol id="ris-vo2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21c.5 -4.5 2.5 -8 7 -10" /> <path d="M9 18c6.218 0 10.5 -3.288 11 -12v-2h-4.014c-9 0 -11.986 4 -12 9c0 1 0 3 2 5h3l.014 0" /></symbol>
+  <symbol id="ris-walk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /> <path d="M7 21l3 -4" /> <path d="M16 21l-2 -4l-3 -3l1 -6" /> <path d="M6 12l2 -3l4 -1l3 3l3 1" /></symbol>
+  <symbol id="ris-warning" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4" /> <path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636 -2.87l-8.106 -13.536a1.914 1.914 0 0 0 -3.274 0" /> <path d="M12 16h.01" /></symbol>
+  <symbol id="ris-watch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a3 3 0 0 1 3 -3h6a3 3 0 0 1 3 3v6a3 3 0 0 1 -3 3h-6a3 3 0 0 1 -3 -3v-6" /> <path d="M9 18v3h6v-3" /> <path d="M9 6v-3h6v3" /></symbol>
+  <symbol id="ris-water" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7.502 19.423c2.602 2.105 6.395 2.105 8.996 0c2.602 -2.105 3.262 -5.708 1.566 -8.546l-4.89 -7.26c-.42 -.625 -1.287 -.803 -1.936 -.397a1.376 1.376 0 0 0 -.41 .397l-4.893 7.26c-1.695 2.838 -1.035 6.441 1.567 8.546" /></symbol>
+  <symbol id="ris-wifi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 18l.01 0" /> <path d="M9.172 15.172a4 4 0 0 1 5.656 0" /> <path d="M6.343 12.343a8 8 0 0 1 11.314 0" /> <path d="M3.515 9.515c4.686 -4.687 12.284 -4.687 17 0" /></symbol>
+  <symbol id="ris-wind" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h8.5a2.5 2.5 0 1 0 -2.34 -3.24" /> <path d="M3 12h15.5a2.5 2.5 0 1 1 -2.34 3.24" /> <path d="M4 16h5.5a2.5 2.5 0 1 1 -2.34 3.24" /></symbol>
+</svg>
+
+
+<!-- Mobile Topbar -->
+<header class="ris-topbar" style="position:fixed; top:0; left:0; right:0; z-index:150;">
   <span class="ris-stat"><span class="v">12</span><span class="n">Level</span><span class="ris-segmeter" role="meter" aria-label="Level"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></span>
   <span class="ris-stat"><span class="v">19</span><span class="n">Cred</span><span class="ris-segmeter" role="meter" aria-label="Street Cred"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></span>
   <span class="spacer"></span>
-  <span class="ris-chip ris-chip--cyan">€$ 32 214</span>
+  <button class="theme-toggle-btn" onclick="toggleMobileTheme()" id="theme-btn" title="Alterna Dark/Light">◐ DARK</button>
+  <span class="ris-chip ris-chip--cyan" style="font-size:10px;">€$ 32,214</span>
 </header>
 
-<main class="ris-shell-content">
-  <h1 class="ris-h2" style="color:var(--ris-cyan);margin:0 0 4px">Contacts</h1>
-  <p class="ris-serial" aria-hidden="true" style="margin:0 0 12px"><b>TRN_TLCAS_8D0095</b> · VER_M6A6T6I</p>
+<!-- Mobile Content Stage -->
+<main class="ris-shell-content" style="padding-top: calc(var(--ris-topbar-h) + 12px); padding-bottom: calc(var(--ris-bottomnav-h) + 24px);">
+  <div class="mobile-stage-viewport">
+    
+    <!-- TAB 1: HOME // BIOMETRIA & TELEMETRIA -->
+    <div class="mobile-tab-view" id="tab-home">
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom: 12px;">
+        <div>
+          <h1 class="ris-h2" style="color:var(--ris-accent); margin:0 0 2px; font-size: 20px;">Telemetria // Live</h1>
+          <p class="ris-serial" aria-hidden="true" style="margin:0"><b>BIO_FEED_8X9</b> · KIROSHI FORENSIC</p>
+        </div>
+        <span class="ris-chip ris-chip--cyan">● SYNC BLE</span>
+      </div>
 
-  <div style="display:flex;flex-direction:column;gap:6px">
-    <div class="ris-listrow" data-selected="true"><div class="thumb" aria-hidden="true"></div><div class="body"><div class="title">Bartmoss Collective</div><div class="meta">1 nuovo messaggio</div></div><div class="time">▣</div></div>
-    <div class="ris-listrow"><div class="thumb" aria-hidden="true"></div><div class="body"><div class="title">Regina Jones</div><div class="meta">Fixer · Watson</div></div></div>
-    <div class="ris-listrow"><div class="thumb" aria-hidden="true"></div><div class="body"><div class="title">Delamain</div><div class="meta">Trasporti AI</div></div></div>
-    <div class="ris-listrow"><div class="thumb" aria-hidden="true"></div><div class="body"><div class="title">Evelyn Parker</div><div class="meta">Moxes · Lizzie's</div></div></div>
-    <div class="ris-listrow"><div class="thumb" aria-hidden="true"></div><div class="body"><div class="title">Jackie Welles</div><div class="meta">Heywood</div></div></div>
+      <!-- Quick KPI Strip -->
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin-bottom:12px;">
+        <div class="ris-panel" style="padding:10px;">
+          <div class="ris-eyebrow" style="font-size:9px;">HR RIPOSO</div>
+          <div style="font-family:var(--ris-font-mono); font-size:18px; font-weight:700; color:var(--ris-fg1);">54 <span style="font-size:11px; color:var(--ris-fg-meta)">bpm</span></div>
+          <div style="font-size:10px; color:var(--ris-accent);">▼ 2 bpm vs 7gg</div>
+        </div>
+        <div class="ris-panel" style="padding:10px;">
+          <div class="ris-eyebrow" style="font-size:9px;">HRV NOTTE</div>
+          <div style="font-family:var(--ris-font-mono); font-size:18px; font-weight:700; color:var(--ris-cyan);">48 <span style="font-size:11px; color:var(--ris-fg-meta)">ms</span></div>
+          <div style="font-size:10px; color:var(--ris-cyan);">▲ 6 ms (recupero)</div>
+        </div>
+      </div>
+
+      <!-- HR Trend 7 Days Chart -->
+      <div class="ris-panel" style="margin-bottom:12px;">
+        <div class="ris-panel-head">
+          <span class="ris-label">Frequenza Cardiaca · 7 giorni</span>
+          <span class="ris-chip ris-chip--cyan">line</span>
+        </div>
+        <div class="ris-panel-body" id="mob-ch-line"></div>
+      </div>
+
+      <!-- Weekly Steps Bars Chart -->
+      <div class="ris-panel" style="margin-bottom:12px;">
+        <div class="ris-panel-head">
+          <span class="ris-label">Passi · Settimana</span>
+          <span class="ris-chip ris-chip--accent">bars</span>
+        </div>
+        <div class="ris-panel-body" id="mob-ch-bars"></div>
+      </div>
+
+      <!-- Gauge Status -->
+      <div class="ris-panel" style="margin-bottom:12px; padding:12px;">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="ris-label">Carica Link BLE & Batteria</span>
+          <div id="mob-ch-gauge" style="width:110px;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: CONTATTI // MASTER-DETAIL -->
+    <div class="mobile-tab-view" id="tab-contacts" style="display:none;">
+    <!-- MASTER VIEW: LISTA CONTATTI -->
+    <div class="mobile-view mobile-view--master" id="master-view">
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom: 8px;">
+        <div>
+          <h1 class="ris-h2" style="color:var(--ris-accent); margin:0 0 2px; font-size: 20px;">HUD // Contatti</h1>
+          <p class="ris-serial" aria-hidden="true" style="margin:0"><b>TRN_TLCAS_8D0095</b> · KIROSHI FORENSIC</p>
+        </div>
+        <button class="ris-btn ris-btn--sm ris-btn--primary" onclick="openBottomSheet()">
+          ⚡ AZIONI HUD
+        </button>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:8px; margin-top:14px;">
+        <div class="ris-listrow" data-selected="true" onclick="openContactDetail('Bartmoss Collective', '1 nuovo messaggio crittografato', 'NETWATCH_ALERT', '▣ PREDATOR // LV.4')">
+          <div class="thumb" aria-hidden="true" style="display:flex; align-items:center; justify-content:center; font-family:var(--ris-font-mono); font-weight:700; font-size:11px;">NET</div>
+          <div class="body">
+            <div class="title">Bartmoss Collective</div>
+            <div class="meta">1 nuovo messaggio crittografico</div>
+          </div>
+          <div class="time">14:22</div>
+        </div>
+
+        <div class="ris-listrow" onclick="openContactDetail('Regina Jones', 'Fixer · Watson Nord', 'SEC_LVL_2', 'GIGS DISPONIBILI: 3')">
+          <div class="thumb" aria-hidden="true" style="display:flex; align-items:center; justify-content:center; font-family:var(--ris-font-mono); font-weight:700; font-size:11px;">FIX</div>
+          <div class="body">
+            <div class="title">Regina Jones</div>
+            <div class="meta">Fixer · Watson Nord</div>
+          </div>
+          <div class="time">12:05</div>
+        </div>
+
+        <div class="ris-listrow" onclick="openContactDetail('Delamain', 'Trasporti AI // Rete Autonoma', 'AI_CORE_ACTIVE', 'FLOTTA: 84% OPERATIVA')">
+          <div class="thumb" aria-hidden="true" style="display:flex; align-items:center; justify-content:center; font-family:var(--ris-font-mono); font-weight:700; font-size:11px;">AI</div>
+          <div class="body">
+            <div class="title">Delamain</div>
+            <div class="meta">Trasporti AI // Rete Autonoma</div>
+          </div>
+          <div class="time">09:41</div>
+        </div>
+
+        <div class="ris-listrow" onclick="openContactDetail('Evelyn Parker', 'Moxes · Lizzie\'s Bar', 'VIP_SECURE', 'ULTIMA POSIZIONE: KABUKI')">
+          <div class="thumb" aria-hidden="true" style="display:flex; align-items:center; justify-content:center; font-family:var(--ris-font-mono); font-weight:700; font-size:11px;">MOX</div>
+          <div class="body">
+            <div class="title">Evelyn Parker</div>
+            <div class="meta">Moxes · Lizzie's Bar</div>
+          </div>
+          <div class="time">IERI</div>
+        </div>
+
+        <div class="ris-listrow" onclick="openContactDetail('Jackie Welles', 'Heywood // Fratello di sangue', 'NEURAL_LINK_STABLE', 'BIO_CHIP_SYNC: 99.8%')">
+          <div class="thumb" aria-hidden="true" style="display:flex; align-items:center; justify-content:center; font-family:var(--ris-font-mono); font-weight:700; font-size:11px;">VAL</div>
+          <div class="body">
+            <div class="title">Jackie Welles</div>
+            <div class="meta">Heywood · Compagno di missione</div>
+          </div>
+          <div class="time">02 SET</div>
+        </div>
+      </div>
+
+      <!-- Radar Telemetry Box su Mobile -->
+      <div class="ris-panel ris-radar" style="margin-top:18px; min-height:110px; display:flex; flex-direction:column; justify-content:space-between; padding:12px;">
+        <div style="display:flex; justify-content:space-between; font-family:var(--ris-font-mono); font-size:10px; color:var(--ris-accent); z-index:3;">
+          <span>RADAR TATTICO // SENSORI LAN</span>
+          <span>RANGE: 150m</span>
+        </div>
+        <div style="text-align:center; font-family:var(--ris-font-mono); font-size:11px; font-weight:700; color:var(--ris-fg1); z-index:3;">
+          SCANLINE ATTIVA · 0 MINACCE RILEVATE
+        </div>
+        <div class="ris-serial" style="margin:0; z-index:3;">
+          BEARING: <b>042&deg;</b> · SIG_FREQ: <b>2.48 GHz</b>
+        </div>
+      </div>
+    </div>
+
+    <!-- DETAIL VIEW: SCHEDA CONTATTO (SLIDE DA DESTRA) -->
+    <div class="mobile-view mobile-view--detail" id="detail-view">
+      <div style="display:flex; align-items:center; gap:10px; margin-bottom:14px;">
+        <button class="ris-btn ris-btn--sm" onclick="closeContactDetail()" style="min-width:44px; min-height:44px;">
+          &larr; INDIETRO
+        </button>
+        <div>
+          <span class="ris-eyebrow" id="detail-tag" style="color:var(--ris-accent)">[ SCHEDA FORENSE // 0x8F ]</span>
+          <h2 class="ris-h2" id="detail-title" style="margin:0; font-size:18px; color:var(--ris-fg1);">Contatto</h2>
+        </div>
+      </div>
+
+      <div class="ris-panel" style="margin-bottom:14px;">
+        <div class="ris-panel-head">
+          <span class="ris-label" id="detail-meta">STATO CONNESSIONE</span>
+          <span class="ris-chip ris-chip--green">ONLINE</span>
+        </div>
+        <div class="ris-panel-body">
+          <p class="ris-body" id="detail-desc" style="margin:0 0 14px; font-size:13px; line-height:1.5;">
+            Dettagli telemetrici del nodo selezionato.
+          </p>
+          <div class="ris-serial" style="margin-bottom:8px;">
+            CANALE CRITTOGRAFICO: <b>CH-092_RELIC</b>
+          </div>
+          <div class="ris-serial">
+            FIRMA NEURALE: <b>0x89AA_4B_FF01</b>
+          </div>
+        </div>
+        <div class="ris-panel-foot">
+          <button class="ris-btn ris-btn--sm" onclick="triggerCallToast()">AVVIA CHIAMATA HUD</button>
+          <button class="ris-btn ris-btn--sm ris-btn--primary" onclick="openBottomSheet()">INVIA CRED</button>
+        </div>
+      </div>
+
+      <div class="ris-panel">
+        <div class="ris-panel-body ris-bracket">
+          <span class="ris-label" style="color:var(--ris-accent)">Raw Data Link</span>
+          <pre class="ris-hex" style="margin:8px 0 0">0x00 4B 49 52 4F 53 48 49   00 01 BF 22 EE DD
+0x10 1F 69 05 00 00 0F CC   99 DD 00 13 03 13</pre>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!-- TAB 3: RADAR // SCANNER SENSORI -->
+    <div class="mobile-tab-view" id="tab-radar" style="display:none;">
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom: 12px;">
+        <div>
+          <h1 class="ris-h2" style="color:var(--ris-accent); margin:0 0 2px; font-size: 20px;">Scanner // Sensori</h1>
+          <p class="ris-serial" aria-hidden="true" style="margin:0"><b>BLE_RF_MAP_09</b> · 2.48 GHz</p>
+        </div>
+        <button class="ris-btn ris-btn--sm ris-btn--secondary" onclick="showMobileToast('SCAN BLE AVVIATO: 4 NODI RILEVATI')">
+          <svg class="ris-icon"><use href="#ris-radio-tower"></use></svg> SCAN
+        </button>
+      </div>
+
+      <div class="ris-panel ris-radar" style="height:170px; margin-bottom:14px; display:flex; flex-direction:column; justify-content:space-between; padding:12px;">
+        <div style="display:flex; justify-content:space-between; font-family:var(--ris-font-mono); font-size:10px; color:var(--ris-accent); z-index:3;">
+          <span>RADAR FORENSE TATTICO</span>
+          <span>PORTATA: 15m</span>
+        </div>
+        <div style="text-align:center; font-family:var(--ris-font-mono); font-size:11px; font-weight:700; color:var(--ris-fg1); z-index:3;">
+          4 NODI BIOFEEDBACK COLLEGATI
+        </div>
+        <div class="ris-serial" style="margin:0; z-index:3;">
+          AZIMUTH: <b>074&deg;</b> · RSSI_AVG: <b>-62 dBm</b>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <div class="ris-listrow" onclick="showMobileToast('HELIO RING: BLE 5.3 STABILE (-58 dBm)')">
+          <div class="thumb" style="display:flex; align-items:center; justify-content:center; font-family:var(--ris-font-mono); font-weight:700;">RNG</div>
+          <div class="body">
+            <div class="title">Helio Ring (BLE 5.3)</div>
+            <div class="meta">HRV · SpO2 · Temp corporea · RSSI: -58 dBm</div>
+          </div>
+          <div class="time" style="color:var(--ris-green)">ONLINE</div>
+        </div>
+        <div class="ris-listrow" onclick="showMobileToast('TICWATCH PRO 5: SYNC CONTINUO (-52 dBm)')">
+          <div class="thumb" style="display:flex; align-items:center; justify-content:center; font-family:var(--ris-font-mono); font-weight:700;">WTC</div>
+          <div class="body">
+            <div class="title">TicWatch Pro 5 (Wear OS)</div>
+            <div class="meta">Frequenza continua · GPS · RSSI: -52 dBm</div>
+          </div>
+          <div class="time" style="color:var(--ris-green)">ONLINE</div>
+        </div>
+        <div class="ris-listrow" onclick="showMobileToast('MUSE 2: STREAM EEG 4 CANALI ATTIVO')">
+          <div class="thumb" style="display:flex; align-items:center; justify-content:center; font-family:var(--ris-font-mono); font-weight:700;">EEG</div>
+          <div class="body">
+            <div class="title">Muse 2 (Headband)</div>
+            <div class="meta">4 canali TP9/AF7/AF8/TP10 · RSSI: -68 dBm</div>
+          </div>
+          <div class="time" style="color:var(--ris-cyan)">STREAM</div>
+        </div>
+        <div class="ris-listrow" onclick="showMobileToast('VIVOKEY SPARK 2: SUBDERMICO PRONTO')">
+          <div class="thumb" style="display:flex; align-items:center; justify-content:center; font-family:var(--ris-font-mono); font-weight:700;">NFC</div>
+          <div class="body">
+            <div class="title">VivoKey Spark 2 (Sub-dermal)</div>
+            <div class="meta">ISO14443A · Criptochip sicuro · Distanza: 0cm</div>
+          </div>
+          <div class="time" style="color:var(--ris-accent)">READY</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: DIARIO // LOG TELEMETRICO FORENSE -->
+    <div class="mobile-tab-view" id="tab-log" style="display:none;">
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom: 12px;">
+        <div>
+          <h1 class="ris-h2" style="color:var(--ris-accent); margin:0 0 2px; font-size: 20px;">Diario // Eventi</h1>
+          <p class="ris-serial" aria-hidden="true" style="margin:0"><b>SEC_AUDIT_LOG_2026</b> · IMMUTABILE</p>
+        </div>
+        <span class="ris-chip ris-chip--violet">124 RECORD</span>
+      </div>
+
+      <div class="ris-panel" style="margin-bottom:12px;">
+        <div class="ris-panel-head">
+          <span class="ris-label">Raw Hex Telemetry Stream</span>
+        </div>
+        <div class="ris-panel-body ris-bracket">
+          <pre class="ris-hex" style="margin:0; font-size:10.5px;">06-10 23:41:02 [OK] BLE scan: OKOK C0 - Sync completato
+06-10 23:41:04 [WARN] Segnale Muse AF7 instabile - riallineato
+06-10 23:41:07 [OK] Peso 87.05 kg · BIA Z:600.0 Ohm registrato
+06-10 23:41:08 [OK] Deduplica database: 731,505 righe verificate
+06-10 23:42:15 [EVIDENCE] Batch telemetrico crittografato e salvato</pre>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; gap:8px;">
+        <div class="ris-listrow">
+          <div class="thumb" style="display:flex; align-items:center; justify-content:center; font-family:var(--ris-font-mono); font-weight:700;">EVT</div>
+          <div class="body">
+            <div class="title">Sincronizzazione Health Connect</div>
+            <div class="meta">14 record elaborati da TicWatch Pro 5</div>
+          </div>
+          <div class="time">23:40</div>
+        </div>
+        <div class="ris-listrow">
+          <div class="thumb" style="display:flex; align-items:center; justify-content:center; font-family:var(--ris-font-mono); font-weight:700;">EVT</div>
+          <div class="body">
+            <div class="title">Rilevamento Picco Stress</div>
+            <div class="meta">Punteggio 62 (+26 sopra la mediana baseline)</div>
+          </div>
+          <div class="time" style="color:var(--ris-red)">14:20</div>
+        </div>
+        <div class="ris-listrow">
+          <div class="thumb" style="display:flex; align-items:center; justify-content:center; font-family:var(--ris-font-mono); font-weight:700;">EVT</div>
+          <div class="body">
+            <div class="title">Autenticazione NFC Sottomano</div>
+            <div class="meta">VivoKey Spark 2 UID: 04:A2:8B:3F confermato</div>
+          </div>
+          <div class="time">09:12</div>
+        </div>
+      </div>
+    </div>
+
   </div>
-
-  <div class="ris-panel" style="margin-top:16px"><div class="ris-panel-body ris-bracket">
-    <span class="ris-label" style="color:var(--ris-cyan)">Device</span>
-    <pre class="ris-hex" aria-hidden="true" style="margin:8px 0 0">0x00 0f 04 0c 10 00 00 00   00 01 bf 22 ee dd
-0x10 1f 69 05 00 00 0f cc   99 dd 00 13 03 13</pre>
-  </div></div>
 </main>
 
-<nav class="ris-bottomnav" aria-label="Navigazione">
-  <a class="ris-nav-link" aria-current="page" href="#"><svg class="ris-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M4 11l8-6 8 6v8a1 1 0 0 1-1 1h-4v-6H9v6H5a1 1 0 0 1-1-1z"/></svg>Home</a>
-  <a class="ris-nav-link" href="#"><svg class="ris-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><circle cx="12" cy="8" r="3"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>Contatti</a>
-  <a class="ris-nav-link" href="#"><svg class="ris-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2"/></svg>Mappa</a>
-  <a class="ris-nav-link" href="#"><svg class="ris-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path d="M6 4h11a1 1 0 0 1 1 1v15H7a1 1 0 0 1-1-1z"/><path d="M9 4v16"/></svg>Diario</a>
+<!-- Bottom Sheet Tattico (<768px) -->
+<div id="tactical-sheet-backdrop" class="ris-sheet-backdrop" style="display:none;" onclick="handleBackdropClick(event)">
+  <div id="tactical-sheet" class="ris-sheet" onclick="event.stopPropagation()">
+    <!-- Drag Handle Tattico con touch tracking -->
+    <div class="ris-sheet-handle" id="sheet-handle"></div>
+    
+    <div class="ris-sheet-head">
+      <div style="font-family:var(--ris-font-mono); font-size:12px; font-weight:700; color:var(--ris-accent); text-transform:uppercase;">
+        [ HUD // AZIONI RAPIDE ]
+      </div>
+      <button class="ris-btn ris-btn--sm" onclick="closeBottomSheet()" style="min-width:36px; min-height:36px;">&times;</button>
+    </div>
+
+    <div class="ris-sheet-body">
+      <p style="margin:0 0 16px; font-size:13px; color:var(--ris-fg2); line-height:1.5;">
+        Trascina la maniglia verso il basso o tocca lo sfondo per chiudere questo Bottom Sheet ergonomico (zero rimbalzi gommosi, <strong>240ms <code>--ris-ease-out</code></strong>).
+      </p>
+      
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <button class="ris-btn ris-btn--primary" onclick="triggerAction('SOVRACCARICO NEURALE ESEGUITO')">
+          ⚡ TRASFERISCI €$ 5,000 (PRIMARY)
+        </button>
+        <button class="ris-btn ris-btn--secondary" onclick="triggerAction('CANALE CRITTOGRAFICO APERTO')">
+          🔒 CIFRA CONVERSAZIONE
+        </button>
+        <button class="ris-btn ris-btn--danger" onclick="triggerAction('ALLERTA NETWATCH INVIATA')">
+          &times; DISCONNETTI NODO
+        </button>
+      </div>
+    </div>
+
+    <div class="ris-sheet-foot">
+      <button class="ris-btn ris-btn--sm" onclick="closeBottomSheet()" style="width:100%;">CHIUDI PANNELLO</button>
+    </div>
+  </div>
+</div>
+
+<!-- Mobile Bottom Navigation con Micro-Punch -->
+<nav class="ris-bottomnav" aria-label="Navigazione Mobile">
+  <a class="ris-nav-link" aria-current="page" href="#" onclick="switchNavTab(this, 'home')">
+    <svg class="ris-icon" aria-hidden="true"><use href="#ris-home"/></svg>
+    <span>Home</span>
+  </a>
+  <a class="ris-nav-link" href="#" onclick="switchNavTab(this, 'contacts')">
+    <svg class="ris-icon" aria-hidden="true"><use href="#ris-users"/></svg>
+    <span>Contatti</span>
+  </a>
+  <a class="ris-nav-link" href="#" onclick="switchNavTab(this, 'radar')">
+    <svg class="ris-icon" aria-hidden="true"><use href="#ris-crosshair"/></svg>
+    <span>Mappa</span>
+  </a>
+  <a class="ris-nav-link" href="#" onclick="switchNavTab(this, 'log')">
+    <svg class="ris-icon" aria-hidden="true"><use href="#ris-file"/></svg>
+    <span>Diario</span>
+  </a>
 </nav>
 
-<div class="ris-ticker" aria-hidden="true">00:32 05 54 08 CP</div>
+<!-- Toast Container Mobile -->
+<div class="ris-toast-stack" id="toast-stack"></div>
+
+<!-- Mobile Scripts for Touch, Sheet & Master-Detail -->
+<script>
+  function toggleMobileTheme() {
+    const html = document.documentElement;
+    const curr = html.getAttribute('data-theme') || 'dark';
+    const next = curr === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    document.getElementById('theme-btn').innerText = next === 'dark' ? '◐ DARK' : '◐ LIGHT';
+  }
+
+  function openContactDetail(title, meta, tag, desc) {
+    document.getElementById('detail-title').innerText = title;
+    document.getElementById('detail-meta').innerText = meta;
+    document.getElementById('detail-tag').innerText = '[ ' + tag + ' ]';
+    document.getElementById('detail-desc').innerText = desc;
+    
+    document.getElementById('master-view').classList.add('pushed');
+    document.getElementById('detail-view').classList.add('active');
+  }
+
+  function closeContactDetail() {
+    document.getElementById('master-view').classList.remove('pushed');
+    document.getElementById('detail-view').classList.remove('active');
+  }
+
+  let homeChartsInit = false;
+  function initHomeCharts() {
+    if (homeChartsInit) return;
+    homeChartsInit = true;
+    if (window.RisCharts) {
+      RisCharts.line(document.getElementById('mob-ch-line'),
+        [62,58,64,61,57,55,59,63,60,56,54,58,61,57],
+        { label: 'HR 7 giorni, media 59 bpm', unit: ' bpm', height: 110 });
+      RisCharts.bars(document.getElementById('mob-ch-bars'),
+        [6400,8200,5100,9800,7400,11200,8412],
+        { label: 'Passi settimana', highlight: 6, unit: ' passi', height: 110, categories: ['LUN','MAR','MER','GIO','VEN','SAB','DOM'] });
+      RisCharts.gauge(document.getElementById('mob-ch-gauge'), 0.85, { caption: 'PWR', height: 48, width: 110 });
+    }
+  }
+
+  function switchNavTab(el, tabName) {
+    document.querySelectorAll('.ris-bottomnav .ris-nav-link').forEach(link => {
+      link.removeAttribute('aria-current');
+      link.removeAttribute('data-active');
+    });
+    el.setAttribute('aria-current', 'page');
+    el.setAttribute('data-active', 'true');
+
+    ['tab-home', 'tab-contacts', 'tab-radar', 'tab-log'].forEach(id => {
+      const v = document.getElementById(id);
+      if (v) v.style.display = 'none';
+    });
+
+    const target = document.getElementById('tab-' + (tabName === 'radar' ? 'radar' : (tabName === 'log' ? 'log' : (tabName === 'contacts' ? 'contacts' : 'home'))));
+    if (target) {
+      target.style.display = 'block';
+      if (tabName === 'home') initHomeCharts();
+    }
+
+    if (tabName !== 'contacts') {
+      closeContactDetail();
+    }
+  }
+
+  // Init home charts on initial load
+  window.addEventListener('DOMContentLoaded', () => {
+    initHomeCharts();
+  });
+  setTimeout(initHomeCharts, 100);
+
+  /* Bottom Sheet Logic with Native Touch Drag */
+  const sheetBackdrop = document.getElementById('tactical-sheet-backdrop');
+  const sheet = document.getElementById('tactical-sheet');
+  const handle = document.getElementById('sheet-handle');
+  
+  let startY = 0;
+  let currentY = 0;
+  let isDragging = false;
+
+  function openBottomSheet() {
+    sheetBackdrop.style.display = 'flex';
+    sheet.removeAttribute('data-dismissing');
+    sheet.style.transform = '';
+  }
+
+  function closeBottomSheet() {
+    sheet.setAttribute('data-dismissing', 'true');
+    setTimeout(() => {
+      sheetBackdrop.style.display = 'none';
+      sheet.removeAttribute('data-dismissing');
+      sheet.style.transform = '';
+    }, 160);
+  }
+
+  function handleBackdropClick(e) {
+    if (e.target.id === 'tactical-sheet-backdrop') {
+      closeBottomSheet();
+    }
+  }
+
+  /* Lightweight Native Touch Drag */
+  handle.addEventListener('touchstart', (e) => {
+    startY = e.touches[0].clientY;
+    isDragging = true;
+    sheet.style.transition = 'none';
+  }, { passive: true });
+
+  window.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    currentY = e.touches[0].clientY;
+    const deltaY = currentY - startY;
+    if (deltaY > 0) {
+      sheet.style.transform = `translateY(${deltaY}px)`;
+    }
+  }, { passive: true });
+
+  window.addEventListener('touchend', (e) => {
+    if (!isDragging) return;
+    isDragging = false;
+    sheet.style.transition = 'transform var(--ris-dur-fast) var(--ris-ease-snap)';
+    const deltaY = currentY - startY;
+    // Se trascinato per oltre 70px o 30% dell'altezza, chiudi
+    if (deltaY > 70) {
+      closeBottomSheet();
+    } else {
+      sheet.style.transform = 'translateY(0)';
+    }
+    startY = 0;
+    currentY = 0;
+  });
+
+  function triggerAction(msg) {
+    closeBottomSheet();
+    showMobileToast(msg);
+  }
+
+  function triggerCallToast() {
+    showMobileToast('CHIAMATA HUD CIFRATA IN CORSO...');
+  }
+
+  function showMobileToast(msg) {
+    const stack = document.getElementById('toast-stack');
+    const toast = document.createElement('div');
+    toast.className = 'ris-toast';
+    toast.innerHTML = `
+      <div>
+        <div class="title">[ HUD // NOTIFICA ]</div>
+        <div style="font-size:12px; margin-top:2px;">${msg}</div>
+      </div>
+    `;
+    stack.appendChild(toast);
+    setTimeout(() => {
+      toast.setAttribute('data-dismissing', 'true');
+      setTimeout(() => toast.remove(), 160);
+    }, 3500);
+  }
+</script>
+
 </body>
 </html>

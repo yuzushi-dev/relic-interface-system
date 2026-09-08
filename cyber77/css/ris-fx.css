@@ -131,6 +131,208 @@
 }
 @keyframes ris-scan { to { top: 100%; } }
 
+/* RADAR SWEEP HUD — scanning tattico continuo a 2.2s lineare con reticolo */
+.ris-radar {
+  position: relative;
+  overflow: hidden;
+  background: var(--ris-surface-1);
+  border: 1px solid var(--ris-line-strong);
+}
+.ris-radar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at center, transparent 30%, var(--ris-line-faint) 31%, transparent 32%),
+    radial-gradient(circle at center, transparent 60%, var(--ris-line-faint) 61%, transparent 62%),
+    linear-gradient(to right, transparent 49.5%, var(--ris-line-faint) 49.5%, var(--ris-line-faint) 50.5%, transparent 50.5%),
+    linear-gradient(to bottom, transparent 49.5%, var(--ris-line-faint) 49.5%, var(--ris-line-faint) 50.5%, transparent 50.5%);
+  pointer-events: none;
+  opacity: 0.6;
+}
+.ris-radar::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: -35%; height: 35%;
+  background: linear-gradient(180deg, transparent, var(--ris-cyan-glow) 80%, var(--ris-cyan) 100%);
+  border-bottom: 1.5px solid var(--ris-cyan);
+  pointer-events: none;
+  z-index: 2;
+  animation: ris-radar-sweep 2.2s linear infinite;
+}
+@keyframes ris-radar-sweep {
+  0%   { top: -35%; opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* TOAST HUD STACKING (Sonner / Emil Kowalski style) */
+.ris-toast-stack {
+  position: fixed;
+  right: var(--ris-s4);
+  bottom: var(--ris-s4);
+  z-index: 300;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 10px;
+  width: min(380px, calc(100vw - 32px));
+  pointer-events: none;
+}
+.ris-toast {
+  pointer-events: auto;
+  transition: transform var(--ris-dur-base) var(--ris-ease-out),
+              opacity var(--ris-dur-base) var(--ris-ease-out);
+  animation: ris-toast-enter var(--ris-dur-enter) var(--ris-ease-out) both;
+}
+.ris-toast[data-dismissing="true"] {
+  animation: ris-toast-exit var(--ris-dur) var(--ris-ease-snap) both;
+}
+.ris-toast-stack > .ris-toast:nth-last-child(2) {
+  transform: scale(0.97) translateY(4px);
+  opacity: 0.9;
+}
+.ris-toast-stack > .ris-toast:nth-last-child(n+3) {
+  transform: scale(0.94) translateY(8px);
+  opacity: 0.75;
+}
+@keyframes ris-toast-enter {
+  from { opacity: 0; transform: translateY(16px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes ris-toast-exit {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to   { opacity: 0; transform: translateY(10px) scale(0.96); }
+}
+
+/* ----------------------------------------------------------------------------
+   CHARTS TELEMETRY & TACTICAL HUD (ris-charts.js FX)
+   Ambient micro-sweeps, peak warnings, and interactive scrubber overlay.
+   All data rendered is 100% real.
+   -------------------------------------------------------------------------- */
+
+/* SVG Container enhancements */
+.ris-chart-interactive {
+  cursor: crosshair;
+  touch-action: none;
+  outline: none;
+}
+.ris-chart-interactive:focus-visible {
+  outline: 1px solid var(--ris-accent-line);
+  outline-offset: 1px;
+}
+
+/* Ambient idle micro-sweep across grid */
+.ris-chart-ambient-sweep {
+  pointer-events: none;
+  will-change: transform, opacity;
+  animation: ris-chart-sweep 5.5s linear infinite;
+}
+@keyframes ris-chart-sweep {
+  0%   { transform: translateX(-100%); opacity: 0; }
+  12%  { opacity: 0.14; }
+  88%  { opacity: 0.14; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+[data-theme="light"] .ris-chart-ambient-sweep {
+  opacity: 0.08;
+}
+/* Suspend ambient sweep when inspecting/scrubbing */
+.ris-chart-interactive:hover .ris-chart-ambient-sweep,
+.ris-chart-interactive.is-scrubbing .ris-chart-ambient-sweep {
+  opacity: 0 !important;
+  animation-play-state: paused;
+}
+
+/* Peak warning micro-pulse (points above threshold) */
+.ris-peak-pulse {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: ris-peak-pulse 1.8s ease-in-out infinite;
+}
+@keyframes ris-peak-pulse {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 1px var(--ris-red)); }
+  50%      { transform: scale(1.35); filter: drop-shadow(0 0 5px var(--ris-red)); }
+}
+
+/* Active Gauge segment breathing */
+.ris-gauge-breathing {
+  animation: ris-gauge-breathing 2.2s ease-in-out infinite;
+}
+@keyframes ris-gauge-breathing {
+  0%, 100% { opacity: 1; filter: drop-shadow(0 0 1px currentColor); }
+  50%      { opacity: 0.6; filter: drop-shadow(0 0 4px currentColor); }
+}
+
+/* Bar columns focus overdrive */
+rect.ris-bar-col {
+  transition: opacity 0.15s ease, filter 0.15s ease;
+  cursor: crosshair;
+}
+rect.ris-bar-col:hover,
+rect.ris-bar-col.is-active {
+  opacity: 1 !important;
+  filter: drop-shadow(0 0 5px currentColor);
+  stroke: var(--ris-fg1);
+  stroke-width: 0.75;
+}
+svg.has-active-bar rect.ris-bar-col:not(:hover):not(.is-active) {
+  opacity: 0.25 !important;
+}
+
+/* Scrubber Overlay Elements (Rendered inside SVG) */
+.ris-scrubber-group {
+  pointer-events: none;
+}
+.ris-scrubber-line {
+  stroke: var(--ris-cyan, #00e5ff);
+  stroke-width: 1;
+  stroke-dasharray: 2 2;
+  opacity: 0.85;
+}
+.ris-scrubber-reticle {
+  fill: none;
+  stroke: var(--ris-cyan, #00e5ff);
+  stroke-width: 1.5;
+}
+.ris-scrubber-badge-bg {
+  fill: var(--ris-surface-0, #0c0d10);
+  stroke: var(--ris-accent-2, var(--ris-cyan, #00e5ff));
+  stroke-width: 1;
+  rx: 2px;
+}
+.ris-scrubber-text-main {
+  font-family: var(--ris-font-mono, monospace);
+  font-size: 8.5px;
+  font-weight: 600;
+  fill: var(--ris-fg1, #ffffff);
+  letter-spacing: 0.04em;
+}
+.ris-scrubber-text-sub {
+  font-family: var(--ris-font-mono, monospace);
+  font-size: 7.5px;
+  fill: var(--ris-cyan, #00e5ff);
+  letter-spacing: 0.03em;
+}
+.ris-scrubber-text-alert {
+  font-family: var(--ris-font-mono, monospace);
+  font-size: 7.5px;
+  font-weight: 700;
+  fill: var(--ris-red, #ff2a55);
+  letter-spacing: 0.05em;
+}
+
+[data-theme="light"] .ris-scrubber-badge-bg {
+  fill: var(--ris-surface-0, #ffffff);
+  stroke: var(--ris-accent, #0066aa);
+}
+[data-theme="light"] .ris-scrubber-text-main {
+  fill: var(--ris-fg1, #111111);
+}
+[data-theme="light"] .ris-scrubber-text-sub {
+  fill: var(--ris-accent, #0066aa);
+}
+
 /* ----------------------------------------------------------------------------
    REDUCED MOTION — static fallbacks that keep the aesthetic.
    (ris.css already kills all animation; here we undo layout-breaking states.)
@@ -148,4 +350,11 @@
   .ris-playing > i:nth-child(odd)  { transform: scaleY(0.5); }
   .ris-playing > i:nth-child(even) { transform: scaleY(0.85); }
   .ris-scan::after { animation: none; display: none; }
+  .ris-radar::after { animation: none; display: none; }
+  .ris-toast { animation: none !important; transform: none !important; }
+  /* chart ambient motion neutralized */
+  .ris-chart-ambient-sweep { animation: none !important; display: none !important; }
+  .ris-peak-pulse { animation: none !important; transform: none !important; }
+  .ris-gauge-breathing { animation: none !important; opacity: 1 !important; }
+  rect.ris-bar-col { transition: none !important; }
 }

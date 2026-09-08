@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="dark" data-brand="relic" data-skin="cyber">
+<head>
+  <meta charset="UTF-8">
+  <title>RIS Charts Interactive & Telemetry Test Harness</title>
+  <link rel="stylesheet" href="../css/ris-tokens.css">
+  <link rel="stylesheet" href="../css/ris.css">
+  <link rel="stylesheet" href="../css/ris-fx.css">
+  <link rel="stylesheet" href="../css/ris-skin-cyber.css">
+  <style>
+    body { padding: 24px; background: var(--ris-bg-app); color: var(--ris-fg1); font-family: var(--ris-font-sans); }
+    .test-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 900px; margin-bottom: 24px; }
+    .test-box { background: var(--ris-surface-1); border: 1px solid var(--ris-line); padding: 16px; }
+    #test-results { font-family: var(--ris-font-mono); font-size: 12px; white-space: pre-wrap; background: #000; padding: 16px; border: 1px solid var(--ris-line-strong); }
+  </style>
+</head>
+<body>
+  <h1 class="ris-h1">RIS Charts Tactical Scrubber & Ambient FX Test</h1>
+  <div class="test-grid">
+    <div class="test-box">
+      <div class="ris-label">LINE CHART (HR 7 GIORNI)</div>
+      <div id="test-line"></div>
+    </div>
+    <div class="test-box">
+      <div class="ris-label">BARS CHART (PASSI SETTIMANA)</div>
+      <div id="test-bars"></div>
+    </div>
+    <div class="test-box">
+      <div class="ris-label">INTRADAY CHART (STRESS CON PICCHI)</div>
+      <div id="test-intraday"></div>
+    </div>
+    <div class="test-box">
+      <div class="ris-label">GAUGE HUD</div>
+      <div id="test-gauge"></div>
+    </div>
+  </div>
+
+  <div id="test-results">Inizializzazione test...</div>
+
+  <script src="../js/ris-charts.js"></script>
+  <script>
+    const results = { passed: [], failed: [] };
+    function assert(desc, condition) {
+      if (condition) {
+        results.passed.push(desc);
+      } else {
+        results.failed.push(desc);
+        console.error('ASSERTION FAILED:', desc);
+      }
+    }
+
+    try {
+      // 1. Line Chart Test
+      const lineData = [62, 58, 64, 61, 57, 55, 59, 63, 60, 56, 54, 58, 61, 57];
+      const lineSvg = RisCharts.line(document.getElementById('test-line'), lineData, {
+        label: 'HR 7 giorni', unit: ' bpm'
+      });
+      assert('Line SVG created', !!lineSvg);
+      assert('Line chart has interactive class', lineSvg.classList.contains('ris-chart-interactive'));
+      assert('Line chart has tabindex 0', lineSvg.getAttribute('tabindex') === '0');
+      
+      const lineScrubber = lineSvg.querySelector('.ris-scrubber-group');
+      assert('Line scrubber overlay exists', !!lineScrubber);
+      assert('Line scrubber initially hidden', lineScrubber.style.display === 'none');
+      
+      const lineSweep = lineSvg.querySelector('.ris-chart-ambient-sweep');
+      assert('Line chart ambient sweep exists', !!lineSweep);
+
+      // Trigger keyboard ArrowRight on line chart
+      lineSvg.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
+      assert('Line scrubber visible after ArrowRight', lineScrubber.style.display !== 'none');
+      const lineTextVal = lineSvg.querySelector('.ris-scrubber-text-sub').textContent;
+      assert('Line scrubber displays real value 62 bpm', lineTextVal.includes('62 bpm'));
+
+      // ArrowRight again (point 2)
+      lineSvg.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' }));
+      const lineTextVal2 = lineSvg.querySelector('.ris-scrubber-text-sub').textContent;
+      assert('Line scrubber updates to real value 58 bpm', lineTextVal2.includes('58 bpm'));
+
+      // 2. Bars Chart Test
+      const barData = [6400, 8200, 5100, 9800, 7400, 11200, 8412];
+      const categories = ['LUN', 'MAR', 'MER', 'GIO', 'VEN', 'SAB', 'DOM'];
+      const barsSvg = RisCharts.bars(document.getElementById('test-bars'), barData, {
+        label: 'Passi settimana', highlight: 6, unit: ' passi', categories
+      });
+      assert('Bars SVG created', !!barsSvg);
+      const barRects = barsSvg.querySelectorAll('rect.ris-bar-col');
+      assert('7 bar columns created with ris-bar-col', barRects.length === 7);
+      
+      // Keyboard navigate to bar index 5 (11200 - MAX)
+      barsSvg.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' })); // 0
+      for (let i = 0; i < 5; i++) barsSvg.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' })); // reaches 5 (SAB)
+      assert('Bars SVG has has-active-bar class', barsSvg.classList.contains('has-active-bar'));
+      assert('Bar 5 has is-active class', barRects[5].classList.contains('is-active'));
+      const barBadge = barsSvg.querySelector('.ris-scrubber-badge');
+      assert('Bars HUD badge visible', barBadge.style.display !== 'none');
+      const barValText = barBadge.querySelector('.ris-scrubber-text-sub').textContent;
+      assert('Bars HUD displays real 11200 / 11.200 passi', barValText.includes('11') && barValText.includes('passi'));
+      const barAlert = barBadge.querySelector('.ris-scrubber-text-alert');
+      assert('Bars HUD identifies max with [PICCO MAX]', barAlert.textContent.includes('[PICCO MAX]'));
+
+      // 3. Intraday Chart Test
+      const day = new Date(1700000000000);
+      const intradayPts = [
+        { t: 1700000000000, v: 35 },
+        { t: 1700000000000 + 3600000, v: 42 },
+        { t: 1700000000000 + 7200000, v: 58 } // Peak > 55
+      ];
+      const intraSvg = RisCharts.intraday(document.getElementById('test-intraday'), intradayPts, {
+        baseline: { median: 36, lo: 30, hi: 48 },
+        peakThreshold: 55,
+        unit: ' pts'
+      });
+      assert('Intraday SVG created', !!intraSvg);
+      const peakPulseMarker = intraSvg.querySelector('rect.ris-peak-pulse');
+      assert('Intraday peak point has ris-peak-pulse class', !!peakPulseMarker);
+
+      // Keyboard navigate to point 2 (peak point)
+      intraSvg.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' })); // 0
+      intraSvg.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' })); // 1
+      intraSvg.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight' })); // 2
+      const intraAlert = intraSvg.querySelector('.ris-scrubber-text-alert');
+      assert('Intraday peak displays ALERTA PICCO', intraAlert.textContent.includes('ALERTA PICCO'));
+      const intraSub = intraSvg.querySelector('.ris-scrubber-text-sub').textContent;
+      assert('Intraday displays real delta (+22)', intraSub.includes('Δ +22'));
+
+      // 4. Gauge Chart Test
+      const gaugeSvg = RisCharts.gauge(document.getElementById('test-gauge'), 0.68, { caption: 'BATT' });
+      assert('Gauge SVG created', !!gaugeSvg);
+      const breathingSeg = gaugeSvg.querySelector('.ris-gauge-breathing');
+      assert('Active gauge segment has ris-gauge-breathing class', !!breathingSeg);
+
+      // Final report
+      const report = {
+        total: results.passed.length + results.failed.length,
+        passedCount: results.passed.length,
+        failedCount: results.failed.length,
+        passed: results.passed,
+        failed: results.failed
+      };
+
+      document.getElementById('test-results').textContent = JSON.stringify(report, null, 2);
+      window.__TEST_REPORT__ = report;
+
+    } catch (err) {
+      console.error(err);
+      results.failed.push('EXCEPTION: ' + err.message);
+      document.getElementById('test-results').textContent = JSON.stringify(results, null, 2);
+      window.__TEST_REPORT__ = results;
+    }
+  </script>
+</body>
+</html>

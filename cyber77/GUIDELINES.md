@@ -26,10 +26,12 @@ hardcodare hex nei componenti.
   opt-in e non vengono mai applicate dai componenti di default.
 - **Texture con parsimonia**: grid 32px sul background, scanline solo su superfici
   hero/modal. Mai sopra testo denso.
-- **Motion meccanico**: 90–160ms, steps() per blink, niente bounce. La chrome di
-  genere (CRT/scanline rolling/noise/glitch/signal-tear) è stata rimossa: non
-  portava payload. Resta solo `.ris-holo` (shimmer del marchio, scoped ai loghi)
-  e `.ris-boot` (stagger sobrio).
+- **Motion System (Kiroshi Tactical HUD + Emil Kowalski)**:
+  1. *Durate vincolanti per layer*: 80ms micro-feedback (`:active scale(0.97)`), 140ms hover/switch, 200ms accordion/tabs, 240ms modal/sheet enter.
+  2. *Divieto di `ease-in` per elementi che entrano*: l'utente si aspetta reattività immediata; usa sempre `--ris-ease-out` (`cubic-bezier(0.22, 1, 0.36, 1)`) o `--ris-ease-snap` (`cubic-bezier(0.16, 1, 0.3, 1)`).
+  3. *Proprietà composited-only*: animare solo `transform` e `opacity`. Per accordion e disclosure usa CSS Grid (`grid-template-rows: 0fr → 1fr`) evitando ricalcoli di layout (`height`) a 60fps.
+  4. *Mobile Ergonomics*: `@media (hover: hover)` per evitare lo "sticky hover" su touchscreen; target touch ≥44px; modali adattate a Bottom Sheet (`.ris-sheet`) con maniglia tattica e gesture touch nativo leggero.
+  5. *Light Mode drafting*: gli effetti continui in Light Mode usano tonalità azzurro/ardesia a bassa opacità (10-15%) stile cianografia tecnica per preservare il comfort visivo.
 - **Tipografia**: Archivo (display + body, grotesk da strumento), JetBrains
   Mono (telemetria/valori). Floor 11px solo per metadati.
 

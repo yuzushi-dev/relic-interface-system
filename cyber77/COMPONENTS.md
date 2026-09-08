@@ -119,17 +119,21 @@ SVG, zero dipendenze, stile RIS (grid dura, stroke neon + glow, marker quadrati,
 label mono). Tutte le animazioni rispettano `prefers-reduced-motion`.
 Un grafico è decorativo: fornire SEMPRE alternativa testuale/tabellare;
 `opts.label` diventa `aria-label` riassuntivo.
+Tutti i grafici supportano la telemetria Kiroshi HUD al 100% su dati reali,
+scrubber tattico interattivo (hover mouse, touch drag, frecce tastiera)
+e micro-sweep phosphor continuo (4.5s) con trigger su viewport scroll.
 
 | Funzione | Uso | Opzioni chiave |
 |---|---|---|
-| `RisCharts.line(el, points, opts)` | serie temporali (HR, peso…) | `color`, `area`, `gridX/Y`, `animate` |
-| `RisCharts.bars(el, values, opts)` | conteggi (passi/giorno) | `color`, `highlight`, `gap` |
-| `RisCharts.spark(el, points)` | sparkline inline 96×28 | come line |
-| `RisCharts.gauge(el, value01, opts)` | gauge segmentato HUD | `segments`, `caption` |
-| `RisCharts.wave(el, opts)` | waveform EEG animata | `freq`, `amp`, `animate:false` per statica |
-| `RisCharts.bands(el, bands, opts)` | bande EEG / barre orizzontali | `[{name,value,color}]` |
+| `RisCharts.line(el, points, opts)` | serie temporali (HR, peso…) con scrubber tattico | `unit`, `categories`, `color`, `area`, `gridX/Y`, `interactive`, `ambientSweep`, `animate` |
+| `RisCharts.bars(el, values, opts)` | conteggi con column focus overdrive & HUD callout | `unit`, `categories`, `color`, `highlight`, `gap`, `interactive`, `ambientSweep`, `animate` |
+| `RisCharts.spark(el, points)` | sparkline inline 96×28 (compatto, non-interattivo) | come line |
+| `RisCharts.gauge(el, value01, opts)` | gauge segmentato HUD con breathing pulse attivo | `segments`, `caption`, `unit`, `interactive` |
+| `RisCharts.wave(el, opts)` | waveform EEG animata continua (RAF) | `freq`, `amp`, `animate:false` per statica |
+| `RisCharts.bands(el, bands, opts)` | bande EEG / barre orizzontali animate | `[{name,value,color}]`, `animate` |
 | `RisCharts.eegWaveform(el, channels, opts)` | waveform EEG multi-canale da dati reali (EEG live) | `[[v,…],…]`, `colors`, `width`, `height` |
-| `RisCharts.intraday(el, points, opts)` | andamento intraday (stress/HR del giorno) con banda baseline + marcatori picco | `[{t,v}]`, `baseline:{median,lo,hi}`, `peakThreshold`, `hourStep`, `color` |
+| `RisCharts.intraday(el, points, opts)` | trend del giorno con baseline band, peak markers & HUD scrubber | `[{t,v}]`, `baseline:{median,lo,hi}`, `peakThreshold`, `unit`, `hourStep`, `color`, `interactive` |
+| `RisCharts.replay(elOrSvg)` | riesegue a comando le animazioni di ingresso | accetta SVG o contenitore genitore |
 
 ## FX — Glitch / CRT (`css/ris-fx.css`)
 
@@ -162,11 +166,14 @@ WCAG 1.4.1); fallback statico ma riconoscibile sotto reduced-motion.
 | `.ris-playing` | riproduzione | `<span class="ris-playing"><i></i><i></i><i></i><i></i></span>` (equalizer) |
 | `.ris-scan` | scanning/connessione | su un contenitore → riga di sweep verticale (richiede `overflow:hidden`, già nella classe) |
 
-## Icone
+## Icone (Tabler Icons · Licenza MIT)
+
+Il set iconografico del sistema è basato sulla libreria open-source **Tabler Icons** (Licenza MIT pura, griglia 24×24px, `stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round;`).
+Garantisce massima precisione geometrica, qualità vettoriale professionale ed eleganza costante su HUD, telemetria e mobile.
 
 `<svg class="ris-icon" aria-hidden="true"><use href="icons/ris-icons.svg#ris-NAME"/></svg>`
-Taglie: `--sm` 14, default 18, `--lg` 24, `--xl` 32.
-Set: generiche (nav, azioni, stato, sistema, connettività, chart) +
+Taglie: `--sm` 14px, default 18px, `--lg` 24px, `--xl` 32px.
+Set completo di 132 icone: generiche (nav, azioni, stato, sistema, connettività, chart) +
 biofeedback (`heart`, `heart-pulse`, `ecg`, `hrv`, `pulse`, `bp`, `blood-drop`,
 `spo2`, `brain`, `eeg`, `meditation`, `stress`, `focus`, `sleep`, `bed`, `lungs`,
 `respiration`, `wind`, `steps`, `run`, `walk`, `flame`, `vo2`, `pai`, `dumbbell`,
@@ -207,3 +214,72 @@ bordo giallo, `.ris-panel`/`.ris-bracket` rossi, focus input con glow cyan.
 lo skin nasconde `.ris-ruler`, alza il ticker sopra la nav, dà alla bottomnav la
 riga rossa glow, compatta `.ris-listrow` e `.ris-stat`, e passa a
 `background-attachment:scroll` (no jank iOS). Demo: `docs/mobile.html`.
+
+## Componenti Animati & Motion System (v2)
+
+Integrazione Kiroshi Tactical HUD + ingegneria del movimento Emil Kowalski (zero reflow, 60fps, WCAG 2.2 AA).
+
+### 1. Accordion Disclosure (`.ris-acc`)
+Transizione a **CSS Grid (`grid-template-rows: 0fr → 1fr`)** in 200ms (`--ris-dur-base`) con `--ris-ease-out`:
+```html
+<div class="ris-acc">
+  <div class="ris-acc-item" data-open="false">
+    <button class="ris-acc-trigger" aria-expanded="false" onclick="this.setAttribute('aria-expanded', this.getAttribute('aria-expanded')==='true'?'false':'true'); this.parentElement.setAttribute('data-open', this.getAttribute('aria-expanded'))">
+      <span>[ PARTE 01 ] // CANALE CRITTOGRAFICO</span>
+      <span class="ris-acc-chevron">▼</span>
+    </button>
+    <div class="ris-acc-drawer">
+      <div class="ris-acc-body">
+        <div class="ris-acc-body-inner">Contenuto fluido a zero reflow.</div>
+      </div>
+    </div>
+  </div>
+</div>
+```
+
+### 2. Bottom Sheet Mobile (`.ris-sheet`)
+Sostituisce le modali centrate su schermi `<768px`. Scivola dal basso (`translateY(100%) → translateY(0)`) in 240ms (`--ris-dur-enter` con `--ris-ease-out`):
+```html
+<div class="ris-sheet-backdrop">
+  <div class="ris-sheet">
+    <div class="ris-sheet-handle"></div>
+    <div class="ris-sheet-head">
+      <div class="title">[ HUD // AZIONI RAPIDE ]</div>
+      <button class="ris-btn ris-btn--sm">&times;</button>
+    </div>
+    <div class="ris-sheet-body">...</div>
+    <div class="ris-sheet-foot">...</div>
+  </div>
+</div>
+```
+
+### 3. Switch Meccanico (`.ris-switch`)
+Slitta fisica angolare a 140ms (`--ris-dur-fast` con `--ris-ease-snap`):
+```html
+<label class="ris-switch">
+  <input type="checkbox" checked>
+  <span>KIROSHI SCANNER OVERLAY</span>
+</label>
+```
+
+### 4. Radar Sweep HUD (`.ris-radar`)
+Scanning beam continuo a 2.2s con reticolo ottico e degradazione statica sotto `prefers-reduced-motion`:
+```html
+<div class="ris-panel ris-radar" style="min-height:120px;">
+  <!-- contenuto telemetrico con z-index:2 -->
+</div>
+```
+
+### 5. Toast Stack di Sistema (`.ris-toast-stack`)
+Impilamento a cascata con scale progressivo (`scale(0.96)`) stile Sonner:
+```html
+<div class="ris-toast-stack">
+  <div class="ris-toast">
+    <div>
+      <span class="title">[ TELEMETRIA AGGIORNATA ]</span>
+      <div>Pacchetto #084-K ricevuto e validato.</div>
+    </div>
+  </div>
+</div>
+```
+

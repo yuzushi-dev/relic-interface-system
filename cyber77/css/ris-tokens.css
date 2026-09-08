@@ -64,11 +64,16 @@
   --ris-clip-sm: 6px;   /* chips, inputs, buttons */
   --ris-clip-lg: 16px;  /* modals, hero panels */
 
-  /* Motion — quick + mechanical, never bouncy */
-  --ris-ease:      cubic-bezier(0.2, 0.8, 0.2, 1);
-  --ris-ease-snap: cubic-bezier(0.16, 1, 0.3, 1);
-  --ris-dur-fast:  90ms;
-  --ris-dur:       160ms;
+  /* Motion — Kiroshi Tactical HUD + Emil Kowalski, never bouncy */
+  --ris-ease:         cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ris-ease-snap:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ris-ease-out:     cubic-bezier(0.22, 1, 0.36, 1);
+  --ris-ease-in-out:  cubic-bezier(0.65, 0, 0.35, 1);
+  --ris-dur-instant:  80ms;
+  --ris-dur-fast:     140ms;
+  --ris-dur-base:     200ms;
+  --ris-dur-enter:    240ms;
+  --ris-dur:          160ms;
 
   /* Layout */
   --ris-topbar-h:    52px;

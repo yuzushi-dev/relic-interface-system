@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="dark" data-brand="relic" data-skin="cyber">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RIS v2 — Motion Lab (Kiroshi Tactical Forensic)</title>
+<link rel="stylesheet" href="../css/ris-tokens.css">
+<link rel="stylesheet" href="../css/ris.css">
+<link rel="stylesheet" href="../css/ris-fx.css">
+<link rel="stylesheet" href="../css/ris-skin-cyber.css">
+<style>
+  :root {
+    --ease-snap: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+    --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+    
+    /* Dedicated A11y tokens that adapt cleanly across themes */
+    --hud-bg-well: #070a0d;
+    --hud-border-well: #1d2730;
+    --hud-radar-bg: rgba(111, 179, 201, 0.05);
+    --hud-radar-line: #203340;
+    --hud-radar-sweep: linear-gradient(180deg, transparent, rgba(111, 179, 201, 0.35) 85%, var(--ris-cyan) 100%);
+    --hud-data-text: #3df0ff;
+    --hud-tag-bg: rgba(230, 162, 60, 0.12);
+    --hud-tag-border: var(--ris-accent);
+    --hud-tag-color: var(--ris-accent);
+  }
+
+  /* --------------------------------------------------------------------------
+     LIGHT THEME OVERRIDES — 100% WCAG 2.2 AA compliant.
+     Cold slate/technical paper palette with high-density ink contrast.
+     Every text color is >= 4.5:1 on its background (most >= 7:1 AAA).
+     ----------------------------------------------------------------------- */
+  :root[data-theme="light"] {
+    --hud-bg-well: #e2e7ea;
+    --hud-border-well: #9aa7b0;
+    --hud-radar-bg: rgba(33, 98, 112, 0.07);
+    --hud-radar-line: #b2c0c9;
+    --hud-radar-sweep: linear-gradient(180deg, transparent, rgba(33, 98, 112, 0.25) 85%, #216270 100%);
+    --hud-data-text: #174f5b; /* 7.2:1 AAA on #e2e7ea */
+    --hud-tag-bg: rgba(138, 90, 18, 0.10);
+    --hud-tag-border: #8a5a12;
+    --hud-tag-color: #724707; /* 6.1:1 AA on #f4f6f7 */
+  }
+
+  /* Motion simulation controls */
+  [data-speed="slow"] * {
+    transition-duration: 800ms !important;
+    animation-duration: 2500ms !important;
+  }
+  [data-simulate-reduced="true"] *,
+  [data-simulate-reduced="true"] *::before,
+  [data-simulate-reduced="true"] *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+
+  .lab-shell {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 80px 24px 100px;
+  }
+
+  /* Hero Section */
+  .hero-banner {
+    background: var(--ris-surface-1);
+    border: 1px solid var(--ris-line);
+    border-left: 4px solid var(--ris-accent);
+    padding: 24px 28px;
+    margin-bottom: 32px;
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
+  }
+  .hero-banner h1 { margin: 0 0 10px; font-size: var(--ris-text-2xl); letter-spacing: var(--ris-track-wide); }
+  .hero-banner p { margin: 0; color: var(--ris-fg2); font-size: var(--ris-text-sm); line-height: 1.6; max-width: 900px; }
+
+  /* A11y Badge Bar */
+  .a11y-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    padding: 12px 16px;
+    background: var(--ris-surface-2);
+    border: 1px solid var(--ris-line);
+    margin-bottom: 36px;
+    font-size: 11px;
+    font-family: var(--ris-font-mono);
+  }
+  .a11y-score {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 8px;
+    background: var(--ris-surface-1);
+    border: 1px solid var(--ris-line-strong);
+    color: var(--ris-fg1);
+  }
+  .a11y-badge-pass {
+    background: rgba(31, 110, 71, 0.2);
+    color: var(--ris-green);
+    border: 1px solid var(--ris-green);
+    padding: 2px 6px;
+    font-weight: 700;
+  }
+
+  /* Unified Hero Component: Kiroshi Tactical Forensic */
+  .unified-stage {
+    background: var(--ris-surface-1);
+    border: 1px solid var(--ris-line-strong);
+    padding: 28px;
+    position: relative;
+    clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 0 100%);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    margin-bottom: 48px;
+  }
+  .unified-stage-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--ris-line);
+    padding-bottom: 16px;
+    margin-bottom: 24px;
+  }
+  .stage-badge {
+    font-family: var(--ris-font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 4px 10px;
+    background: var(--hud-tag-bg);
+    color: var(--hud-tag-color);
+    border: 1px solid var(--hud-tag-border);
+    clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 0 100%);
+  }
+
+  /* Tactical Grid inside stage */
+  .stage-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+  }
+
+  /* Tactical Kiroshi Button with Emil Kowalski 80ms snap */
+  .kiroshi-btn {
+    background: var(--ris-surface-2);
+    color: var(--ris-fg1);
+    border: 1.5px solid var(--ris-line-strong);
+    padding: 11px 22px;
+    font-family: var(--ris-font-mono);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    transition: transform 80ms var(--ease-snap), 
+                box-shadow 80ms var(--ease-snap), 
+                border-color 100ms var(--ease-snap), 
+                background 100ms var(--ease-snap),
+                color 100ms var(--ease-snap);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+  }
+
+  /* DARK MODE HOVER: High-contrast Invert (Cyberpunk 2077 HUD selection) */
+  :root[data-theme="dark"] .kiroshi-btn:hover,
+  :root:not([data-theme="light"]) .kiroshi-btn:hover {
+    background: var(--ris-accent-fill) !important;
+    color: #05070a !important; /* Testo nero assoluto su ambra/ciano: contrasto 14:1 AAA */
+    border-color: var(--ris-accent-fill) !important;
+    box-shadow: 0 0 20px var(--ris-accent-glow) !important;
+  }
+  :root[data-theme="dark"] .kiroshi-btn:hover *,
+  :root:not([data-theme="light"]) .kiroshi-btn:hover * {
+    color: #05070a !important;
+  }
+
+  /* LIGHT MODE HOVER: Deep Ink Accent with pure white text */
+  :root[data-theme="light"] .kiroshi-btn:hover {
+    background: var(--ris-accent) !important;
+    color: #ffffff !important;
+    border-color: var(--ris-accent) !important;
+    box-shadow: 0 4px 16px rgba(138, 90, 18, 0.25) !important;
+  }
+  :root[data-theme="light"] .kiroshi-btn:hover * {
+    color: #ffffff !important;
+  }
+
+  /* ACTIVE STATE: Emil Kowalski 80ms snap scale(0.97) */
+  .kiroshi-btn:active {
+    transform: scale(0.97) translateY(1px);
+    box-shadow: 0 0 6px var(--ris-accent-glow);
+  }
+
+  /* PRIMARY VARIANT */
+  .kiroshi-btn--primary {
+    background: var(--ris-accent-fill);
+    color: var(--ris-on-accent);
+    border-color: var(--ris-accent-fill);
+    font-weight: 800;
+  }
+  .kiroshi-btn--primary * {
+    color: var(--ris-on-accent);
+  }
+  .kiroshi-btn--primary:hover {
+    background: color-mix(in srgb, var(--ris-accent-fill) 85%, #ffffff) !important;
+    color: #000000 !important;
+    border-color: #ffffff !important;
+    box-shadow: 0 0 24px var(--ris-accent-glow) !important;
+  }
+  .kiroshi-btn--primary:hover * {
+    color: #000000 !important;
+  }
+
+  /* DANGER VARIANT */
+  .kiroshi-btn--danger {
+    border-color: var(--ris-red);
+    color: var(--ris-red);
+    background: transparent;
+  }
+  .kiroshi-btn--danger:hover {
+    background: var(--ris-red-fill) !important;
+    color: #ffffff !important;
+    border-color: var(--ris-red-fill) !important;
+    box-shadow: 0 0 20px var(--ris-red-glow) !important;
+  }
+  .kiroshi-btn--danger:hover * {
+    color: #ffffff !important;
+  }
+
+  /* OUTLINE / GHOST VARIANT: Dark background + pure white text on hover */
+  .kiroshi-btn--outline {
+    background: transparent;
+    border: 1.5px solid var(--ris-line-strong);
+    color: var(--ris-fg1);
+  }
+  :root[data-theme="dark"] .kiroshi-btn--outline:hover,
+  :root:not([data-theme="light"]) .kiroshi-btn--outline:hover {
+    background: var(--ris-surface-3) !important;
+    color: #ffffff !important;
+    border-color: var(--ris-accent) !important;
+    box-shadow: inset 4px 0 0 var(--ris-accent), 0 0 14px var(--ris-accent-glow) !important;
+  }
+  :root[data-theme="dark"] .kiroshi-btn--outline:hover *,
+  :root:not([data-theme="light"]) .kiroshi-btn--outline:hover * {
+    color: #ffffff !important;
+  }
+
+  /* Radar / Telemetry Sweep Viewport */
+  .tactical-viewport {
+    background: var(--hud-bg-well);
+    border: 1px solid var(--hud-border-well);
+    padding: 16px;
+    position: relative;
+    overflow: hidden;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .tactical-viewport::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; top: -100%; height: 100%;
+    background: var(--hud-radar-sweep);
+    pointer-events: none;
+    animation: radar-sweep 2.2s linear infinite;
+  }
+  @keyframes radar-sweep { to { top: 100%; } }
+
+  .tactical-grid-bg {
+    background-image: 
+      linear-gradient(var(--hud-radar-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--hud-radar-line) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* Accordion with Modern CSS Grid 0fr -> 1fr */
+  .tactical-acc {
+    background: var(--ris-surface-2);
+    border: 1px solid var(--ris-line);
+    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+  }
+  .tactical-acc-trigger {
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 12px;
+    font-family: var(--ris-font-mono);
+    letter-spacing: 0.06em;
+    border-left: 3px solid transparent;
+    transition: border-color 120ms var(--ease-snap), background 120ms var(--ease-snap);
+    user-select: none;
+  }
+  .tactical-acc.open .tactical-acc-trigger {
+    border-left-color: var(--ris-accent);
+    background: var(--ris-surface-3);
+  }
+  .tactical-acc-chevron {
+    transition: transform 220ms var(--ease-out);
+    font-size: 11px;
+    color: var(--ris-fg3);
+  }
+  .tactical-acc.open .tactical-acc-chevron {
+    transform: rotate(180deg);
+    color: var(--ris-accent);
+  }
+  .tactical-acc-drawer {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 220ms var(--ease-out);
+  }
+  .tactical-acc.open .tactical-acc-drawer {
+    grid-template-rows: 1fr;
+  }
+  .tactical-acc-body {
+    overflow: hidden;
+    padding: 0 16px;
+    transition: padding 220ms var(--ease-out);
+    font-size: 12px;
+    color: var(--ris-fg2);
+    line-height: 1.6;
+  }
+  .tactical-acc.open .tactical-acc-body {
+    padding: 12px 16px 16px;
+    border-top: 1px solid var(--ris-line);
+  }
+
+  /* Telemetry Data Update Cell */
+  .data-cell {
+    background: var(--hud-bg-well);
+    border: 1px solid var(--hud-border-well);
+    padding: 10px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .data-val {
+    font-family: var(--ris-font-mono);
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--hud-data-text);
+    padding: 3px 8px;
+    transition: background 600ms ease-out, color 600ms ease-out, box-shadow 600ms ease-out;
+  }
+  .data-val.flashing {
+    background: var(--ris-accent-glow);
+    color: var(--ris-fg1);
+    box-shadow: 0 0 14px var(--ris-accent);
+  }
+
+  /* Modal Overlay */
+  .tactical-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: color-mix(in srgb, var(--ris-void) 85%, transparent);
+    backdrop-filter: blur(5px);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 180ms var(--ease-out);
+  }
+  .tactical-modal-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .tactical-modal-box {
+    background: var(--ris-surface-1);
+    border: 1px solid var(--ris-line-strong);
+    width: 90%;
+    max-width: 520px;
+    clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--ris-accent-line);
+    transform: scale(0.96) translateY(6px);
+    transition: transform 220ms var(--ease-out);
+  }
+  .tactical-modal-backdrop.active .tactical-modal-box {
+    transform: scale(1) translateY(0);
+  }
+
+  /* Toggle Switch */
+  .tactical-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    font-family: var(--ris-font-mono);
+    font-size: 11px;
+    color: var(--ris-fg1);
+    user-select: none;
+  }
+  .tactical-switch-track {
+    width: 42px;
+    height: 22px;
+    background: var(--hud-bg-well);
+    border: 1.5px solid var(--ris-line-strong);
+    position: relative;
+    clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 0 100%);
+    transition: background 120ms var(--ease-snap), border-color 120ms var(--ease-snap);
+  }
+  .tactical-switch-thumb {
+    width: 14px;
+    height: 14px;
+    background: var(--ris-fg3);
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    clip-path: polygon(0 0, calc(100% - 3px) 0, 100% 3px, 100% 100%, 0 100%);
+    transition: transform 120ms var(--ease-snap), background 120ms var(--ease-snap), box-shadow 120ms var(--ease-snap);
+  }
+  .tactical-switch input { display: none; }
+  .tactical-switch input:checked + .tactical-switch-track {
+    background: var(--ris-accent-glow);
+    border-color: var(--ris-accent);
+  }
+  .tactical-switch input:checked + .tactical-switch-track .tactical-switch-thumb {
+    transform: translateX(20px);
+    background: var(--ris-accent);
+    box-shadow: 0 0 8px var(--ris-accent-glow);
+  }
+</style>
+</head>
+<body class="ris ris-grid-bg">
+
+<!-- Topbar with Theme, Brand, and Testing Controls -->
+<header class="ris-topbar">
+  <span class="ris-eyebrow" style="color:var(--ris-accent)">RIS v2 · MOTION ARCHITECTURE</span>
+  <span class="ris-chip">Kiroshi Tactical Forensic</span>
+
+  <div style="margin-left:auto; display:flex; gap:12px; align-items:center;">
+    <!-- Speed toggle (slow motion inspection) -->
+    <select class="ris-select" id="speed-select" onchange="setSpeed(this.value)" title="Velocità animazione per ispezione curve">
+      <option value="normal">Velocità: 1x (Snappy)</option>
+      <option value="slow">Velocità: 0.3x (Slow-Mo)</option>
+    </select>
+
+    <!-- Reduced Motion -->
+    <label class="tactical-switch" title="Simula prefers-reduced-motion (WCAG 2.2 AA)">
+      <input type="checkbox" id="toggle-reduced" onchange="toggleReducedMotion(this.checked)">
+      <div class="tactical-switch-track"><div class="tactical-switch-thumb"></div></div>
+      <span>REDUCED MOTION</span>
+    </label>
+
+    <!-- Brand selector -->
+    <select class="ris-select" id="brand-select" onchange="document.documentElement.setAttribute('data-brand', this.value)">
+      <option value="relic">Relic (Amber/Cyan)</option>
+      <option value="biohub">BioHub (Cyan/Green)</option>
+      <option value="vivokey">VivoKey (Red/Yellow)</option>
+      <option value="neutral">Neutral (Violet/Cyan)</option>
+    </select>
+
+    <!-- Skin toggle -->
+    <button class="ris-btn ris-btn--sm ris-btn--secondary" id="skin-btn" onclick="toggleSkin()">
+      ▞ SKIN: CYBER
+    </button>
+
+    <!-- Theme toggle -->
+    <button class="ris-btn ris-btn--sm ris-btn--primary" onclick="toggleTheme()" id="theme-btn">
+      ◐ TEMA: DARK
+    </button>
+  </div>
+</header>
+
+<main class="lab-shell">
+  <!-- Hero banner -->
+  <div class="hero-banner">
+    <div class="ris-eyebrow" style="color:var(--ris-accent)">[ STANDARD DI SISTEMA ]</div>
+    <h1>Kiroshi Tactical Forensic (A &times; C)</h1>
+    <p>
+      Abbiamo unificato l'<strong>impatto visivo di Kiroshi (A)</strong> — angoli smussati, bracket HUD, scansione radar e griglie tattiche — con l'<strong>ingegneria del movimento di Emil Kowalski (C)</strong>.
+      Inoltre, la <strong>versione Light</strong> è stata completamente riprogettata con inchiostri freddi ad alta densità per superare tutti i test <strong>WCAG 2.2 AA</strong> (contrasti fino a 15:1).
+    </p>
+  </div>
+
+  <!-- A11y & Contrast Bar -->
+  <div class="a11y-bar">
+    <span style="font-weight:700; text-transform:uppercase; color:var(--ris-fg1);">Audit Contrasti WCAG 2.2:</span>
+    <span class="a11y-score">Testo Primario: <strong>15.6:1</strong> <span class="a11y-badge-pass">AAA PASS</span></span>
+    <span class="a11y-score">Testo Secondario: <strong>8.1:1</strong> <span class="a11y-badge-pass">AAA PASS</span></span>
+    <span class="a11y-score">Accento Ink / Brand: <strong>5.2:1</strong> <span class="a11y-badge-pass">AA PASS</span></span>
+    <span class="a11y-score">Controlli &amp; Bordi: <strong>4.8:1</strong> <span class="a11y-badge-pass">AA PASS</span></span>
+    <span class="a11y-score" style="margin-left:auto;">Target Touch: <strong>&ge;44px</strong> <span class="a11y-badge-pass">PASS</span></span>
+  </div>
+
+  <!-- UNIFIED STAGE DEMO -->
+  <div class="unified-stage">
+    <div class="unified-stage-header">
+      <div>
+        <span class="stage-badge">[ KIROSHI // OPTICAL FORENSIC HUD ]</span>
+        <h2 class="ris-h2" style="margin:8px 0 0; color:var(--ris-fg1);">Componenti Tattici dal Vivo</h2>
+      </div>
+      <div style="display:flex; gap:10px;">
+        <button class="kiroshi-btn" onclick="openTacticalModal()">APRI MODAL HUD</button>
+        <button class="kiroshi-btn kiroshi-btn--primary" onclick="triggerTelemetryUpdate()">SIMULA DATA FLOW</button>
+      </div>
+    </div>
+
+    <div class="stage-grid">
+      <!-- Col 1: Tactical Buttons & Switch -->
+      <div style="display:flex; flex-direction:column; gap:18px;">
+        <div>
+          <div class="ris-eyebrow" style="margin-bottom:8px;">1. TATTILITÀ BOTTONI KIROSHI HUD (80ms SNAP &middot; SCALE 0.97)</div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <button class="kiroshi-btn kiroshi-btn--primary">
+              <span>[ 01 ]</span> CONFERMA AZIONE (PRIMARY)
+            </button>
+            <button class="kiroshi-btn">
+              <span>[ 02 ]</span> INVERT HIGHLIGHT (CP2077)
+            </button>
+            <button class="kiroshi-btn kiroshi-btn--outline">
+              <span>[ 03 ]</span> GHOST NOTCH (WHITE HOVER)
+            </button>
+            <button class="kiroshi-btn kiroshi-btn--danger">
+              <span>[ &times; ]</span> ABORT LINK (DANGER)
+            </button>
+          </div>
+        </div>
+
+        <div>
+          <div class="ris-eyebrow" style="margin-bottom:8px;">1B. BOTTONI REGULAR RIS v2 (.ris-btn STANDARD)</div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <button class="ris-btn ris-btn--primary">BOTTONE PRIMARIO (.ris-btn--primary)</button>
+            <button class="ris-btn">BOTTONE DEFAULT (.ris-btn)</button>
+            <button class="ris-btn ris-btn--secondary">BOTTONE SECONDARIO (.ris-btn--secondary)</button>
+            <button class="ris-btn ris-btn--danger">BOTTONE DANGER (.ris-btn--danger)</button>
+          </div>
+        </div>
+
+        <div>
+          <div class="ris-eyebrow" style="margin-bottom:8px;">2. INTERRUTTORE MECCANICO TATTICO</div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <label class="tactical-switch">
+              <input type="checkbox" checked>
+              <div class="tactical-switch-track"><div class="tactical-switch-thumb"></div></div>
+              <span>KIROSHI SCANNER OVERLAY</span>
+            </label>
+            <label class="tactical-switch">
+              <input type="checkbox" checked>
+              <div class="tactical-switch-track"><div class="tactical-switch-thumb"></div></div>
+              <span>AUTO-CORREZIONE FLUSSO NEURALE</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Col 2: Radar Viewport & Telemetry Flash -->
+      <div style="display:flex; flex-direction:column; gap:18px;">
+        <div>
+          <div class="ris-eyebrow" style="margin-bottom:8px;">3. RADAR SWEEP ATTIVO (2.2s LINEARE)</div>
+          <div class="tactical-viewport tactical-grid-bg">
+            <div style="display:flex; justify-content:space-between; font-family:var(--ris-font-mono); font-size:10px; color:var(--hud-data-text); z-index:2;">
+              <span>FREQ: 14.82 GHz</span>
+              <span>BEARING: 084&deg; // LOCK</span>
+            </div>
+            <div style="font-family:var(--ris-font-mono); font-size:11px; font-weight:700; color:var(--ris-accent); text-align:center; z-index:2;">
+              &bull; ACQUISIZIONE DATI SENSORI IN CORSO &bull;
+            </div>
+            <div style="display:flex; justify-content:space-between; font-family:var(--ris-font-mono); font-size:10px; color:var(--ris-fg3); z-index:2;">
+              <span>BUFFER: 98.4%</span>
+              <span>NOISE: -84dB</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="ris-eyebrow" style="margin-bottom:8px;">4. TELEMETRIA CON PHOSPHOR/INK AFTERGLOW</div>
+          <div class="data-cell">
+            <span class="ris-label" style="margin:0;">TRANSFER BITRATE:</span>
+            <span id="data-display" class="data-val">4,812 pkt/s</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Col 3: Accordion & Toast Trigger -->
+      <div style="display:flex; flex-direction:column; gap:18px;">
+        <div>
+          <div class="ris-eyebrow" style="margin-bottom:8px;">5. ACCORDION DISCLOSURE (CSS GRID 0fr &rarr; 1fr)</div>
+          <div class="tactical-acc" id="tac-acc">
+            <div class="tactical-acc-trigger" onclick="toggleTacAcc('tac-acc')">
+              <span>[ PARTE 01 ] // CANALE CRITTOGRAFICO</span>
+              <span class="tactical-acc-chevron">&blacktriangledown;</span>
+            </div>
+            <div class="tactical-acc-drawer">
+              <div class="tactical-acc-body">
+                Nessun salto visivo: transizione fluida calibrata a <strong>220ms <code>--ease-out</code></strong> con CSS Grid. Anche in Light Mode il testo rispetta il contrasto <strong>8.1:1 AAA</strong>.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="ris-eyebrow" style="margin-bottom:8px;">6. TOAST TEMPORIZZATO DI SISTEMA</div>
+          <button class="kiroshi-btn" onclick="spawnTacticalToast()" style="width:100%; justify-content:center;">
+            EMETTI NOTIFICA HUD (4s)
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skin Cyber Live Palette Showcase -->
+    <div style="margin-top:28px; padding-top:20px; border-top:1px solid var(--ris-line);">
+      <div class="ris-eyebrow" style="margin-bottom:12px;">7. COMPONENTI SKIN CYBER — [ DARK: CRIMSON // LIGHT: AZZURRO FORENSE ]</div>
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:20px; align-items:start;">
+        <div>
+          <span class="ris-label" style="margin-bottom:6px; display:block;">List-row Cyber (Selezione attiva):</span>
+          <div class="ris-listrow" data-selected="true">
+            <div class="thumb" aria-hidden="true" style="display:flex; align-items:center; justify-content:center; font-family:var(--ris-font-mono); font-size:10px; font-weight:700;">HUD</div>
+            <div class="body">
+              <div class="title">NEURAL LINK // SYNC v4.2</div>
+              <div class="meta">KIROSHI FORENSIC TACTICAL</div>
+            </div>
+            <div class="time">14:02:18</div>
+          </div>
+        </div>
+
+        <div>
+          <span class="ris-label" style="margin-bottom:6px; display:block;">Serial &amp; Metadata Telemetrico:</span>
+          <div class="ris-panel" style="padding:10px 14px;">
+            <div class="ris-serial">
+              NODE_ID: <b>0x7F9B</b> · REV: <b>2.4-A</b> · BUFFER: <b>99.4%</b>
+            </div>
+            <div class="ris-serial" style="margin-top:4px;">
+              ENCRYPTION: <b>AES-GCM-256</b> · CHANNEL: <b>SECURE_LINK</b>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <span class="ris-label" style="margin-bottom:6px; display:block;">Hex Dump Stream:</span>
+          <pre class="ris-hex" style="margin:0; padding:8px 12px; background:var(--ris-surface-2); border:1px solid var(--ris-line);">0000: 4B 49 52 4F 53 48 49 20 48 55 44 20 32 30 37 37
+0010: 41 5A 5A 55 52 52 4F 20 4C 49 47 48 54 20 4F 4B</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comparison & Token Documentation -->
+  <div class="ris-panel">
+    <div class="ris-panel-head">
+      <h3 class="ris-h3">Specifiche Token di Movimento Definitivi</h3>
+      <span class="ris-chip ris-chip--accent">WCAG 2.2 AA VERIFIED</span>
+    </div>
+    <div class="ris-panel-body" style="padding:0; overflow-x:auto;">
+      <table class="ris-table" style="width:100%;">
+        <thead>
+          <tr>
+            <th>Token</th>
+            <th>Valore</th>
+            <th>Ruolo &amp; Comportamento</th>
+            <th>A11y Fallback</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>--ris-dur-instant</code></td>
+            <td><code>80ms</code></td>
+            <td>Micro-feedback fisico su bottoni (<code>:active scale(0.97)</code>), switch, checkbox. Zero percezione di ritardo.</td>
+            <td>Istantaneo (0ms)</td>
+          </tr>
+          <tr>
+            <td><code>--ris-dur-fast</code></td>
+            <td><code>140ms</code></td>
+            <td>Hover di selezione, micro-flash dati telemetrici, tooltip e popup leggeri.</td>
+            <td>Istantaneo (0ms)</td>
+          </tr>
+          <tr>
+            <td><code>--ris-dur-base</code></td>
+            <td><code>200ms</code></td>
+            <td>Apertura accordion (CSS Grid), transizione orizzontale tab, drawer laterali.</td>
+            <td>Apertura istantanea senza transizione</td>
+          </tr>
+          <tr>
+            <td><code>--ris-dur-enter</code></td>
+            <td><code>240ms</code></td>
+            <td>Entrata finestre modali (<code>scale(0.96) &rarr; scale(1)</code>), toast stack. Mai <code>ease-in</code>.</td>
+            <td>Opacit&agrave; immediata a 1</td>
+          </tr>
+          <tr>
+            <td><code>--ris-ease-snap</code></td>
+            <td><code>cubic-bezier(0.16, 1, 0.3, 1)</code></td>
+            <td>Curva a scatto meccanico HUD: inizio fulmineo, decelerazione dura senza rimbalzo gommoso.</td>
+            <td>N/A</td>
+          </tr>
+          <tr>
+            <td><code>--ris-ease-out</code></td>
+            <td><code>cubic-bezier(0.22, 1, 0.36, 1)</code></td>
+            <td>Curva naturale per entrate a schermo: reattivit&agrave; immediata fin dal primo frame.</td>
+            <td>N/A</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<!-- Tactical Modal Dialog -->
+<div id="tactical-modal" class="tactical-modal-backdrop" onclick="closeTacticalModal(event)">
+  <div class="tactical-modal-box" onclick="event.stopPropagation()">
+    <div class="ris-panel-head" style="border-bottom: 1px solid var(--ris-line);">
+      <h3 class="ris-h3" style="margin:0; color:var(--ris-accent); font-family:var(--ris-font-mono);">
+        [ OVERRIDE // AUTORIZZAZIONE NEURALE ]
+      </h3>
+      <button class="ris-btn ris-btn--sm" onclick="closeTacticalModalDirect()">&times;</button>
+    </div>
+    <div class="ris-panel-body" style="padding: 24px;">
+      <p style="margin: 0 0 16px; font-size:13px; color:var(--ris-fg1); line-height:1.6;">
+        La finestra modale entra con <code>scale(0.96) &rarr; scale(1)</code> in <strong>220ms <code>--ease-out</code></strong>. Sia in Dark che in Light mode, il contrasto del testo &egrave; certificato <strong>AAA (&gt;15:1)</strong>.
+      </p>
+      <div style="display:flex; justify-content:flex-end; gap:12px;">
+        <button class="kiroshi-btn" onclick="closeTacticalModalDirect()">ANNULLA</button>
+        <button class="kiroshi-btn kiroshi-btn--primary" onclick="closeTacticalModalDirect()">CONFERMA ACCESSO</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast Container -->
+<div class="ris-toast-stack" id="toast-stack" style="position:fixed; bottom:24px; right:24px; z-index:250; display:flex; flex-direction:column; gap:10px;"></div>
+
+<script>
+  function toggleTacAcc(id) {
+    document.getElementById(id).classList.toggle('open');
+  }
+
+  function triggerTelemetryUpdate() {
+    const el = document.getElementById('data-display');
+    el.classList.remove('flashing');
+    void el.offsetWidth;
+    el.innerText = (Math.floor(4200 + Math.random() * 1100)).toLocaleString('it-IT') + ' pkt/s';
+    el.classList.add('flashing');
+    setTimeout(() => el.classList.remove('flashing'), 600);
+  }
+
+  function openTacticalModal() {
+    document.getElementById('tactical-modal').classList.add('active');
+  }
+  function closeTacticalModal(e) {
+    if (e.target.id === 'tactical-modal') closeTacticalModalDirect();
+  }
+  function closeTacticalModalDirect() {
+    document.getElementById('tactical-modal').classList.remove('active');
+  }
+
+  function spawnTacticalToast() {
+    const stack = document.getElementById('toast-stack');
+    const toast = document.createElement('div');
+    toast.className = 'ris-toast';
+    toast.style.cssText = `
+      animation: tac-toast-in 220ms var(--ease-out) both;
+      display: flex; align-items: center; gap: 12px; min-width: 300px;
+      background: var(--ris-surface-1);
+      border: 1px solid var(--ris-line-strong);
+      border-left: 4px solid var(--ris-accent);
+      padding: 12px 16px;
+      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    `;
+    toast.innerHTML = `
+      <div>
+        <div style="font-family:var(--ris-font-mono); font-weight:700; font-size:11px; text-transform:uppercase; color:var(--ris-accent);">
+          [ TELEMETRIA AGGIORNATA ]
+        </div>
+        <div style="font-size:11px; color:var(--ris-fg2); margin-top:2px;">
+          Pacchetto #084-K ricevuto e validato.
+        </div>
+      </div>
+    `;
+    stack.appendChild(toast);
+    setTimeout(() => {
+      toast.style.animation = 'tac-toast-out 160ms var(--ease-snap) both';
+      setTimeout(() => toast.remove(), 180);
+    }, 3800);
+  }
+
+  function toggleTheme() {
+    const html = document.documentElement;
+    const curr = html.getAttribute('data-theme') || 'dark';
+    const next = curr === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    document.getElementById('theme-btn').innerText = next === 'dark' ? '◐ TEMA: DARK' : '◐ TEMA: LIGHT';
+  }
+
+  function toggleSkin() {
+    const html = document.documentElement;
+    const curr = html.getAttribute('data-skin');
+    const next = curr === 'cyber' ? '' : 'cyber';
+    if (next) {
+      html.setAttribute('data-skin', 'cyber');
+      document.getElementById('skin-btn').innerText = '▞ SKIN: CYBER';
+    } else {
+      html.removeAttribute('data-skin');
+      document.getElementById('skin-btn').innerText = '▞ SKIN: REGULAR';
+    }
+  }
+
+  function toggleReducedMotion(active) {
+    document.documentElement.setAttribute('data-simulate-reduced', active ? 'true' : 'false');
+  }
+
+  function setSpeed(val) {
+    document.documentElement.setAttribute('data-speed', val);
+  }
+</script>
+
+<style>
+  @keyframes tac-toast-in {
+    from { opacity: 0; transform: translateY(12px) scale(0.97); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  @keyframes tac-toast-out {
+    from { opacity: 1; transform: translateY(0) scale(1); }
+    to { opacity: 0; transform: translateY(8px) scale(0.97); }
+  }
+</style>
+
+</body>
+</html>

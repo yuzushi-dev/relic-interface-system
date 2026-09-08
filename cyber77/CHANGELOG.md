@@ -1,5 +1,26 @@
 # Changelog — RIS
 
+## 2.8.0 — 2026-09-08
+
+- **Kiroshi Tactical Scrubber & Telemetria Reale (`ris-charts.js`)**:
+  - Telemetria HUD su dati 100% reali: visualizzazione in tempo reale di valori con unità (`bpm`, `passi`, `pts`), orari formattati `HH:MM`, delta matematico rispetto alla baseline (`Δ +22`) e alert picco condizionali (`[ALERTA PICCO]`, `[PICCO MAX]`).
+  - Architettura a zero reflow (60fps): coordinate ricavate tramite proiezione matriciale inversa CTM dello schermo (`svg.getScreenCTM().inverse()`), nessun nodo DOM creato/distrutto al pointermove/touchmove.
+  - Accessibilità tastiera & WCAG 2.2 AA: navigazione dei grafici con frecce sinistra/destra, `Home`, `End` ed `Escape`, live-update attributi `aria-valuenow` e `aria-valuetext`, contrasto verificato sia in dark che light mode.
+  - Micro-sweep phosphor continuo (4.5s) tramite animazione vettoriale SVG nativa (`<animateTransform>`), con sospensione automatica durante lo scrubbing/hovering.
+  - Trigger automatico dell'animazione d'ingresso su scroll viewport tramite `IntersectionObserver` e API pubblica `RisCharts.replay()`.
+  - Nuovi controlli interattivi nello specimen web: Replay animazioni e Simulazione stream telemetrico live a battito cardiaco continuo.
+- **Integrazione Icone Open Source (Tabler Icons MIT)**:
+  - Migrazione a 132 icone Tabler (generiche + biofeedback/medicali) a stroke 1.75 omogeneo e griglia 24×24.
+  - Embedding dello sprite SVG unificato direttamente nei template di documentazione per azzerare latenze di rete e anomalie CORS.
+  - Correzione dei refusi di chiusura parentesi graffe CSS in `ris.css` e `ris-skin-cyber.css` che inibivano la corretta applicazione delle regole responsive.
+- **RIS Motion System (Kiroshi Tactical Forensic)**:
+  - Token fisici standardizzati (`--ris-dur-instant: 80ms`, `--ris-dur-fast: 140ms`, `--ris-dur-base: 200ms`, `--ris-dur-enter: 240ms`) ed easing ibrido.
+  - Bottoni con micro-punch fisico `:active` (scale 0.97) e Invert Highlight a contrasto 14:1 AAA.
+  - Accordion con interpolazione a zero reflow su CSS Grid (`grid-template-rows: 0fr → 1fr`).
+  - Toast HUD con stacking a cascata stile Sonner / Emil Kowalski.
+  - Mobile Bottom Sheet tattico con maniglia drag touch nativa (soglia di rilascio 35%) e transizioni push orizzontali Master-Detail.
+  - Skin Cyber Light Mode calibrata in azzurro/ciano tecnico drafting per comfort ottico prolungato.
+
 ## 2.7.0 — 2026-09-03
 
 - **Allineamento Token JSON (`ris.tokens.json`)**: introdotto il ramo `skin.cyber`
