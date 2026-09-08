@@ -115,7 +115,7 @@ SVG, zero dependencies, RIS aesthetic (hard grid, neon stroke + glow, square mar
 monospace labels). All animations respect `prefers-reduced-motion`.
 A chart is decorative: ALWAYS provide an adjacent textual or tabular alternative;
 `opts.label` becomes the summarizing `aria-label`.
-All charts support 100% real data Kiroshi HUD telemetry, interactive tactical scrubber
+All charts support 100% real data Tactical HUD telemetry, interactive tactical scrubber
 (mouse hover, touch drag, keyboard arrows), and continuous 4.5s phosphor micro-sweep
 triggered on viewport scroll.
 
@@ -213,7 +213,7 @@ line to bottomnav, compacts `.ris-listrow` and `.ris-stat`, and switches to
 
 ## Motion System & Animated Components (v2)
 
-Integration of Kiroshi Tactical HUD + Emil Kowalski motion engineering (zero reflow, 60fps, WCAG 2.2 AA).
+Integration of Tactical Cyber HUD aesthetic + Emil Kowalski motion engineering (zero reflow, 60fps, WCAG 2.2 AA).
 
 ### 1. Accordion Disclosure (`.ris-acc`)
 Transition via **CSS Grid (`grid-template-rows: 0fr → 1fr`)** in 200ms (`--ris-dur-base`) with `--ris-ease-out`:
@@ -254,7 +254,7 @@ Physical 140ms sliding snap (`--ris-dur-fast` with `--ris-ease-snap`):
 ```html
 <label class="ris-switch">
   <input type="checkbox" checked>
-  <span>KIROSHI SCANNER OVERLAY</span>
+  <span>TACTICAL SCANNER OVERLAY</span>
 </label>
 ```
 

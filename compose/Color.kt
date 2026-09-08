@@ -156,8 +156,8 @@ val RisAmberGlow = RisYellowGlow
 @Deprecated("v2: use RisYellowLine", ReplaceWith("RisYellowLine"))
 val RisAmberLine = RisYellowLine
 
-// ═══════════════════════════ CYBERPUNK 2077 SKIN ════════════════════════════
-// Opt-in Cyber HUD theme (mirrors css/ris-skin-cyber.css). Dark only.
+// ═══════════════════════════ TACTICAL CYBER SKIN ════════════════════════════
+// Opt-in Tactical Cyber HUD theme (mirrors css/ris-skin-cyber.css).
 
 object RisCyberSkin {
     val Void = Color(0xFF070406)

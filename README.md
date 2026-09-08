@@ -38,7 +38,7 @@ Most cyberpunk UI libraries fall apart in production: fluorescent neon text on p
 - **Disciplined Graphite Surfaces**: Structured with 1px tactile borders and 45° chamfered cuts (6px / 10px / 16px), never fuzzy drop-shadows.
 - **Physical Motion**: Calibrated micro-feedback (80ms click snap, 140ms hover), zero-reflow CSS Grid accordion drawers, and an absolute ban on `ease-in` for entering views.
 - **Strict Real Data**: Zero fake metrics. Interactive SVG charts with pointer scrubbers and keyboard navigation bind directly to real telemetry points.
-- **True Dual Theme**: Menacing Kiroshi crimson/amber in Dark mode; calm architectural blueprint cyan/slate (`#1b6b80`) in Light mode. Zero illegible neon fills.
+- **True Dual Theme**: High-contrast tactical crimson/amber in Dark mode; calm architectural blueprint cyan/slate (`#1b6b80`) in Light mode. Zero illegible neon fills.
 - **Native Android Parity**: Complete Jetpack Compose port sharing identical tokens, chamfer clip shapes, and hardware-accelerated Canvas charts.
 
 ---
@@ -49,7 +49,7 @@ No local setup is required to evaluate or start building. Launch the full enviro
 
 [![Live Showcase](https://img.shields.io/badge/Live%20Showcase-GitHub%20Pages-e6a23c?style=for-the-badge&logo=github)](https://yuzushi-dev.github.io/relic-interface-system/)
 [![Mobile App--Shell](https://img.shields.io/badge/Mobile%20Shell-Touch%20Specimen-6fb3c9?style=for-the-badge)](https://yuzushi-dev.github.io/relic-interface-system/docs/mobile.html)
-[![Motion Lab](https://img.shields.io/badge/Motion%20Lab-Kiroshi%20HUD-ff2d3c?style=for-the-badge)](https://yuzushi-dev.github.io/relic-interface-system/docs/motion-lab.html)
+[![Motion Lab](https://img.shields.io/badge/Motion%20Lab-Tactical%20HUD-ff2d3c?style=for-the-badge)](https://yuzushi-dev.github.io/relic-interface-system/docs/motion-lab.html)
 
 ### Using as a Project Template
 
@@ -113,4 +113,4 @@ python3 -m http.server 8080
 - **Software License**: [MIT License](LICENSE) © 2026 Relic Interface System Contributors.
 - **Icons**: [Tabler Icons](https://tabler.io/icons) (MIT License, © Paweł Kuna).
 - **Typography**: Archivo, JetBrains Mono, Chakra Petch, and Rajdhani under the SIL Open Font License.
-- **Legal Disclaimer**: Relic Interface System is an independent design system. Aesthetic references (*Cyberpunk 2077*, *Arasaka*, *Militech*, *Edgerunners*, *Kiroshi*) are used strictly as creative commentary and thematic styling homages. This project is not affiliated with, sponsored by, or endorsed by CD PROJEKT S.A.
+- **Legal Notice**: Relic Interface System is an independent, original open-source design system. All styling, SVG geometry, color token architectures, Canvas renderers, and motion timings are entirely bespoke and unencumbered.

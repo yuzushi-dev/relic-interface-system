@@ -2,7 +2,7 @@
 
 Audit of the `design_handoff/` kit against requirements:
 desktop+mobile, dark+light, complete and varied components, icons (generic + biofeedback),
-multi-brand (Relic / BioHub / VivoKey / general use), palette aligned with Cyberpunk 2077.
+multi-brand (Relic / BioHub / VivoKey / general use), tactical cyberpunk palette.
 
 ## v1 State (Initial findings)
 
@@ -21,7 +21,7 @@ multi-brand (Relic / BioHub / VivoKey / general use), palette aligned with Cyber
 
 ## v2 Architectural Decisions
 
-1. **CP2077 Palette.** Accents aligned with Cyberpunk 2077 signature colors while preserving RIS discipline (accent = meaning, never decoration):
+1. **Tactical Cyber Palette.** Accents aligned with high-contrast tactical cyber colors while preserving RIS discipline (accent = meaning, never decoration):
    - yellow `#f2e205` → **Cyber Yellow `#fcee0a`**
    - cyan `#16e0e0` → **glitch blue `#00f0ff`**
    - red `#ff2d3c` → **`#ff003c`**
@@ -38,6 +38,6 @@ multi-brand (Relic / BioHub / VivoKey / general use), palette aligned with Cyber
 ## Resolution v2.8.0 (2026-09-08)
 
 - **Complete Compose Port (`compose/`)**: Implemented `Color.kt` (with `RisCyberSkin`), `Shape.kt` (45° chamfer cut), `Type.kt`, `Theme.kt`, `Components.kt` (4 button variants, squared text fields, scrollable subtabs, canvas linear progress bar, panels, chips) and `Charts.kt` with dynamic stride.
-- **Modular CP2077 Skin**: Formalized coexistence between de-slopped forensic baseline (`ris-tokens.css`, `ris.tokens.json`) and Cyberpunk 2077 skin (`data-skin="cyber"`, `ris-skin-cyber.css`, `RisCyberSkin` in Compose).
+- **Modular Cyber Skin**: Formalized coexistence between de-slopped forensic baseline (`ris-tokens.css`, `ris.tokens.json`) and tactical cyber skin (`data-skin="cyber"`, `ris-skin-cyber.css`, `RisCyberSkin` in Compose).
 - **Mobile Display Safety**: Enforced removal of side rulers and fixed tickers on mobile OLED viewports to prevent display artifacts.
-- **Kiroshi Motion System**: 80ms physical punch micro-feedback, CSS Grid 0fr→1fr accordions, Sonner-style toast stack, native SVG sweep and interactive keyboard scrubbers on charts.
+- **Tactical HUD Motion System**: 80ms physical punch micro-feedback, CSS Grid 0fr→1fr accordions, Sonner-style toast stack, native SVG sweep and interactive keyboard scrubbers on charts.

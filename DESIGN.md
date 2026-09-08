@@ -1,6 +1,6 @@
-# cyber77 — Agent Handoff Guide
+# Tactical Cyber (cyber77) — Agent Handoff Guide
 
-**RIS** design system with active **Cyberpunk 2077** skin (`data-skin="cyber"`).
+**RIS** design system with active **Tactical Cyber** skin (`data-skin="cyber"`).
 Use this document to instruct agents or engineers to build applications using this design system without reinventing any components or styles. Copy and adapt the prompt below.
 
 > Relative paths: this file is at the root of the repository. CSS files are in `css/`, design rules in `GUIDELINES.md`, component specs in `COMPONENTS.md`, icons in `icons/ris-icons.svg`, charts in `js/ris-charts.js`, and visual references in `docs/index.html` (desktop), `docs/mobile.html` (mobile), and `docs/motion-lab.html` (motion & contrast lab).
@@ -9,7 +9,7 @@ Use this document to instruct agents or engineers to build applications using th
 
 ## Ready-to-use Agent Prompt (copy, replace `<APP>`)
 
-> Build `<APP>` using this Relic Interface System design system (RIS with active Cyberpunk 2077 skin). **Do not** invent a new style: use the existing architecture.
+> Build `<APP>` using this Relic Interface System design system (RIS with active Tactical Cyber skin). **Do not** invent a new style: use the existing architecture.
 >
 > Mandatory setup:
 > - Link CSS in `css/` **in this exact order**:
@@ -46,7 +46,7 @@ Use this document to instruct agents or engineers to build applications using th
   <link rel="stylesheet" href="css/ris-tokens.css">
   <link rel="stylesheet" href="css/ris.css">
   <link rel="stylesheet" href="css/ris-fx.css">          <!-- optional: boot/glow/holo/radar -->
-  <link rel="stylesheet" href="css/ris-skin-cyber.css">  <!-- LAST = CP2077 aesthetics -->
+  <link rel="stylesheet" href="css/ris-skin-cyber.css">  <!-- LAST = tactical cyber aesthetics -->
 </head>
 <body class="ris ris-grid-bg">
   <a class="ris-skip-nav" href="#main">Skip to main content</a>
@@ -63,9 +63,9 @@ Remove `data-skin="cyber"` + the final `<link>` → reverts to the disciplined f
 
 | Attribute on `<html>` | Values | Effect |
 |---|---|---|
-| `data-theme` | `dark` (default) · `light` | In Dark mode: Kiroshi high-contrast HUD. In Light mode: technical drafting cyan/slate (`#1b6b80`), eliminating fluorescent glare while retaining cybernetic geometry and WCAG 2.2 AA. |
-| `data-brand` | `relic` · `biohub` · `vivokey` · `neutral` (+ `arasaka`/`militech`/`edgerunners`) | Modifies accent pair only. `vivokey` = red/yellow (most CP), `relic` = yellow/cyan, `biohub` = cyan/green. |
-| `data-skin` | omitted · `cyber` | `cyber` = Cyberpunk 2077 aesthetics (structural red, glow, scanlines, techno font in dark mode; blueprint cyan/slate in light mode). |
+| `data-theme` | `dark` (default) · `light` | In Dark mode: high-contrast tactical HUD. In Light mode: technical drafting cyan/slate (`#1b6b80`), eliminating fluorescent glare while retaining cybernetic geometry and WCAG 2.2 AA. |
+| `data-brand` | `relic` · `biohub` · `vivokey` · `neutral` (+ `sealed`/`field`/`archive`) | Modifies accent pair only. `vivokey` = red/yellow, `relic` = yellow/cyan, `biohub` = cyan/green. |
+| `data-skin` | omitted · `cyber` | `cyber` = Tactical Cyber HUD aesthetics (structural red, glow, scanlines, techno font in dark mode; blueprint cyan/slate in light mode). |
 
 ## Do / Don't
 

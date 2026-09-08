@@ -26,7 +26,7 @@ hardcode hex values in components.
   never applied by default components.
 - **Restrained textures**: 32px grid on background, scanlines only on hero/modal surfaces.
   Never behind dense data copy.
-- **Motion System (Kiroshi Tactical HUD + Emil Kowalski)**:
+- **Motion System (Tactical Cyber HUD + Emil Kowalski)**:
   1. *Layer-bound timing tokens*: 80ms micro-feedback (`:active scale(0.97)`), 140ms hover/switch, 200ms accordion/tabs, 240ms modal/sheet enter.
   2. *No `ease-in` for entering elements*: users expect immediate responsiveness; always use `--ris-ease-out` (`cubic-bezier(0.22, 1, 0.36, 1)`) or `--ris-ease-snap` (`cubic-bezier(0.16, 1, 0.3, 1)`).
   3. *Composited-only properties*: animate only `transform` and `opacity`. For accordions and disclosures use CSS Grid (`grid-template-rows: 0fr → 1fr`) avoiding layout reflows (`height`) at 60fps.
@@ -59,13 +59,13 @@ hardcode hex values in components.
 
 In addition to product brands, three full skins exist for evidentiary handling contexts —
 they alter accent **and** surface tint (in dark mode only; in light mode only AA ink accents adapt).
-The `data-brand` keys remain stable for backwards compatibility:
+Primary keys are `sealed`, `field`, and `archive`:
 
 | Key (`data-brand`) | Context | Surfaces (dark) | Accent | Accent-2 |
 |---|---|---|---|---|
-| `arasaka` → "sealed" | sealed dossier — chain of custody | cold graphite with purple tint | red `#d45565` (ctx `#cf5e6b`) | steel ice `#6fb3c9` |
-| `militech` → "field" | field gathering — annotation | warm anthracite | sodium amber `#d99a4a` | olive `#9fae6b` |
-| `edgerunners` → "archive" | night archive — cross-reference | purple graphite | orchid `#b274c0` (ctx `#be7ecf`) | steel ice `#6fb3c9` |
+| `sealed` | sealed dossier — chain of custody | cold graphite with purple tint | red `#d45565` (ctx `#cf5e6b`) | steel ice `#6fb3c9` |
+| `field` | field gathering — annotation | warm anthracite | sodium amber `#d99a4a` | olive `#9fae6b` |
+| `archive` | night archive — cross-reference | purple graphite | orchid `#b274c0` (ctx `#be7ecf`) | steel ice `#6fb3c9` |
 
 Styling direction relies on contrast and borders, never excess glows: sealed = evidentiary austerity (red brackets, dense sobriety); field = field density (segmeter, stepper, annotation chips); archive = archival depth (orchid accents on purple graphite).
 
@@ -108,14 +108,14 @@ Styling direction relies on contrast and borders, never excess glows: sealed = e
 
 ## 8. Skin `cyber` — Intentional Exception to De-Slop
 
-`data-skin="cyber"` + `css/ris-skin-cyber.css` (loaded **last**) re-applies the Cyberpunk 2077 look & feel as an **opt-in layer** over the forensic baseline without altering its core. It is an explicit design choice: where §1 prescribes restrained palettes, the skin intentionally introduces structural red and glowing accents. The discipline remains intact:
+`data-skin="cyber"` + `css/ris-skin-cyber.css` (loaded **last**) re-applies a tactical cyberpunk HUD look & feel as an **opt-in layer** over the forensic baseline without altering its core. It is an explicit design choice: where §1 prescribes restrained palettes, the skin intentionally introduces structural red and glowing accents. The discipline remains intact:
 
 - **WCAG AA remains mandatory** (§4): neons are calibrated for ≥4.5:1 on near-black; state remains paired with text/icons.
-- **Dual Theme Support (Dark + Light)**: in Dark mode, applies high-contrast Kiroshi crimson/yellow HUD aesthetic; in Light mode, adapts into a technical architectural drafting cyan/slate palette (`#1b6b80` / `#165868`) with 10-15% ambient opacity, preserving optical comfort without neon glare.
+- **Dual Theme Support (Dark + Light)**: in Dark mode, applies high-contrast tactical crimson/yellow HUD aesthetic; in Light mode, adapts into a technical architectural drafting cyan/slate palette (`#1b6b80` / `#165868`) with 10-15% ambient opacity, preserving optical comfort without neon glare.
 - **Fully reversible**: everything is scoped to `[data-skin="cyber"]`; removing the attribute reverts to the disciplined baseline.
 - **Static textures**: scanlines and grain are static background layers, not animation loops → reduced-motion safe by design.
 
-When to use: products or views explicitly demanding full cyberpunk immersion.
+When to use: products or views explicitly demanding full cyberpunk HUD immersion.
 When not: tools requiring sterile or archival sobriety.
 
 ## 9. Mobile Safety & OLED Display Guidelines

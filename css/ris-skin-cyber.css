@@ -1,6 +1,6 @@
 /* ============================================================================
    RELIC INTERFACE SYSTEM v2 — ris-skin-cyber.css
-   OPT-IN "cyber" skin — overlays the Cyberpunk 2077 look & feel over the
+   OPT-IN "cyber" skin — overlays the tactical cyberpunk HUD look & feel over the
    forensic baseline WITHOUT modifying it. Load LAST:
 
      <html data-theme="dark" data-brand="vivokey" data-skin="cyber">
@@ -19,14 +19,14 @@
      · state never color alone: base components retain label/icon
      · every texture is STATIC (no motion) → reduced-motion safe by design
 
-   Reference: CP2077 HUD — structural red, cyan/green/amber accents,
+   Reference: Tactical Cyber HUD — structural red, cyan/green/amber accents,
    crimson→black gradient, scanlines+grain, data chrome (serial/hex/binary).
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap');
 
 /* ----------------------------------------------------------------------------
-   1. TOKEN OVERRIDE — CP2077 AA-tempered palette + structural red.
+   1. TOKEN OVERRIDE — AA-tempered palette + structural red.
    Dark mode token overrides (Light mode uses technical drafting slate/cyan rules below).
    -------------------------------------------------------------------------- */
 :root[data-skin="cyber"]:not([data-theme="light"]) {
@@ -38,7 +38,7 @@
   --ris-surface-3: #241318;
   --ris-surface-4: #2c171d;
 
-  /* LINES = structure, and structure is RED (CP2077 signature) */
+  /* LINES = structure, and structure is RED (tactical HUD signature) */
   --ris-line:        #6e2d38;
   --ris-line-strong: #9a3a48;
   --ris-line-faint:  #3a1820;

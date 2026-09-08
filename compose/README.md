@@ -1,6 +1,6 @@
 # RIS — Jetpack Compose Port (v2.8.0)
 
-Native Android / Jetpack Compose port of the **Relic Interface System (RIS)** with full support for both the v2 forensic baseline palette and the **Cyberpunk 2077** skin (`RisCyberSkin`), now unified with the Kiroshi Motion System and tactile HUD telemetry.
+Native Android / Jetpack Compose port of the **Relic Interface System (RIS)** with full support for both the v2 forensic baseline palette and the **Tactical Cyber** skin (`RisCyberSkin`), unified with the Tactical HUD Motion System and real-time telemetry.
 
 ---
 

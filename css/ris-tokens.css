@@ -64,7 +64,7 @@
   --ris-clip-sm: 6px;   /* chips, inputs, buttons */
   --ris-clip-lg: 16px;  /* modals, hero panels */
 
-  /* Motion — Kiroshi Tactical HUD + Emil Kowalski, never bouncy */
+  /* Motion — Tactical HUD + Emil Kowalski, never bouncy */
   --ris-ease:         cubic-bezier(0.2, 0.8, 0.2, 1);
   --ris-ease-snap:    cubic-bezier(0.16, 1, 0.3, 1);
   --ris-ease-out:     cubic-bezier(0.22, 1, 0.36, 1);
@@ -291,18 +291,17 @@
 /* ----------------------------------------------------------------------------
    5b. CASE-CONTEXT SKINS — full skins for evidence-handling contexts. In addition
    to accent pairs, they tint surfaces and lines (in dark mode only; in light
-   mode only accent inks change). Forensic/archival identities (data-brand keys
-   remain stable for backwards compatibility with consumers):
-     arasaka     → "sealed"  : sealed dossier, evidentiary red on cold graphite,
-                   secondary steel-ice (chain of custody)
-     militech    → "field"   : field collection, sodium amber on warm anthracite,
-                   secondary olive (annotation)
-     edgerunners → "archive" : night archive, orchid on purple graphite,
-                   secondary steel-ice (cross-reference)
+   mode only accent inks change). Forensic/archival identities:
+     sealed    : sealed dossier, evidentiary red on cold graphite,
+                 secondary steel-ice (chain of custody)
+     field     : field collection, sodium amber on warm anthracite,
+                 secondary olive (annotation)
+     archive   : night archive, orchid on purple graphite,
+                 secondary steel-ice (cross-reference)
    -------------------------------------------------------------------------- */
 
-/* ── SEALED (arasaka key) ── */
-:root[data-brand="arasaka"] {
+/* ── SEALED (evidentiary red) ── */
+:root[data-brand="sealed"] {
   --ris-accent:       #cf5e6b;
   --ris-accent-dim:   #83353f;
   --ris-accent-glow:  rgba(212,85,101,0.16);
@@ -312,14 +311,14 @@
   --ris-accent-2-glow: rgba(111,179,201,0.13);
   --ris-accent-2-line: rgba(111,179,201,0.45);
 }
-:root[data-brand="arasaka"]:not([data-theme="light"]) {
+:root[data-brand="sealed"]:not([data-theme="light"]) {
   --ris-void: #070608;       --ris-bg: #0b090c;
   --ris-surface-1: #120e12;  --ris-surface-2: #181219;
   --ris-surface-3: #1f1820;  --ris-surface-4: #271f29;
   --ris-line: #322a34;       --ris-line-strong: #463a48;
   --ris-line-faint: #1c161d;
 }
-:root[data-brand="arasaka"][data-theme="light"] {
+:root[data-brand="sealed"][data-theme="light"] {
   --ris-accent:      #b52f3d;
   --ris-accent-line: rgba(181,47,61,0.50);
   --ris-accent-glow: rgba(212,85,101,0.10);
@@ -328,8 +327,8 @@
   --ris-accent-2-glow: rgba(111,179,201,0.12);
 }
 
-/* ── FIELD (militech key) ── */
-:root[data-brand="militech"] {
+/* ── FIELD (field amber) ── */
+:root[data-brand="field"] {
   --ris-accent:       #d99a4a;
   --ris-accent-dim:   #8a5a12;
   --ris-accent-glow:  rgba(217,154,74,0.15);
@@ -339,14 +338,14 @@
   --ris-accent-2-glow: rgba(159,174,107,0.14);
   --ris-accent-2-line: rgba(159,174,107,0.45);
 }
-:root[data-brand="militech"]:not([data-theme="light"]) {
+:root[data-brand="field"]:not([data-theme="light"]) {
   --ris-void: #080706;       --ris-bg: #0c0b09;
   --ris-surface-1: #14120e;  --ris-surface-2: #1a1713;
   --ris-surface-3: #221e18;  --ris-surface-4: #2b2620;
   --ris-line: #38322a;       --ris-line-strong: #4c4436;
   --ris-line-faint: #1e1a15;
 }
-:root[data-brand="militech"][data-theme="light"] {
+:root[data-brand="field"][data-theme="light"] {
   --ris-accent:      #8a5a12;
   --ris-accent-line: rgba(138,90,18,0.55);
   --ris-accent-glow: rgba(217,154,74,0.22);
@@ -355,8 +354,8 @@
   --ris-accent-2-glow: rgba(159,174,107,0.20);
 }
 
-/* ── ARCHIVE (edgerunners key) ── */
-:root[data-brand="edgerunners"] {
+/* ── ARCHIVE (deep orchid) ── */
+:root[data-brand="archive"] {
   --ris-accent:       #be7ecf;
   --ris-accent-dim:   #6e4877;
   --ris-accent-glow:  rgba(178,116,192,0.16);
@@ -366,14 +365,14 @@
   --ris-accent-2-glow: var(--ris-cyan-glow);
   --ris-accent-2-line: var(--ris-cyan-line);
 }
-:root[data-brand="edgerunners"]:not([data-theme="light"]) {
+:root[data-brand="archive"]:not([data-theme="light"]) {
   --ris-void: #080612;       --ris-bg: #0c0a14;
   --ris-surface-1: #130f1e;  --ris-surface-2: #181327;
   --ris-surface-3: #201a33;  --ris-surface-4: #291f40;
   --ris-line: #352b52;       --ris-line-strong: #4a3d6e;
   --ris-line-faint: #1d1730;
 }
-:root[data-brand="edgerunners"][data-theme="light"] {
+:root[data-brand="archive"][data-theme="light"] {
   --ris-accent:      #8a3f9a;
   --ris-accent-line: rgba(138,63,154,0.50);
   --ris-accent-glow: rgba(178,116,192,0.12);

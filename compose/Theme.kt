@@ -39,7 +39,7 @@ data class RisColors(
 
 val LocalRisColors = staticCompositionLocalOf { RisColors() }
 
-/** Subtle cyberpunk background: crimson gradient + faint scanlines */
+/** Subtle tactical cyber background: crimson gradient + faint scanlines */
 fun Modifier.cyberBackdrop(): Modifier = this.drawBehind {
     val gradient = Brush.radialGradient(
         colors = listOf(Color(0x2E8B001F), Color.Transparent),
