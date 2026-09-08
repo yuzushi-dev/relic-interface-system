@@ -4,6 +4,15 @@
   "description": "Tailwind CSS plugin and preset for Relic Interface System (RIS v2)",
   "main": "index.js",
   "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./index.js"
+    },
+    "./preset": {
+      "default": "./preset.js"
+    }
+  },
   "files": [
     "index.js",
     "preset.js",
