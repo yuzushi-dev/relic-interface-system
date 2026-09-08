@@ -12,14 +12,18 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "default": "./dist/index.js"
-    }
+    },
+    "./styles.css": "./styles.css"
   },
   "files": [
     "dist",
     "src",
+    "styles.css",
     "README.md"
   ],
-  "sideEffects": false,
+  "sideEffects": [
+    "*.css"
+  ],
   "scripts": {
     "typecheck": "tsc --noEmit",
     "build": "tsc",

@@ -29,6 +29,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" data-theme="dark" data-brand="relic" data-skin="cyber" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                var t = localStorage.getItem('ris-theme');
+                var b = localStorage.getItem('ris-brand');
+                if (t) document.documentElement.setAttribute('data-theme', t);
+                if (b) document.documentElement.setAttribute('data-brand', b);
+              } catch (e) {}
+            `,
+          }}
+        />
+      </head>
       <body className="ris ris-grid-bg text-ris-fg1 min-h-screen antialiased">
         {/* WCAG 2.4.1 Skip Navigation Link */}
         <a className="ris-skip-nav" href="#main-content">

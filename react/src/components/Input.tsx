@@ -1,4 +1,6 @@
-import React, { forwardRef } from 'react';
+'use client';
+
+import React, { forwardRef, useId } from 'react';
 
 export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   label?: string;
@@ -10,7 +12,10 @@ export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElem
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ label, helperText, error, leftIcon, rightIcon, id, className = '', ...props }, ref) => {
-    const inputId = id || (label ? `ris-input-${label.toLowerCase().replace(/\s+/g, '-')}` : undefined);
+    const generatedId = useId();
+    const inputId = id || generatedId;
+    const errorId = `${inputId}-error`;
+    const helpId = `${inputId}-help`;
 
     return (
       <div className="ris-field" data-invalid={error ? true : undefined}>
@@ -31,7 +36,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               width: '100%',
             }}
             aria-invalid={error ? 'true' : undefined}
-            aria-describedby={error ? `${inputId}-error` : helperText ? `${inputId}-help` : undefined}
+            aria-describedby={error ? errorId : helperText ? helpId : undefined}
             {...props}
           />
           {rightIcon && (
@@ -41,11 +46,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           )}
         </div>
         {error ? (
-          <span id={`${inputId}-error`} className="ris-field-error" role="alert">
+          <span id={errorId} className="ris-field-error" role="alert">
             {error}
           </span>
         ) : helperText ? (
-          <span id={`${inputId}-help`} className="ris-field-help">
+          <span id={helpId} className="ris-field-help">
             {helperText}
           </span>
         ) : null}

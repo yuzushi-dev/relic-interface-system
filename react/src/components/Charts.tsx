@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useRef, useState, forwardRef } from 'react';
 import {
   RisChartsCore,
@@ -10,11 +12,7 @@ import {
 
 export type { ScrubPoint };
 
-// Check if external global RisCharts is available on window, otherwise use RisChartsCore
 function getEngine() {
-  if (typeof window !== 'undefined' && (window as any).RisCharts) {
-    return (window as any).RisCharts;
-  }
   return RisChartsCore;
 }
 

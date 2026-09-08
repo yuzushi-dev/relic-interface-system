@@ -227,10 +227,10 @@
 <!-- Mobile Topbar -->
 <header class="ris-topbar" style="position:fixed; top:0; left:0; right:0; z-index:150;">
   <span class="ris-stat"><span class="v">12</span><span class="n">Level</span><span class="ris-segmeter" role="meter" aria-label="Level"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></span>
-  <span class="ris-stat"><span class="v">19</span><span class="n">Cred</span><span class="ris-segmeter" role="meter" aria-label="Street Cred"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></span>
+  <span class="ris-stat"><span class="v">19</span><span class="n">Rank</span><span class="ris-segmeter" role="meter" aria-label="Trust Rank"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span></span>
   <span class="spacer"></span>
   <button class="theme-toggle-btn" onclick="toggleMobileTheme()" id="theme-btn" title="Alterna Dark/Light">◐ DARK</button>
-  <span class="ris-chip ris-chip--cyan" style="font-size:10px;">€$ 32,214</span>
+  <span class="ris-chip ris-chip--cyan" style="font-size:10px;">CRED 32,214</span>
 </header>
 
 <!-- Mobile Content Stage -->
@@ -303,47 +303,47 @@
       </div>
 
       <div style="display:flex; flex-direction:column; gap:8px; margin-top:14px;">
-        <div class="ris-listrow" data-selected="true" onclick="openContactDetail('Bartmoss Collective', '1 new encrypted message', 'NETWATCH_ALERT', '▣ PREDATOR // LV.4')">
+        <div class="ris-listrow" data-selected="true" onclick="openContactDetail('Mesh Core Dispatch', '1 new encrypted message', 'FIREWALL_ALERT', '▣ ENCLAVE // LV.4')">
           <div class="thumb" aria-hidden="true" style="display:flex; align-items:center; justify-content:center; font-family:var(--ris-font-mono); font-weight:700; font-size:11px;">NET</div>
           <div class="body">
-            <div class="title">Bartmoss Collective</div>
+            <div class="title">Mesh Core Dispatch</div>
             <div class="meta">1 new encrypted message</div>
           </div>
           <div class="time">14:22</div>
         </div>
 
-        <div class="ris-listrow" onclick="openContactDetail('Regina Jones', 'Fixer · Watson North', 'SEC_LVL_2', 'AVAILABLE GIGS: 3')">
-          <div class="thumb" aria-hidden="true" style="display:flex; align-items:center; justify-content:center; font-family:var(--ris-font-mono); font-weight:700; font-size:11px;">FIX</div>
+        <div class="ris-listrow" onclick="openContactDetail('Sector Station 04', 'Field Hub · North Perimeter', 'SEC_LVL_2', 'ACTIVE RELAYS: 3')">
+          <div class="thumb" aria-hidden="true" style="display:flex; align-items:center; justify-content:center; font-family:var(--ris-font-mono); font-weight:700; font-size:11px;">HUB</div>
           <div class="body">
-            <div class="title">Regina Jones</div>
-            <div class="meta">Fixer · Watson North</div>
+            <div class="title">Sector Station 04</div>
+            <div class="meta">Field Hub · North Perimeter</div>
           </div>
           <div class="time">12:05</div>
         </div>
 
-        <div class="ris-listrow" onclick="openContactDetail('Delamain', 'AI Transport // Autonomous Network', 'AI_CORE_ACTIVE', 'FLEET: 84% OPERATIONAL')">
-          <div class="thumb" aria-hidden="true" style="display:flex; align-items:center; justify-content:center; font-family:var(--ris-font-mono); font-weight:700; font-size:11px;">AI</div>
+        <div class="ris-listrow" onclick="openContactDetail('Autonomous Transit', 'Vector Routing Network', 'AI_CORE_ACTIVE', 'FLEET: 84% OPERATIONAL')">
+          <div class="thumb" aria-hidden="true" style="display:flex; align-items:center; justify-content:center; font-family:var(--ris-font-mono); font-weight:700; font-size:11px;">AUT</div>
           <div class="body">
-            <div class="title">Delamain</div>
-            <div class="meta">AI Transport // Autonomous Network</div>
+            <div class="title">Autonomous Transit</div>
+            <div class="meta">Vector Routing Network</div>
           </div>
           <div class="time">09:41</div>
         </div>
 
-        <div class="ris-listrow" onclick="openContactDetail('Evelyn Parker', 'Moxes · Lizzie\'s Bar', 'VIP_SECURE', 'LAST KNOWN LOCATION: KABUKI')">
-          <div class="thumb" aria-hidden="true" style="display:flex; align-items:center; justify-content:center; font-family:var(--ris-font-mono); font-weight:700; font-size:11px;">MOX</div>
+        <div class="ris-listrow" onclick="openContactDetail('Biometric Vault', 'Cold Storage · Enclave Key 09', 'VIP_SECURE', 'STORAGE STATUS: VERIFIED')">
+          <div class="thumb" aria-hidden="true" style="display:flex; align-items:center; justify-content:center; font-family:var(--ris-font-mono); font-weight:700; font-size:11px;">VLT</div>
           <div class="body">
-            <div class="title">Evelyn Parker</div>
-            <div class="meta">Moxes · Lizzie's Bar</div>
+            <div class="title">Biometric Vault</div>
+            <div class="meta">Cold Storage · Enclave Key 09</div>
           </div>
           <div class="time">YESTERDAY</div>
         </div>
 
-        <div class="ris-listrow" onclick="openContactDetail('Jackie Welles', 'Heywood // Blood brother', 'NEURAL_LINK_STABLE', 'BIO_CHIP_SYNC: 99.8%')">
-          <div class="thumb" aria-hidden="true" style="display:flex; align-items:center; justify-content:center; font-family:var(--ris-font-mono); font-weight:700; font-size:11px;">VAL</div>
+        <div class="ris-listrow" onclick="openContactDetail('Operational Relay', 'Terminal 01 // Field Link', 'NEURAL_LINK_STABLE', 'PAYLOAD_SYNC: 99.8%')">
+          <div class="thumb" aria-hidden="true" style="display:flex; align-items:center; justify-content:center; font-family:var(--ris-font-mono); font-weight:700; font-size:11px;">OPS</div>
           <div class="body">
-            <div class="title">Jackie Welles</div>
-            <div class="meta">Heywood · Mission partner</div>
+            <div class="title">Operational Relay</div>
+            <div class="meta">Terminal 01 // Field Link</div>
           </div>
           <div class="time">02 SEP</div>
         </div>
@@ -542,13 +542,13 @@
       </p>
       
       <div style="display:flex; flex-direction:column; gap:10px;">
-        <button class="ris-btn ris-btn--primary" onclick="triggerAction('NEURAL OVERDRIVE EXECUTED')">
-          ⚡ TRANSFER €$ 5,000 (PRIMARY)
+        <button class="ris-btn ris-btn--primary" onclick="triggerAction('BUFFER TRANSFER EXECUTED')">
+          ⚡ EXECUTE BUFFER TRANSFER (PRIMARY)
         </button>
         <button class="ris-btn ris-btn--secondary" onclick="triggerAction('CRYPTOGRAPHIC CHANNEL OPEN')">
           🔒 ENCRYPT CONVERSATION
         </button>
-        <button class="ris-btn ris-btn--danger" onclick="triggerAction('NETWATCH ALERT TRANSMITTED')">
+        <button class="ris-btn ris-btn--danger" onclick="triggerAction('SECURITY OVERRIDE TRANSMITTED')">
           &times; DISCONNECT NODE
         </button>
       </div>

@@ -400,7 +400,7 @@
 [data-skin="cyber"][data-theme="light"] .ris-listrow[data-selected="true"] .meta,
 [data-skin="cyber"][data-theme="light"] .ris-listrow[data-selected="true"] .time { color: #ffffff !important; }
 
-/* Topbar stat — LEVEL / STREET CRED with segmented meter (reuses .ris-segmeter) */
+/* Topbar stat — LEVEL / TRUST RANK with segmented meter (reuses .ris-segmeter) */
 [data-skin="cyber"] .ris-stat { display: inline-flex; align-items: center; gap: 8px; }
 [data-skin="cyber"] .ris-stat .v {
   font-family: var(--ris-font-display); font-weight: var(--ris-w-bold);

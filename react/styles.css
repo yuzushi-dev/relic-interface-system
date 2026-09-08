@@ -1,0 +1,1780 @@
+/* ============================================================================
+   RELIC INTERFACE SYSTEM v2 — ris-tokens.css
+   Token layer: themes (dark default / light) + brands (relic / biohub /
+   vivokey / neutral). Source of truth mirrored in ../tokens/ris.tokens.json.
+
+   Usage:
+     <html data-theme="dark|light" data-brand="relic|biohub|vivokey|neutral">
+     <link rel="stylesheet" href="css/ris-tokens.css">
+     <link rel="stylesheet" href="css/ris.css">
+
+   FONTS:
+     - Archivo       : display / headings / HUD numerics
+     - Archivo        : body, labels, UI text
+     - JetBrains Mono: metadata, telemetry, code, logs
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+/* ----------------------------------------------------------------------------
+   1. PRIMITIVES — theme-independent. Bright accent fills (forensic/archival
+   instrument palette), fonts, scale, spacing, shape, motion. Never reference
+   these in components for *text/border* color — use the contextual tier (2/3).
+   -------------------------------------------------------------------------- */
+:root {
+  /* Accent fills — always bright, pair with --ris-fg-invert text.
+     Forensic-instrument palette: amber-sodium accent, cold precise data colors. */
+  --ris-yellow-fill:  #e6a23c;  /* amber-sodium — active/CTA/pending */
+  --ris-cyan-fill:    #6fb3c9;  /* steel-ice    — data/link/scan     */
+  --ris-red-fill:     #d45565;
+  --ris-green-fill:   #5fae84;
+  --ris-violet-fill:  #8479be;
+  --ris-magenta-fill: #b274c0;  /* orchid — Gumi runtime */
+  --ris-orange-fill:  #d08a4e;
+
+  /* Type families — off-genre grotesk (Archivo), instrument feel */
+  --ris-font-display: 'Archivo', system-ui, sans-serif;
+  --ris-font-body:    'Archivo', system-ui, sans-serif;
+  --ris-font-mono:    'JetBrains Mono', ui-monospace, 'Courier New', monospace;
+
+  /* Type scale (px). Dense UI; 11px floor for hard metadata only. */
+  --ris-text-3xl: 44px;
+  --ris-text-2xl: 32px;
+  --ris-text-xl:  24px;
+  --ris-text-lg:  19px;
+  --ris-text-md:  16px;
+  --ris-text-sm:  14px;
+  --ris-text-xs:  11px;
+
+  --ris-w-reg: 400; --ris-w-med: 500; --ris-w-semi: 600; --ris-w-bold: 700;
+
+  --ris-track-tight: -0.01em;
+  --ris-track-normal: 0;
+  --ris-track-wide:  0.08em;
+  --ris-track-wider: 0.16em;
+  --ris-track-max:   0.28em;
+
+  /* Spacing — 4px base grid */
+  --ris-s1: 4px;  --ris-s2: 8px;  --ris-s3: 12px; --ris-s4: 16px;
+  --ris-s5: 20px; --ris-s6: 24px; --ris-s7: 32px; --ris-s8: 48px;
+
+  /* Shape — hard-edged; corners are CLIPPED, never rounded */
+  --ris-radius:  0px;
+  --ris-clip:    10px;  /* panels */
+  --ris-clip-sm: 6px;   /* chips, inputs, buttons */
+  --ris-clip-lg: 16px;  /* modals, hero panels */
+
+  /* Motion — Tactical HUD + Emil Kowalski, never bouncy */
+  --ris-ease:         cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ris-ease-snap:    cubic-bezier(0.16, 1, 0.3, 1);
+  --ris-ease-out:     cubic-bezier(0.22, 1, 0.36, 1);
+  --ris-ease-in-out:  cubic-bezier(0.65, 0, 0.35, 1);
+  --ris-dur-instant:  80ms;
+  --ris-dur-fast:     140ms;
+  --ris-dur-base:     200ms;
+  --ris-dur-enter:    240ms;
+  --ris-dur:          160ms;
+
+  /* Layout */
+  --ris-topbar-h:    52px;
+  --ris-rail-w:      64px;
+  --ris-bottomnav-h: 60px;
+  --ris-content-max: 1280px;
+}
+
+/* ----------------------------------------------------------------------------
+   2. THEME: DARK (default) — graphite stack, never pure black.
+   Contextual accents == fills (bright is readable on graphite).
+   -------------------------------------------------------------------------- */
+:root,
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Surfaces */
+  --ris-void:      #060708;   /* deepest backdrop, input wells              */
+  --ris-bg:        #0a0c0e;   /* app background                             */
+  --ris-surface-1: #0f1316;   /* panel base                                 */
+  --ris-surface-2: #141a1e;   /* raised panel / row hover                   */
+  --ris-surface-3: #1b2228;   /* elevated / selected row                    */
+  --ris-surface-4: #232c33;   /* tooltips, popovers, deepest elevation      */
+
+  /* Lines / grid — borders carry the structure, not shadows */
+  --ris-line:        #2a343b;
+  --ris-line-strong: #3b4750;
+  --ris-line-faint:  #1a2126;
+  --ris-scanline:    rgba(255,255,255,0.025);
+
+  /* Text */
+  --ris-fg1: #e6ebe8;
+  --ris-fg2: #aab4b2;
+  --ris-fg3: #98a3a5;   /* metadata — AA-safe on surface-1 */
+  --ris-fg4: #4a555b;   /* disabled / placeholder only     */
+  --ris-fg-invert: #07090a;
+  --ris-on-accent: #07090a;  /* ink ON bright accent fills — dark in BOTH themes (fills stay bright) */
+
+  /* Contextual accents (text/border/icon safe on this theme) */
+  --ris-yellow:  var(--ris-yellow-fill);
+  --ris-cyan:    var(--ris-cyan-fill);
+  --ris-red:     #da6171;  /* +L vs fill: #d45565 fails AA on surface-3 (4.5:1 ok bg..s2) */
+  --ris-green:   var(--ris-green-fill);
+  --ris-violet:  #938ac8;  /* +L vs fill: #8479be fails AA on surface-3 */
+  --ris-magenta: var(--ris-magenta-fill);
+  --ris-orange:  var(--ris-orange-fill);
+
+  --ris-yellow-dim:  #8f6425;
+  --ris-cyan-dim:    #456f7d;
+  --ris-red-dim:     #83353f;
+  --ris-green-dim:   #3b6c52;
+  --ris-violet-dim:  #524b76;
+  --ris-magenta-dim: #6e4877;
+  --ris-orange-dim:  #815630;
+
+  /* Translucent fills (-glow) and borders (-line) — derived from new bases */
+  --ris-yellow-glow:  rgba(230,162,60,0.16);
+  --ris-cyan-glow:    rgba(111,179,201,0.13);
+  --ris-red-glow:     rgba(212,85,101,0.16);
+  --ris-green-glow:   rgba(95,174,132,0.13);
+  --ris-violet-glow:  rgba(132,121,190,0.14);
+  --ris-magenta-glow: rgba(178,116,192,0.14);
+  --ris-orange-glow:  rgba(208,138,78,0.14);
+
+  --ris-yellow-line:  rgba(230,162,60,0.45);
+  --ris-cyan-line:    rgba(111,179,201,0.45);
+  --ris-red-line:     rgba(212,85,101,0.50);
+  --ris-green-line:   rgba(95,174,132,0.42);
+  --ris-violet-line:  rgba(132,121,190,0.45);
+  --ris-magenta-line: rgba(178,116,192,0.45);
+  --ris-orange-line:  rgba(208,138,78,0.45);
+
+  /* Elevation = border + glow, not soft shadows */
+  --ris-elev-1:   0 0 0 1px var(--ris-line);
+  --ris-elev-2:   0 0 0 1px var(--ris-line-strong), 0 8px 24px rgba(0,0,0,0.55);
+  --ris-elev-pop: 0 0 0 1px var(--ris-line-strong), 0 12px 40px rgba(0,0,0,0.7);
+}
+
+/* ----------------------------------------------------------------------------
+   3. THEME: LIGHT — cold blue-grey paper. Same structure-by-border logic.
+   Contextual accents drop to ink values (AA on light surfaces);
+   fills stay bright (CTA giallo resta giallo).
+   -------------------------------------------------------------------------- */
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --ris-void:      #d9dfe3;
+  --ris-bg:        #e9edef;
+  --ris-surface-1: #f4f6f7;
+  --ris-surface-2: #fafbfc;
+  --ris-surface-3: #ffffff;
+  --ris-surface-4: #ffffff;
+
+  --ris-line:        #c3ccd2;
+  --ris-line-strong: #9aa7b0;
+  --ris-line-faint:  #dde3e7;
+  --ris-scanline:    rgba(10,20,26,0.028);
+
+  --ris-fg1: #11181c;
+  --ris-fg2: #3d4a52;
+  --ris-fg3: #5d6b74;
+  --ris-fg4: #97a4ad;
+  --ris-fg-invert: #f6f8f8;
+
+  /* Ink accents — every value ≥4.5:1 on bg, surface-1 and white (WCAG AA) */
+  --ris-yellow:  #8a5a12;
+  --ris-cyan:    #216270;
+  --ris-red:     #b52f3d;
+  --ris-green:   #1f6e47;
+  --ris-violet:  #534a9e;
+  --ris-magenta: #8a3f9a;
+  --ris-orange:  #925312;
+
+  --ris-yellow-dim:  #a06a18;
+  --ris-cyan-dim:    #2c7a8a;
+  --ris-red-dim:     #c64351;
+  --ris-green-dim:   #2a8559;
+  --ris-violet-dim:  #6359b4;
+  --ris-magenta-dim: #a14fb0;
+  --ris-orange-dim:  #ab6418;
+
+  --ris-yellow-glow:  rgba(230,162,60,0.30);
+  --ris-cyan-glow:    rgba(111,179,201,0.16);
+  --ris-red-glow:     rgba(212,85,101,0.10);
+  --ris-green-glow:   rgba(95,174,132,0.16);
+  --ris-violet-glow:  rgba(132,121,190,0.12);
+  --ris-magenta-glow: rgba(178,116,192,0.12);
+  --ris-orange-glow:  rgba(208,138,78,0.16);
+
+  --ris-yellow-line:  rgba(138,90,18,0.55);
+  --ris-cyan-line:    rgba(33,98,112,0.50);
+  --ris-red-line:     rgba(181,47,61,0.50);
+  --ris-green-line:   rgba(31,110,71,0.50);
+  --ris-violet-line:  rgba(83,74,158,0.50);
+  --ris-magenta-line: rgba(138,63,154,0.50);
+  --ris-orange-line:  rgba(146,83,18,0.50);
+
+  --ris-elev-1:   0 0 0 1px var(--ris-line);
+  --ris-elev-2:   0 0 0 1px var(--ris-line-strong), 0 8px 24px rgba(20,32,40,0.14);
+  --ris-elev-pop: 0 0 0 1px var(--ris-line-strong), 0 12px 40px rgba(20,32,40,0.20);
+}
+
+/* ----------------------------------------------------------------------------
+   4. SEMANTIC ROLES — theme-resolved, brand-independent. Status is NEVER
+   color-only: always pair with a label or icon.
+   -------------------------------------------------------------------------- */
+:root {
+  --ris-link:       var(--ris-cyan);
+  --ris-danger:     var(--ris-red);
+  --ris-warning:    var(--ris-yellow);
+  --ris-success:    var(--ris-green);
+  --ris-info:       var(--ris-cyan);
+  --ris-focus-ring: var(--ris-cyan);
+
+  /* Stream taxonomy (Relic research governance) */
+  --ris-stream-evidence:   var(--ris-cyan);
+  --ris-stream-inference:  var(--ris-violet);
+  --ris-stream-pending:    var(--ris-yellow);
+  --ris-stream-approved:   var(--ris-green);
+  --ris-stream-blocked:    var(--ris-red);
+  --ris-stream-gumi:       var(--ris-magenta);
+  --ris-stream-runtime:    var(--ris-cyan-dim);
+  --ris-stream-correction: var(--ris-orange);
+}
+
+/* ----------------------------------------------------------------------------
+   5. BRAND LAYER — sets the accent pair only; semantics never change.
+     relic   (default) yellow / cyan   — workbench, command
+     biohub            cyan   / green  — biofeedback, data
+     vivokey           red    / yellow — auth, possession factor
+     neutral           violet / cyan   — general use
+   -------------------------------------------------------------------------- */
+:root,
+:root[data-brand="relic"] {
+  --ris-accent:       var(--ris-yellow);
+  --ris-accent-dim:   var(--ris-yellow-dim);
+  --ris-accent-glow:  var(--ris-yellow-glow);
+  --ris-accent-line:  var(--ris-yellow-line);
+  --ris-accent-fill:  var(--ris-yellow-fill);
+  --ris-accent-2:      var(--ris-cyan);
+  --ris-accent-2-glow: var(--ris-cyan-glow);
+  --ris-accent-2-line: var(--ris-cyan-line);
+}
+:root[data-brand="biohub"] {
+  --ris-accent:       var(--ris-cyan);
+  --ris-accent-dim:   var(--ris-cyan-dim);
+  --ris-accent-glow:  var(--ris-cyan-glow);
+  --ris-accent-line:  var(--ris-cyan-line);
+  --ris-accent-fill:  var(--ris-cyan-fill);
+  --ris-accent-2:      var(--ris-green);
+  --ris-accent-2-glow: var(--ris-green-glow);
+  --ris-accent-2-line: var(--ris-green-line);
+}
+:root[data-brand="vivokey"] {
+  --ris-accent:       var(--ris-red);
+  --ris-accent-dim:   var(--ris-red-dim);
+  --ris-accent-glow:  var(--ris-red-glow);
+  --ris-accent-line:  var(--ris-red-line);
+  --ris-accent-fill:  var(--ris-red-fill);
+  --ris-accent-2:      var(--ris-yellow);
+  --ris-accent-2-glow: var(--ris-yellow-glow);
+  --ris-accent-2-line: var(--ris-yellow-line);
+}
+:root[data-brand="neutral"] {
+  --ris-accent:       var(--ris-violet);
+  --ris-accent-dim:   var(--ris-violet-dim);
+  --ris-accent-glow:  var(--ris-violet-glow);
+  --ris-accent-line:  var(--ris-violet-line);
+  --ris-accent-fill:  var(--ris-violet-fill);
+  --ris-accent-2:      var(--ris-cyan);
+  --ris-accent-2-glow: var(--ris-cyan-glow);
+  --ris-accent-2-line: var(--ris-cyan-line);
+}
+
+/* ----------------------------------------------------------------------------
+   5b. CASE-CONTEXT SKINS — full skins for evidence-handling contexts. In addition
+   to accent pairs, they tint surfaces and lines (in dark mode only; in light
+   mode only accent inks change). Forensic/archival identities:
+     sealed    : sealed dossier, evidentiary red on cold graphite,
+                 secondary steel-ice (chain of custody)
+     field     : field collection, sodium amber on warm anthracite,
+                 secondary olive (annotation)
+     archive   : night archive, orchid on purple graphite,
+                 secondary steel-ice (cross-reference)
+   -------------------------------------------------------------------------- */
+
+/* ── SEALED (evidentiary red) ── */
+:root[data-brand="sealed"] {
+  --ris-accent:       #cf5e6b;
+  --ris-accent-dim:   #83353f;
+  --ris-accent-glow:  rgba(212,85,101,0.16);
+  --ris-accent-line:  rgba(207,94,107,0.50);
+  --ris-accent-fill:  #d45565;
+  --ris-accent-2:      #6fb3c9;
+  --ris-accent-2-glow: rgba(111,179,201,0.13);
+  --ris-accent-2-line: rgba(111,179,201,0.45);
+}
+:root[data-brand="sealed"]:not([data-theme="light"]) {
+  --ris-void: #070608;       --ris-bg: #0b090c;
+  --ris-surface-1: #120e12;  --ris-surface-2: #181219;
+  --ris-surface-3: #1f1820;  --ris-surface-4: #271f29;
+  --ris-line: #322a34;       --ris-line-strong: #463a48;
+  --ris-line-faint: #1c161d;
+}
+:root[data-brand="sealed"][data-theme="light"] {
+  --ris-accent:      #b52f3d;
+  --ris-accent-line: rgba(181,47,61,0.50);
+  --ris-accent-glow: rgba(212,85,101,0.10);
+  --ris-accent-2:      #216270;
+  --ris-accent-2-line: rgba(33,98,112,0.50);
+  --ris-accent-2-glow: rgba(111,179,201,0.12);
+}
+
+/* ── FIELD (field amber) ── */
+:root[data-brand="field"] {
+  --ris-accent:       #d99a4a;
+  --ris-accent-dim:   #8a5a12;
+  --ris-accent-glow:  rgba(217,154,74,0.15);
+  --ris-accent-line:  rgba(217,154,74,0.48);
+  --ris-accent-fill:  #d99a4a;
+  --ris-accent-2:      #9fae6b;
+  --ris-accent-2-glow: rgba(159,174,107,0.14);
+  --ris-accent-2-line: rgba(159,174,107,0.45);
+}
+:root[data-brand="field"]:not([data-theme="light"]) {
+  --ris-void: #080706;       --ris-bg: #0c0b09;
+  --ris-surface-1: #14120e;  --ris-surface-2: #1a1713;
+  --ris-surface-3: #221e18;  --ris-surface-4: #2b2620;
+  --ris-line: #38322a;       --ris-line-strong: #4c4436;
+  --ris-line-faint: #1e1a15;
+}
+:root[data-brand="field"][data-theme="light"] {
+  --ris-accent:      #8a5a12;
+  --ris-accent-line: rgba(138,90,18,0.55);
+  --ris-accent-glow: rgba(217,154,74,0.22);
+  --ris-accent-2:      #586327;
+  --ris-accent-2-line: rgba(88,99,39,0.50);
+  --ris-accent-2-glow: rgba(159,174,107,0.20);
+}
+
+/* ── ARCHIVE (deep orchid) ── */
+:root[data-brand="archive"] {
+  --ris-accent:       #be7ecf;
+  --ris-accent-dim:   #6e4877;
+  --ris-accent-glow:  rgba(178,116,192,0.16);
+  --ris-accent-line:  rgba(190,126,207,0.50);
+  --ris-accent-fill:  #b274c0;
+  --ris-accent-2:      var(--ris-cyan);
+  --ris-accent-2-glow: var(--ris-cyan-glow);
+  --ris-accent-2-line: var(--ris-cyan-line);
+}
+:root[data-brand="archive"]:not([data-theme="light"]) {
+  --ris-void: #080612;       --ris-bg: #0c0a14;
+  --ris-surface-1: #130f1e;  --ris-surface-2: #181327;
+  --ris-surface-3: #201a33;  --ris-surface-4: #291f40;
+  --ris-line: #352b52;       --ris-line-strong: #4a3d6e;
+  --ris-line-faint: #1d1730;
+}
+:root[data-brand="archive"][data-theme="light"] {
+  --ris-accent:      #8a3f9a;
+  --ris-accent-line: rgba(138,63,154,0.50);
+  --ris-accent-glow: rgba(178,116,192,0.12);
+}
+
+/* ----------------------------------------------------------------------------
+   6. GLOWS that depend on accent (must come after brand layer).
+   Glow is an EXCEPTION, not a default. Components signal state with contrast +
+   border weight; these shadows are reserved for opt-in FX utilities and the
+   single intentional --ris-live path (genuinely critical / live telemetry).
+   -------------------------------------------------------------------------- */
+:root {
+  --ris-glow-accent: 0 0 0 1px var(--ris-accent-line), 0 0 18px var(--ris-accent-glow);
+  --ris-glow-cyan:   0 0 0 1px var(--ris-cyan-line),   0 0 18px var(--ris-cyan-glow);
+  --ris-glow-red:    0 0 0 1px var(--ris-red-line),    0 0 18px var(--ris-red-glow);
+
+  /* The ONE sanctioned glow: a live/critical state signal (e.g. recording,
+     active acquisition). Use sparingly — this is the only default-CSS glow. */
+  --ris-live: 0 0 0 1px var(--ris-red-line), 0 0 14px var(--ris-red-glow);
+}
+
+/* ----------------------------------------------------------------------------
+   7. DEPRECATED ALIASES (v1 compat) — --ris-amber* lives on as yellow.
+   -------------------------------------------------------------------------- */
+:root {
+  --ris-amber:      var(--ris-yellow);
+  --ris-amber-dim:  var(--ris-yellow-dim);
+  --ris-amber-glow: var(--ris-yellow-glow);
+  --ris-amber-line: var(--ris-yellow-line);
+  --ris-glow-amber: var(--ris-glow-accent);
+}
+
+/* ----------------------------------------------------------------------------
+   8. SEMANTIC TYPE CLASSES
+   -------------------------------------------------------------------------- */
+.ris-hero {
+  font-family: var(--ris-font-display);
+  font-size: var(--ris-text-3xl);
+  font-weight: var(--ris-w-bold);
+  line-height: 1.0;
+  letter-spacing: var(--ris-track-tight);
+  color: var(--ris-fg1);
+  text-transform: uppercase;
+}
+.ris-h1 {
+  font-family: var(--ris-font-display);
+  font-size: var(--ris-text-2xl);
+  font-weight: var(--ris-w-bold);
+  line-height: 1.05;
+  letter-spacing: var(--ris-track-tight);
+  color: var(--ris-fg1);
+  text-transform: uppercase;
+}
+.ris-h2 {
+  font-family: var(--ris-font-display);
+  font-size: var(--ris-text-xl);
+  font-weight: var(--ris-w-semi);
+  line-height: 1.1;
+  color: var(--ris-fg1);
+  text-transform: uppercase;
+}
+.ris-h3 {
+  font-family: var(--ris-font-display);
+  font-size: var(--ris-text-lg);
+  font-weight: var(--ris-w-semi);
+  line-height: 1.15;
+  color: var(--ris-fg1);
+}
+.ris-body {
+  font-family: var(--ris-font-body);
+  font-size: var(--ris-text-md);
+  font-weight: var(--ris-w-med);
+  line-height: 1.55;
+  letter-spacing: 0.005em;
+  color: var(--ris-fg2);
+}
+.ris-small {
+  font-family: var(--ris-font-body);
+  font-size: var(--ris-text-sm);
+  font-weight: var(--ris-w-med);
+  line-height: 1.5;
+  color: var(--ris-fg3);
+}
+.ris-label {
+  font-family: var(--ris-font-body);
+  font-size: var(--ris-text-xs);
+  font-weight: var(--ris-w-semi);
+  line-height: 1;
+  letter-spacing: var(--ris-track-wider);
+  text-transform: uppercase;
+  color: var(--ris-fg3);
+}
+.ris-eyebrow {
+  font-family: var(--ris-font-mono);
+  font-size: var(--ris-text-xs);
+  font-weight: var(--ris-w-med);
+  letter-spacing: var(--ris-track-max);
+  text-transform: uppercase;
+  color: var(--ris-fg3);
+}
+.ris-mono {
+  font-family: var(--ris-font-mono);
+  font-size: var(--ris-text-sm);
+  font-weight: var(--ris-w-med);
+  color: var(--ris-fg2);
+  font-variant-numeric: tabular-nums;
+}
+.ris-numeric {
+  font-family: var(--ris-font-display);
+  font-weight: var(--ris-w-bold);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: var(--ris-track-tight);
+  color: var(--ris-fg1);
+}
+/* ============================================================================
+   RELIC INTERFACE SYSTEM v2 — ris.css
+   Component layer. Requires ris-tokens.css loaded first.
+   Inventory: surface/texture · layout chrome (topbar/rail/bottomnav) ·
+   panel · button · chip/stream/risk · forms (input/select/textarea/checkbox/
+   radio/switch/slider/field) · table · modal · toast · alert · tabs ·
+   tooltip · dropdown · breadcrumb · pagination · meter · KPI · facet ·
+   skeleton · empty · kbd/code · avatar · badge · icon · utilities.
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body.ris {
+  margin: 0;
+  background: var(--ris-bg);
+  color: var(--ris-fg1);
+  font-family: var(--ris-font-body);
+  font-size: var(--ris-text-md);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* display on the class would defeat the hidden attribute (e.g. modal backdrop) */
+[hidden] { display: none !important; }
+
+a { color: var(--ris-link); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: 3px; }
+button { font: inherit; cursor: pointer; }
+
+/* ---- Accessibility baseline & Touch Ergonomics (WCAG 2.2 AA) ----------- */
+button, a, input, select, textarea, .ris-btn, .ris-nav-link, .ris-listrow, .ris-tab, .ris-switch {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+:focus-visible {
+  outline: 2px solid var(--ris-focus-ring);
+  outline-offset: 2px;
+}
+.ris-skip-nav {
+  position: absolute; left: -9999px;
+}
+.ris-skip-nav:focus-visible {
+  position: fixed; top: 8px; left: 50%; transform: translateX(-50%);
+  padding: 10px 20px; z-index: 9999;
+  background: var(--ris-surface-4); color: var(--ris-fg1);
+  border: 2px solid var(--ris-focus-ring);
+  font-family: var(--ris-font-mono); font-size: 12px;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---- Background textures: grid + scanlines ------------------------------- */
+.ris-grid-bg {
+  background-color: var(--ris-bg);
+  background-image:
+    linear-gradient(var(--ris-line-faint) 1px, transparent 1px),
+    linear-gradient(90deg, var(--ris-line-faint) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+.ris-scanlines { position: relative; }
+.ris-scanlines::after {
+  content: "";
+  position: absolute; inset: 0;
+  pointer-events: none; z-index: 2;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0, transparent 2px,
+    var(--ris-scanline) 2px, var(--ris-scanline) 3px);
+}
+
+/* ============================================================================
+   LAYOUT CHROME — top status bar, desktop rail, mobile bottom nav
+   Desktop ≥768px: topbar + left rail. Mobile <768px: topbar + bottom nav.
+   ========================================================================== */
+.ris-topbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; gap: var(--ris-s4);
+  height: var(--ris-topbar-h);
+  padding: 0 var(--ris-s4);
+  background: color-mix(in srgb, var(--ris-surface-1) 96%, transparent);
+  border-bottom: 1px solid var(--ris-line);
+  backdrop-filter: blur(6px);
+}
+.ris-topbar .spacer { flex: 1; }
+
+.ris-rail {
+  position: fixed; top: var(--ris-topbar-h); bottom: 0; left: 0; z-index: 90;
+  width: var(--ris-rail-w);
+  display: flex; flex-direction: column; align-items: center;
+  gap: var(--ris-s2); padding: var(--ris-s3) 0;
+  background: color-mix(in srgb, var(--ris-surface-1) 96%, transparent);
+  border-right: 1px solid var(--ris-line);
+}
+
+.ris-nav-link {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 3px; width: 52px; height: 48px;
+  color: var(--ris-fg3); border: 1px solid transparent;
+  font-family: var(--ris-font-body); font-size: 9px; font-weight: var(--ris-w-semi);
+  letter-spacing: var(--ris-track-wide); text-transform: uppercase;
+  clip-path: polygon(0 0, calc(100% - var(--ris-clip-sm)) 0, 100% var(--ris-clip-sm), 100% 100%, var(--ris-clip-sm) 100%, 0 calc(100% - var(--ris-clip-sm)));
+  transition: background var(--ris-dur-fast) var(--ris-ease),
+              border-color var(--ris-dur-fast) var(--ris-ease),
+              color var(--ris-dur-fast) var(--ris-ease);
+}
+.ris-nav-link:hover { color: var(--ris-fg1); background: var(--ris-surface-2); text-decoration: none; }
+.ris-nav-link[data-active="true"], .ris-nav-link[aria-current="page"] {
+  color: var(--ris-accent);
+  background: var(--ris-accent-glow);
+  border-color: var(--ris-accent-line);
+  box-shadow: inset 2px 0 0 var(--ris-accent);
+}
+
+.ris-bottomnav {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 100;
+  display: none;
+  height: var(--ris-bottomnav-h);
+  padding: 6px max(8px, env(safe-area-inset-left)) max(6px, env(safe-area-inset-bottom));
+  background: color-mix(in srgb, var(--ris-surface-1) 97%, transparent);
+  border-top: 1px solid var(--ris-line);
+  backdrop-filter: blur(6px);
+}
+.ris-bottomnav .ris-nav-link {
+  flex: 1; width: auto; height: 100%;
+  min-height: 44px; min-width: 44px;
+}
+.ris-bottomnav .ris-nav-link:active .ris-icon {
+  transform: scale(0.88);
+  transition: transform var(--ris-dur-instant) var(--ris-ease-snap);
+}
+
+.ris-shell-content {
+  padding: calc(var(--ris-topbar-h) + var(--ris-s5)) var(--ris-s5) var(--ris-s7)
+           calc(var(--ris-rail-w) + var(--ris-s5));
+  max-width: calc(var(--ris-content-max) + var(--ris-rail-w));
+  margin: 0 auto;
+}
+
+@media (max-width: 767px) {
+  .ris-rail { display: none; }
+  .ris-bottomnav { display: flex; }
+  .ris-shell-content {
+    padding: calc(var(--ris-topbar-h) + var(--ris-s4)) var(--ris-s4)
+             calc(var(--ris-bottomnav-h) + var(--ris-s6));
+  }
+}
+
+/* ============================================================================
+   PANEL — the angular clipped container, RIS signature
+   ========================================================================== */
+.ris-panel {
+  position: relative;
+  background: var(--ris-surface-1);
+  border: 1px solid var(--ris-line);
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--ris-clip)) 0,
+    100% var(--ris-clip),
+    100% 100%,
+    var(--ris-clip) 100%,
+    0 calc(100% - var(--ris-clip)));
+}
+.ris-panel--flat { clip-path: none; }
+.ris-panel--2 { background: var(--ris-surface-2); }
+.ris-panel--accent { border-color: var(--ris-accent-line); box-shadow: inset 0 1px 0 var(--ris-accent-line); }
+
+.ris-panel-head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--ris-s3);
+  padding: var(--ris-s3) var(--ris-s4);
+  border-bottom: 1px solid var(--ris-line);
+  background: linear-gradient(var(--ris-surface-2), var(--ris-surface-1));
+}
+.ris-panel-body { padding: var(--ris-s4); }
+.ris-panel-foot {
+  display: flex; align-items: center; justify-content: flex-end; gap: var(--ris-s2);
+  padding: var(--ris-s3) var(--ris-s4);
+  border-top: 1px solid var(--ris-line);
+}
+
+/* Accent corner brackets — small L marks */
+.ris-bracket::before,
+.ris-bracket::after {
+  content: ""; position: absolute; width: 8px; height: 8px;
+  border-color: var(--ris-accent); border-style: solid; pointer-events: none; z-index: 3;
+}
+.ris-bracket::before { top: 3px; left: 3px; border-width: 1px 0 0 1px; }
+.ris-bracket::after  { bottom: 3px; right: 3px; border-width: 0 1px 1px 0; }
+
+/* ============================================================================
+   BUTTONS
+   ========================================================================== */
+.ris-btn {
+  --_accent: var(--ris-accent);
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--ris-s2);
+  padding: 9px 16px;
+  min-height: 36px;
+  font-family: var(--ris-font-body);
+  font-size: var(--ris-text-xs);
+  font-weight: var(--ris-w-semi);
+  letter-spacing: var(--ris-track-wider);
+  text-transform: uppercase;
+  --_accent: var(--ris-accent);
+  background: var(--ris-surface-2);
+  border: 1px solid var(--ris-line-strong);
+  clip-path: polygon(0 0, calc(100% - var(--ris-clip-sm)) 0, 100% var(--ris-clip-sm), 100% 100%, var(--ris-clip-sm) 100%, 0 calc(100% - var(--ris-clip-sm)));
+  transition: background var(--ris-dur-fast) var(--ris-ease-snap),
+              color var(--ris-dur-fast) var(--ris-ease-snap),
+              border-color var(--ris-dur-fast) var(--ris-ease-snap),
+              box-shadow var(--ris-dur-fast) var(--ris-ease-snap),
+              transform var(--ris-dur-instant) var(--ris-ease-snap);
+}
+.ris-btn:hover {
+  background: var(--ris-surface-3);
+  border-color: var(--_accent);
+  box-shadow: 0 0 12px var(--ris-accent-glow), inset 0 0 0 1px var(--_accent);
+  color: #ffffff;
+}
+:root[data-theme="light"] .ris-btn:hover {
+  background: var(--ris-surface-1);
+  color: var(--ris-fg1);
+  border-color: var(--_accent);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08), inset 0 0 0 1px var(--_accent);
+}
+.ris-btn:active { transform: scale(0.97); }
+
+.ris-btn--primary {
+  --_accent: var(--ris-accent);
+  background: var(--ris-accent-fill);
+  color: var(--ris-on-accent);
+  border-color: var(--ris-accent-fill);
+}
+.ris-btn--primary:hover {
+  background: color-mix(in srgb, var(--ris-accent-fill) 88%, #ffffff);
+  box-shadow: 0 0 20px var(--ris-accent-glow), inset 0 0 0 1px var(--ris-on-accent);
+  color: #000000;
+  border-color: #ffffff;
+}
+.ris-btn--invert:hover {
+  background: var(--_accent) !important;
+  color: #000000 !important;
+  border-color: var(--_accent) !important;
+  box-shadow: 0 0 20px var(--ris-accent-glow) !important;
+}
+.ris-btn--secondary {
+  --_accent: var(--ris-accent-2);
+  color: var(--ris-accent-2);
+  border-color: var(--ris-accent-2-line);
+  background: transparent;
+}
+.ris-btn--secondary:hover {
+  background: var(--ris-surface-3);
+  border-color: var(--_accent);
+  box-shadow: 0 0 14px var(--ris-accent-2-glow), inset 0 0 0 1.5px var(--_accent);
+  color: #ffffff;
+}
+:root[data-theme="light"] .ris-btn--secondary:hover {
+  background: var(--ris-surface-1);
+  color: var(--ris-accent-2);
+  border-color: var(--ris-accent-2);
+}
+.ris-btn--danger {
+  --_accent: var(--ris-red);
+  color: var(--ris-red);
+  border-color: var(--ris-red-line);
+  background: transparent;
+}
+.ris-btn--danger:hover {
+  background: var(--ris-red-fill);
+  color: #ffffff;
+  box-shadow: 0 0 18px var(--ris-red-glow), inset 0 0 0 1px #fff;
+  border-color: var(--ris-red-fill);
+}
+.ris-btn--ghost { background: transparent; border-color: var(--ris-line); color: var(--ris-fg2); }
+.ris-btn--ghost:hover { color: #ffffff; background: var(--ris-surface-2); border-color: var(--ris-line-strong); box-shadow: none; }
+
+.ris-btn--sm { padding: 5px 10px; min-height: 28px; font-size: 10px; }
+.ris-btn--lg { padding: 13px 24px; min-height: 46px; font-size: var(--ris-text-sm); }
+.ris-btn--icon { padding: 0; width: 36px; }
+.ris-btn--block { display: flex; width: 100%; }
+
+.ris-btn:disabled, .ris-btn--disabled {
+  background: var(--ris-surface-1); color: var(--ris-fg4);
+  border-color: var(--ris-line); cursor: not-allowed; box-shadow: none;
+  pointer-events: none;
+}
+
+/* ============================================================================
+   CHIPS / STREAM TAGS / RISK
+   ========================================================================== */
+.ris-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 3px 8px;
+  font-family: var(--ris-font-mono);
+  font-size: var(--ris-text-xs);
+  font-weight: var(--ris-w-med);
+  letter-spacing: var(--ris-track-wide);
+  text-transform: uppercase;
+  color: var(--ris-fg2);
+  background: var(--ris-surface-2);
+  border: 1px solid var(--ris-line-strong);
+  white-space: nowrap;
+}
+.ris-chip .dot { width: 6px; height: 6px; background: currentColor; }
+.ris-chip--accent  { color: var(--ris-accent);  border-color: var(--ris-accent-line);  background: var(--ris-accent-glow); }
+.ris-chip--yellow  { color: var(--ris-yellow);  border-color: var(--ris-yellow-line);  background: var(--ris-yellow-glow); }
+.ris-chip--cyan    { color: var(--ris-cyan);    border-color: var(--ris-cyan-line);    background: var(--ris-cyan-glow); }
+.ris-chip--red     { color: var(--ris-red);     border-color: var(--ris-red-line);     background: var(--ris-red-glow); }
+.ris-chip--green   { color: var(--ris-green);   border-color: var(--ris-green-line);   background: var(--ris-green-glow); }
+.ris-chip--violet  { color: var(--ris-violet);  border-color: var(--ris-violet-line);  background: var(--ris-violet-glow); }
+.ris-chip--magenta { color: var(--ris-magenta); border-color: var(--ris-magenta-line); background: var(--ris-magenta-glow); }
+.ris-chip--orange  { color: var(--ris-orange);  border-color: var(--ris-orange-line);  background: var(--ris-orange-glow); }
+/* v1 alias */
+.ris-chip--amber   { color: var(--ris-yellow);  border-color: var(--ris-yellow-line);  background: var(--ris-yellow-glow); }
+
+.ris-stream {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 2px 8px;
+  font-family: var(--ris-font-mono);
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  border: 1px solid; line-height: 1.6;
+}
+.ris-stream::before { content: ""; width: 4px; height: 4px; flex-shrink: 0; background: currentColor; }
+.ris-stream[data-stream="evidence"]   { color: var(--ris-stream-evidence);   border-color: var(--ris-cyan-line);    background: var(--ris-cyan-glow); }
+.ris-stream[data-stream="inference"]  { color: var(--ris-stream-inference);  border-color: var(--ris-violet-line);  background: var(--ris-violet-glow); }
+.ris-stream[data-stream="pending"]    { color: var(--ris-stream-pending);    border-color: var(--ris-yellow-line);  background: var(--ris-yellow-glow); }
+.ris-stream[data-stream="approved"]   { color: var(--ris-stream-approved);   border-color: var(--ris-green-line);   background: var(--ris-green-glow); }
+.ris-stream[data-stream="blocked"]    { color: var(--ris-stream-blocked);    border-color: var(--ris-red-line);     background: var(--ris-red-glow); }
+.ris-stream[data-stream="gumi"]       { color: var(--ris-stream-gumi);       border-color: var(--ris-magenta-line); background: var(--ris-magenta-glow); }
+.ris-stream[data-stream="runtime"]    { color: var(--ris-stream-runtime);    border-color: var(--ris-line-strong);  background: var(--ris-surface-2); }
+.ris-stream[data-stream="correction"] { color: var(--ris-stream-correction); border-color: var(--ris-orange-line);  background: var(--ris-orange-glow); }
+.ris-stream[data-stream="neutral"]    { color: var(--ris-fg3);               border-color: var(--ris-line-strong);  background: var(--ris-surface-2); }
+
+.ris-risk {
+  display: inline-block; padding: 2px 8px;
+  font-family: var(--ris-font-mono); font-size: 10px;
+  letter-spacing: .06em; text-transform: uppercase; border: 1px solid;
+}
+.ris-risk[data-risk="none"]   { color: var(--ris-fg3);    border-color: var(--ris-line-strong); }
+.ris-risk[data-risk="low"]    { color: var(--ris-green);  border-color: var(--ris-green-line);  background: var(--ris-green-glow); }
+.ris-risk[data-risk="medium"] { color: var(--ris-yellow); border-color: var(--ris-yellow-line); background: var(--ris-yellow-glow); }
+.ris-risk[data-risk="high"]   { color: var(--ris-red);    border-color: var(--ris-red-line);    background: var(--ris-red-glow); }
+
+/* Count badge (notifications) */
+.ris-badge-count {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 18px; height: 18px; padding: 0 5px;
+  font-family: var(--ris-font-mono); font-size: 10px; font-weight: var(--ris-w-bold);
+  color: var(--ris-fg-invert); background: var(--ris-accent-fill);
+  clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px));
+}
+.ris-badge-count--danger { background: var(--ris-red-fill); color: #fff; }
+
+/* ============================================================================
+   FORMS
+   ========================================================================== */
+.ris-field { display: flex; flex-direction: column; gap: 6px; }
+.ris-field > label {
+  font-family: var(--ris-font-body);
+  font-size: var(--ris-text-xs); font-weight: var(--ris-w-semi);
+  letter-spacing: var(--ris-track-wider); text-transform: uppercase;
+  color: var(--ris-fg3);
+}
+.ris-field-help { font-size: var(--ris-text-sm); color: var(--ris-fg3); }
+.ris-field-error {
+  display: flex; align-items: center; gap: 6px;
+  font-family: var(--ris-font-mono); font-size: 12px; color: var(--ris-red);
+}
+.ris-field[data-invalid] .ris-input,
+.ris-field[data-invalid] .ris-select,
+.ris-field[data-invalid] .ris-textarea { border-color: var(--ris-red); }
+
+.ris-input, .ris-select, .ris-textarea {
+  width: 100%;
+  padding: 9px 12px;
+  font-family: var(--ris-font-body);
+  font-size: var(--ris-text-md);
+  font-weight: var(--ris-w-med);
+  color: var(--ris-fg1);
+  background: var(--ris-void);
+  border: 1px solid var(--ris-line-strong);
+  outline: none;
+  clip-path: polygon(0 0, calc(100% - var(--ris-clip-sm)) 0, 100% var(--ris-clip-sm), 100% 100%, var(--ris-clip-sm) 100%, 0 calc(100% - var(--ris-clip-sm)));
+}
+.ris-input::placeholder, .ris-textarea::placeholder { color: var(--ris-fg4); }
+.ris-input:focus, .ris-select:focus, .ris-textarea:focus {
+  border-color: var(--ris-focus-ring);
+  box-shadow: inset 0 0 0 1px var(--ris-cyan-line);
+}
+.ris-input:disabled, .ris-select:disabled, .ris-textarea:disabled {
+  color: var(--ris-fg4); background: var(--ris-surface-1); cursor: not-allowed;
+}
+.ris-textarea { resize: vertical; min-height: 88px; line-height: 1.5; }
+
+.ris-select {
+  appearance: none;
+  padding-right: 34px;
+  background-image: linear-gradient(45deg, transparent 49%, var(--ris-fg3) 50%),
+                    linear-gradient(135deg, var(--ris-fg3) 50%, transparent 51%);
+  background-position: calc(100% - 18px) 55%, calc(100% - 13px) 55%;
+  background-size: 5px 5px;
+  background-repeat: no-repeat;
+}
+.ris-select option { background: var(--ris-surface-4); color: var(--ris-fg1); }
+
+/* Search box with embedded icon slot */
+.ris-search { position: relative; }
+.ris-search > svg {
+  position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+  width: 16px; height: 16px; color: var(--ris-fg3); pointer-events: none;
+}
+.ris-search > .ris-input { padding-left: 34px; }
+
+/* Checkbox / radio — square HUD marks */
+.ris-checkbox, .ris-radio {
+  display: inline-flex; align-items: center; gap: 10px;
+  min-height: 24px; /* WCAG 2.5.8 target size: the whole label is the hit area */
+  font-size: var(--ris-text-sm); color: var(--ris-fg2); cursor: pointer;
+  user-select: none;
+}
+.ris-checkbox input, .ris-radio input {
+  appearance: none; margin: 0;
+  width: 16px; height: 16px; flex: 0 0 16px;
+  background: var(--ris-void);
+  border: 1px solid var(--ris-line-strong);
+  cursor: pointer;
+  display: grid; place-content: center;
+  transition: border-color var(--ris-dur-fast) var(--ris-ease);
+}
+.ris-checkbox input::before {
+  content: ""; width: 8px; height: 8px;
+  background: var(--ris-accent); transform: scale(0);
+  transition: transform var(--ris-dur-fast) var(--ris-ease-snap);
+}
+.ris-checkbox input:checked { border-color: var(--ris-accent-line); }
+.ris-checkbox input:checked::before { transform: scale(1); }
+.ris-radio input { clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
+.ris-radio input::before {
+  content: ""; width: 7px; height: 7px;
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+  background: var(--ris-accent); transform: scale(0);
+  transition: transform var(--ris-dur-fast) var(--ris-ease-snap);
+}
+.ris-radio input:checked { border-color: var(--ris-accent-line); }
+.ris-radio input:checked::before { transform: scale(1); }
+
+/* Switch — mechanical slide */
+.ris-switch { display: inline-flex; align-items: center; gap: 10px; min-height: 24px; cursor: pointer; font-size: var(--ris-text-sm); color: var(--ris-fg2); user-select: none; }
+.ris-switch input {
+  appearance: none; margin: 0; position: relative;
+  width: 38px; height: 20px; flex: 0 0 38px;
+  background: var(--ris-void);
+  border: 1px solid var(--ris-line-strong);
+  cursor: pointer;
+  transition: border-color var(--ris-dur-fast) var(--ris-ease-snap), background var(--ris-dur-fast) var(--ris-ease-snap);
+}
+.ris-switch input::before {
+  content: ""; position: absolute; top: 2px; left: 2px;
+  width: 14px; height: 14px;
+  background: var(--ris-fg3);
+  clip-path: polygon(0 0, calc(100% - 3px) 0, 100% 3px, 100% 100%, 3px 100%, 0 calc(100% - 3px));
+  transition: transform var(--ris-dur-fast) var(--ris-ease-snap), background var(--ris-dur-fast) var(--ris-ease-snap);
+}
+.ris-switch input:checked { border-color: var(--ris-accent-line); background: var(--ris-accent-glow); }
+.ris-switch input:checked::before { transform: translateX(18px); background: var(--ris-accent); }
+
+/* Range slider */
+.ris-slider {
+  appearance: none; width: 100%; height: 6px; margin: 8px 0;
+  background: var(--ris-void);
+  border: 1px solid var(--ris-line-strong);
+  outline-offset: 4px;
+}
+.ris-slider::-webkit-slider-thumb {
+  appearance: none; width: 14px; height: 18px;
+  background: var(--ris-accent-fill);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5px), 50% 100%, 0 calc(100% - 5px));
+  cursor: ew-resize;
+}
+.ris-slider::-moz-range-thumb {
+  width: 14px; height: 18px; border: 0; border-radius: 0;
+  background: var(--ris-accent-fill);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 5px), 50% 100%, 0 calc(100% - 5px));
+  cursor: ew-resize;
+}
+
+/* ============================================================================
+   TABLE — dense telemetry grid
+   ========================================================================== */
+.ris-table-wrap { overflow-x: auto; border: 1px solid var(--ris-line); }
+.ris-table {
+  width: 100%; border-collapse: collapse;
+  font-size: var(--ris-text-sm);
+}
+.ris-table th {
+  position: sticky; top: 0; z-index: 1;
+  padding: 8px 12px; text-align: left;
+  font-family: var(--ris-font-body);
+  font-size: var(--ris-text-xs); font-weight: var(--ris-w-semi);
+  letter-spacing: var(--ris-track-wider); text-transform: uppercase;
+  color: var(--ris-fg3);
+  background: var(--ris-surface-2);
+  border-bottom: 1px solid var(--ris-line-strong);
+  white-space: nowrap;
+}
+.ris-table th[aria-sort] { cursor: pointer; }
+.ris-table th[aria-sort="ascending"]::after  { content: " ▲"; font-size: 8px; color: var(--ris-accent); }
+.ris-table th[aria-sort="descending"]::after { content: " ▼"; font-size: 8px; color: var(--ris-accent); }
+.ris-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--ris-line-faint);
+  color: var(--ris-fg2);
+}
+.ris-table td.num, .ris-table th.num {
+  text-align: right;
+  font-family: var(--ris-font-mono); font-variant-numeric: tabular-nums;
+}
+.ris-table tbody tr { transition: background var(--ris-dur-fast) var(--ris-ease); }
+.ris-table tbody tr:hover { background: var(--ris-surface-2); }
+.ris-table tbody tr[data-selected="true"] {
+  background: var(--ris-accent-glow);
+  box-shadow: inset 2px 0 0 var(--ris-accent);
+}
+.ris-table tbody tr:last-child td { border-bottom: 0; }
+
+/* ============================================================================
+   MODAL
+   ========================================================================== */
+.ris-modal-backdrop {
+  position: fixed; inset: 0; z-index: 200;
+  background: color-mix(in srgb, var(--ris-void) 75%, transparent);
+  backdrop-filter: blur(4px);
+  display: grid; place-items: center;
+  padding: var(--ris-s5);
+  animation: ris-fade-in var(--ris-dur-fast) var(--ris-ease-out);
+}
+@keyframes ris-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.ris-modal {
+  width: min(560px, 100%);
+  max-height: min(82vh, 720px);
+  display: flex; flex-direction: column;
+  background: var(--ris-surface-2);
+  border: 1px solid var(--ris-line-strong);
+  box-shadow: var(--ris-elev-pop);
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--ris-clip-lg)) 0,
+    100% var(--ris-clip-lg),
+    100% 100%,
+    var(--ris-clip-lg) 100%,
+    0 calc(100% - var(--ris-clip-lg)));
+  animation: ris-modal-in var(--ris-dur-enter) var(--ris-ease-out);
+}
+@keyframes ris-modal-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.ris-modal-head {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--ris-s3);
+  padding: var(--ris-s4) var(--ris-s5);
+  border-bottom: 1px solid var(--ris-line);
+}
+.ris-modal-body { padding: var(--ris-s5); overflow-y: auto; }
+.ris-modal-foot {
+  display: flex; justify-content: flex-end; gap: var(--ris-s2);
+  padding: var(--ris-s4) var(--ris-s5);
+  border-top: 1px solid var(--ris-line);
+}
+
+/* ============================================================================
+   BOTTOM SHEET (Mobile <768px Tactical Modal)
+   ========================================================================== */
+.ris-sheet-backdrop {
+  position: fixed; inset: 0; z-index: 220;
+  background: color-mix(in srgb, var(--ris-void) 75%, transparent);
+  backdrop-filter: blur(4px);
+  animation: ris-fade-in var(--ris-dur-fast) var(--ris-ease-out);
+  display: flex; flex-direction: column; justify-content: flex-end;
+}
+.ris-sheet {
+  position: relative;
+  width: 100%;
+  max-height: 85vh;
+  display: flex; flex-direction: column;
+  background: var(--ris-surface-2);
+  border-top: 1.5px solid var(--ris-line-strong);
+  box-shadow: var(--ris-elev-pop), 0 -8px 24px rgba(0,0,0,0.35);
+  clip-path: polygon(0 14px, 14px 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
+  animation: ris-sheet-in var(--ris-dur-enter) var(--ris-ease-out) both;
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+}
+.ris-sheet[data-dismissing="true"] {
+  animation: ris-sheet-out var(--ris-dur) var(--ris-ease-snap) both;
+}
+.ris-sheet-handle {
+  width: 44px; height: 4px;
+  background: var(--ris-fg4);
+  border-radius: 2px;
+  margin: 10px auto 6px;
+  cursor: grab;
+  transition: background var(--ris-dur-fast) var(--ris-ease-snap);
+}
+.ris-sheet-handle:hover,
+.ris-sheet-handle:active {
+  background: var(--ris-accent);
+}
+.ris-sheet-head {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--ris-s3);
+  padding: 10px 18px 12px;
+  border-bottom: 1px solid var(--ris-line);
+}
+.ris-sheet-body {
+  padding: 16px 18px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.ris-sheet-foot {
+  display: flex; align-items: center; justify-content: flex-end; gap: 10px;
+  padding: 12px 18px;
+  border-top: 1px solid var(--ris-line);
+}
+@keyframes ris-sheet-in {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+@keyframes ris-sheet-out {
+  from { transform: translateY(0); }
+  to   { transform: translateY(100%); }
+}
+
+@media (max-width: 767px) {
+  /* Su mobile, i modali centrate desktop si adattano a Bottom Sheet */
+  .ris-modal-backdrop {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0;
+  }
+  .ris-modal {
+    width: 100%;
+    max-width: 100%;
+    max-height: 85vh;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    border-top: 1.5px solid var(--ris-line-strong);
+    clip-path: polygon(0 14px, 14px 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
+    animation: ris-sheet-in var(--ris-dur-enter) var(--ris-ease-out);
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+  }
+}
+
+/* ============================================================================
+   TOAST + ALERT
+   ========================================================================== */
+.ris-toast-stack {
+  position: fixed; right: var(--ris-s4); bottom: var(--ris-s4); z-index: 300;
+  display: flex; flex-direction: column; gap: var(--ris-s2);
+  width: min(360px, calc(100vw - 32px));
+}
+.ris-toast {
+  --_accent: var(--ris-cyan);
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 12px 14px;
+  background: var(--ris-surface-3);
+  border: 1px solid var(--ris-line-strong);
+  border-left: 3px solid var(--_accent);
+  box-shadow: var(--ris-elev-2);
+  font-size: var(--ris-text-sm); color: var(--ris-fg1);
+  clip-path: polygon(0 0, calc(100% - var(--ris-clip-sm)) 0, 100% var(--ris-clip-sm), 100% 100%, var(--ris-clip-sm) 100%, 0 100%);
+  animation: ris-toast-in var(--ris-dur) var(--ris-ease-snap);
+}
+@keyframes ris-toast-in {
+  from { opacity: 0; transform: translateX(16px); }
+  to   { opacity: 1; transform: none; }
+}
+.ris-toast--success { --_accent: var(--ris-green); }
+.ris-toast--warning { --_accent: var(--ris-yellow); }
+.ris-toast--danger  { --_accent: var(--ris-red); }
+.ris-toast .title {
+  display: block;
+  font-family: var(--ris-font-display); font-size: 12px; font-weight: var(--ris-w-semi);
+  letter-spacing: var(--ris-track-wide); text-transform: uppercase;
+  color: var(--_accent);
+}
+
+.ris-alert {
+  --_accent: var(--ris-cyan);
+  display: flex; gap: 10px; align-items: flex-start;
+  padding: 12px 14px;
+  border: 1px solid var(--_accent);
+  background: color-mix(in srgb, var(--_accent) 8%, transparent);
+  color: var(--ris-fg1); font-size: var(--ris-text-sm);
+}
+.ris-alert--success { --_accent: var(--ris-green); }
+.ris-alert--warning { --_accent: var(--ris-yellow); }
+.ris-alert--danger  { --_accent: var(--ris-red); }
+.ris-alert .title {
+  display: block;
+  font-family: var(--ris-font-display); font-size: 12px; font-weight: var(--ris-w-semi);
+  letter-spacing: var(--ris-track-wide); text-transform: uppercase;
+  color: var(--_accent);
+}
+
+/* ============================================================================
+   TABS
+   ========================================================================== */
+.ris-tabs {
+  display: flex; gap: 2px;
+  border-bottom: 1px solid var(--ris-line);
+  overflow-x: auto; scrollbar-width: none;
+}
+.ris-tab {
+  padding: 9px 16px;
+  font-family: var(--ris-font-body);
+  font-size: var(--ris-text-xs); font-weight: var(--ris-w-semi);
+  letter-spacing: var(--ris-track-wider); text-transform: uppercase;
+  color: var(--ris-fg3);
+  background: transparent; border: 0;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  white-space: nowrap;
+  transition: color var(--ris-dur-fast) var(--ris-ease);
+}
+.ris-tab:hover { color: var(--ris-fg1); }
+.ris-tab[aria-selected="true"], .ris-tab[data-active="true"] {
+  color: var(--ris-accent);
+  border-bottom-color: var(--ris-accent);
+  border-bottom-width: 3px;
+}
+
+/* Boxed sub-tabs (segmented control) */
+.ris-subtabs {
+  display: inline-flex; gap: 2px; padding: 2px;
+  background: var(--ris-void);
+  border: 1px solid var(--ris-line);
+}
+.ris-subtab {
+  padding: 6px 14px;
+  font-family: var(--ris-font-body);
+  font-size: var(--ris-text-xs); font-weight: var(--ris-w-semi);
+  letter-spacing: var(--ris-track-wide); text-transform: uppercase;
+  color: var(--ris-fg3); background: transparent; border: 1px solid transparent;
+}
+.ris-subtab:hover { color: var(--ris-fg1); }
+.ris-subtab[aria-selected="true"], .ris-subtab[data-active="true"] {
+  color: var(--ris-accent);
+  background: var(--ris-accent-glow);
+  border-color: var(--ris-accent-line);
+}
+
+/* Scrollable sub-tabs for narrow screens / many tabs */
+.ris-subtabs--scrollable {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.ris-subtabs--scrollable::-webkit-scrollbar {
+  display: none;
+}
+.ris-subtabs--scrollable .ris-subtab {
+  flex-shrink: 0;
+}
+
+/* ============================================================================
+   TOOLTIP + DROPDOWN
+   ========================================================================== */
+.ris-tip { position: relative; }
+.ris-tip::after {
+  content: attr(data-tip);
+  position: absolute; left: 50%; bottom: calc(100% + 8px);
+  transform: translateX(-50%) translateY(2px);
+  padding: 5px 10px;
+  background: var(--ris-surface-4);
+  border: 1px solid var(--ris-line-strong);
+  color: var(--ris-fg1);
+  font-family: var(--ris-font-mono); font-size: 11px; white-space: nowrap;
+  box-shadow: var(--ris-elev-2);
+  opacity: 0; pointer-events: none; z-index: 150;
+  transition: opacity var(--ris-dur-fast) var(--ris-ease),
+              transform var(--ris-dur-fast) var(--ris-ease);
+}
+.ris-tip:hover::after, .ris-tip:focus-visible::after {
+  opacity: 1; transform: translateX(-50%) translateY(0);
+}
+
+.ris-menu {
+  min-width: 180px; padding: 4px;
+  background: var(--ris-surface-4);
+  border: 1px solid var(--ris-line-strong);
+  box-shadow: var(--ris-elev-pop);
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+}
+.ris-menu-item {
+  display: flex; align-items: center; gap: 10px;
+  width: 100%; padding: 8px 12px;
+  font-family: var(--ris-font-body);
+  font-size: var(--ris-text-sm); font-weight: var(--ris-w-med);
+  color: var(--ris-fg2); text-align: left;
+  background: transparent; border: 0;
+}
+.ris-menu-item:hover { background: var(--ris-surface-2); color: var(--ris-fg1); }
+.ris-menu-item--danger { color: var(--ris-red); }
+.ris-menu-item--danger:hover { background: var(--ris-red-glow); color: var(--ris-red); }
+.ris-menu-sep { height: 1px; margin: 4px 0; background: var(--ris-line); }
+
+/* ============================================================================
+   BREADCRUMB + PAGINATION
+   ========================================================================== */
+.ris-breadcrumb {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--ris-font-mono); font-size: 11px;
+  letter-spacing: var(--ris-track-wide); text-transform: uppercase;
+  color: var(--ris-fg3);
+}
+.ris-breadcrumb a { color: var(--ris-fg3); }
+.ris-breadcrumb a:hover { color: var(--ris-accent); text-decoration: none; }
+.ris-breadcrumb .sep { color: var(--ris-fg4); }
+.ris-breadcrumb [aria-current="page"] { color: var(--ris-fg1); }
+
+.ris-pagination { display: flex; gap: 2px; }
+.ris-page {
+  min-width: 30px; height: 30px; padding: 0 8px;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: var(--ris-font-mono); font-size: 12px;
+  color: var(--ris-fg2);
+  background: var(--ris-surface-1);
+  border: 1px solid var(--ris-line);
+}
+.ris-page:hover { border-color: var(--ris-line-strong); color: var(--ris-fg1); text-decoration: none; }
+.ris-page[aria-current="page"] {
+  color: var(--ris-fg-invert); background: var(--ris-accent-fill); border-color: var(--ris-accent-fill);
+}
+
+/* ============================================================================
+   METERS / PROGRESS / KPI
+   ========================================================================== */
+.ris-meter {
+  height: 6px; width: 100%;
+  background: var(--ris-surface-3);
+  border: 1px solid var(--ris-line);
+  overflow: hidden;
+}
+.ris-meter > i { display: block; height: 100%; background: var(--ris-accent); }
+
+.ris-segmeter { display: flex; gap: 2px; height: 10px; }
+.ris-segmeter > i { flex: 1; background: var(--ris-surface-3); }
+.ris-segmeter > i.on { background: var(--ris-accent); }
+
+/* Confidence strip (low/medium/high) */
+.ris-conf { height: 3px; background: var(--ris-void); margin-top: 7px; border: 1px solid var(--ris-line); }
+.ris-conf > i { display: block; height: 100%; }
+.ris-conf--high > i   { background: var(--ris-green); }
+.ris-conf--medium > i { background: var(--ris-yellow); }
+.ris-conf--low > i    { background: var(--ris-red); }
+
+/* KPI / stat card — left accent rule + HUD numeral */
+.ris-kpi {
+  position: relative;
+  padding: var(--ris-s4) var(--ris-s4) var(--ris-s4) calc(var(--ris-s4) + 6px);
+  background: var(--ris-surface-1);
+  border: 1px solid var(--ris-line);
+  clip-path: polygon(0 0, calc(100% - var(--ris-clip)) 0, 100% var(--ris-clip), 100% 100%, var(--ris-clip) 100%, 0 calc(100% - var(--ris-clip)));
+}
+.ris-kpi::before {
+  content: ""; position: absolute; top: 13px; bottom: 13px; left: 0; width: 2px;
+  background: var(--ris-kpi-accent, var(--ris-accent));
+}
+.ris-kpi .kpi-label {
+  font-family: var(--ris-font-body);
+  font-size: var(--ris-text-xs); font-weight: var(--ris-w-semi);
+  letter-spacing: var(--ris-track-wider); text-transform: uppercase;
+  color: var(--ris-fg3);
+}
+.ris-kpi .kpi-value {
+  font-family: var(--ris-font-display); font-size: 30px; font-weight: var(--ris-w-bold);
+  font-variant-numeric: tabular-nums; letter-spacing: var(--ris-track-tight);
+  color: var(--ris-fg1); line-height: 1.1;
+}
+.ris-kpi .kpi-value small { font-size: 14px; font-weight: var(--ris-w-semi); color: var(--ris-fg3); margin-left: 4px; }
+.ris-kpi .kpi-delta { font-family: var(--ris-font-mono); font-size: 11px; }
+.ris-kpi .kpi-delta.up { color: var(--ris-green); }
+.ris-kpi .kpi-delta.down { color: var(--ris-red); }
+
+/* ============================================================================
+   FACET SPECTRUM (Relic) — needle on dialectical axis + confidence
+   ========================================================================== */
+.ris-facet { padding: 13px 0; border-bottom: 1px solid var(--ris-line-faint); }
+.ris-facet:last-child { border-bottom: 0; }
+.ris-facet-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 9px; }
+.ris-facet-name { font-family: var(--ris-font-display); font-size: 13px; font-weight: 600; letter-spacing: .03em; text-transform: uppercase; color: var(--ris-fg1); }
+.ris-facet-stat { font-family: var(--ris-font-mono); font-size: 10px; color: var(--ris-fg3); }
+.ris-facet-stat b { color: var(--ris-fg1); font-weight: 500; }
+.ris-facet-row { display: flex; align-items: center; gap: 12px; }
+.ris-facet-anchor { font-family: var(--ris-font-mono); font-size: 9.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--ris-fg3); width: 76px; flex: 0 0 76px; }
+.ris-facet-anchor:last-child { text-align: right; }
+.ris-facet-track { position: relative; flex: 1; height: 8px; background: var(--ris-void); border: 1px solid var(--ris-line-strong); }
+.ris-facet-track::after { content:""; position:absolute; inset:0; background: repeating-linear-gradient(90deg, transparent 0 9px, var(--ris-line-faint) 9px 10px); }
+.ris-facet-needle { position: absolute; top: -3px; bottom: -3px; width: 3px; background: var(--ris-accent-2); box-shadow: 0 0 0 1px var(--ris-bg); transform: translateX(-50%); z-index: 2; }
+
+/* ============================================================================
+   SKELETON / EMPTY STATE
+   ========================================================================== */
+.ris-skeleton {
+  position: relative; overflow: hidden;
+  background: var(--ris-surface-2);
+  min-height: 12px;
+}
+.ris-skeleton::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, var(--ris-surface-3), transparent);
+  transform: translateX(-100%);
+  animation: ris-shimmer 1.4s var(--ris-ease) infinite;
+}
+@keyframes ris-shimmer { to { transform: translateX(100%); } }
+
+.ris-empty {
+  display: flex; flex-direction: column; align-items: center; gap: var(--ris-s3);
+  padding: var(--ris-s8) var(--ris-s5);
+  text-align: center;
+  border: 1px dashed var(--ris-line-strong);
+  color: var(--ris-fg3);
+}
+.ris-empty svg { width: 32px; height: 32px; color: var(--ris-fg4); }
+.ris-empty .title {
+  font-family: var(--ris-font-display); font-size: var(--ris-text-sm);
+  font-weight: var(--ris-w-semi); letter-spacing: var(--ris-track-wide);
+  text-transform: uppercase; color: var(--ris-fg2);
+}
+
+/* ============================================================================
+   KBD / CODE / LOG
+   ========================================================================== */
+.ris-kbd {
+  display: inline-block; padding: 2px 7px;
+  font-family: var(--ris-font-mono); font-size: 11px;
+  color: var(--ris-fg1);
+  background: var(--ris-surface-3);
+  border: 1px solid var(--ris-line-strong);
+  border-bottom-width: 2px;
+}
+.ris-code {
+  display: block; padding: var(--ris-s3) var(--ris-s4);
+  font-family: var(--ris-font-mono); font-size: 12.5px; line-height: 1.6;
+  color: var(--ris-fg2);
+  background: var(--ris-void);
+  border: 1px solid var(--ris-line);
+  overflow-x: auto; white-space: pre;
+}
+.ris-log { font-family: var(--ris-font-mono); font-size: 11.5px; line-height: 1.7; color: var(--ris-fg3); }
+.ris-log .t { color: var(--ris-fg4); }
+.ris-log .ok { color: var(--ris-green); }
+.ris-log .warn { color: var(--ris-yellow); }
+.ris-log .err { color: var(--ris-red); }
+
+/* ============================================================================
+   AVATAR / ICON SIZING
+   ========================================================================== */
+.ris-avatar {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px;
+  font-family: var(--ris-font-display); font-size: 12px; font-weight: var(--ris-w-bold);
+  text-transform: uppercase;
+  color: var(--ris-accent); background: var(--ris-accent-glow);
+  border: 1px solid var(--ris-accent-line);
+  clip-path: polygon(0 0, calc(100% - var(--ris-clip-sm)) 0, 100% var(--ris-clip-sm), 100% 100%, var(--ris-clip-sm) 100%, 0 calc(100% - var(--ris-clip-sm)));
+}
+.ris-avatar--lg { width: 48px; height: 48px; font-size: 16px; }
+
+.ris-icon       { width: 18px; height: 18px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+.ris-icon--sm   { width: 14px; height: 14px; }
+.ris-icon--lg   { width: 24px; height: 24px; }
+.ris-icon--xl   { width: 32px; height: 32px; }
+
+/* ============================================================================
+   ADVANCED — accordion · stepper · drawer · command palette · dropzone
+   ========================================================================== */
+
+/* Accordion — native <details> */
+.ris-accordion { border: 1px solid var(--ris-line); }
+.ris-accordion > details { border-bottom: 1px solid var(--ris-line); }
+.ris-accordion > details:last-child { border-bottom: 0; }
+.ris-accordion summary {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--ris-s3);
+  padding: 12px 16px;
+  list-style: none; cursor: pointer;
+  font-family: var(--ris-font-display); font-size: var(--ris-text-sm);
+  font-weight: var(--ris-w-semi); letter-spacing: var(--ris-track-wide);
+  text-transform: uppercase; color: var(--ris-fg2);
+  background: var(--ris-surface-1);
+  transition: background var(--ris-dur-fast) var(--ris-ease), color var(--ris-dur-fast) var(--ris-ease);
+}
+.ris-accordion summary::-webkit-details-marker { display: none; }
+.ris-accordion summary::after {
+  content: "+"; font-family: var(--ris-font-mono); color: var(--ris-fg3);
+  transition: transform var(--ris-dur) var(--ris-ease);
+}
+.ris-accordion summary:hover { background: var(--ris-surface-2); color: var(--ris-fg1); }
+.ris-accordion details[open] > summary {
+  color: var(--ris-accent);
+  background: var(--ris-surface-2);
+  box-shadow: inset 2px 0 0 var(--ris-accent);
+}
+.ris-accordion details[open] > summary::after { content: "−"; color: var(--ris-accent); }
+.ris-accordion .body { padding: 14px 16px; font-size: var(--ris-text-sm); color: var(--ris-fg2); border-top: 1px solid var(--ris-line-faint); }
+
+/* Modernized accordion with CSS Grid (0fr -> 1fr, zero reflow at 60fps) */
+.ris-acc {
+  border: 1px solid var(--ris-line);
+  background: var(--ris-surface-1);
+}
+.ris-acc-item { border-bottom: 1px solid var(--ris-line); }
+.ris-acc-item:last-child { border-bottom: 0; }
+.ris-acc-trigger {
+  width: 100%; display: flex; align-items: center; justify-content: space-between; gap: var(--ris-s3);
+  padding: 13px 16px;
+  background: var(--ris-surface-1);
+  color: var(--ris-fg1);
+  font-family: var(--ris-font-display);
+  font-size: var(--ris-text-sm);
+  font-weight: var(--ris-w-semi);
+  letter-spacing: var(--ris-track-wide);
+  text-transform: uppercase;
+  border: none; cursor: pointer; text-align: left;
+  transition: background var(--ris-dur-fast) var(--ris-ease-snap), color var(--ris-dur-fast) var(--ris-ease-snap);
+}
+.ris-acc-trigger:hover {
+  background: var(--ris-surface-2);
+  color: var(--ris-accent);
+}
+.ris-acc-chevron {
+  font-family: var(--ris-font-mono);
+  font-size: 11px;
+  color: var(--ris-fg3);
+  transition: transform var(--ris-dur-base) var(--ris-ease-out), color var(--ris-dur-fast) var(--ris-ease-snap);
+  display: inline-block;
+}
+.ris-acc-item[data-open="true"] .ris-acc-chevron,
+.ris-acc-trigger[aria-expanded="true"] .ris-acc-chevron {
+  transform: rotate(180deg);
+  color: var(--ris-accent);
+}
+.ris-acc-drawer {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--ris-dur-base) var(--ris-ease-out);
+}
+.ris-acc-item[data-open="true"] .ris-acc-drawer,
+.ris-acc-trigger[aria-expanded="true"] + .ris-acc-drawer {
+  grid-template-rows: 1fr;
+}
+.ris-acc-body {
+  overflow: hidden;
+  font-size: var(--ris-text-sm);
+  color: var(--ris-fg2);
+  line-height: 1.6;
+}
+.ris-acc-body-inner {
+  padding: 14px 16px;
+  border-top: 1px solid var(--ris-line-faint);
+}
+
+/* Stepper / wizard progress */
+.ris-stepper { display: flex; gap: 6px; }
+.ris-step { flex: 1; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.ris-step .bar { height: 3px; background: var(--ris-surface-3); border: 1px solid var(--ris-line); }
+.ris-step .name {
+  display: flex; align-items: center; gap: 6px;
+  font-family: var(--ris-font-mono); font-size: 10px;
+  letter-spacing: var(--ris-track-wide); text-transform: uppercase;
+  color: var(--ris-fg4); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.ris-step .name::before { content: attr(data-n); color: inherit; }
+.ris-step[data-state="done"] .bar    { background: var(--ris-accent-dim); border-color: var(--ris-accent-dim); }
+.ris-step[data-state="done"] .name   { color: var(--ris-fg3); }
+.ris-step[data-state="active"] .bar  { background: var(--ris-accent); border-color: var(--ris-accent); height: 4px; }
+.ris-step[data-state="active"] .name { color: var(--ris-accent); }
+
+/* Drawer — side sheet (right). Toggle [data-open="true"]. */
+.ris-drawer-backdrop {
+  position: fixed; inset: 0; z-index: 180;
+  background: color-mix(in srgb, var(--ris-void) 60%, transparent);
+}
+.ris-drawer {
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 190;
+  width: min(380px, 92vw);
+  display: flex; flex-direction: column;
+  background: var(--ris-surface-2);
+  border-left: 1px solid var(--ris-line-strong);
+  box-shadow: var(--ris-elev-pop);
+  transform: translateX(100%);
+  transition: transform var(--ris-dur) var(--ris-ease-snap);
+}
+.ris-drawer[data-open="true"] { transform: none; }
+.ris-drawer-head {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--ris-s3);
+  padding: var(--ris-s4) var(--ris-s5);
+  border-bottom: 1px solid var(--ris-line);
+}
+.ris-drawer-body { padding: var(--ris-s5); overflow-y: auto; flex: 1; }
+
+/* Command palette — centered top modal + result list */
+.ris-cmdk {
+  width: min(560px, calc(100vw - 32px));
+  margin: 10vh auto 0;
+  background: var(--ris-surface-2);
+  border: 1px solid var(--ris-line-strong);
+  box-shadow: var(--ris-elev-pop);
+  clip-path: polygon(0 0, calc(100% - var(--ris-clip)) 0, 100% var(--ris-clip), 100% 100%, var(--ris-clip) 100%, 0 calc(100% - var(--ris-clip)));
+}
+.ris-cmdk-input {
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 16px; border-bottom: 1px solid var(--ris-line);
+}
+.ris-cmdk-input svg { width: 16px; height: 16px; color: var(--ris-accent); }
+.ris-cmdk-input input {
+  flex: 1; background: none; border: 0; outline: none;
+  font-family: var(--ris-font-body); font-size: var(--ris-text-md);
+  color: var(--ris-fg1);
+}
+.ris-cmdk-list { max-height: 320px; overflow-y: auto; padding: 4px; }
+.ris-cmdk-item {
+  display: flex; align-items: center; gap: 10px;
+  width: 100%; padding: 9px 12px;
+  background: transparent; border: 0; text-align: left;
+  font-family: var(--ris-font-body); font-size: var(--ris-text-sm); color: var(--ris-fg2);
+}
+.ris-cmdk-item .hint { margin-left: auto; }
+.ris-cmdk-item:hover, .ris-cmdk-item[aria-selected="true"] {
+  background: var(--ris-accent-glow); color: var(--ris-fg1);
+  box-shadow: inset 2px 0 0 var(--ris-accent);
+}
+
+/* Dropzone — file upload */
+.ris-dropzone {
+  display: flex; flex-direction: column; align-items: center; gap: var(--ris-s2);
+  padding: var(--ris-s7) var(--ris-s5);
+  text-align: center; cursor: pointer;
+  background: var(--ris-void);
+  border: 1px dashed var(--ris-line-strong);
+  color: var(--ris-fg3);
+  transition: border-color var(--ris-dur-fast) var(--ris-ease), background var(--ris-dur-fast) var(--ris-ease);
+}
+.ris-dropzone:hover, .ris-dropzone[data-drag="true"] {
+  border-color: var(--ris-accent-line);
+  background: var(--ris-accent-glow);
+  color: var(--ris-fg1);
+}
+.ris-dropzone svg { width: 28px; height: 28px; color: var(--ris-accent); }
+.ris-dropzone .hint { font-family: var(--ris-font-mono); font-size: 10.5px; color: var(--ris-fg4); }
+
+/* ============================================================================
+   DIVIDER / UTILITIES
+   ========================================================================== */
+.ris-divider {
+  display: flex; align-items: center; gap: var(--ris-s3);
+  color: var(--ris-fg3);
+}
+.ris-divider::before, .ris-divider::after {
+  content: ""; height: 1px; background: var(--ris-line); flex: 1;
+}
+
+.ris-row { display: flex; align-items: center; gap: var(--ris-s3); }
+.ris-row--between { justify-content: space-between; }
+.ris-stack { display: flex; flex-direction: column; gap: var(--ris-s3); }
+.ris-wrap { display: flex; flex-wrap: wrap; gap: var(--ris-s2); align-items: center; }
+
+.ris-grid { display: grid; gap: var(--ris-s4); }
+.ris-grid--2 { grid-template-columns: repeat(2, 1fr); }
+.ris-grid--3 { grid-template-columns: repeat(3, 1fr); }
+.ris-grid--4 { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 1023px) {
+  .ris-grid--4 { grid-template-columns: repeat(2, 1fr); }
+  .ris-grid--3 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 639px) {
+  .ris-grid--2, .ris-grid--3 { grid-template-columns: 1fr; }
+  .ris-grid--4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ============================================================================
+   ANIMATIONS
+   ========================================================================== */
+@keyframes ris-flicker {
+  0%, 92%, 100% { opacity: 1; }
+  93% { opacity: 0.4; } 95% { opacity: 0.9; } 97% { opacity: 0.55; }
+}
+@keyframes ris-blink { 50% { opacity: 0.15; } }
+@keyframes ris-spin { to { transform: rotate(360deg); } }
+.ris-flicker { animation: ris-flicker 6s steps(1) infinite; }
+.ris-blink   { animation: ris-blink 1.1s steps(1) infinite; }
+.ris-spin    { animation: ris-spin 0.9s linear infinite; }
+
+/* Spinner — clipped square loader */
+.ris-spinner {
+  width: 18px; height: 18px;
+  border: 2px solid var(--ris-line-strong);
+  border-top-color: var(--ris-accent);
+  animation: ris-spin 0.7s linear infinite;
+}
+
+/* Progress bar — linear cyber progress (determinate or indeterminate) */
+.ris-progress {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  background: var(--ris-surface-2);
+  border: 1px solid var(--ris-line);
+  overflow: hidden;
+}
+.ris-progress > .bar {
+  height: 100%;
+  background: var(--ris-accent-fill);
+  transition: width var(--ris-dur) var(--ris-ease);
+}
+.ris-progress--indeterminate > .bar {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 35%;
+  background: var(--ris-accent-fill);
+  animation: ris-progress-slide 1.2s linear infinite;
+}
+@keyframes ris-progress-slide {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(350%); }
+}
+
+/* ============================================================================
+   LIST ROW & HUD STAT
+   ========================================================================== */
+.ris-listrow {
+  position: relative;
+  display: flex; align-items: center; gap: var(--ris-s3);
+  padding: 10px 14px;
+  background: var(--ris-surface-1);
+  border: 1px solid var(--ris-line);
+  clip-path: polygon(0 0, calc(100% - var(--ris-clip-sm)) 0, 100% var(--ris-clip-sm), 100% 100%, var(--ris-clip-sm) 100%, 0 calc(100% - var(--ris-clip-sm)));
+  transition: background var(--ris-dur-fast) var(--ris-ease), border-color var(--ris-dur-fast) var(--ris-ease);
+}
+.ris-listrow:hover { background: var(--ris-surface-2); }
+.ris-listrow[data-selected="true"] {
+  background: var(--ris-surface-3);
+  border-color: var(--ris-accent);
+}
+.ris-listrow .thumb {
+  width: 64px; height: 48px; flex-shrink: 0;
+  background: var(--ris-surface-2);
+  border: 1px solid var(--ris-line-faint);
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.ris-listrow .content,
+.ris-listrow .body { flex: 1; min-width: 0; }
+.ris-listrow .title {
+  font-family: var(--ris-font-body); font-weight: var(--ris-w-bold);
+  font-size: var(--ris-text-md); color: var(--ris-fg1);
+}
+.ris-listrow .meta {
+  font-family: var(--ris-font-mono); font-size: var(--ris-text-xs);
+  color: var(--ris-fg3);
+}
+.ris-listrow .time {
+  font-family: var(--ris-font-mono); font-size: var(--ris-text-xs);
+  color: var(--ris-fg4); margin-left: auto;
+}
+
+/* Stat topbar — LEVEL / CRED with segmented bar */
+.ris-stat { display: inline-flex; align-items: center; gap: 8px; }
+.ris-stat .v {
+  font-family: var(--ris-font-display); font-weight: var(--ris-w-bold);
+  font-size: var(--ris-text-lg); line-height: 1;
+  color: var(--ris-accent); font-variant-numeric: tabular-nums;
+}
+.ris-stat .n {
+  font-family: var(--ris-font-body); font-size: var(--ris-text-xs);
+  font-weight: var(--ris-w-semi); letter-spacing: var(--ris-track-wide);
+  text-transform: uppercase; color: var(--ris-fg3);
+}
+.ris-stat .ris-segmeter { width: 84px; height: 8px; }

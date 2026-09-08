@@ -20,11 +20,15 @@ export const TopBar: React.FC<TopBarProps> = ({ onOpenModal, onOpenMobileSheet }
 
   useEffect(() => {
     setMounted(true);
-    // Initialize from DOM or defaults
-    const currentTheme = (document.documentElement.getAttribute('data-theme') as ThemeType) || 'dark';
-    const currentBrand = (document.documentElement.getAttribute('data-brand') as BrandType) || 'relic';
+    // Initialize from localStorage, DOM, or defaults
+    const savedTheme = (typeof window !== 'undefined' ? localStorage.getItem('ris-theme') : null) as ThemeType | null;
+    const currentTheme = savedTheme || (document.documentElement.getAttribute('data-theme') as ThemeType) || 'dark';
+    const savedBrand = (typeof window !== 'undefined' ? localStorage.getItem('ris-brand') : null) as BrandType | null;
+    const currentBrand = savedBrand || (document.documentElement.getAttribute('data-brand') as BrandType) || 'relic';
     setTheme(currentTheme);
     setBrand(currentBrand);
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    document.documentElement.setAttribute('data-brand', currentBrand);
 
     // Live zero-reflow system time ticker
     const interval = setInterval(() => {

@@ -154,9 +154,10 @@ python3 -m http.server 8080
 
 ---
 
-## ◈ Third-Party Attributions & Legal Notice
+## ◈ Licensing, Attributions & Legal Notice
 
-- **Software License**: [MIT License](LICENSE) © 2026 Relic Interface System Contributors.
+- **Open-Source Core**: [MIT License](LICENSE) © 2026 Relic Interface System Contributors (governs CSS tokens, utility classes, core `@relic-ui/react` primitives, Tailwind preset, and Android Compose library).
+- **Commercial Templates & Studio**: Governed by the [RIS Pro Commercial License](LICENSE_PRO.md) (covers production templates such as `templates/forensic-dashboard/`, advanced canvas telemetry engines, and Figma Studio master generator).
 - **Icons**: [Tabler Icons](https://tabler.io/icons) (MIT License, © Paweł Kuna).
 - **Typography**: Archivo, JetBrains Mono, Chakra Petch, and Rajdhani under the SIL Open Font License.
-- **Legal Notice**: Relic Interface System is an independent, original open-source design system. All styling, SVG geometry, color token architectures, Canvas renderers, and motion timings are entirely bespoke and unencumbered.
+- **Legal Notice**: Relic Interface System is an independent, original design system and component architecture. All styling, SVG geometry, color token architectures, Canvas renderers, and motion timings are entirely bespoke and unencumbered.

@@ -40,6 +40,7 @@ scratch/
 # Local Agent & Superpower Environments
 .agents/
 .superpowers/
+.sando/
 docs/superpowers/
 
 # Environment Variables & Secrets

@@ -6,9 +6,11 @@ FROM base AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-# Copy package descriptors
+# Copy package descriptors and local dependencies
 COPY package.json package-lock.json* ./
-# Note: When deploying as standalone outside monorepo, npm install with --omit=dev or copy tailwind preset
+# Support both root monorepo build context and direct directory build
+COPY react /react
+COPY tailwind /tailwind
 RUN npm install
 
 # Rebuild the source code only when needed

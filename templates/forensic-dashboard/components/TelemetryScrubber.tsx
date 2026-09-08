@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, useMemo, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { IconActivity, IconPlay, IconPause, IconAlertTriangle } from './Icons';
 
 export interface TelemetryPoint {
@@ -57,13 +57,52 @@ const RAW_TELEMETRY_SERIES: TelemetryPoint[] = [
 const PEAK_ALERT_THRESHOLD = 5200; // Mbps
 
 export const TelemetryScrubber: React.FC = () => {
-  const [data] = useState<TelemetryPoint[]>(RAW_TELEMETRY_SERIES);
-  const [selectedIndex, setSelectedIndex] = useState<number>(18); // Default to sample with Δ +18
-  const [isLive, setIsLive] = useState<boolean>(true);
+  const [telemetrySeries, setTelemetrySeries] = useState<TelemetryPoint[]>(RAW_TELEMETRY_SERIES);
   const [timeRange, setTimeRange] = useState<'1M' | '5M' | '15M'>('5M');
+  const [isLive, setIsLive] = useState<boolean>(true);
+
+  // Active timeRange filtering:
+  // 1M: last 12 points (60s)
+  // 5M: last 20 points
+  // 15M: all points
+  const visibleData = useMemo(() => {
+    if (timeRange === '1M') return telemetrySeries.slice(-12);
+    if (timeRange === '5M') return telemetrySeries.slice(-20);
+    return telemetrySeries;
+  }, [telemetrySeries, timeRange]);
+
+  const [selectedIndex, setSelectedIndex] = useState<number>(Math.min(18, visibleData.length - 1));
   const svgRef = useRef<SVGSVGElement | null>(null);
 
-  const selectedPoint = data[selectedIndex] || data[data.length - 1];
+  // Synchronize index when visibleData length changes
+  useEffect(() => {
+    setSelectedIndex((prev) => Math.min(prev, visibleData.length - 1));
+  }, [visibleData.length]);
+
+  // Live real-time telemetry stream (appends new reading every 3s when isLive is true)
+  useEffect(() => {
+    if (!isLive) return;
+    const interval = setInterval(() => {
+      setTelemetrySeries((prev) => {
+        const last = prev[prev.length - 1];
+        const now = new Date();
+        const timeStr = `${String(now.getUTCHours()).padStart(2, '0')}:${String(now.getUTCMinutes()).padStart(2, '0')}:${String(now.getUTCSeconds()).padStart(2, '0')}`;
+        const t = now.getTime() / 8000;
+        const simulatedVal = Math.round(4850 + Math.sin(t) * 320);
+        const delta = simulatedVal - last.value;
+        const newPoint: TelemetryPoint = {
+          timestamp: now.toISOString(),
+          timeLabel: timeStr,
+          value: simulatedVal,
+          delta,
+        };
+        return [...prev.slice(1), newPoint];
+      });
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [isLive]);
+
+  const selectedPoint = visibleData[selectedIndex] || visibleData[visibleData.length - 1];
   const isPeakAlert = selectedPoint.value >= PEAK_ALERT_THRESHOLD;
 
   // Chart coordinate math (memoized to guarantee zero reflow)
@@ -78,13 +117,13 @@ export const TelemetryScrubber: React.FC = () => {
   const maxVal = 5600;
 
   const pointsCoordinates = useMemo(() => {
-    return data.map((pt, i) => {
-      const x = padding.left + (i / (data.length - 1)) * graphWidth;
+    return visibleData.map((pt, i) => {
+      const x = padding.left + (i / Math.max(1, visibleData.length - 1)) * graphWidth;
       const normalizedY = (pt.value - minVal) / (maxVal - minVal);
       const y = padding.top + graphHeight - normalizedY * graphHeight;
       return { x, y, pt, i };
     });
-  }, [data, graphWidth, graphHeight, minVal, maxVal, padding.left, padding.top]);
+  }, [visibleData, graphWidth, graphHeight, minVal, maxVal, padding.left, padding.top]);
 
   // Line SVG path & Area path
   const linePath = useMemo(() => {
@@ -127,6 +166,26 @@ export const TelemetryScrubber: React.FC = () => {
       setSelectedIndex(closestIdx);
     },
     [pointsCoordinates, viewBoxWidth]
+  );
+
+  // Keyboard navigation for full WCAG 2.1.1 keyboard accessibility
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        setSelectedIndex((prev) => Math.max(0, prev - 1));
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        setSelectedIndex((prev) => Math.min(visibleData.length - 1, prev + 1));
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        setSelectedIndex(0);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        setSelectedIndex(visibleData.length - 1);
+      }
+    },
+    [visibleData.length]
   );
 
   const currentCoord = pointsCoordinates[selectedIndex] || pointsCoordinates[0];
@@ -239,14 +298,24 @@ export const TelemetryScrubber: React.FC = () => {
         </div>
       </div>
 
-      {/* Interactive SVG Chart Canvas */}
-      <div className="p-3 bg-ris-void/40 relative">
+      {/* Interactive SVG Chart Canvas with Full Keyboard Accessibility */}
+      <div
+        tabIndex={0}
+        role="slider"
+        aria-label="Interactive Telemetry Scrubber Chart (use Left/Right arrow keys to inspect points)"
+        aria-valuemin={0}
+        aria-valuemax={visibleData.length - 1}
+        aria-valuenow={selectedIndex}
+        aria-valuetext={`${selectedPoint.value} Mbps at ${selectedPoint.timeLabel} UTC`}
+        onKeyDown={handleKeyDown}
+        className="p-3 bg-ris-void/40 relative focus:outline-none focus:ring-1 focus:ring-ris-accent"
+      >
         <svg
           ref={svgRef}
           viewBox={`0 0 ${viewBoxWidth} ${viewBoxHeight}`}
           className="w-full h-auto cursor-crosshair touch-none select-none block"
           onPointerMove={handlePointerMove}
-          aria-label="Interactive Telemetry Scrubber Chart"
+          aria-hidden="true"
         >
           <defs>
             <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
@@ -353,8 +422,8 @@ export const TelemetryScrubber: React.FC = () => {
 
       {/* Footer scrubber instructions */}
       <div className="px-4 py-2 bg-ris-surface2 border-t border-ris-line flex items-center justify-between font-mono text-[10px] text-ris-fg3">
-        <span>INTERACTIVE SCRUBBER: HOVER / TOUCH DRAG ACROSS WAVEFORM</span>
-        <span className="text-ris-accent font-semibold">POINT [{selectedIndex + 1}/{data.length}]</span>
+        <span>INTERACTIVE SCRUBBER: HOVER / TOUCH DRAG / KEYBOARD ARROWS</span>
+        <span className="text-ris-accent font-semibold">POINT [{selectedIndex + 1}/{visibleData.length}]</span>
       </div>
     </section>
   );

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { forwardRef, useId } from 'react';
 
 export interface SwitchProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {

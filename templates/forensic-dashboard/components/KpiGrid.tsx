@@ -98,7 +98,7 @@ export const KpiGrid: React.FC<{ items?: KpiCardData[] }> = ({ items = DEFAULT_K
                 <span className="font-mono text-[10px] uppercase text-ris-fg3 tracking-wider font-semibold block">
                   {kpi.label}
                 </span>
-                <span className="font-mono text-[9px] text-ris-fg4 block truncate">
+                <span className="font-mono text-[10px] text-ris-fg2/85 block truncate font-medium">
                   {kpi.sublabel}
                 </span>
               </div>

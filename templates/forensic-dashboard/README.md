@@ -164,4 +164,5 @@ In `app/layout.tsx`, adjust the root `<html>` attributes:
 
 ## License
 
-MIT © Relic Interface System Team.
+Part of **Relic Interface System Pro**. Governed by the [RIS Pro Commercial License](../../LICENSE_PRO.md).
+Authorized for unlimited commercial end-products upon valid license purchase. Standalone redistribution or re-licensing as a template or UI kit is strictly prohibited.

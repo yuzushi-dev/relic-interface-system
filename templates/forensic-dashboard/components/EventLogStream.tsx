@@ -108,19 +108,24 @@ export const EventLogStream: React.FC = () => {
   const [filter, setFilter] = useState<'ALL' | EventSeverity>('ALL');
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
-  // Periodic new event injection (when not paused)
+  const feedIndexRef = useRef<number>(0);
+  const eventCounterRef = useRef<number>(INITIAL_EVENTS.length + 1);
+
+  // Periodic new event injection (when not paused, deterministic circular feed)
   useEffect(() => {
     if (isPaused) return;
 
     const interval = setInterval(() => {
-      const template = SIMULATED_FEED[Math.floor(Math.random() * SIMULATED_FEED.length)];
+      const template = SIMULATED_FEED[feedIndexRef.current % SIMULATED_FEED.length];
+      feedIndexRef.current = (feedIndexRef.current + 1) % SIMULATED_FEED.length;
+      const currentCount = eventCounterRef.current++;
       const now = new Date();
       const timeStr = `${now.toTimeString().split(' ')[0]}.${String(
         now.getMilliseconds()
       ).padStart(3, '0')}`;
 
       const newEvent: ForensicEvent = {
-        id: `evt-${Date.now().toString().slice(-4)}`,
+        id: `evt-${String(currentCount).padStart(4, '0')}`,
         timestamp: timeStr,
         severity: template.severity,
         subsystem: template.subsystem,

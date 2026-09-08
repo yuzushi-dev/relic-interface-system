@@ -1,3 +1,5 @@
+'use client';
+
 import React, { createContext, useContext, useState, useEffect, useRef, useCallback } from 'react';
 import { Toast, ToastData, ToastVariant, ToastAction } from './Toast';
 

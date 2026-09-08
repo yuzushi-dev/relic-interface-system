@@ -1,4 +1,6 @@
-import React, { forwardRef } from 'react';
+'use client';
+
+import React, { forwardRef, useId } from 'react';
 
 export interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'> {
   label?: React.ReactNode;
@@ -7,7 +9,8 @@ export interface CheckboxProps extends Omit<React.InputHTMLAttributes<HTMLInputE
 
 export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
   ({ label, description, className = '', id, ...props }, ref) => {
-    const checkboxId = id || (typeof label === 'string' ? `ris-chk-${label.toLowerCase().replace(/\s+/g, '-')}` : undefined);
+    const generatedId = useId();
+    const checkboxId = id || generatedId;
 
     return (
       <label className="ris-check" htmlFor={checkboxId}>

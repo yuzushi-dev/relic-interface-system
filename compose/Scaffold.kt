@@ -53,18 +53,19 @@ fun RisScaffold(
     snackbarHost: (@Composable () -> Unit)? = null,
     floatingActionButton: (@Composable () -> Unit)? = null,
     backdrop: Boolean = true,
-    backgroundColor: Color = RisCyberSkin.Bg,
+    backgroundColor: Color = Color.Unspecified,
     content: @Composable (PaddingValues) -> Unit,
 ) {
+    val resolvedBg = if (backgroundColor != Color.Unspecified) backgroundColor else RisTheme.colors.bg
     val baseModifier = if (backdrop) {
         modifier
             .fillMaxSize()
-            .background(backgroundColor)
+            .background(resolvedBg)
             .cyberBackdrop()
     } else {
         modifier
             .fillMaxSize()
-            .background(backgroundColor)
+            .background(resolvedBg)
     }
 
     Box(modifier = baseModifier) {
@@ -95,9 +96,8 @@ fun RisScaffold(
         snackbarHost?.let { host ->
             Box(
                 modifier = Modifier
-                    .fillMaxWidth()
                     .align(Alignment.BottomCenter)
-                    .padding(horizontal = 16.dp, vertical = if (bottomBar != null) 68.dp else 16.dp)
+                    .padding(bottom = if (bottomBar != null) 64.dp else 16.dp)
             ) {
                 host()
             }
@@ -106,7 +106,7 @@ fun RisScaffold(
 }
 
 /**
- * Tactical HUD Top Bar / Header.
+ * Tactical HUD Top App Bar.
  *
  * Features chamfered styling, telemetry status badge, title, eyebrow subtitle,
  * and customizable action buttons.
@@ -117,15 +117,18 @@ fun RisTopBar(
     modifier: Modifier = Modifier,
     subtitle: String? = null,
     statusIndicator: String? = "SYS.ONLINE",
-    statusColor: Color = RisCyberSkin.Green,
+    statusColor: Color = Color.Unspecified,
     navigationIcon: (@Composable () -> Unit)? = null,
     actions: (@Composable RowScope.() -> Unit)? = null,
 ) {
+    val colors = RisTheme.colors
+    val resolvedStatusColor = if (statusColor != Color.Unspecified) statusColor else colors.green
+
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .background(RisCyberSkin.Surface1)
-            .border(width = 1.dp, color = RisCyberSkin.LineStrong)
+            .background(colors.surface1)
+            .border(width = 1.dp, color = colors.lineStrong)
     ) {
         Row(
             modifier = Modifier
@@ -143,13 +146,13 @@ fun RisTopBar(
                 Column {
                     Text(
                         text = title.uppercase(Locale.ENGLISH),
-                        style = RisH3.copy(fontSize = 15.sp, fontWeight = FontWeight.Bold, color = RisCyberSkin.Fg1),
+                        style = RisH3.copy(fontSize = 15.sp, fontWeight = FontWeight.Bold, color = colors.fg1),
                         maxLines = 1,
                     )
                     if (subtitle != null) {
                         Text(
                             text = subtitle.uppercase(Locale.ENGLISH),
-                            style = RisEyebrow.copy(fontSize = 10.sp, color = RisCyberSkin.Fg3),
+                            style = RisEyebrow.copy(fontSize = 10.sp, color = colors.fg3),
                             maxLines = 1,
                         )
                     }
@@ -168,11 +171,11 @@ fun RisTopBar(
                         Box(
                             modifier = Modifier
                                 .size(6.dp)
-                                .background(statusColor)
+                                .background(resolvedStatusColor)
                         )
                         Text(
                             text = statusIndicator.uppercase(Locale.ENGLISH),
-                            style = RisMono.copy(fontSize = 10.sp, fontWeight = FontWeight.SemiBold, color = statusColor),
+                            style = RisMono.copy(fontSize = 10.sp, fontWeight = FontWeight.SemiBold, color = resolvedStatusColor),
                         )
                     }
                 }
@@ -186,7 +189,7 @@ fun RisTopBar(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(1.dp)
-                .background(RisCyberSkin.Line)
+                .background(colors.line)
         )
     }
 }
@@ -199,22 +202,26 @@ fun RisTopBar(
 @Composable
 fun RisBottomBar(
     modifier: Modifier = Modifier,
-    backgroundColor: Color = RisCyberSkin.Surface1,
-    borderColor: Color = RisCyberSkin.LineStrong,
+    backgroundColor: Color = Color.Unspecified,
+    borderColor: Color = Color.Unspecified,
     content: @Composable RowScope.() -> Unit,
 ) {
+    val colors = RisTheme.colors
+    val resolvedBg = if (backgroundColor != Color.Unspecified) backgroundColor else colors.surface1
+    val resolvedBorder = if (borderColor != Color.Unspecified) borderColor else colors.lineStrong
+
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .background(backgroundColor)
-            .border(width = 1.dp, color = borderColor)
+            .background(resolvedBg)
+            .border(width = 1.dp, color = resolvedBorder)
     ) {
         // Top edge hairline
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(1.dp)
-                .background(RisCyberSkin.Line)
+                .background(colors.line)
         )
 
         Row(

@@ -53,7 +53,7 @@
   - Re-saturated neon palette tempered for **WCAG AA** on near-black (red `#ff003c` fill / `#ff4d62` text, cyan `#00e5ff`/`#3df0ff`, green `#00e57e`, yellow `#ffe23a`); **structural red** lines (`--ris-line*`); red-tinted near-black surfaces; crimson-to-black gradient + scanlines + grain.
   - **Default glow** on key chrome: topbar line, solid selection fill, primary button, brackets. Display font → **Chakra Petch**.
   - Opt-in decorative chrome: `.ris-serial`, `.ris-hex`, `.ris-binary`, `.ris-ruler`, `.ris-ticker`.
-  - New skin-scoped components: `.ris-listrow` (thumb + title + meta + timestamp), `.ris-stat` (LEVEL/STREET CRED topbar stat).
+  - New skin-scoped components: `.ris-listrow` (thumb + title + meta + timestamp), `.ris-stat` (LEVEL/TRUST RANK topbar stat).
 - **Specimen**: "Skin: Cyber" topbar toggle + dedicated specimen section. Documented in GUIDELINES §7.
 
 ## 2.4.1 — 2026-06-17

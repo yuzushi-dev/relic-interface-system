@@ -1,4 +1,6 @@
-import React, { forwardRef } from 'react';
+'use client';
+
+import React, { forwardRef, useId } from 'react';
 
 export interface SelectOption {
   value: string | number;
@@ -15,7 +17,10 @@ export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElemen
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(
   ({ label, helperText, error, options, children, id, className = '', ...props }, ref) => {
-    const selectId = id || (label ? `ris-select-${label.toLowerCase().replace(/\s+/g, '-')}` : undefined);
+    const generatedId = useId();
+    const selectId = id || generatedId;
+    const errorId = `${selectId}-error`;
+    const helpId = `${selectId}-help`;
 
     return (
       <div className="ris-field" data-invalid={error ? true : undefined}>
@@ -25,6 +30,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           id={selectId}
           className={`ris-select ${className}`}
           aria-invalid={error ? 'true' : undefined}
+          aria-describedby={error ? errorId : helperText ? helpId : undefined}
           {...props}
         >
           {options
@@ -36,11 +42,13 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
             : children}
         </select>
         {error ? (
-          <span className="ris-field-error" role="alert">
+          <span id={errorId} className="ris-field-error" role="alert">
             {error}
           </span>
         ) : helperText ? (
-          <span className="ris-field-help">{helperText}</span>
+          <span id={helpId} className="ris-field-help">
+            {helperText}
+          </span>
         ) : null}
       </div>
     );

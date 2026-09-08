@@ -7,19 +7,22 @@ export interface TableColumn<T> {
   render?: (row: T, index: number) => React.ReactNode;
 }
 
-export interface TableProps<T = any> extends React.TableHTMLAttributes<HTMLTableElement> {
+export interface TableProps<T extends Record<string, any> = Record<string, any>>
+  extends React.TableHTMLAttributes<HTMLTableElement> {
   columns?: TableColumn<T>[];
   data?: T[];
   children?: React.ReactNode;
   wrapperClassName?: string;
+  keyExtractor?: (row: T, index: number) => string | number;
 }
 
-export function Table<T = any>({
+export function Table<T extends Record<string, any> = Record<string, any>>({
   columns,
   data,
   children,
   className = '',
   wrapperClassName = '',
+  keyExtractor,
   ...props
 }: TableProps<T>) {
   return (
@@ -37,15 +40,18 @@ export function Table<T = any>({
               </tr>
             </thead>
             <tbody>
-              {data.map((row, i) => (
-                <tr key={i}>
-                  {columns.map((col) => (
-                    <td key={col.key} className={col.numeric ? 'num' : undefined}>
-                      {col.render ? col.render(row, i) : (row as any)[col.key]}
-                    </td>
-                  ))}
-                </tr>
-              ))}
+              {data.map((row, i) => {
+                const rowKey = keyExtractor ? keyExtractor(row, i) : row.id ?? row.key ?? i;
+                return (
+                  <tr key={rowKey}>
+                    {columns.map((col) => (
+                      <td key={col.key} className={col.numeric ? 'num' : undefined}>
+                        {col.render ? col.render(row, i) : row[col.key]}
+                      </td>
+                    ))}
+                  </tr>
+                );
+              })}
             </tbody>
           </>
         ) : (
