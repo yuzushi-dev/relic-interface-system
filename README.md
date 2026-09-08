@@ -43,59 +43,27 @@ Most cyberpunk UI libraries fall apart in production: fluorescent neon text on p
 
 ---
 
-## ◈ Quickstart (Web)
+## ◈ Interactive Template & Live Showcase
 
-Link the core stylesheet pipeline and drop in tokens:
+No local setup is required to evaluate or start building. Launch the full environment right in your browser via GitHub Pages:
 
-```html
-<!DOCTYPE html>
-<html lang="en" data-theme="dark" data-brand="relic" data-skin="cyber">
-<head>
-  <link rel="stylesheet" href="css/ris-tokens.css">
-  <link rel="stylesheet" href="css/ris.css">
-  <link rel="stylesheet" href="css/ris-fx.css">          <!-- Optional: HUD radar, scans, glows -->
-  <link rel="stylesheet" href="css/ris-skin-cyber.css">  <!-- Cyberpunk skin (load last) -->
-</head>
-<body class="ris ris-grid-bg">
-  <a class="ris-skip-nav" href="#main">Skip to main content</a>
+[![Live Showcase](https://img.shields.io/badge/Live%20Showcase-GitHub%20Pages-e6a23c?style=for-the-badge&logo=github)](https://yuzushi-dev.github.io/relic-interface-system/)
+[![Mobile App--Shell](https://img.shields.io/badge/Mobile%20Shell-Touch%20Specimen-6fb3c9?style=for-the-badge)](https://yuzushi-dev.github.io/relic-interface-system/docs/mobile.html)
+[![Motion Lab](https://img.shields.io/badge/Motion%20Lab-Kiroshi%20HUD-ff2d3c?style=for-the-badge)](https://yuzushi-dev.github.io/relic-interface-system/docs/motion-lab.html)
 
-  <main id="main">
-    <button class="ris-btn ris-btn--primary">
-      <span>INITIALIZE SCAN</span>
-      <svg class="ris-icon" aria-hidden="true"><use href="icons/ris-icons.svg#ris-crosshair"/></svg>
-    </button>
-  </main>
-</body>
-</html>
+### Using as a Project Template
+
+Click **Use this template** on GitHub or clone the repository to spin up a new tactical app:
+
+```bash
+git clone https://github.com/yuzushi-dev/relic-interface-system.git my-tactical-app
+cd my-tactical-app
+python3 -m http.server 8080
 ```
 
----
-
-## ◈ Quickstart (Jetpack Compose)
-
-Drop `compose/` directly into your Android project. Zero external UI dependencies beyond modern Jetpack Compose:
-
-```kotlin
-@Composable
-fun TelemetryScreen() {
-    RisTheme {
-        Box(Modifier.fillMaxSize().cyberBackdrop().padding(16.dp)) {
-            RisPanel(modifier = Modifier.fillMaxWidth()) {
-                Column(Modifier.padding(16.dp)) {
-                    Text("REACTOR CORE · TELEMETRY", style = RisH3, color = RisCyberSkin.Fg1)
-                    RisProgressBar(progress = 0.84f)
-                    RisStat(value = "98.4", label = "Stability %", activeSegments = 4)
-                    RisButton(
-                        text = "PURGE SYSTEM",
-                        onClick = { /* ... */ },
-                        variant = RisButtonVariant.Primary
-                    )
-                }
-            }
-        }
-    }
-}
-```
+- **Web Stack**: Import `css/ris-tokens.css` + `css/ris.css` (and optional `css/ris-skin-cyber.css`). Ready-to-copy specimen markup lives in [`docs/index.html`](docs/index.html).
+- **Android / Compose**: Direct drop-in `compose/` module with zero third-party UI dependencies. Architecture guide & samples in [`compose/README.md`](compose/README.md).
+- **Agent Prompt**: If building with Claude Code, Cursor, or Codex, pass [`DESIGN.md`](DESIGN.md) directly as the system prompt.
 
 ---
 
