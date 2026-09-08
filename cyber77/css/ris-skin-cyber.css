@@ -27,7 +27,7 @@
 
 /* ----------------------------------------------------------------------------
    1. TOKEN OVERRIDE — CP2077 AA-tempered palette + structural red.
-   Dark mode only (the skin is a night HUD look; does not apply to light).
+   Dark mode token overrides (Light mode uses technical drafting slate/cyan rules below).
    -------------------------------------------------------------------------- */
 :root[data-skin="cyber"]:not([data-theme="light"]) {
   /* Surfaces: red-tinted near-black, never flat */

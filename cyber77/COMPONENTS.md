@@ -185,7 +185,7 @@ platforms (never as generic decoration).
 ## Skin `cyber` (`css/ris-skin-cyber.css`, opt-in)
 
 Active with `data-skin="cyber"` on `<html>` + `<link>` loaded **last**.
-Dark mode only. See GUIDELINES §8 (intentional opt-in over de-slop, AA preserved).
+Supports both Dark HUD and Light drafting themes. See GUIDELINES §8 (intentional opt-in over de-slop, AA preserved).
 
 **Skin-scoped components:**
 - `.ris-listrow` — list row with `.thumb` (img/box 84×48) + `.body` (`.title`

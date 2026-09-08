@@ -111,7 +111,7 @@ Styling direction relies on contrast and borders, never excess glows: sealed = e
 `data-skin="cyber"` + `css/ris-skin-cyber.css` (loaded **last**) re-applies the Cyberpunk 2077 look & feel as an **opt-in layer** over the forensic baseline without altering its core. It is an explicit design choice: where §1 prescribes restrained palettes, the skin intentionally introduces structural red and glowing accents. The discipline remains intact:
 
 - **WCAG AA remains mandatory** (§4): neons are calibrated for ≥4.5:1 on near-black; state remains paired with text/icons.
-- **Dark mode only**: skin does not apply when `data-theme="light"`.
+- **Dual Theme Support (Dark + Light)**: in Dark mode, applies high-contrast Kiroshi crimson/yellow HUD aesthetic; in Light mode, adapts into a technical architectural drafting cyan/slate palette (`#1b6b80` / `#165868`) with 10-15% ambient opacity, preserving optical comfort without neon glare.
 - **Fully reversible**: everything is scoped to `[data-skin="cyber"]`; removing the attribute reverts to the disciplined baseline.
 - **Static textures**: scanlines and grain are static background layers, not animation loops → reduced-motion safe by design.
 

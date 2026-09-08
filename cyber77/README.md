@@ -60,8 +60,8 @@ ris/
 - Theme: `data-theme="dark|light"` (default dark).
 - Brand: `data-brand="relic|biohub|vivokey|neutral"` (default relic).
 - Skin CP2077 (opt-in): `data-skin="cyber"` + `<link href="css/ris-skin-cyber.css">`
-  **loaded last**. Dark mode only, fully reversible. See GUIDELINES §8.
-- Specimen: `cd ris && python3 -m http.server 8080` → `http://localhost:8080/docs/`.
+  **loaded last**. Supports Dark HUD and Light drafting themes, fully reversible. See GUIDELINES §8.
+- Specimen: `cd cyber77 && python3 -m http.server 8080` → `http://localhost:8080/docs/index.html`.
 
 ## Android / Compose
 
