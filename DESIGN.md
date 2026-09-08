@@ -83,6 +83,6 @@ Remove `data-skin="cyber"` + the final `<link>` → reverts to the disciplined f
 ## Notes
 
 - **Not a framework-bound library**: CSS + class contract. In React/JSX use the same classes in `className`. For Android, a complete Jetpack Compose port is available in `compose/` with token, shape, motion, component, and telemetry chart parity (see `compose/README.md`).
-- **Repository root layout**: RIS v2.8.0 is promoted directly to the root of the repository (with a backward-compatible `cyber77 -> .` symlink preserved).
+- **Repository root layout**: RIS v2.8.0 is organized directly at the root of the repository (`css/`, `js/`, `tokens/`, `icons/`, `docs/`, `compose/`).
 - Live specimen: `python3 -m http.server 8080` → `http://localhost:8080/docs/index.html`, `mobile.html`, `motion-lab.html`.
 - The cyber skin is an **intentional opt-in** over the forensic default (see `GUIDELINES.md §8`): AA preserved, neons tempered, fully reversible across dark and light themes.

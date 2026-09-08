@@ -74,3 +74,13 @@ relic-interface-system/
 3. State is never color alone.
 4. WCAG 2.2 AA: contrast, focus, touch targets, reduced-motion (GUIDELINES §4).
 5. New components: documented in COMPONENTS.md + specimen + CHANGELOG.
+
+## License & Third-Party Attributions
+
+- Released under the [MIT License](LICENSE).
+- Icons provided by [Tabler Icons](https://tabler.io/icons) (MIT License).
+- Typography: Archivo, JetBrains Mono, Chakra Petch, and Rajdhani are licensed under the SIL Open Font License (OFL).
+
+## Legal Disclaimer
+
+Relic Interface System (RIS) is an independent open-source design system. Visual motifs, color schemes, and aesthetic naming references (such as *Cyberpunk 2077*, *Arasaka*, *Militech*, *Edgerunners*, and *Kiroshi*) are used solely as artistic homage, design commentary, and theming descriptors. This project is not affiliated with, sponsored by, or endorsed by CD PROJEKT S.A. or any of its subsidiaries.
