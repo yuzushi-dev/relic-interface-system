@@ -61,8 +61,11 @@ cd my-tactical-app
 python3 -m http.server 8080
 ```
 
-- **Web Stack**: Import `css/ris-tokens.css` + `css/ris.css` (and optional `css/ris-skin-cyber.css`). Ready-to-copy specimen markup lives in [`docs/index.html`](docs/index.html).
-- **Android / Compose**: Direct drop-in `compose/` module with zero third-party UI dependencies. Architecture guide & samples in [`compose/README.md`](compose/README.md).
+- **Web (Vanilla CSS)**: Import `css/ris-tokens.css` + `css/ris.css` (and optional `css/ris-skin-cyber.css`). Specimen in [`docs/index.html`](docs/index.html).
+- **React + TypeScript**: Native `@relic-ui/react` components with zero-reflow CSS Grid, typed hooks, and charts in [`react/`](react/README.md).
+- **Figma UI Kit**: Tokens Studio JSON, turnkey plugin generator, and vector shapes in [`figma/`](figma/README.md).
+- **Tailwind CSS Plugin**: Ready preset with `.chamfer-*` utilities and design tokens in [`tailwind/`](tailwind/README.md).
+- **Android / Compose**: Direct drop-in Gradle library module with Maven/JitPack publishing in [`compose/`](compose/README.md).
 - **Agent Prompt**: If building with Claude Code, Cursor, or Codex, pass [`DESIGN.md`](DESIGN.md) directly as the system prompt.
 
 ---

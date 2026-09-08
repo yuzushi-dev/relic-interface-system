@@ -1,0 +1,52 @@
+<svg width="360" height="200" viewBox="0 0 360 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- RIS v2 Small Chamfered Tactical Panel (360x200) - 10px 45° cut (top-right & bottom-left) -->
+  <defs>
+    <clipPath id="ris-panel-sm-clip">
+      <polygon points="0,0 350,0 360,10 360,200 10,200 0,190" />
+    </clipPath>
+    <linearGradient id="panel-sm-grad" x1="0" y1="0" x2="360" y2="200" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0f1316" />
+      <stop offset="100%" stop-color="#141a1e" />
+    </linearGradient>
+  </defs>
+
+  <!-- Panel Background & Boundary -->
+  <polygon points="0,0 350,0 360,10 360,200 10,200 0,190" fill="url(#panel-sm-grad)" stroke="#2a343b" stroke-width="1.5" />
+
+  <!-- Header Divider Line -->
+  <line x1="0" y1="36" x2="360" y2="36" stroke="#2a343b" stroke-width="1" />
+
+  <!-- Top Header Accent Indicator -->
+  <rect x="14" y="10" width="4" height="16" fill="#e6a23c" />
+  <rect x="22" y="10" width="2" height="16" fill="#6fb3c9" opacity="0.6" />
+
+  <!-- Technical Header Typography -->
+  <text x="32" y="22" fill="#e6ebe8" font-family="'Archivo', system-ui, sans-serif" font-size="11" font-weight="700" letter-spacing="0.12em">SYS_BUFFER // RECV_01</text>
+  <text x="290" y="22" fill="#98a3a5" font-family="'JetBrains Mono', monospace" font-size="9" font-weight="500" letter-spacing="0.1em">STATUS: OK</text>
+
+  <!-- Top-Right Chamfer Diagnostic Hatching -->
+  <line x1="344" y1="2" x2="358" y2="16" stroke="#e6a23c" stroke-width="1.5" stroke-linecap="square" />
+  <line x1="339" y1="2" x2="358" y2="21" stroke="#2a343b" stroke-width="1" />
+
+  <!-- Bottom-Left Chamfer Accent Hash -->
+  <line x1="2" y1="184" x2="16" y2="198" stroke="#6fb3c9" stroke-width="1.5" stroke-linecap="square" />
+  <line x1="2" y1="179" x2="21" y2="198" stroke="#2a343b" stroke-width="1" />
+
+  <!-- Tactical HUD Grid Calibration Ticks (Right Border) -->
+  <line x1="356" y1="60" x2="360" y2="60" stroke="#3b4750" stroke-width="1" />
+  <line x1="354" y1="80" x2="360" y2="80" stroke="#6fb3c9" stroke-width="1.5" />
+  <line x1="356" y1="100" x2="360" y2="100" stroke="#3b4750" stroke-width="1" />
+  <line x1="354" y1="120" x2="360" y2="120" stroke="#3b4750" stroke-width="1" />
+  <line x1="356" y1="140" x2="360" y2="140" stroke="#3b4750" stroke-width="1" />
+  <line x1="354" y1="160" x2="360" y2="160" stroke="#6fb3c9" stroke-width="1.5" />
+
+  <!-- Interior Subtle Corner Tick Marks -->
+  <path d="M 8 46 L 8 42 L 12 42" stroke="#3b4750" stroke-width="1" fill="none" />
+  <path d="M 352 46 L 352 42 L 348 42" stroke="#3b4750" stroke-width="1" fill="none" />
+  <path d="M 8 184 L 8 188 L 12 188" stroke="#3b4750" stroke-width="1" fill="none" />
+  <path d="M 352 184 L 352 188 L 348 188" stroke="#3b4750" stroke-width="1" fill="none" />
+
+  <!-- Footer Micro-label -->
+  <text x="14" y="188" fill="#4a555b" font-family="'JetBrains Mono', monospace" font-size="8" letter-spacing="0.16em">RIS-V2 // SECTOR-4</text>
+  <circle cx="346" cy="186" r="2.5" fill="#5fae84" />
+</svg>

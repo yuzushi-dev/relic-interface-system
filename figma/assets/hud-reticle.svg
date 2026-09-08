@@ -1,0 +1,43 @@
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- RIS v2 Precision HUD Targeting Reticle (80x80) -->
+  <defs>
+    <filter id="reticle-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="1" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- 4 Outer Corner Framing Brackets -->
+  <path d="M 6 18 L 6 6 L 18 6" stroke="#6fb3c9" stroke-width="1.5" stroke-linecap="square" />
+  <path d="M 62 6 L 74 6 L 74 18" stroke="#6fb3c9" stroke-width="1.5" stroke-linecap="square" />
+  <path d="M 6 62 L 6 74 L 18 74" stroke="#6fb3c9" stroke-width="1.5" stroke-linecap="square" />
+  <path d="M 62 74 L 74 74 L 74 62" stroke="#6fb3c9" stroke-width="1.5" stroke-linecap="square" />
+
+  <!-- Outer Interrupted Circular Ring (r=26) -->
+  <circle cx="40" cy="40" r="26" stroke="#2a343b" stroke-width="1" stroke-dasharray="8 6 14 6" />
+
+  <!-- Mid Segmented Ring (r=18) -->
+  <circle cx="40" cy="40" r="18" stroke="#3b4750" stroke-width="1.2" stroke-dasharray="16 12" />
+
+  <!-- Inner Reticle Core (r=8) with Gap -->
+  <circle cx="40" cy="40" r="8" stroke="#e6a23c" stroke-width="1.5" stroke-dasharray="5 4" />
+
+  <!-- Center Crosshairs (with 8px deadband at center: from x=40-4 to 40+4) -->
+  <line x1="14" y1="40" x2="34" y2="40" stroke="#6fb3c9" stroke-width="1.5" />
+  <line x1="46" y1="40" x2="66" y2="40" stroke="#6fb3c9" stroke-width="1.5" />
+  <line x1="40" y1="14" x2="40" y2="34" stroke="#6fb3c9" stroke-width="1.5" />
+  <line x1="40" y1="46" x2="40" y2="66" stroke="#6fb3c9" stroke-width="1.5" />
+
+  <!-- Center Micro Target Point -->
+  <circle cx="40" cy="40" r="1.5" fill="#e6a23c" />
+
+  <!-- Cardinal Calibrations / Ticks -->
+  <line x1="38" y1="10" x2="42" y2="10" stroke="#e6a23c" stroke-width="1" />
+  <line x1="38" y1="70" x2="42" y2="70" stroke="#e6a23c" stroke-width="1" />
+  <line x1="10" y1="38" x2="10" y2="42" stroke="#e6a23c" stroke-width="1" />
+  <line x1="70" y1="38" x2="70" y2="42" stroke="#e6a23c" stroke-width="1" />
+
+  <!-- Azimuth Coordinate Micro-Typography -->
+  <text x="40" y="31" fill="#6fb3c9" font-family="'JetBrains Mono', monospace" font-size="6" font-weight="600" text-anchor="middle" letter-spacing="0.1em">TGT-LOCK</text>
+  <text x="40" y="52" fill="#98a3a5" font-family="'JetBrains Mono', monospace" font-size="5" text-anchor="middle" letter-spacing="0.08em">AZ. 042°</text>
+</svg>

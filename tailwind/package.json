@@ -1,0 +1,33 @@
+{
+  "name": "@relic-ui/tailwind",
+  "version": "2.8.0",
+  "description": "Tailwind CSS plugin and preset for Relic Interface System (RIS v2)",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "files": [
+    "index.js",
+    "preset.js",
+    "index.d.ts",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node test.js"
+  },
+  "keywords": [
+    "tailwindcss",
+    "tailwindcss-plugin",
+    "tailwindcss-preset",
+    "relic-ui",
+    "ris",
+    "design-system",
+    "hud",
+    "cyberpunk",
+    "brutalist",
+    "tactical-ui"
+  ],
+  "author": "Relic Interface System Team",
+  "license": "MIT",
+  "peerDependencies": {
+    "tailwindcss": ">=3.0.0 || >=4.0.0"
+  }
+}

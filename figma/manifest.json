@@ -1,0 +1,10 @@
+{
+  "name": "RIS v2 — Relic Interface System UI Kit Builder",
+  "id": "ris-v2-figma-kit-builder",
+  "api": "1.0.0",
+  "main": "code.js",
+  "capabilities": [],
+  "enableProposedApi": false,
+  "editorType": ["figma"],
+  "documentAccess": "dynamic-page"
+}

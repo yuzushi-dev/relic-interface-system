@@ -1,0 +1,67 @@
+<svg width="540" height="320" viewBox="0 0 540 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- RIS v2 Medium Chamfered Tactical Panel (540x320) - 16px 45° cut (top-right & bottom-left) -->
+  <defs>
+    <linearGradient id="panel-md-grad" x1="0" y1="0" x2="540" y2="320" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0f1316" />
+      <stop offset="60%" stop-color="#12171b" />
+      <stop offset="100%" stop-color="#141a1e" />
+    </linearGradient>
+    <pattern id="panel-md-dots" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="10" cy="10" r="0.8" fill="#2a343b" />
+    </pattern>
+  </defs>
+
+  <!-- Panel Body & 16px 45° Chamfer Contour -->
+  <polygon points="0,0 524,0 540,16 540,320 16,320 0,304" fill="url(#panel-md-grad)" stroke="#3b4750" stroke-width="1.5" />
+
+  <!-- Background Technical Dot Matrix Pattern (Inset) -->
+  <rect x="18" y="44" width="504" height="246" fill="url(#panel-md-dots)" opacity="0.45" />
+
+  <!-- Header Section Frame -->
+  <line x1="0" y1="40" x2="540" y2="40" stroke="#2a343b" stroke-width="1.5" />
+
+  <!-- Top-Left Corner Accent Bracket -->
+  <path d="M 4 20 L 4 4 L 20 4" stroke="#e6a23c" stroke-width="2" fill="none" />
+  <rect x="7" y="7" width="2" height="2" fill="#e6a23c" />
+
+  <!-- Header Title & Tag -->
+  <rect x="28" y="11" width="6" height="18" fill="#e6a23c" />
+  <text x="42" y="24" fill="#e6ebe8" font-family="'Archivo', system-ui, sans-serif" font-size="13" font-weight="700" letter-spacing="0.14em">TELEMETRY ARCHIVE // NODE-04</text>
+  <rect x="330" y="13" width="70" height="14" fill="#1b2228" stroke="#3b4750" stroke-width="1" />
+  <text x="337" y="23" fill="#6fb3c9" font-family="'JetBrains Mono', monospace" font-size="8.5" font-weight="600" letter-spacing="0.1em">SEC_LVL_3</text>
+
+  <!-- Header Right Indicator -->
+  <circle cx="480" cy="20" r="3.5" fill="#5fae84" />
+  <text x="490" y="23" fill="#aab4b2" font-family="'JetBrains Mono', monospace" font-size="9" letter-spacing="0.08em">SYNCED</text>
+
+  <!-- Top-Right 16px Chamfer Striped Hatching -->
+  <line x1="514" y1="2" x2="538" y2="26" stroke="#e6a23c" stroke-width="1.5" />
+  <line x1="508" y1="2" x2="538" y2="32" stroke="#2a343b" stroke-width="1" />
+  <line x1="502" y1="2" x2="538" y2="38" stroke="#3b4750" stroke-width="1" />
+
+  <!-- Bottom-Left 16px Chamfer Striped Hatching -->
+  <line x1="2" y1="294" x2="26" y2="318" stroke="#6fb3c9" stroke-width="1.5" />
+  <line x1="2" y1="288" x2="32" y2="318" stroke="#2a343b" stroke-width="1" />
+  <line x1="2" y1="282" x2="38" y2="318" stroke="#3b4750" stroke-width="1" />
+
+  <!-- Left Border Tactical Ruler -->
+  <line x1="0" y1="80" x2="6" y2="80" stroke="#3b4750" stroke-width="1" />
+  <line x1="0" y1="110" x2="9" y2="110" stroke="#6fb3c9" stroke-width="1.5" />
+  <line x1="0" y1="140" x2="6" y2="140" stroke="#3b4750" stroke-width="1" />
+  <line x1="0" y1="170" x2="9" y2="170" stroke="#3b4750" stroke-width="1.5" />
+  <line x1="0" y1="200" x2="6" y2="200" stroke="#3b4750" stroke-width="1" />
+  <line x1="0" y1="230" x2="9" y2="230" stroke="#e6a23c" stroke-width="1.5" />
+  <line x1="0" y1="260" x2="6" y2="260" stroke="#3b4750" stroke-width="1" />
+
+  <!-- Right Border Ruler -->
+  <line x1="534" y1="90" x2="540" y2="90" stroke="#3b4750" stroke-width="1" />
+  <line x1="531" y1="130" x2="540" y2="130" stroke="#6fb3c9" stroke-width="1.5" />
+  <line x1="534" y1="170" x2="540" y2="170" stroke="#3b4750" stroke-width="1" />
+  <line x1="531" y1="210" x2="540" y2="210" stroke="#3b4750" stroke-width="1.5" />
+  <line x1="534" y1="250" x2="540" y2="250" stroke="#3b4750" stroke-width="1" />
+
+  <!-- Bottom Action & Status Footer -->
+  <line x1="0" y1="290" x2="540" y2="290" stroke="#2a343b" stroke-width="1" />
+  <text x="32" y="306" fill="#98a3a5" font-family="'JetBrains Mono', monospace" font-size="9" letter-spacing="0.15em">LAT: 45.4642° N // LON: 9.1900° E // ELEV: 120M</text>
+  <text x="430" y="306" fill="#4a555b" font-family="'JetBrains Mono', monospace" font-size="8.5" letter-spacing="0.2em">RIS-SYS-V2.0</text>
+</svg>

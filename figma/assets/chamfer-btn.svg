@@ -1,0 +1,27 @@
+<svg width="160" height="36" viewBox="0 0 160 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- RIS v2 Tactical 45° Chamfered Button (160x36) - 6px cut (top-right & bottom-left) -->
+  <defs>
+    <linearGradient id="btn-primary-grad" x1="0" y1="0" x2="160" y2="36" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#e6a23c" />
+      <stop offset="100%" stop-color="#cf8e30" />
+    </linearGradient>
+  </defs>
+
+  <!-- Outer Cut Contour Path -->
+  <polygon points="0,0 154,0 160,6 160,36 6,36 0,30" fill="url(#btn-primary-grad)" stroke="#ffffff" stroke-width="1" stroke-opacity="0.3" />
+
+  <!-- Top-Right Chamfer Accent Notch -->
+  <line x1="150" y1="1" x2="159" y2="10" stroke="#07090a" stroke-width="1.5" stroke-opacity="0.6" />
+
+  <!-- Bottom-Left Chamfer Accent Notch -->
+  <line x1="1" y1="26" x2="10" y2="35" stroke="#07090a" stroke-width="1.5" stroke-opacity="0.6" />
+
+  <!-- Tactical Corner Micro-tick (Top-Left) -->
+  <path d="M 5 9 L 5 5 L 9 5" stroke="#07090a" stroke-width="1.2" fill="none" stroke-opacity="0.7" />
+
+  <!-- Button Text Label -->
+  <text x="80" y="22" fill="#07090a" font-family="'Archivo', system-ui, sans-serif" font-size="11" font-weight="700" letter-spacing="0.16em" text-anchor="middle">EXECUTE // RUN</text>
+
+  <!-- Right Trailing Tactical Chevron Indicator -->
+  <path d="M 140 15 L 143 18 L 140 21" stroke="#07090a" stroke-width="1.5" fill="none" stroke-linecap="square" />
+</svg>

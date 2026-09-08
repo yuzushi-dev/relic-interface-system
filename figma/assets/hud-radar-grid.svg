@@ -1,0 +1,76 @@
+<svg width="240" height="240" viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- RIS v2 Tactical Radar Grid & Azimuth Display (240x240) -->
+  <defs>
+    <!-- 60° Phosphor Radar Sweep Gradient -->
+    <radialGradient id="radar-sweep-grad" cx="120" cy="120" r="116" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#6fb3c9" stop-opacity="0.25" />
+      <stop offset="85%" stop-color="#6fb3c9" stop-opacity="0.08" />
+      <stop offset="100%" stop-color="#6fb3c9" stop-opacity="0" />
+    </radialGradient>
+    <!-- Sweep Sector Clip (60 deg: from 30° to 90°) -->
+    <clipPath id="radar-sweep-clip">
+      <path d="M 120 120 L 220 62 A 116 116 0 0 1 236 120 Z" />
+    </clipPath>
+  </defs>
+
+  <!-- Base Dark Disc Backdrop -->
+  <circle cx="120" cy="120" r="116" fill="#0b0e11" stroke="#2a343b" stroke-width="1.5" />
+
+  <!-- Radar Sweep Sector -->
+  <circle cx="120" cy="120" r="116" fill="url(#radar-sweep-grad)" clip-path="url(#radar-sweep-clip)" />
+  <line x1="120" y1="120" x2="220" y2="62" stroke="#6fb3c9" stroke-width="1.5" stroke-opacity="0.8" />
+
+  <!-- Concentric Range Rings -->
+  <circle cx="120" cy="120" r="28" stroke="#1f282e" stroke-width="1" />
+  <circle cx="120" cy="120" r="56" stroke="#2a343b" stroke-width="1" />
+  <circle cx="120" cy="120" r="84" stroke="#2a343b" stroke-width="1" stroke-dasharray="4 4" />
+  <circle cx="120" cy="120" r="112" stroke="#3b4750" stroke-width="1.2" />
+
+  <!-- Primary Axes (Crosshairs) -->
+  <line x1="8" y1="120" x2="232" y2="120" stroke="#3b4750" stroke-width="1" />
+  <line x1="120" y1="8" x2="120" y2="232" stroke="#3b4750" stroke-width="1" />
+
+  <!-- Diagonal 45° Guidelines -->
+  <line x1="41" y1="41" x2="199" y2="199" stroke="#1f282e" stroke-width="1" stroke-dasharray="2 4" />
+  <line x1="199" y1="41" x2="41" y2="199" stroke="#1f282e" stroke-width="1" stroke-dasharray="2 4" />
+
+  <!-- Range Calibration Ticks on X-Axis -->
+  <line x1="148" y1="117" x2="148" y2="123" stroke="#6fb3c9" stroke-width="1" />
+  <line x1="176" y1="117" x2="176" y2="123" stroke="#6fb3c9" stroke-width="1" />
+  <line x1="204" y1="117" x2="204" y2="123" stroke="#6fb3c9" stroke-width="1" />
+  <line x1="92" y1="117" x2="92" y2="123" stroke="#6fb3c9" stroke-width="1" />
+  <line x1="64" y1="117" x2="64" y2="123" stroke="#6fb3c9" stroke-width="1" />
+  <line x1="36" y1="117" x2="36" y2="123" stroke="#6fb3c9" stroke-width="1" />
+
+  <!-- Range Calibration Ticks on Y-Axis -->
+  <line x1="117" y1="148" x2="123" y2="148" stroke="#6fb3c9" stroke-width="1" />
+  <line x1="117" y1="176" x2="123" y2="176" stroke="#6fb3c9" stroke-width="1" />
+  <line x1="117" y1="204" x2="123" y2="204" stroke="#6fb3c9" stroke-width="1" />
+  <line x1="117" y1="92" x2="123" y2="92" stroke="#6fb3c9" stroke-width="1" />
+  <line x1="117" y1="64" x2="123" y2="64" stroke="#6fb3c9" stroke-width="1" />
+  <line x1="117" y1="36" x2="123" y2="36" stroke="#6fb3c9" stroke-width="1" />
+
+  <!-- Outer Ring Degree Markings (12 cardinal ticks) -->
+  <line x1="120" y1="4" x2="120" y2="10" stroke="#e6a23c" stroke-width="1.5" />
+  <line x1="120" y1="230" x2="120" y2="236" stroke="#e6a23c" stroke-width="1.5" />
+  <line x1="4" y1="120" x2="10" y2="120" stroke="#e6a23c" stroke-width="1.5" />
+  <line x1="230" y1="120" x2="236" y2="120" stroke="#e6a23c" stroke-width="1.5" />
+
+  <!-- Cardinal Indicators -->
+  <text x="120" y="20" fill="#e6a23c" font-family="'JetBrains Mono', monospace" font-size="7.5" font-weight="700" text-anchor="middle">N 000°</text>
+  <text x="120" y="226" fill="#98a3a5" font-family="'JetBrains Mono', monospace" font-size="7.5" text-anchor="middle">S 180°</text>
+  <text x="218" y="123" fill="#98a3a5" font-family="'JetBrains Mono', monospace" font-size="7.5" text-anchor="middle">E</text>
+  <text x="22" y="123" fill="#98a3a5" font-family="'JetBrains Mono', monospace" font-size="7.5" text-anchor="middle">W</text>
+
+  <!-- Detected Radar Blips (Telemetry Nodes) -->
+  <circle cx="178" cy="88" r="3" fill="#ff4d62" />
+  <circle cx="178" cy="88" r="7" stroke="#ff4d62" stroke-width="1" opacity="0.6" />
+  <text x="187" y="87" fill="#ff4d62" font-family="'JetBrains Mono', monospace" font-size="6" font-weight="600">TRK-01</text>
+
+  <circle cx="78" cy="154" r="2.5" fill="#5fae84" />
+  <text x="50" y="165" fill="#5fae84" font-family="'JetBrains Mono', monospace" font-size="6">BEACON_B</text>
+
+  <!-- Center Origin Reticle -->
+  <circle cx="120" cy="120" r="3" fill="#0b0e11" stroke="#e6a23c" stroke-width="1.5" />
+  <circle cx="120" cy="120" r="1" fill="#e6a23c" />
+</svg>
