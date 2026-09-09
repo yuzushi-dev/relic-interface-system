@@ -36,15 +36,15 @@
 
 ## ◈ What is RIS?
 
-Most cyberpunk UI libraries fall apart in production: fluorescent neon text on pitch black that burns your eyes, fuzzy box-shadow glows causing frame drops, and fake lorem-ipsum telemetry with random numbers.
+Most cyberpunk UI libraries are unusable in production: neon gradients that fail contrast audits, heavy box-shadow glows that drop GPU frames, and mock charts populated with fake random math.
 
-**Relic Interface System (RIS)** is the antidote:
+**Relic Interface System (RIS)** was built around production constraints:
 
-- **Disciplined Graphite Surfaces**: Structured with 1px tactile borders and 45° chamfered cuts (6px / 10px / 16px), never fuzzy drop-shadows.
-- **Physical Motion**: Calibrated micro-feedback (80ms click snap, 140ms hover), zero-reflow CSS Grid accordion drawers, and an absolute ban on `ease-in` for entering views.
-- **Strict Real Data**: Zero fake metrics. Interactive SVG charts with pointer scrubbers and keyboard navigation bind directly to real telemetry points.
-- **True Dual Theme**: High-contrast tactical crimson/amber in Dark mode; calm architectural blueprint cyan/slate (`#1b6b80`) in Light mode. Zero illegible neon fills.
-- **Native Android Parity**: Complete Jetpack Compose port sharing identical tokens, chamfer clip shapes, and hardware-accelerated Canvas charts.
+- **Disciplined Graphite Surfaces**: 1px crisp borders (`var(--ris-line)`) and native 45° chamfers computed via CSS `clip-path: polygon(...)`. No fuzzy shadows or broken border-radius hacks.
+- **Calibrated Motion**: 80ms click snap (`scale(0.97)`), 140ms hover response, zero-reflow CSS Grid drawers (`grid-template-rows: 0fr → 1fr`), and an absolute ban on `ease-in` for entering elements.
+- **Zero-Dependency Real Telemetry**: Interactive SVG charts with mouse and keyboard scrubbers (`ArrowLeft` / `ArrowRight`) binding 1:1 to real data streams at 60fps. No Chart.js or D3 runtime overhead.
+- **True Dual Theme**: High-contrast tactical HUD in Dark mode; calm architectural blueprint cyan/slate (`#1b6b80`) on light gray in Light mode. Both pass WCAG 2.2 AA contrast (≥ 4.5:1).
+- **Native Android Parity**: Complete Jetpack Compose module sharing identical token values, polygon clip shapes, and Canvas chart renderers.
 
 ---
 
