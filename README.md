@@ -11,7 +11,7 @@
 ### Brutalist tactical HUD & telemetry design system for Web and Jetpack Compose.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-e6a23c.svg?style=flat-square)](LICENSE)
-[![RIS Pro: Available](https://img.shields.io/badge/RIS%20Pro-Figma%20%2B%20Next.js-6fb3c9.svg?style=flat-square)](docs/COMMERCIAL_PRICING.md)
+[![RIS Pro: Available](https://img.shields.io/badge/RIS%20Pro-Figma%20%2B%20Next.js-6fb3c9.svg?style=flat-square)](#ris-core-free-vs-ris-pro-commercial)
 [![WCAG 2.2 AA](https://img.shields.io/badge/Accessibility-WCAG%202.2%20AA-2fe48a.svg?style=flat-square)](GUIDELINES.md)
 [![Compose 1.7+](https://img.shields.io/badge/Android-Jetpack%20Compose-6fb3c9.svg?style=flat-square)](compose/)
 [![Zero Reflow](https://img.shields.io/badge/Motion-Zero%20Reflow%20%4060fps-ff2d3c.svg?style=flat-square)](docs/motion-lab.html)
@@ -104,17 +104,17 @@ Relic Interface System follows an open-core architecture. The foundational desig
 
 ### Commercial Pricing Tiers
 
-All Pro licenses are **perpetual (one-time purchase)** with lifetime v2.x updates. Tax and VAT are handled automatically via Merchant of Record (Lemon Squeezy):
+All Pro licenses are **perpetual (one-time purchase)** with lifetime v2.x updates. Tax and VAT are handled automatically via Merchant of Record ([Polar.sh](https://polar.sh)):
 
 | License Tier | Launch Early-Bird (Code: `EARLYBIRD100`) | Standard Price | Included Deliverables | Direct Purchase |
 | :--- | :---: | :---: | :--- | :---: |
-| **Figma Studio Kit** | **$39** | $49 | Turnkey Master script (`code.js`), Tokens Studio DTCG JSON, 60+ component variants, 130+ SVG vectors | [**Buy Figma Kit**](https://yuzushi.lemonsqueezy.com/buy/figma-studio?discount=EARLYBIRD100) |
-| **Next.js Forensic Dashboard** | **$49** | $69 | Turn-key Next.js 14 App Router template, interactive telemetry scrubber, Docker container | [**Buy Dashboard**](https://yuzushi.lemonsqueezy.com/buy/nextjs-dashboard?discount=EARLYBIRD100) |
-| **RIS Pro All-Access** *(Best Seller)* | **$99** | $129 | **All templates + Figma Studio + React Pro + Compose + Tailwind + Priority Discussions** | [**Buy All-Access**](https://yuzushi.lemonsqueezy.com/buy/ris-pro?discount=EARLYBIRD100) |
-| **Team License** | **$249** | $299 | All-Access for up to 10 developers/designers in an organization + 48h SLA support | [**Buy Team License**](https://yuzushi.lemonsqueezy.com/buy/ris-team?discount=EARLYBIRD100) |
+| **Figma Studio Kit** | **$39** | $49 | Turnkey Master script (`code.js`), Tokens Studio DTCG JSON, 60+ component variants, 130+ SVG vectors | [**Buy Figma Kit**](https://polar.sh/yuzushi-dev/products/figma-studio) |
+| **Next.js Forensic Dashboard** | **$49** | $69 | Turn-key Next.js 14 App Router template, interactive telemetry scrubber, Docker container | [**Buy Dashboard**](https://polar.sh/yuzushi-dev/products/nextjs-dashboard) |
+| **RIS Pro All-Access** *(Best Seller)* | **$99** | $129 | **All templates + Figma Studio + React Pro + Compose + Tailwind + Priority Discussions** | [**Buy All-Access**](https://polar.sh/yuzushi-dev/products/ris-pro) |
+| **Team License** | **$249** | $299 | All-Access for up to 10 developers/designers in an organization + 48h SLA support | [**Buy Team License**](https://polar.sh/yuzushi-dev/products/ris-team) |
 
-> ℹ️ **Support & Guarantee**: 14-day money-back guarantee. Includes 48-hour email support SLA (`support@relic-ui.dev`) and lifetime access to v2.x major and minor updates.
-> Full strategic analysis & competitor benchmarks: see [`docs/COMMERCIAL_PRICING.md`](docs/COMMERCIAL_PRICING.md) and [`LICENSE_PRO.md`](LICENSE_PRO.md).
+> ℹ️ **Support & Guarantee**: 14-day money-back guarantee. Technical support provided via [GitHub Discussions](https://github.com/yuzushi-dev/relic-interface-system/discussions) and [Issues](https://github.com/yuzushi-dev/relic-interface-system/issues). Perpetual license covers all future v2.x updates.
+> Terms and commercial permissions governed by the [RIS Pro Commercial License](LICENSE_PRO.md).
 
 ---
 

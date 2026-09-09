@@ -168,7 +168,7 @@ The vector assets in `figma/assets/` can be dragged directly onto your Figma can
   * Great for community exposure, developer adoption, and GitHub portfolio recognition.
 * **Paid / Commercial UI Kit**:
   * **Option A (Figma Creator Fund / Paid Community Files)**: If your account is enrolled in Figma's Creator Monetization Program, select **Paid**, set your price ($19 - $49 USD recommended for specialized developer UI kits), and provide Stripe payout details.
-  * **Option B (External Gumroad / Lemon Squeezy Bundle)**: Publish a free "Lite / Specimen" file on Figma Community with a link in the description to your Gumroad or Lemon Squeezy storefront for the complete commercial bundle (including code implementations in CSS, Compose, and Web components).
+  * **Option B (External Polar.sh / Gumroad Bundle)**: Publish a free "Lite / Specimen" file on Figma Community with a link in the description to your Polar.sh or Gumroad storefront for the complete commercial bundle (including code implementations in CSS, Compose, and Web components).
 
 ---
 

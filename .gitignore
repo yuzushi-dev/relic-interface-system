@@ -41,6 +41,7 @@ scratch/
 .agents/
 .superpowers/
 .sando/
+.orca/
 docs/superpowers/
 
 # Environment Variables & Secrets

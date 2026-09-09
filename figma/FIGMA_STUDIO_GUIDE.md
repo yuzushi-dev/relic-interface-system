@@ -1,7 +1,7 @@
 # Relic Interface System (RIS v2.8.0) — Figma Studio Kit Publishing Runbook
 
 > **Commercial Distribution & Community Publishing Guide**  
-> Complete operational manual for generating the master `.fig` file, launching the Figma Community Free Preview, and distributing the Studio Pro package on Lemon Squeezy and Gumroad.
+> Complete operational manual for generating the master `.fig` file, launching the Figma Community Free Preview, and distributing the Studio Pro package on Polar.sh and Gumroad.
 
 ---
 
@@ -106,8 +106,8 @@ Precision forensic instrument UI kit & cybernetic brutalist design system for te
 
 ### 🚀 Upgrade to RIS v2.8.0 Studio Pro:
 Looking for complete production frames and multi-brand theming?
-Get the full commercial package on Lemon Squeezy / Gumroad:
-👉 [Get RIS Studio Pro](https://lemonsqueezy.com)
+Get the full commercial package on Polar.sh / Gumroad:
+👉 [Get RIS Studio Pro](https://polar.sh/yuzushi-dev/products/figma-studio)
 
 **Studio Pro Includes:**
 - Turnkey 1440px Desktop Forensic Dashboard frame
@@ -123,7 +123,7 @@ Get the full commercial package on Lemon Squeezy / Gumroad:
 
 ---
 
-## 4. Lemon Squeezy & Gumroad Commercial Packaging
+## 4. Polar.sh & Gumroad Commercial Packaging
 
 ### 4.1 Distribution ZIP Bundle Structure
 Compress the following folder structure into `RIS-v2.8.0-Studio-Pro.zip`:
@@ -156,18 +156,15 @@ RIS-v2.8.0-Studio-Pro/
 | **Team / Agency** | **$79** | Studios, development agencies, startup teams | Up to 10 Seats · Unlimited commercial client work |
 | **Enterprise Extended**| **$199**| Scale-ups, enterprise orgs, SaaS platforms | Unlimited Seats · Embedded commercial SaaS usage |
 
-### 4.3 Lemon Squeezy Store Setup
-1. Log into your **Lemon Squeezy Dashboard** > **Store** > **Products**.
-2. Click **New Product** > Select **Digital Good**.
+### 4.3 Polar.sh Store Setup
+1. Log into your **Polar.sh Dashboard** > **Products**.
+2. Click **New Product** > Select **One-time Purchase** (or File Download).
 3. **Product Name**: `Relic Interface System (RIS v2.8.0) — Figma Studio Kit Pro`.
 4. **Description**: Use the rich product overview highlighting the cybernetic brutalist aesthetic, WCAG 2.2 AA contrast compliance, and full auto layout components.
-5. **Files**: Upload `RIS-v2.8.0-Studio-Pro.zip`.
-6. **Variants & Pricing**:
-   * Add Variant 1: `Indie License (1 User)` → `$29.00`
-   * Add Variant 2: `Team License (Up to 10 Users)` → `$79.00`
-   * Add Variant 3: `Enterprise License (Unlimited)` → `$199.00`
-7. **Media**: Upload the rendered 1920×1080 cover artwork.
-8. **Confirmation / Thank You Note**: Provide immediate link to download the ZIP and include customer support contact.
+5. **Files**: Attach `RIS-v2.8.0-Studio-Pro.zip` for instant automated customer download upon purchase.
+6. **Pricing**: Set `$39.00` (Launch Early-Bird) or `$49.00` (Standard).
+7. **Media**: Upload `cover-artboard.svg` (rendered as 1920×1080 PNG).
+8. **Automated Benefits**: Polar acts as Merchant of Record, automatically handling global VAT/sales tax compliance and providing instant file delivery.
 
 ### 4.4 Gumroad Store Setup
 1. Log into **Gumroad** > **Products** > **New product**.
@@ -234,9 +231,10 @@ LIABILITY ARISING FROM, OUT OF, OR IN CONNECTION WITH THE PRODUCT OR THE USE OR 
 
 ## 6. Support, Maintenance & Updates
 
-* **Customer Support Desk**: `support@relic-interface.dev`
-* **Bug Reports & Token Issues**: [GitHub Issues Repository](https://github.com/relic-interface-system/figma-kit/issues)
-* **Documentation Portal**: [https://docs.relic-interface.dev](https://docs.relic-interface.dev)
+* **Community & Discussions**: [GitHub Discussions](https://github.com/yuzushi-dev/relic-interface-system/discussions)
+* **Bug Reports & Token Issues**: [GitHub Issues](https://github.com/yuzushi-dev/relic-interface-system/issues)
+* **Live Showcase & Documentation**: [GitHub Pages Specimen](https://yuzushi-dev.github.io/relic-interface-system/)
+* **Commercial Storefront**: [Polar.sh Store](https://polar.sh/yuzushi-dev)
 * **Release Cadence**:
   * **Patch Updates (v2.8.x)**: Free for all license holders. Includes bug fixes, contrast improvements, and Figma API sync adjustments.
   * **Minor Releases (v2.9.x)**: Free for all license holders. Adds new component variants and telemetry visualizations.
