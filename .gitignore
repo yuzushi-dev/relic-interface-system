@@ -63,5 +63,7 @@ AGENTS.md
 docs/COMMERCIAL_PRICING.md
 commercial_licensing_strategy.md
 release_bundles/
+figma/code.js
+figma/tokens.json
 *.fig
 *.zip
