@@ -53,3 +53,14 @@ docs/superpowers/
 # Internal adversarial audits & buyer reports (do not publish)
 RIS_BUYER_AUDIT*.md
 AUDIT*.md
+
+# Internal Agent Rules & Development Context (local-only, untracked)
+CLAUDE.md
+AGENTS.md
+
+# Commercial Strategy & Private Assets (do not publish to public repo)
+docs/COMMERCIAL_PRICING.md
+commercial_licensing_strategy.md
+release_bundles/
+*.fig
+*.zip
