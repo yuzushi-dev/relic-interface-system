@@ -122,13 +122,13 @@ Relic Interface System follows an open-core architecture. The foundational desig
 
 ### Commercial Pricing Tiers
 
-All Pro licenses are **perpetual (one-time purchase)** with lifetime v2.x updates. Tax and VAT are handled automatically via Merchant of Record ([Polar.sh](https://polar.sh)):
+All Pro licenses are **perpetual (one-time purchase)** with lifetime v2.x updates. Tax and VAT are handled automatically via Merchant of Record ([Polar.sh](https://polar.sh)). Launch early-bird pricing is **pre-applied directly at checkout** — no coupon code required:
 
-| License Tier | Launch Early-Bird (Code: `EARLYBIRD100`) | Standard Price | Included Deliverables | Direct Purchase |
+| License Tier | Launch Early-Bird Price | Standard List Price | Included Deliverables | Direct Checkout |
 | :--- | :---: | :---: | :--- | :---: |
-| **Figma Studio Kit** | **$39** | $49 | Turnkey Master script (`code.js`), Tokens Studio DTCG JSON, 60+ component variants, 130+ SVG vectors | [**Buy Figma Kit**](https://buy.polar.sh/polar_cl_gzshc6MZaGsQy6V3oqQ1U0uK3kIQ7mcGr0wf00JbLZn) |
-| **Next.js Forensic Dashboard** | **$49** | $69 | Turn-key Next.js 14 App Router template, interactive telemetry scrubber, Docker container | [**Buy Dashboard**](https://buy.polar.sh/polar_cl_gil36kSbuzIuyVTz8vJibFbjCeW6z5mB8h31j04C4Qs) |
-| **RIS Pro All-Access** *(Best Seller)* | **$99** | $129 | **All templates + Figma Studio + React Pro + Compose + Tailwind + Priority Discussions** | [**Buy All-Access**](https://buy.polar.sh/polar_cl_UFLik36Vm34gt13RsMxroNhh7VRtez6w4tAR34FlCNv) |
+| **Figma Studio Kit** | **$39** | $49 | Turnkey Master script (`code.js`), Tokens Studio DTCG JSON, 60+ component variants, 130+ SVG vectors | [**Buy Figma Kit ($39)**](https://buy.polar.sh/polar_cl_gzshc6MZaGsQy6V3oqQ1U0uK3kIQ7mcGr0wf00JbLZn) |
+| **Next.js Forensic Dashboard** | **$49** | $69 | Turn-key Next.js 14 App Router template, interactive telemetry scrubber, Docker container | [**Buy Dashboard ($49)**](https://buy.polar.sh/polar_cl_gil36kSbuzIuyVTz8vJibFbjCeW6z5mB8h31j04C4Qs) |
+| **RIS Pro All-Access** *(Best Seller)* | **$99** | $129 | **All templates + Figma Studio + React Pro + Compose + Tailwind + Priority Discussions** | [**Buy All-Access ($99)**](https://buy.polar.sh/polar_cl_UFLik36Vm34gt13RsMxroNhh7VRtez6w4tAR34FlCNv) |
 | **Team License** | **$249** | $299 | All-Access for up to 10 developers/designers in an organization + 48h SLA support | [**Contact Team Sales**](mailto:support@yuzushi.party?subject=RIS%20Team%20License) |
 
 > ℹ️ **Support & Guarantee**: 14-day money-back guarantee. Technical support provided via email (`support@yuzushi.party`) and [GitHub Discussions](https://github.com/yuzushi-dev/relic-interface-system/discussions). Perpetual license covers all future v2.x updates.
