@@ -11,7 +11,7 @@
 ### Production-ready Next.js 14 App Router application built on Relic Interface System (RIS v2.8.0).
 ### Tactical Cyber HUD · Real-Time Telemetry · Zero Reflow · Docker Production Ready.
 
-[![Template: Commercial](https://img.shields.io/badge/SKU-Turnkey%20Template%20%2449-6fb3c9.svg?style=flat-square)](https://polar.sh/yuzushi-dev/products/forensic-dashboard)
+[![Template: Commercial](https://img.shields.io/badge/SKU-Turnkey%20Template%20%2449-6fb3c9.svg?style=flat-square)](https://polar.sh/yuzushi-dev/products/4ece4004-2fd2-471a-bc32-44024859245d)
 [![License: Commercial](https://img.shields.io/badge/License-RIS%20Pro%20Perpetual-e6a23c.svg?style=flat-square)](../../LICENSE_PRO.md)
 [![Live Demo](https://img.shields.io/badge/Live%20Showcase-GitHub%20Pages-2fe48a.svg?style=flat-square)](https://yuzushi-dev.github.io/relic-interface-system/)
 [![Next.js 14](https://img.shields.io/badge/Framework-Next.js%2014%20App%20Router-000000.svg?style=flat-square&logo=next.js)](https://nextjs.org/)
@@ -26,7 +26,7 @@
 
 <br />
 
-[**👉 Purchase Turnkey Template on Polar.sh ($49)**](https://polar.sh/yuzushi-dev/products/forensic-dashboard) &nbsp;·&nbsp; [**Explore Live Showcase**](https://yuzushi-dev.github.io/relic-interface-system/) &nbsp;·&nbsp; [**Get Pro All-Access Bundle ($99)**](https://polar.sh/yuzushi-dev/products/ris-pro)
+[**👉 Purchase Turnkey Template on Polar.sh ($49)**](https://polar.sh/yuzushi-dev/products/4ece4004-2fd2-471a-bc32-44024859245d) &nbsp;·&nbsp; [**Explore Live Showcase**](https://yuzushi-dev.github.io/relic-interface-system/) &nbsp;·&nbsp; [**Get Pro All-Access Bundle ($99)**](https://polar.sh/yuzushi-dev/products/7b64452a-2e6f-4aa9-ae2a-c2c19215f839)
 
 </div>
 

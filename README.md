@@ -108,9 +108,9 @@ All Pro licenses are **perpetual (one-time purchase)** with lifetime v2.x update
 
 | License Tier | Launch Early-Bird (Code: `EARLYBIRD100`) | Standard Price | Included Deliverables | Direct Purchase |
 | :--- | :---: | :---: | :--- | :---: |
-| **Figma Studio Kit** | **$39** | $49 | Turnkey Master script (`code.js`), Tokens Studio DTCG JSON, 60+ component variants, 130+ SVG vectors | [**Buy Figma Kit**](https://polar.sh/yuzushi-dev/products/figma-studio) |
-| **Next.js Forensic Dashboard** | **$49** | $69 | Turn-key Next.js 14 App Router template, interactive telemetry scrubber, Docker container | [**Buy Dashboard**](https://polar.sh/yuzushi-dev/products/nextjs-dashboard) |
-| **RIS Pro All-Access** *(Best Seller)* | **$99** | $129 | **All templates + Figma Studio + React Pro + Compose + Tailwind + Priority Discussions** | [**Buy All-Access**](https://polar.sh/yuzushi-dev/products/ris-pro) |
+| **Figma Studio Kit** | **$39** | $49 | Turnkey Master script (`code.js`), Tokens Studio DTCG JSON, 60+ component variants, 130+ SVG vectors | [**Buy Figma Kit**](https://polar.sh/yuzushi-dev/products/2b065654-4a10-4c05-81ba-3ce87bf7b2ee) |
+| **Next.js Forensic Dashboard** | **$49** | $69 | Turn-key Next.js 14 App Router template, interactive telemetry scrubber, Docker container | [**Buy Dashboard**](https://polar.sh/yuzushi-dev/products/4ece4004-2fd2-471a-bc32-44024859245d) |
+| **RIS Pro All-Access** *(Best Seller)* | **$99** | $129 | **All templates + Figma Studio + React Pro + Compose + Tailwind + Priority Discussions** | [**Buy All-Access**](https://polar.sh/yuzushi-dev/products/7b64452a-2e6f-4aa9-ae2a-c2c19215f839) |
 | **Team License** | **$249** | $299 | All-Access for up to 10 developers/designers in an organization + 48h SLA support | [**Buy Team License**](https://polar.sh/yuzushi-dev/products/ris-team) |
 
 > ℹ️ **Support & Guarantee**: 14-day money-back guarantee. Technical support provided via email (`support@yuzushi.party`) and [GitHub Discussions](https://github.com/yuzushi-dev/relic-interface-system/discussions). Perpetual license covers all future v2.x updates.
