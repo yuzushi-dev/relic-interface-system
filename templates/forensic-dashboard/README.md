@@ -60,13 +60,13 @@ Unlike generic SaaS dashboard templates, it avoids fake random numbers and decor
 
 ## ◈ Delivery & Access
 
-When you purchase the Forensic Dashboard on [Polar.sh](https://polar.sh/yuzushi-dev/products/forensic-dashboard), you receive instant access through two delivery channels:
+When you purchase the Forensic Dashboard on [Polar.sh](https://buy.polar.sh/polar_cl_gil36kSbuzIuyVTz8vJibFbjCeW6z5mB8h31j04C4Qs), you receive instant access through two delivery channels:
 
 1. **Instant ZIP Download (`RIS-v2.8.0-Forensic-Dashboard.zip`)**:
    - Complete, self-contained project archive.
    - Extract anywhere, run `npm install && npm run dev`, and start building immediately.
-2. **Automated GitHub Private Repository Access (`yuzushi-dev/relic-pro`)**:
-   - Polar automatically invites your GitHub username to the private Pro repository.
+2. **Private Repository Access (`yuzushi-dev/relic-pro`)**:
+   - Enter your GitHub username in the checkout field to receive an invitation to the private Pro repository.
    - Clone the source with `git clone git@github.com:yuzushi-dev/relic-pro.git`.
    - Receive ongoing v2.x updates, bug fixes, and improvements directly via `git pull origin main`.
 
@@ -76,9 +76,9 @@ When you purchase the Forensic Dashboard on [Polar.sh](https://polar.sh/yuzushi-
 
 | License Tier | Price | What's Included | Checkout |
 | :--- | :---: | :--- | :---: |
-| **Forensic Dashboard Template** | **$49** | Complete Next.js 14 template, Dockerfile, private GitHub repo access, standalone ZIP | [**Buy Template ($49)**](https://polar.sh/yuzushi-dev/products/forensic-dashboard) |
-| **RIS Pro All-Access Bundle** *(Best Value)* | **$99** | **Forensic Dashboard + Figma Studio Kit Pro + React Pro Suite + Compose Port + Lifetime Updates** | [**Buy All-Access ($99)**](https://polar.sh/yuzushi-dev/products/ris-pro) |
-| **Team License** | **$249** | All-Access for up to 10 developers/designers + 48h SLA support | [**Buy Team License ($249)**](https://polar.sh/yuzushi-dev/products/ris-team) |
+| **Forensic Dashboard Template** | **$49** | Complete Next.js 14 template, Dockerfile, private GitHub repo access, standalone ZIP | [**Buy Template ($49)**](https://buy.polar.sh/polar_cl_gil36kSbuzIuyVTz8vJibFbjCeW6z5mB8h31j04C4Qs) |
+| **RIS Pro All-Access Bundle** *(Best Value)* | **$99** | **Forensic Dashboard + Figma Studio Kit Pro + React Pro Suite + Compose Port + Lifetime Updates** | [**Buy All-Access ($99)**](https://buy.polar.sh/polar_cl_UFLik36Vm34gt13RsMxroNhh7VRtez6w4tAR34FlCNv) |
+| **Team License** | **$249** | All-Access for up to 10 developers/designers + 48h SLA support | [**Contact Support**](mailto:support@yuzushi.party?subject=RIS%20Team%20License) |
 
 All purchases are perpetual one-time purchases governed by the [RIS Pro Commercial License](../../LICENSE_PRO.md). You may use the template in unlimited commercial SaaS applications, client deliverables, and internal tools without attribution.
 

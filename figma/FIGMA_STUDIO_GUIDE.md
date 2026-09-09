@@ -107,7 +107,7 @@ Precision forensic instrument UI kit & cybernetic brutalist design system for te
 ### 🚀 Upgrade to RIS v2.8.0 Studio Pro:
 Looking for complete production frames and multi-brand theming?
 Get the full commercial package on Polar.sh / Gumroad:
-👉 [Get RIS Studio Pro](https://polar.sh/yuzushi-dev/products/figma-studio)
+👉 [Get RIS Studio Pro](https://buy.polar.sh/polar_cl_gzshc6MZaGsQy6V3oqQ1U0uK3kIQ7mcGr0wf00JbLZn)
 
 **Studio Pro Includes:**
 - Turnkey 1440px Desktop Forensic Dashboard frame
