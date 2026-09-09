@@ -14,9 +14,26 @@
 [![RIS Pro: Available](https://img.shields.io/badge/RIS%20Pro-Figma%20%2B%20Next.js-6fb3c9.svg?style=flat-square)](#ris-core-free-vs-ris-pro-commercial)
 [![WCAG 2.2 AA](https://img.shields.io/badge/Accessibility-WCAG%202.2%20AA-2fe48a.svg?style=flat-square)](GUIDELINES.md)
 [![Compose 1.7+](https://img.shields.io/badge/Android-Jetpack%20Compose-6fb3c9.svg?style=flat-square)](compose/)
-[![Zero Reflow](https://img.shields.io/badge/Motion-Zero%20Reflow%20%4060fps-ff2d3c.svg?style=flat-square)](docs/motion-lab.html)
+[![Zero Reflow](https://img.shields.io/badge/Motion-Zero%20Reflow%20%4060fps-ff2d3c.svg?style=flat-square)](https://yuzushi-dev.github.io/relic-interface-system/motion-lab.html)
 
 <br />
+
+<p align="center">
+  <a href="https://yuzushi-dev.github.io/relic-interface-system/"><img src="https://img.shields.io/badge/🌐%20LIVE%20DEMO-EXPLORE%20SPECIMEN-e6a23c?style=for-the-badge&logo=googlechrome&logoColor=black" alt="Live Demo" /></a>
+  &nbsp;
+  <a href="https://yuzushi-dev.github.io/relic-interface-system/mobile.html"><img src="https://img.shields.io/badge/📱%20MOBILE%20SHELL-TOUCH%20HUD-6fb3c9?style=for-the-badge" alt="Mobile Shell" /></a>
+  &nbsp;
+  <a href="https://yuzushi-dev.github.io/relic-interface-system/motion-lab.html"><img src="https://img.shields.io/badge/⚡%20MOTION%20LAB-TEST%20PHYSICS-ff2d3c?style=for-the-badge" alt="Motion Lab" /></a>
+  &nbsp;
+  <a href="https://buy.polar.sh/polar_cl_UFLik36Vm34gt13RsMxroNhh7VRtez6w4tAR34FlCNv"><img src="https://img.shields.io/badge/⭐%20GET%20PRO%20SUITE-%2499%20LIFETIME-2fe48a?style=for-the-badge" alt="Get Pro Suite" /></a>
+</p>
+
+<p align="center">
+  <a href="https://yuzushi-dev.github.io/relic-interface-system/"><b>🌐 Launch Desktop Specimen</b></a> &nbsp;•&nbsp;
+  <a href="https://yuzushi-dev.github.io/relic-interface-system/mobile.html"><b>📱 Launch Mobile Touch Shell</b></a> &nbsp;•&nbsp;
+  <a href="https://yuzushi-dev.github.io/relic-interface-system/motion-lab.html"><b>⚡ Test Motion Physics</b></a> &nbsp;•&nbsp;
+  <a href="https://buy.polar.sh/polar_cl_UFLik36Vm34gt13RsMxroNhh7VRtez6w4tAR34FlCNv"><b>⭐ Get Pro Suite ($99)</b></a>
+</p>
 
 <p align="center">
   <img src="assets/hero-banner.png" alt="Relic Interface System Hero Banner" width="100%" />
@@ -28,7 +45,7 @@
 
 <br />
 
-[Explore Specimen](docs/index.html) · [Mobile App-Shell](docs/mobile.html) · [Motion & Contrast Lab](docs/motion-lab.html) · [Compose Port](compose/README.md)
+[**🌐 Live Specimen (Web)**](https://yuzushi-dev.github.io/relic-interface-system/) &nbsp;·&nbsp; [**📱 Mobile Touch Shell**](https://yuzushi-dev.github.io/relic-interface-system/mobile.html) &nbsp;·&nbsp; [**⚡ Motion & Contrast Lab**](https://yuzushi-dev.github.io/relic-interface-system/motion-lab.html) &nbsp;·&nbsp; [**🤖 Android Compose Port**](compose/README.md) &nbsp;·&nbsp; [**🛒 Polar Store**](https://polar.sh/yuzushi-dev)
 
 </div>
 
@@ -53,8 +70,9 @@ Most cyberpunk UI libraries are unusable in production: neon gradients that fail
 No local setup is required to evaluate or start building. Launch the full environment right in your browser via GitHub Pages:
 
 [![Live Showcase](https://img.shields.io/badge/Live%20Showcase-GitHub%20Pages-e6a23c?style=for-the-badge&logo=github)](https://yuzushi-dev.github.io/relic-interface-system/)
-[![Mobile App--Shell](https://img.shields.io/badge/Mobile%20Shell-Touch%20Specimen-6fb3c9?style=for-the-badge)](https://yuzushi-dev.github.io/relic-interface-system/docs/mobile.html)
-[![Motion Lab](https://img.shields.io/badge/Motion%20Lab-Tactical%20HUD-ff2d3c?style=for-the-badge)](https://yuzushi-dev.github.io/relic-interface-system/docs/motion-lab.html)
+[![Mobile App--Shell](https://img.shields.io/badge/Mobile%20Shell-Touch%20Specimen-6fb3c9?style=for-the-badge)](https://yuzushi-dev.github.io/relic-interface-system/mobile.html)
+[![Motion Lab](https://img.shields.io/badge/Motion%20Lab-Tactical%20HUD-ff2d3c?style=for-the-badge)](https://yuzushi-dev.github.io/relic-interface-system/motion-lab.html)
+[![Polar Pro Store](https://img.shields.io/badge/Polar%20Store-Get%20Pro%20Suite-2fe48a?style=for-the-badge)](https://polar.sh/yuzushi-dev)
 
 <br />
 
