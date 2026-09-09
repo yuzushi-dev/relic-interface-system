@@ -1,10 +1,10 @@
 /* ============================================================================
    RELIC INTERFACE SYSTEM v2 — ris-tokens.css
    Token layer: themes (dark default / light) + brands (relic / biohub /
-   vivokey / neutral). Source of truth mirrored in ../tokens/ris.tokens.json.
+   omnikon / neutral). Source of truth mirrored in ../tokens/ris.tokens.json.
 
    Usage:
-     <html data-theme="dark|light" data-brand="relic|biohub|vivokey|neutral">
+     <html data-theme="dark|light" data-brand="relic|biohub|omnikon|neutral">
      <link rel="stylesheet" href="css/ris-tokens.css">
      <link rel="stylesheet" href="css/ris.css">
 
@@ -243,9 +243,9 @@
    5. BRAND LAYER — sets the accent pair only; semantics never change.
      relic   (default) yellow / cyan   — workbench, command
      biohub            cyan   / green  — biofeedback, data
-     vivokey           red    / yellow — auth, possession factor
+     omnikon           red    / yellow — auth, possession factor
      neutral           violet / cyan   — general use
-   -------------------------------------------------------------------------- */
+    -------------------------------------------------------------------------- */
 :root,
 :root[data-brand="relic"] {
   --ris-accent:       var(--ris-yellow);
@@ -267,7 +267,7 @@
   --ris-accent-2-glow: var(--ris-green-glow);
   --ris-accent-2-line: var(--ris-green-line);
 }
-:root[data-brand="vivokey"] {
+:root[data-brand="omnikon"] {
   --ris-accent:       var(--ris-red);
   --ris-accent-dim:   var(--ris-red-dim);
   --ris-accent-glow:  var(--ris-red-glow);
@@ -672,6 +672,20 @@ button, a, input, select, textarea, .ris-btn, .ris-nav-link, .ris-listrow, .ris-
   padding: var(--ris-s3) var(--ris-s4);
   border-top: 1px solid var(--ris-line);
 }
+.ris-panel-title {
+  font-family: var(--ris-font-body);
+  font-size: var(--ris-text-sm);
+  font-weight: var(--ris-w-semi);
+  color: var(--ris-fg1);
+  text-transform: uppercase;
+  letter-spacing: var(--ris-track-wide);
+}
+.ris-panel-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--ris-s2, 8px);
+  margin-left: auto;
+}
 
 /* Accent corner brackets — small L marks */
 .ris-bracket::before,
@@ -779,6 +793,12 @@ button, a, input, select, textarea, .ris-btn, .ris-nav-link, .ris-listrow, .ris-
   border-color: var(--ris-line); cursor: not-allowed; box-shadow: none;
   pointer-events: none;
 }
+.ris-btn-icon-left, .ris-btn-icon-right {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
 
 /* ============================================================================
    CHIPS / STREAM TAGS / RISK
@@ -878,7 +898,7 @@ button, a, input, select, textarea, .ris-btn, .ris-nav-link, .ris-listrow, .ris-
   outline: none;
   clip-path: polygon(0 0, calc(100% - var(--ris-clip-sm)) 0, 100% var(--ris-clip-sm), 100% 100%, var(--ris-clip-sm) 100%, 0 calc(100% - var(--ris-clip-sm)));
 }
-.ris-input::placeholder, .ris-textarea::placeholder { color: var(--ris-fg4); }
+.ris-input::placeholder, .ris-textarea::placeholder { color: var(--ris-fg3); }
 .ris-input:focus, .ris-select:focus, .ris-textarea:focus {
   border-color: var(--ris-focus-ring);
   box-shadow: inset 0 0 0 1px var(--ris-cyan-line);
@@ -908,13 +928,14 @@ button, a, input, select, textarea, .ris-btn, .ris-nav-link, .ris-listrow, .ris-
 .ris-search > .ris-input { padding-left: 34px; }
 
 /* Checkbox / radio — square HUD marks */
-.ris-checkbox, .ris-radio {
+/* Checkbox / radio — square HUD marks */
+.ris-checkbox, .ris-check, .ris-radio {
   display: inline-flex; align-items: center; gap: 10px;
   min-height: 24px; /* WCAG 2.5.8 target size: the whole label is the hit area */
   font-size: var(--ris-text-sm); color: var(--ris-fg2); cursor: pointer;
   user-select: none;
 }
-.ris-checkbox input, .ris-radio input {
+.ris-checkbox input, .ris-check input, .ris-radio input {
   appearance: none; margin: 0;
   width: 16px; height: 16px; flex: 0 0 16px;
   background: var(--ris-void);
@@ -923,13 +944,16 @@ button, a, input, select, textarea, .ris-btn, .ris-nav-link, .ris-listrow, .ris-
   display: grid; place-content: center;
   transition: border-color var(--ris-dur-fast) var(--ris-ease);
 }
-.ris-checkbox input::before {
+.ris-checkbox input::before, .ris-check input::before {
   content: ""; width: 8px; height: 8px;
   background: var(--ris-accent); transform: scale(0);
   transition: transform var(--ris-dur-fast) var(--ris-ease-snap);
 }
-.ris-checkbox input:checked { border-color: var(--ris-accent-line); }
-.ris-checkbox input:checked::before { transform: scale(1); }
+.ris-checkbox input:checked, .ris-check input:checked { border-color: var(--ris-accent-line); }
+.ris-checkbox input:checked::before, .ris-check input:checked::before { transform: scale(1); }
+.ris-checkbox-label, .ris-check-label {
+  display: flex; flex-direction: column; gap: 2px;
+}
 .ris-radio input { clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); }
 .ris-radio input::before {
   content: ""; width: 7px; height: 7px;
@@ -959,6 +983,9 @@ button, a, input, select, textarea, .ris-btn, .ris-nav-link, .ris-listrow, .ris-
 }
 .ris-switch input:checked { border-color: var(--ris-accent-line); background: var(--ris-accent-glow); }
 .ris-switch input:checked::before { transform: translateX(18px); background: var(--ris-accent); }
+.ris-switch-text { display: flex; flex-direction: column; gap: 2px; }
+.ris-switch-label { font-family: var(--ris-font-body); font-size: var(--ris-text-sm); font-weight: var(--ris-w-med); color: var(--ris-fg1); }
+.ris-switch-desc { font-family: var(--ris-font-mono); font-size: var(--ris-text-xs); color: var(--ris-fg3); }
 
 /* Range slider */
 .ris-slider {
@@ -1018,6 +1045,19 @@ button, a, input, select, textarea, .ris-btn, .ris-nav-link, .ris-listrow, .ris-
   box-shadow: inset 2px 0 0 var(--ris-accent);
 }
 .ris-table tbody tr:last-child td { border-bottom: 0; }
+.ris-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.ris-table-caption {
+  caption-side: bottom;
+  text-align: left;
+  padding-top: 8px;
+  font-family: var(--ris-font-mono);
+  font-size: var(--ris-text-xs);
+  color: var(--ris-fg3);
+}
 
 /* ============================================================================
    MODAL
@@ -1102,6 +1142,13 @@ button, a, input, select, textarea, .ris-btn, .ris-nav-link, .ris-listrow, .ris-
 .ris-sheet-handle:hover,
 .ris-sheet-handle:active {
   background: var(--ris-accent);
+}
+.ris-sheet-handle-zone {
+  padding: 8px 0;
+  display: flex;
+  justify-content: center;
+  cursor: grab;
+  touch-action: none;
 }
 .ris-sheet-head {
   display: flex; align-items: center; justify-content: space-between; gap: var(--ris-s3);
@@ -1204,10 +1251,36 @@ button, a, input, select, textarea, .ris-btn, .ris-nav-link, .ris-listrow, .ris-
 /* ============================================================================
    TABS
    ========================================================================== */
+.ris-tabs-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
 .ris-tabs {
   display: flex; gap: 2px;
   border-bottom: 1px solid var(--ris-line);
   overflow-x: auto; scrollbar-width: none;
+}
+.ris-tabs--scrollable {
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.ris-tab-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1px 6px;
+  font-family: var(--ris-font-mono);
+  font-size: 10px;
+  font-weight: var(--ris-w-bold);
+  background: var(--ris-surface-3);
+  border: 1px solid var(--ris-line);
+  color: var(--ris-fg2);
+}
+.ris-tabpanel {
+  padding-top: var(--ris-s4, 16px);
+  outline: none;
 }
 .ris-tab {
   padding: 9px 16px;
@@ -1529,6 +1602,30 @@ button, a, input, select, textarea, .ris-btn, .ris-nav-link, .ris-listrow, .ris-
   background: var(--ris-surface-2);
   color: var(--ris-accent);
 }
+.ris-acc-title {
+  font-family: var(--ris-font-body);
+  font-size: var(--ris-text-sm);
+  font-weight: var(--ris-w-semi);
+  color: var(--ris-fg1);
+}
+.ris-acc-subtitle {
+  font-family: var(--ris-font-mono);
+  font-size: var(--ris-text-xs);
+  color: var(--ris-fg3);
+  margin-left: 8px;
+}
+.ris-acc-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 6px;
+  font-family: var(--ris-font-mono);
+  font-size: 10px;
+  font-weight: var(--ris-w-bold);
+  background: var(--ris-surface-3);
+  border: 1px solid var(--ris-line);
+  color: var(--ris-fg2);
+  margin-left: auto;
+}
 .ris-acc-chevron {
   font-family: var(--ris-font-mono);
   font-size: 11px;
@@ -1778,3 +1875,875 @@ button, a, input, select, textarea, .ris-btn, .ris-nav-link, .ris-listrow, .ris-
   text-transform: uppercase; color: var(--ris-fg3);
 }
 .ris-stat .ris-segmeter { width: 84px; height: 8px; }
+/* ============================================================================
+   RELIC INTERFACE SYSTEM v2 — ris-fx.css
+   Optional FX layer. Load AFTER ris.css. Everything here is decorative and
+   opt-in; NONE of it is applied by default component CSS. All motion dies
+   under prefers-reduced-motion (inherited from ris.css global rule — the
+   static fallbacks below keep the *look* without the motion).
+
+   Scope (post de-slop): the borrowed cyberpunk-HUD chrome (CRT scanlines,
+   analog noise, RGB glitch, signal-tear) has been removed — it carried no
+   payload and was a genre tell. What remains is a minimal, intentional set:
+     · .ris-holo   — single brand signature, scoped to logo/marks only
+     · .ris-boot   — subtle staggered reveal (reduced-motion kills it)
+     · glow utils  — opt-in only; never auto-applied by components
+     · .ris-caret / .ris-data-updated — functional terminal/telemetry cues
+   ========================================================================== */
+
+/* ----------------------------------------------------------------------------
+   BOOT REVEAL — staggered power-on for page sections.
+   Add .ris-boot to a container; direct children fade-slide in sequence.
+   Subtle by design; fully neutralised under reduced-motion.
+   -------------------------------------------------------------------------- */
+.ris-boot > * { animation: ris-boot-in 0.5s var(--ris-ease-snap) both; }
+.ris-boot > *:nth-child(1) { animation-delay: 0.05s; }
+.ris-boot > *:nth-child(2) { animation-delay: 0.14s; }
+.ris-boot > *:nth-child(3) { animation-delay: 0.23s; }
+.ris-boot > *:nth-child(4) { animation-delay: 0.32s; }
+.ris-boot > *:nth-child(5) { animation-delay: 0.41s; }
+.ris-boot > *:nth-child(6) { animation-delay: 0.50s; }
+.ris-boot > *:nth-child(n+7) { animation-delay: 0.58s; }
+@keyframes ris-boot-in {
+  from { opacity: 0; transform: translateY(8px); clip-path: inset(0 0 100% 0); }
+  60%  { clip-path: inset(0 0 0 0); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ----------------------------------------------------------------------------
+   GLOW UTILITIES — opt-in ONLY. Components never apply these; reach for them
+   deliberately on a genuinely live/critical element (see --ris-live token).
+   -------------------------------------------------------------------------- */
+.ris-glow-text     { text-shadow: 0 0 6px currentColor, 0 0 18px var(--ris-accent-glow); }
+.ris-glow-text--2  { text-shadow: 0 0 6px currentColor, 0 0 18px var(--ris-accent-2-glow); }
+.ris-glow-border   { box-shadow: var(--ris-glow-accent); }
+.ris-pulse-glow    { animation: ris-pulse-glow 2.2s var(--ris-ease) infinite; }
+@keyframes ris-pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 1px var(--ris-accent-line), 0 0 10px var(--ris-accent-glow); }
+  50%      { box-shadow: 0 0 0 1px var(--ris-accent-line), 0 0 26px var(--ris-accent-glow); }
+}
+
+/* ----------------------------------------------------------------------------
+   TYPING / TERMINAL CURSOR
+   <span class="ris-caret"></span> appended after streaming text.
+   -------------------------------------------------------------------------- */
+.ris-caret {
+  display: inline-block; width: 8px; height: 1.05em;
+  margin-left: 2px; vertical-align: text-bottom;
+  background: var(--ris-accent);
+  animation: ris-blink 1.1s steps(1) infinite;
+}
+
+/* Data refresh blink — flash a row/cell when its value updates.
+   Toggle the class via JS (remove on animationend). */
+.ris-data-updated { animation: ris-data-updated 0.6s steps(2); }
+@keyframes ris-data-updated {
+  0%, 50% { background: var(--ris-accent-glow); box-shadow: inset 2px 0 0 var(--ris-accent); }
+  100% { background: transparent; }
+}
+
+/* ----------------------------------------------------------------------------
+   HOLOGRAM SHIMMER — the single brand signature, for marks/logos ONLY.
+   Deliberate, scoped, and the only gradient-text in the system.
+   -------------------------------------------------------------------------- */
+.ris-holo { /* unslop-ignore: deliberate single brand-mark shimmer, logo-scoped */
+  background: linear-gradient(115deg,
+    var(--ris-fg2) 30%, var(--ris-cyan) 46%, var(--ris-fg1) 50%,
+    var(--ris-magenta) 54%, var(--ris-fg2) 70%);
+  background-size: 240% 100%;
+  -webkit-background-clip: text; background-clip: text; /* unslop-ignore */
+  -webkit-text-fill-color: transparent; color: transparent;
+  animation: ris-holo 5.5s linear infinite;
+}
+@keyframes ris-holo { to { background-position: -240% 0; } }
+
+/* ----------------------------------------------------------------------------
+   ACTIVE / LIVE STATES — motion cues for genuinely ongoing background operations.
+   Motion is ALWAYS an enhancement: accompanies label/icon, never replaces them.
+   All states feature static fallbacks under prefers-reduced-motion (at bottom).
+   -------------------------------------------------------------------------- */
+
+/* RECORDING — REC badge with pulsing red square dot (on-brand). */
+.ris-rec {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-family: var(--ris-font-mono); font-size: 11px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--ris-red);
+}
+.ris-rec::before {
+  content: ""; width: 9px; height: 9px; flex: 0 0 9px;
+  background: var(--ris-red-fill);
+  animation: ris-rec 1.4s var(--ris-ease) infinite;
+}
+@keyframes ris-rec {
+  0%, 100% { opacity: 1;   box-shadow: 0 0 10px var(--ris-red-glow); }
+  50%      { opacity: 0.5; box-shadow: 0 0 0 transparent; }
+}
+
+/* LIVE ACQUISITION — breathing border (glow in/out). Apply to a panel. */
+.ris-acquiring { animation: ris-acquiring 2.2s var(--ris-ease) infinite; }
+@keyframes ris-acquiring {
+  0%, 100% { box-shadow: 0 0 0 1px var(--ris-red-line), 0 0 8px var(--ris-red-glow); }
+  50%      { box-shadow: 0 0 0 1px var(--ris-red-line), 0 0 24px var(--ris-red-glow); }
+}
+
+/* PLAYING — 4-bar equalizer (audio/EEG streaming). 4 <i> children. */
+.ris-playing { display: inline-flex; align-items: flex-end; gap: 2px; height: 14px; }
+.ris-playing > i {
+  width: 3px; height: 100%; flex: 0 0 3px;
+  background: var(--ris-accent-2, var(--ris-cyan)); transform-origin: bottom;
+  animation: ris-eq 0.9s var(--ris-ease) infinite;
+}
+.ris-playing > i:nth-child(2) { animation-delay: 0.15s; }
+.ris-playing > i:nth-child(3) { animation-delay: 0.30s; }
+.ris-playing > i:nth-child(4) { animation-delay: 0.45s; }
+@keyframes ris-eq { 0%, 100% { transform: scaleY(0.3); } 50% { transform: scaleY(1); } }
+
+/* SCANNING — sweep line traversing container (BLE scan/search). */
+.ris-scan { position: relative; overflow: hidden; }
+.ris-scan::after {
+  content: ""; position: absolute; left: 0; right: 0; top: -28%; height: 28%;
+  background: linear-gradient(var(--ris-cyan-glow), transparent);
+  border-top: 1px solid var(--ris-cyan); pointer-events: none; z-index: 1;
+  animation: ris-scan 2.4s var(--ris-ease) infinite;
+}
+@keyframes ris-scan { to { top: 100%; } }
+
+/* RADAR SWEEP HUD — continuous tactical scanning at 2.2s linear with grid */
+.ris-radar {
+  position: relative;
+  overflow: hidden;
+  background: var(--ris-surface-1);
+  border: 1px solid var(--ris-line-strong);
+}
+.ris-radar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at center, transparent 30%, var(--ris-line-faint) 31%, transparent 32%),
+    radial-gradient(circle at center, transparent 60%, var(--ris-line-faint) 61%, transparent 62%),
+    linear-gradient(to right, transparent 49.5%, var(--ris-line-faint) 49.5%, var(--ris-line-faint) 50.5%, transparent 50.5%),
+    linear-gradient(to bottom, transparent 49.5%, var(--ris-line-faint) 49.5%, var(--ris-line-faint) 50.5%, transparent 50.5%);
+  pointer-events: none;
+  opacity: 0.6;
+}
+.ris-radar::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: -35%; height: 35%;
+  background: linear-gradient(180deg, transparent, var(--ris-cyan-glow) 80%, var(--ris-cyan) 100%);
+  border-bottom: 1.5px solid var(--ris-cyan);
+  pointer-events: none;
+  z-index: 2;
+  animation: ris-radar-sweep 2.2s linear infinite;
+}
+@keyframes ris-radar-sweep {
+  0%   { top: -35%; opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* TOAST HUD STACKING (Sonner / Emil Kowalski style) */
+.ris-toast-stack {
+  position: fixed;
+  right: var(--ris-s4);
+  bottom: var(--ris-s4);
+  z-index: 300;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 10px;
+  width: min(380px, calc(100vw - 32px));
+  pointer-events: none;
+}
+.ris-toast {
+  pointer-events: auto;
+  transition: transform var(--ris-dur-base) var(--ris-ease-out),
+              opacity var(--ris-dur-base) var(--ris-ease-out);
+  animation: ris-toast-enter var(--ris-dur-enter) var(--ris-ease-out) both;
+}
+.ris-toast[data-dismissing="true"] {
+  animation: ris-toast-exit var(--ris-dur) var(--ris-ease-snap) both;
+}
+.ris-toast-stack > .ris-toast:nth-last-child(2) {
+  transform: scale(0.97) translateY(4px);
+  opacity: 0.9;
+}
+.ris-toast-stack > .ris-toast:nth-last-child(n+3) {
+  transform: scale(0.94) translateY(8px);
+  opacity: 0.75;
+}
+@keyframes ris-toast-enter {
+  from { opacity: 0; transform: translateY(16px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes ris-toast-exit {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to   { opacity: 0; transform: translateY(10px) scale(0.96); }
+}
+
+/* ----------------------------------------------------------------------------
+   CHARTS TELEMETRY & TACTICAL HUD (ris-charts.js FX)
+   Ambient micro-sweeps, peak warnings, and interactive scrubber overlay.
+   All data rendered is 100% real.
+   -------------------------------------------------------------------------- */
+
+/* SVG Container enhancements */
+.ris-chart-interactive {
+  cursor: crosshair;
+  touch-action: none;
+  outline: none;
+}
+.ris-chart-interactive:focus-visible {
+  outline: 1px solid var(--ris-accent-line);
+  outline-offset: 1px;
+}
+
+/* Ambient idle micro-sweep across grid */
+.ris-chart-ambient-sweep {
+  pointer-events: none;
+  will-change: transform, opacity;
+  animation: ris-chart-sweep 5.5s linear infinite;
+}
+@keyframes ris-chart-sweep {
+  0%   { transform: translateX(-100%); opacity: 0; }
+  12%  { opacity: 0.14; }
+  88%  { opacity: 0.14; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+[data-theme="light"] .ris-chart-ambient-sweep {
+  opacity: 0.08;
+}
+/* Suspend ambient sweep when inspecting/scrubbing */
+.ris-chart-interactive:hover .ris-chart-ambient-sweep,
+.ris-chart-interactive.is-scrubbing .ris-chart-ambient-sweep {
+  opacity: 0 !important;
+  animation-play-state: paused;
+}
+
+/* Peak warning micro-pulse (points above threshold) */
+.ris-peak-pulse {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: ris-peak-pulse 1.8s ease-in-out infinite;
+}
+@keyframes ris-peak-pulse {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 1px var(--ris-red)); }
+  50%      { transform: scale(1.35); filter: drop-shadow(0 0 5px var(--ris-red)); }
+}
+
+/* Active Gauge segment breathing */
+.ris-gauge-breathing {
+  animation: ris-gauge-breathing 2.2s ease-in-out infinite;
+}
+@keyframes ris-gauge-breathing {
+  0%, 100% { opacity: 1; filter: drop-shadow(0 0 1px currentColor); }
+  50%      { opacity: 0.6; filter: drop-shadow(0 0 4px currentColor); }
+}
+
+/* Bar columns focus overdrive */
+rect.ris-bar-col {
+  transition: opacity 0.15s ease, filter 0.15s ease;
+  cursor: crosshair;
+}
+rect.ris-bar-col:hover,
+rect.ris-bar-col.is-active {
+  opacity: 1 !important;
+  filter: drop-shadow(0 0 5px currentColor);
+  stroke: var(--ris-fg1);
+  stroke-width: 0.75;
+}
+svg.has-active-bar rect.ris-bar-col:not(:hover):not(.is-active) {
+  opacity: 0.25 !important;
+}
+
+/* Scrubber Overlay Elements (Rendered inside SVG) */
+.ris-scrubber-group {
+  pointer-events: none;
+}
+.ris-scrubber-line {
+  stroke: var(--ris-cyan, #00e5ff);
+  stroke-width: 1;
+  stroke-dasharray: 2 2;
+  opacity: 0.85;
+}
+.ris-scrubber-reticle {
+  fill: none;
+  stroke: var(--ris-cyan, #00e5ff);
+  stroke-width: 1.5;
+}
+.ris-scrubber-badge-bg {
+  fill: var(--ris-surface-0, #0c0d10);
+  stroke: var(--ris-accent-2, var(--ris-cyan, #00e5ff));
+  stroke-width: 1;
+  rx: 2px;
+}
+.ris-scrubber-text-main {
+  font-family: var(--ris-font-mono, monospace);
+  font-size: 8.5px;
+  font-weight: 600;
+  fill: var(--ris-fg1, #ffffff);
+  letter-spacing: 0.04em;
+}
+.ris-scrubber-text-sub {
+  font-family: var(--ris-font-mono, monospace);
+  font-size: 7.5px;
+  fill: var(--ris-cyan, #00e5ff);
+  letter-spacing: 0.03em;
+}
+.ris-scrubber-text-alert {
+  font-family: var(--ris-font-mono, monospace);
+  font-size: 7.5px;
+  font-weight: 700;
+  fill: var(--ris-red, #ff2a55);
+  letter-spacing: 0.05em;
+}
+
+[data-theme="light"] .ris-scrubber-badge-bg {
+  fill: var(--ris-surface-0, #ffffff);
+  stroke: var(--ris-accent, #0066aa);
+}
+[data-theme="light"] .ris-scrubber-text-main {
+  fill: var(--ris-fg1, #111111);
+}
+[data-theme="light"] .ris-scrubber-text-sub {
+  fill: var(--ris-accent, #0066aa);
+}
+
+/* ----------------------------------------------------------------------------
+   REDUCED MOTION — static fallbacks that keep the aesthetic.
+   (ris.css already kills all animation; here we undo layout-breaking states.)
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .ris-boot > * { opacity: 1; transform: none; clip-path: none; filter: none; }
+  .ris-caret { animation: none; }
+  .ris-data-updated { animation: none; }
+  .ris-pulse-glow { animation: none; }
+  .ris-holo { animation: none; background-position: 50% 0; }
+  /* stati live: fermi ma riconoscibili */
+  .ris-rec::before { animation: none; box-shadow: 0 0 8px var(--ris-red-glow); }
+  .ris-acquiring   { animation: none; box-shadow: 0 0 0 1px var(--ris-red-line), 0 0 12px var(--ris-red-glow); }
+  .ris-playing > i { animation: none; }
+  .ris-playing > i:nth-child(odd)  { transform: scaleY(0.5); }
+  .ris-playing > i:nth-child(even) { transform: scaleY(0.85); }
+  .ris-scan::after { animation: none; display: none; }
+  .ris-radar::after { animation: none; display: none; }
+  .ris-toast { animation: none !important; transform: none !important; }
+  /* chart ambient motion neutralized */
+  .ris-chart-ambient-sweep { animation: none !important; display: none !important; }
+  .ris-peak-pulse { animation: none !important; transform: none !important; }
+  .ris-gauge-breathing { animation: none !important; opacity: 1 !important; }
+  rect.ris-bar-col { transition: none !important; }
+}
+/* ============================================================================
+   RELIC INTERFACE SYSTEM v2 — ris-skin-cyber.css
+   OPT-IN "cyber" skin — overlays the tactical cyberpunk HUD look & feel over the
+   forensic baseline WITHOUT modifying it. Load LAST:
+
+     <html data-theme="dark" data-brand="omnikon" data-skin="cyber">
+       <link rel="stylesheet" href="css/ris-tokens.css">
+       <link rel="stylesheet" href="css/ris.css">
+       <link rel="stylesheet" href="css/ris-fx.css">
+       <link rel="stylesheet" href="css/ris-skin-cyber.css">  <!-- last -->
+
+   Activation is `data-skin="cyber"` on <html>. Remove the attribute (or the
+   <link>) and the disciplined default returns: zero regressions, multi-brand and
+   light themes intact. Everything inside is scoped to [data-skin="cyber"].
+
+   Preserved discipline (user choice: "Keep AA"):
+     · re-saturated neons tempered for WCAG 2.2 AA on near-black
+     · glow ON by DEFAULT only on key chrome (topbar/selection/primary)
+     · state never color alone: base components retain label/icon
+     · every texture is STATIC (no motion) → reduced-motion safe by design
+
+   Reference: Tactical Cyber HUD — structural red, cyan/green/amber accents,
+   crimson→black gradient, scanlines+grain, data chrome (serial/hex/binary).
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap');
+
+/* ----------------------------------------------------------------------------
+   1. TOKEN OVERRIDE — AA-tempered palette + structural red.
+   Dark mode token overrides (Light mode uses technical drafting slate/cyan rules below).
+   -------------------------------------------------------------------------- */
+:root[data-skin="cyber"]:not([data-theme="light"]) {
+  /* Surfaces: red-tinted near-black, never flat */
+  --ris-void:      #070406;
+  --ris-bg:        #0a0608;
+  --ris-surface-1: #120a0d;
+  --ris-surface-2: #1a0e12;
+  --ris-surface-3: #241318;
+  --ris-surface-4: #2c171d;
+
+  /* LINES = structure, and structure is RED (tactical HUD signature) */
+  --ris-line:        #6e2d38;
+  --ris-line-strong: #9a3a48;
+  --ris-line-faint:  #3a1820;
+  --ris-scanline:    rgba(255,40,70,0.05);
+
+  /* Text: cool white with subtle warm tint */
+  --ris-fg1: #f3eef0;
+  --ris-fg2: #c8b9bd;
+  --ris-fg3: #b09aa0;   /* AA su surface-1 */
+  --ris-fg4: #6a5258;
+  --ris-on-accent: #0a0608;
+
+  /* Neon accents — BRIGHT fill, contextual (-X) AA on near-black.
+     red/cyan/green/yellow verified ≥4.5:1 on bg/surface-1. */
+  --ris-red:     #ff4d62;   --ris-red-fill:     #ff003c;
+  --ris-cyan:    #3df0ff;   --ris-cyan-fill:    #00e5ff;
+  --ris-green:   #34f08c;   --ris-green-fill:   #00e57e;
+  --ris-yellow:  #ffd83a;   --ris-yellow-fill:  #ffe23a;
+  --ris-violet:  #b08aff;   --ris-violet-fill:  #9a5cff;
+  --ris-magenta: #ff5fd2;   --ris-magenta-fill: #ff42c8;
+  --ris-orange:  #ff9f4a;   --ris-orange-fill:  #ff9230;
+
+  --ris-red-dim:     #8f1f30; --ris-cyan-dim:   #1f8a99;
+  --ris-green-dim:   #1f8a52; --ris-yellow-dim: #9a8016;
+  --ris-violet-dim:  #5a3f9a; --ris-magenta-dim:#9a2f7f; --ris-orange-dim: #9a5616;
+
+  /* Amplified glows (-glow fill, -line borders) */
+  --ris-red-glow:     rgba(255,0,60,0.22);   --ris-red-line:     rgba(255,0,60,0.55);
+  --ris-cyan-glow:    rgba(0,229,255,0.18);  --ris-cyan-line:    rgba(0,229,255,0.50);
+  --ris-green-glow:   rgba(0,229,126,0.16);  --ris-green-line:   rgba(0,229,126,0.48);
+  --ris-yellow-glow:  rgba(255,226,58,0.18); --ris-yellow-line:  rgba(255,226,58,0.50);
+  --ris-violet-glow:  rgba(154,92,255,0.16); --ris-violet-line:  rgba(154,92,255,0.48);
+  --ris-magenta-glow: rgba(255,66,200,0.16); --ris-magenta-line: rgba(255,66,200,0.48);
+  --ris-orange-glow:  rgba(255,146,48,0.16); --ris-orange-line:  rgba(255,146,48,0.48);
+
+  /* Display typography → wide techno (body/mono untouched for legibility) */
+  --ris-font-display: 'Chakra Petch', 'Rajdhani', system-ui, sans-serif;
+
+  /* Wider glow: skin raises glow token radius */
+  --ris-glow-accent: 0 0 0 1px var(--ris-accent-line), 0 0 22px var(--ris-accent-glow);
+  --ris-glow-cyan:   0 0 0 1px var(--ris-cyan-line),   0 0 22px var(--ris-cyan-glow);
+  --ris-glow-red:    0 0 0 1px var(--ris-red-line),    0 0 22px var(--ris-red-glow);
+  --ris-live:        0 0 0 1px var(--ris-red-line),    0 0 16px var(--ris-red-glow);
+}
+
+/* ----------------------------------------------------------------------------
+   2. BACKGROUND — crimson→black gradient + scanlines + grain in Dark.
+   In Light Mode: technical millimeter grid and fine grain (zero fluorescent glows).
+   -------------------------------------------------------------------------- */
+[data-skin="cyber"]:not([data-theme="light"]) body.ris,
+[data-skin="cyber"]:not([data-theme="light"]) body.ris.ris-grid-bg {
+  background-color: var(--ris-bg);
+  background-image:
+    /* fine desaturated grain */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E"),
+    /* horizontal scanlines */
+    repeating-linear-gradient(0deg, transparent 0 2px, var(--ris-scanline) 2px 3px),
+    /* top crimson halo */
+    radial-gradient(125% 80% at 50% -12%, rgba(255,0,60,0.20), transparent 60%),
+    /* bottom reflection */
+    radial-gradient(95% 55% at 50% 118%, rgba(255,0,60,0.06), transparent 55%);
+  background-size: 140px 140px, 100% 3px, 100% 100%, 100% 100%;
+  background-attachment: fixed;
+  background-repeat: repeat, repeat, no-repeat, no-repeat;
+}
+
+[data-skin="cyber"][data-theme="light"] body.ris,
+[data-skin="cyber"][data-theme="light"] body.ris.ris-grid-bg {
+  background-color: var(--ris-bg);
+  background-image:
+    /* fine technical grain */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E"),
+    /* daylight technical millimeter grid (no crimson halos) */
+    linear-gradient(rgba(10,20,26,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10,20,26,0.04) 1px, transparent 1px);
+  background-size: 140px 140px, 24px 24px, 24px 24px;
+  background-attachment: fixed;
+  background-repeat: repeat, repeat, repeat;
+}
+
+/* ----------------------------------------------------------------------------
+   3. KEY CHROME — Neon glow in Dark; clean crimson ink lines in Light.
+   -------------------------------------------------------------------------- */
+
+/* Topbar */
+[data-skin="cyber"]:not([data-theme="light"]) .ris-topbar {
+  background: color-mix(in srgb, var(--ris-surface-1) 92%, transparent);
+  border-bottom: 1px solid var(--ris-red-fill);
+  box-shadow: 0 1px 0 var(--ris-red-fill), 0 8px 22px -8px var(--ris-red-glow);
+}
+[data-skin="cyber"][data-theme="light"] .ris-topbar {
+  background: color-mix(in srgb, var(--ris-surface-1) 96%, transparent);
+  border-bottom: 1.5px solid #1b6b80;
+  box-shadow: 0 1px 4px rgba(27, 107, 128, 0.12);
+}
+
+[data-skin="cyber"]:not([data-theme="light"]) .ris-rail,
+[data-skin="cyber"]:not([data-theme="light"]) .ris-bottomnav { border-color: var(--ris-red-line); }
+
+[data-skin="cyber"][data-theme="light"] .ris-rail,
+[data-skin="cyber"][data-theme="light"] .ris-bottomnav { border-color: var(--ris-line); }
+
+/* Primary button: accent glow in dark */
+[data-skin="cyber"]:not([data-theme="light"]) .ris-btn--primary {
+  box-shadow: 0 0 0 1px var(--ris-accent-line), 0 0 16px var(--ris-accent-glow);
+}
+[data-skin="cyber"]:not([data-theme="light"]) .ris-btn--primary:hover { box-shadow: 0 0 0 1px var(--ris-on-accent), 0 0 22px var(--ris-accent-glow); }
+
+/* Selection: solid fill in dark; cyan ink in light */
+[data-skin="cyber"]:not([data-theme="light"]) .ris-table tbody tr[data-selected="true"] {
+  background: color-mix(in srgb, var(--ris-red-fill) 22%, transparent);
+  box-shadow: inset 3px 0 0 var(--ris-red-fill), 0 0 18px -6px var(--ris-red-glow);
+}
+[data-skin="cyber"][data-theme="light"] .ris-table tbody tr[data-selected="true"] {
+  background: rgba(27, 107, 128, 0.10);
+  box-shadow: inset 3px 0 0 #1b6b80;
+}
+
+[data-skin="cyber"]:not([data-theme="light"]) .ris-nav-link[data-active="true"],
+[data-skin="cyber"]:not([data-theme="light"]) .ris-nav-link[aria-current="page"] {
+  box-shadow: inset 2px 0 0 var(--ris-accent), 0 0 16px -4px var(--ris-accent-glow);
+}
+[data-skin="cyber"][data-theme="light"] .ris-nav-link[data-active="true"],
+[data-skin="cyber"][data-theme="light"] .ris-nav-link[aria-current="page"] {
+  box-shadow: inset 2px 0 0 #1b6b80;
+  color: #165868;
+}
+
+[data-skin="cyber"]:not([data-theme="light"]) .ris-tab[aria-selected="true"],
+[data-skin="cyber"]:not([data-theme="light"]) .ris-tab[data-active="true"] {
+  text-shadow: 0 0 12px var(--ris-accent-glow);
+}
+[data-skin="cyber"][data-theme="light"] .ris-tab[aria-selected="true"],
+[data-skin="cyber"][data-theme="light"] .ris-tab[data-active="true"] {
+  text-shadow: none;
+  color: #165868;
+  border-bottom-color: #1b6b80;
+}
+
+/* Panels: red border in dark; clean neutral in light */
+[data-skin="cyber"]:not([data-theme="light"]) .ris-panel {
+  border-color: var(--ris-line);
+  box-shadow: inset 0 0 28px rgba(255,0,60,0.04);
+}
+[data-skin="cyber"][data-theme="light"] .ris-panel {
+  border-color: var(--ris-line-strong);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+[data-skin="cyber"]:not([data-theme="light"]) .ris-panel-head { border-bottom-color: var(--ris-red-line); }
+[data-skin="cyber"][data-theme="light"] .ris-panel-head { border-bottom-color: var(--ris-line); }
+
+/* Brackets: red fill in dark; cyan ink without glow in light */
+[data-skin="cyber"]:not([data-theme="light"]) .ris-bracket::before,
+[data-skin="cyber"]:not([data-theme="light"]) .ris-bracket::after {
+  border-color: var(--ris-red-fill);
+  filter: drop-shadow(0 0 4px var(--ris-red-glow));
+}
+[data-skin="cyber"][data-theme="light"] .ris-bracket::before,
+[data-skin="cyber"][data-theme="light"] .ris-bracket::after {
+  border-color: #1b6b80;
+  filter: none;
+}
+
+/* Accent links/labels: text glow in dark only */
+[data-skin="cyber"]:not([data-theme="light"]) a:hover,
+[data-skin="cyber"]:not([data-theme="light"]) .ris-chip--cyan,
+[data-skin="cyber"]:not([data-theme="light"]) .ris-chip--accent { text-shadow: 0 0 10px var(--ris-accent-2-glow); }
+
+/* Tooltip: in light uses white background with high-contrast ink */
+[data-skin="cyber"]:not([data-theme="light"]) .ris-tip::after {
+  border-color: var(--ris-yellow);
+  color: var(--ris-yellow);
+  box-shadow: var(--ris-elev-2), 0 0 14px var(--ris-yellow-glow);
+}
+[data-skin="cyber"][data-theme="light"] .ris-tip::after {
+  border-color: #8a5a12;
+  color: var(--ris-fg1);
+  background: #ffffff;
+  box-shadow: var(--ris-elev-2);
+}
+
+/* Input focus: cyan glow in dark; crisp focus ring in light */
+[data-skin="cyber"]:not([data-theme="light"]) .ris-input:focus,
+[data-skin="cyber"]:not([data-theme="light"]) .ris-select:focus,
+[data-skin="cyber"]:not([data-theme="light"]) .ris-textarea:focus {
+  box-shadow: inset 0 0 0 1px var(--ris-cyan-line), 0 0 14px -2px var(--ris-cyan-glow);
+}
+[data-skin="cyber"][data-theme="light"] .ris-input:focus,
+[data-skin="cyber"][data-theme="light"] .ris-select:focus,
+[data-skin="cyber"][data-theme="light"] .ris-textarea:focus {
+  box-shadow: inset 0 0 0 1.5px #216270, 0 0 0 3px rgba(33,98,112,0.15);
+  border-color: #216270;
+}
+
+/* Slider */
+[data-skin="cyber"]:not([data-theme="light"]) .ris-slider { height: 10px; border-color: var(--ris-red-line); }
+[data-skin="cyber"]:not([data-theme="light"]) .ris-slider::-webkit-slider-thumb {
+  width: 16px; height: 22px; box-shadow: 0 0 10px var(--ris-accent-glow);
+}
+[data-skin="cyber"]:not([data-theme="light"]) .ris-slider::-moz-range-thumb {
+  width: 16px; height: 22px; box-shadow: 0 0 10px var(--ris-accent-glow);
+}
+
+/* Progress bar */
+[data-skin="cyber"]:not([data-theme="light"]) .ris-progress {
+  border-color: var(--ris-line);
+  background: var(--ris-surface-2);
+}
+[data-skin="cyber"]:not([data-theme="light"]) .ris-progress > .bar {
+  box-shadow: 0 0 10px var(--ris-accent-glow);
+}
+
+/* ----------------------------------------------------------------------------
+   4. CHROME DECORATIVO — utility opt-in (scelta utente: garnish + righello).
+   Pure decoration: apply to text elements. aria-hidden recommended.
+   -------------------------------------------------------------------------- */
+
+/* Serial / codici device — PROTOCOL 6520-A44, TRN_TLCAS_8D0095 ... */
+[data-skin="cyber"]:not([data-theme="light"]) .ris-serial {
+  font-family: var(--ris-font-mono);
+  font-size: 9px; font-weight: 500;
+  letter-spacing: var(--ris-track-wide);
+  text-transform: uppercase;
+  color: var(--ris-red-dim);
+  line-height: 1.45;
+}
+[data-skin="cyber"]:not([data-theme="light"]) .ris-serial b { color: var(--ris-red); font-weight: 600; }
+
+[data-skin="cyber"][data-theme="light"] .ris-serial {
+  font-family: var(--ris-font-mono);
+  font-size: 9px; font-weight: 500;
+  letter-spacing: var(--ris-track-wide);
+  text-transform: uppercase;
+  color: #216270;
+  line-height: 1.45;
+}
+[data-skin="cyber"][data-theme="light"] .ris-serial b { color: #165868; font-weight: 700; }
+
+/* Hex dump — blocco mono dim (usa <pre class="ris-hex">) */
+[data-skin="cyber"]:not([data-theme="light"]) .ris-hex {
+  font-family: var(--ris-font-mono);
+  font-size: 9px; line-height: 1.4;
+  color: var(--ris-red-dim);
+  white-space: pre; overflow: hidden;
+  opacity: 0.7;
+}
+[data-skin="cyber"][data-theme="light"] .ris-hex {
+  font-family: var(--ris-font-mono);
+  font-size: 9px; line-height: 1.4;
+  color: #216270;
+  white-space: pre; overflow: hidden;
+  opacity: 0.85;
+}
+
+/* Stream binario — colonna 1001 0110 negli angoli */
+[data-skin="cyber"] .ris-binary {
+  font-family: var(--ris-font-mono);
+  font-size: 8.5px; line-height: 1.5;
+  letter-spacing: 0.12em;
+  color: var(--ris-cyan-dim);
+  writing-mode: vertical-rl;
+  opacity: 0.6;
+}
+
+/* Righello bordo — tacche verticali fisse sui lati schermo */
+[data-skin="cyber"]:not([data-theme="light"]) .ris-ruler {
+  position: fixed; top: var(--ris-topbar-h); bottom: 0; width: 10px;
+  pointer-events: none; z-index: 80; opacity: 0.5;
+  background-image: repeating-linear-gradient(
+    to bottom, var(--ris-red-line) 0 1px, transparent 1px 7px);
+}
+[data-skin="cyber"]:not([data-theme="light"]) .ris-ruler--left  { left: 0;  background-position: left;  }
+[data-skin="cyber"]:not([data-theme="light"]) .ris-ruler--right { right: 0; background-image: repeating-linear-gradient(
+    to bottom, var(--ris-red-line) 0 1px, transparent 1px 13px); }
+
+[data-skin="cyber"][data-theme="light"] .ris-ruler {
+  position: fixed; top: var(--ris-topbar-h); bottom: 0; width: 10px;
+  pointer-events: none; z-index: 80; opacity: 0.35;
+  background-image: repeating-linear-gradient(
+    to bottom, #1b6b80 0 1px, transparent 1px 7px);
+}
+[data-skin="cyber"][data-theme="light"] .ris-ruler--left  { left: 0;  background-position: left;  }
+[data-skin="cyber"][data-theme="light"] .ris-ruler--right { right: 0; background-image: repeating-linear-gradient(
+    to bottom, #1b6b80 0 1px, transparent 1px 13px); }
+
+/* Corner data ticker — tiny mono block */
+[data-skin="cyber"] .ris-ticker {
+  position: fixed; bottom: 6px; left: 14px; z-index: 80;
+  font-family: var(--ris-font-mono); font-size: 8.5px; line-height: 1.5;
+  color: var(--ris-fg4); pointer-events: none; white-space: pre;
+}
+
+/* ----------------------------------------------------------------------------
+   5. NEW COMPONENTS (skin-scoped) — list-row with thumbnail + topbar stat.
+   -------------------------------------------------------------------------- */
+
+/* List-row: thumb + cyan title + cyan/red meta + timestamp; selection = solid fill.
+   Reference: Load Game / Contacts / Inventory weapon list. */
+[data-skin="cyber"] .ris-listrow {
+  position: relative;
+  display: flex; align-items: center; gap: var(--ris-s3);
+  padding: 10px 14px;
+  background: var(--ris-surface-1);
+  border: 1px solid var(--ris-line);
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  transition: background var(--ris-dur-fast) var(--ris-ease), box-shadow var(--ris-dur-fast) var(--ris-ease);
+}
+[data-skin="cyber"] .ris-listrow + .ris-listrow { margin-top: 6px; }
+[data-skin="cyber"] .ris-listrow .thumb {
+  width: 84px; height: 48px; flex: 0 0 84px;
+  object-fit: cover;
+  background: var(--ris-surface-3);
+  border: 1px solid var(--ris-line);
+}
+[data-skin="cyber"] .ris-listrow .body { flex: 1; min-width: 0; }
+[data-skin="cyber"] .ris-listrow .title {
+  font-family: var(--ris-font-display); font-weight: var(--ris-w-semi);
+  font-size: var(--ris-text-md); letter-spacing: 0.02em;
+  color: var(--ris-cyan);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+[data-skin="cyber"]:not([data-theme="light"]) .ris-listrow .meta {
+  font-family: var(--ris-font-mono); font-size: var(--ris-text-xs);
+  letter-spacing: var(--ris-track-wide); text-transform: uppercase;
+  color: var(--ris-red);
+}
+[data-skin="cyber"]:not([data-theme="light"]) .ris-listrow .time {
+  margin-left: auto; align-self: flex-start; flex: 0 0 auto;
+  font-family: var(--ris-font-mono); font-size: var(--ris-text-sm);
+  color: var(--ris-red);
+}
+[data-skin="cyber"][data-theme="light"] .ris-listrow .meta {
+  font-family: var(--ris-font-mono); font-size: var(--ris-text-xs);
+  letter-spacing: var(--ris-track-wide); text-transform: uppercase;
+  color: #1b6b80;
+}
+[data-skin="cyber"][data-theme="light"] .ris-listrow .time {
+  margin-left: auto; align-self: flex-start; flex: 0 0 auto;
+  font-family: var(--ris-font-mono); font-size: var(--ris-text-sm);
+  color: #165868;
+}
+
+[data-skin="cyber"] .ris-listrow:hover { background: var(--ris-surface-2); }
+[data-skin="cyber"]:not([data-theme="light"]) .ris-listrow[data-selected="true"] {
+  background: var(--ris-red-fill);
+  border-color: var(--ris-red-fill);
+  box-shadow: var(--ris-live);
+}
+[data-skin="cyber"]:not([data-theme="light"]) .ris-listrow[data-selected="true"] .title,
+[data-skin="cyber"]:not([data-theme="light"]) .ris-listrow[data-selected="true"] .meta,
+[data-skin="cyber"]:not([data-theme="light"]) .ris-listrow[data-selected="true"] .time { color: var(--ris-on-accent); }
+
+[data-skin="cyber"][data-theme="light"] .ris-listrow[data-selected="true"] {
+  background: #1b6b80;
+  border-color: #1b6b80;
+  box-shadow: 0 2px 10px rgba(27, 107, 128, 0.25);
+}
+[data-skin="cyber"][data-theme="light"] .ris-listrow[data-selected="true"] .title,
+[data-skin="cyber"][data-theme="light"] .ris-listrow[data-selected="true"] .meta,
+[data-skin="cyber"][data-theme="light"] .ris-listrow[data-selected="true"] .time { color: #ffffff !important; }
+
+/* Topbar stat — LEVEL / TRUST RANK with segmented meter (reuses .ris-segmeter) */
+[data-skin="cyber"] .ris-stat { display: inline-flex; align-items: center; gap: 8px; }
+[data-skin="cyber"] .ris-stat .v {
+  font-family: var(--ris-font-display); font-weight: var(--ris-w-bold);
+  font-size: var(--ris-text-lg); line-height: 1;
+  color: var(--ris-cyan); font-variant-numeric: tabular-nums;
+}
+[data-skin="cyber"] .ris-stat .n {
+  font-family: var(--ris-font-body); font-size: var(--ris-text-xs);
+  font-weight: var(--ris-w-semi); letter-spacing: var(--ris-track-wide);
+  text-transform: uppercase; color: var(--ris-green);
+}
+[data-skin="cyber"] .ris-stat .ris-segmeter { width: 84px; height: 8px; }
+[data-skin="cyber"]:not([data-theme="light"]) .ris-stat .ris-segmeter > i.on { background: var(--ris-green); box-shadow: 0 0 6px var(--ris-green-glow); }
+[data-skin="cyber"][data-theme="light"] .ris-stat .ris-segmeter > i.on { background: #1f6e47; }
+
+/* ----------------------------------------------------------------------------
+   6. RESPONSIVE / MOBILE — base system switches to topbar + bottomnav
+   under 768px; here we adapt ONLY skin-specific chrome.
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  /* Rulers: no space on phone edges → hidden */
+  [data-skin="cyber"] .ris-ruler { display: none; }
+  /* Ticker: above bottomnav, smaller font, zero overlap */
+  [data-skin="cyber"] .ris-ticker {
+    left: 8px; bottom: calc(var(--ris-bottomnav-h) + 6px); font-size: 8px;
+  }
+  /* iOS: background-attachment:fixed = jank/repaint → scroll on mobile */
+  [data-skin="cyber"] body.ris,
+  [data-skin="cyber"] body.ris.ris-grid-bg { background-attachment: scroll; }
+
+  /* Bottomnav */
+  [data-skin="cyber"]:not([data-theme="light"]) .ris-bottomnav {
+    border-top: 1px solid var(--ris-red-fill);
+    box-shadow: 0 -1px 0 var(--ris-red-fill), 0 -8px 22px -8px var(--ris-red-glow);
+  }
+  [data-skin="cyber"]:not([data-theme="light"]) .ris-bottomnav .ris-nav-link[aria-current="page"],
+  [data-skin="cyber"]:not([data-theme="light"]) .ris-bottomnav .ris-nav-link[data-active="true"] {
+    box-shadow: inset 0 2px 0 var(--ris-accent), 0 0 16px -4px var(--ris-accent-glow);
+  }
+
+  [data-skin="cyber"][data-theme="light"] .ris-bottomnav {
+    border-top: 1.5px solid #1b6b80;
+    box-shadow: 0 -1px 4px rgba(27, 107, 128, 0.10);
+  }
+  [data-skin="cyber"][data-theme="light"] .ris-bottomnav .ris-nav-link[aria-current="page"],
+  [data-skin="cyber"][data-theme="light"] .ris-bottomnav .ris-nav-link[data-active="true"] {
+    box-shadow: inset 0 2px 0 #1b6b80;
+    color: #165868;
+  }
+
+  /* List-row: compact layout, smaller thumbnail, sm title (tap target ok) */
+  [data-skin="cyber"] .ris-listrow { padding: 9px 12px; gap: 10px; }
+  [data-skin="cyber"] .ris-listrow .thumb { width: 56px; height: 42px; flex-basis: 56px; }
+  [data-skin="cyber"] .ris-listrow .title { font-size: var(--ris-text-sm); }
+
+  /* Topbar stat: value + short meter only (label hidden) */
+  [data-skin="cyber"] .ris-stat .n { display: none; }
+  [data-skin="cyber"] .ris-stat .ris-segmeter { width: 48px; }
+}
+
+/* ----------------------------------------------------------------------------
+   6B. MOTION & MOBILE COMPONENTS (Accordion, Bottom Sheet, Radar, Toast)
+   -------------------------------------------------------------------------- */
+
+/* Accordion */
+[data-skin="cyber"]:not([data-theme="light"]) .ris-acc { border-color: var(--ris-line); }
+[data-skin="cyber"][data-theme="light"] .ris-acc { border-color: var(--ris-line-strong); }
+[data-skin="cyber"][data-theme="light"] .ris-acc-trigger:hover {
+  background: var(--ris-surface-2);
+  color: #165868;
+}
+[data-skin="cyber"][data-theme="light"] .ris-acc-item[data-open="true"] .ris-acc-chevron,
+[data-skin="cyber"][data-theme="light"] .ris-acc-trigger[aria-expanded="true"] .ris-acc-chevron {
+  color: #165868;
+}
+
+/* Bottom Sheet mobile */
+[data-skin="cyber"]:not([data-theme="light"]) .ris-sheet {
+  border-top: 1.5px solid var(--ris-red-fill);
+  box-shadow: 0 -1px 0 var(--ris-red-fill), 0 -8px 24px var(--ris-red-glow);
+}
+[data-skin="cyber"][data-theme="light"] .ris-sheet {
+  border-top: 1.5px solid #1b6b80;
+  box-shadow: 0 -1px 4px rgba(27, 107, 128, 0.12), 0 -8px 24px rgba(0,0,0,0.10);
+}
+[data-skin="cyber"][data-theme="light"] .ris-sheet-handle { background: #9aa7b0; }
+[data-skin="cyber"][data-theme="light"] .ris-sheet-handle:hover,
+[data-skin="cyber"][data-theme="light"] .ris-sheet-handle:active { background: #1b6b80; }
+
+/* Radar Sweep: neon cyan in dark vs delicate drafting cyan (18% opacity) in light */
+[data-skin="cyber"][data-theme="light"] .ris-radar::after {
+  background: linear-gradient(180deg, transparent, rgba(27, 107, 128, 0.18) 80%, #1b6b80 100%);
+  border-bottom-color: #1b6b80;
+}
+
+/* HUD Toast: cyan accent in light */
+[data-skin="cyber"][data-theme="light"] .ris-toast {
+  border-left-color: #1b6b80;
+  border-color: var(--ris-line-strong);
+  background: var(--ris-surface-1);
+}
+
+/* ----------------------------------------------------------------------------
+   7. REDUCED MOTION — no motion here (static textures), neutralizing
+   inherited transitions for safety. Visual aesthetics remain intact.
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  [data-skin="cyber"] * { transition-duration: 0.01ms !important; }
+}

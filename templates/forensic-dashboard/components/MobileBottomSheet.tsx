@@ -37,14 +37,55 @@ export const MobileBottomSheet: React.FC<MobileBottomSheetProps> = ({
   const [touchStartY, setTouchStartY] = useState<number | null>(null);
   const [currentTranslateY, setCurrentTranslateY] = useState<number>(0);
 
-  // Close on escape key
+  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
+  const previousActiveElement = useRef<HTMLElement | null>(null);
+
+  // Focus trap & escape key handler
   useEffect(() => {
     if (!isOpen) return;
+
+    previousActiveElement.current = document.activeElement as HTMLElement | null;
+
+    // Focus close button on open
+    const focusTimer = setTimeout(() => {
+      closeButtonRef.current?.focus();
+    }, 50);
+
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === 'Escape') {
+        onClose();
+        return;
+      }
+
+      if (e.key === 'Tab' && sheetRef.current) {
+        const focusableElements = sheetRef.current.querySelectorAll<HTMLElement>(
+          'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        );
+        if (!focusableElements.length) return;
+
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === firstElement) {
+            e.preventDefault();
+            lastElement.focus();
+          }
+        } else {
+          if (document.activeElement === lastElement) {
+            e.preventDefault();
+            firstElement.focus();
+          }
+        }
+      }
     };
+
     document.addEventListener('keydown', handleKeyDown);
-    return () => document.removeEventListener('keydown', handleKeyDown);
+    return () => {
+      clearTimeout(focusTimer);
+      document.removeEventListener('keydown', handleKeyDown);
+      previousActiveElement.current?.focus();
+    };
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;
@@ -106,6 +147,7 @@ export const MobileBottomSheet: React.FC<MobileBottomSheetProps> = ({
             </h2>
           </div>
           <button
+            ref={closeButtonRef}
             type="button"
             onClick={onClose}
             className="ris-btn ris-btn--ghost ris-btn--sm p-2 min-h-[44px] min-w-[44px] flex items-center justify-center"

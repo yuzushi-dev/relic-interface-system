@@ -194,12 +194,132 @@ export default function ForensicDashboardPage() {
             </>
           )}
 
-          {(activeNav === 'forensics' || activeNav === 'ledger') && (
+          {/* 2. Buffers / Ring Buffer Diagnostics View */}
+          {activeNav === 'buffers' && (
             <div className="space-y-4">
               <div className="p-4 bg-ris-surface1 border border-ris-line">
                 <div className="flex items-center justify-between mb-3 border-b border-ris-line pb-2">
                   <div className="flex items-center gap-2">
                     <IconDatabase size={16} className="text-ris-accent" />
+                    <h2 className="font-mono text-sm font-bold text-ris-fg1 tracking-wider uppercase">
+                      DMA RING BUFFER POOLS // MEMORY SUBSYSTEM
+                    </h2>
+                  </div>
+                  <span className="font-mono text-xs text-ris-green font-semibold">
+                    HEALTH: 99.98% // 4 POOLS MOUNTED
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 font-mono text-xs mb-4">
+                  {[
+                    { name: 'RING_BUFFER_0 (KERNEL DMA)', size: '4,096 MB', util: '64.2%', pages: '1,048,576', state: 'NOMINAL', color: 'text-ris-green' },
+                    { name: 'RING_BUFFER_1 (NETWORK RX)', size: '2,048 MB', util: '81.5%', pages: '524,288', state: 'ELEVATED', color: 'text-ris-yellow' },
+                    { name: 'RING_BUFFER_2 (CRYPTO PIPE)', size: '1,024 MB', util: '32.0%', pages: '262,144', state: 'OPTIMAL', color: 'text-ris-cyan' },
+                    { name: 'RING_BUFFER_3 (CRASH DUMP)', size: '512 MB', util: '4.8%', pages: '131,072', state: 'STANDBY', color: 'text-ris-fg3' },
+                  ].map((buf) => (
+                    <div key={buf.name} className="p-3 bg-ris-surface2 border border-ris-line space-y-2">
+                      <div className="flex justify-between items-center">
+                        <span className="font-bold text-ris-fg1 text-[11px] truncate">{buf.name}</span>
+                        <span className={`text-[10px] font-bold ${buf.color}`}>{buf.state}</span>
+                      </div>
+                      <div className="text-[11px] text-ris-fg3 space-y-1">
+                        <div>CAPACITY: <strong className="text-ris-fg2">{buf.size}</strong></div>
+                        <div>ALLOCATION: <strong className="text-ris-accent">{buf.util}</strong></div>
+                        <div>PAGE FRAMES: <strong className="text-ris-fg2">{buf.pages}</strong></div>
+                      </div>
+                      <div className="w-full h-1.5 bg-ris-surface4 overflow-hidden">
+                        <div
+                          className="h-full bg-ris-accent"
+                          style={{ width: buf.util }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Hex Memory Inspector */}
+                <div className="bg-ris-surface2 border border-ris-line p-3 font-mono text-xs">
+                  <div className="flex items-center justify-between text-ris-fg3 border-b border-ris-line pb-1.5 mb-2 text-[11px]">
+                    <span className="font-bold text-ris-fg2">HEX DISK BUFFER INSPECTOR // ADDR 0x7FFF_E490</span>
+                    <span className="text-ris-cyan">PAGE OFFSET: +0x0400</span>
+                  </div>
+                  <pre className="text-ris-fg2 text-[11px] leading-relaxed overflow-x-auto select-all">
+                    {`0x7FFF_E490: 48 89 E5 48 83 EC 20 48  89 7D E8 48 89 75 F0 48  |H..H.. H.}..u.H|
+0x7FFF_E4A0: 8B 45 E8 48 8B 00 48 89  C7 E8 00 00 00 00 48 8B  |.E.H..H. .....H.|
+0x7FFF_E4B0: 45 F0 48 8B 40 08 48 89  C6 48 8B 45 E8 48 8B 38  |E.H.@.H. .H.E.H.8|
+0x7FFF_E4C0: E8 00 00 00 00 90 C9 C3  55 48 89 E5 53 48 83 EC  |........ UH..SH..|`}
+                  </pre>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* 3. Threat Matrix View */}
+          {activeNav === 'threat' && (
+            <div className="space-y-4">
+              <div className="p-4 bg-ris-surface1 border border-ris-line">
+                <div className="flex items-center justify-between mb-3 border-b border-ris-line pb-2">
+                  <div className="flex items-center gap-2">
+                    <IconShield size={16} className="text-ris-red" />
+                    <h2 className="font-mono text-sm font-bold text-ris-fg1 tracking-wider uppercase">
+                      THREAT MATRIX // ANOMALY VECTOR RADAR
+                    </h2>
+                  </div>
+                  <span className="font-mono text-xs text-ris-green font-semibold">
+                    DEFCON: LEVEL 4 // DEFENSIVE SHIELD ACTIVE
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 font-mono text-xs mb-4">
+                  <div className="p-3 bg-ris-surface2 border border-ris-line space-y-1">
+                    <span className="text-ris-fg3 text-[10px]">INGRESS PACKET RATE</span>
+                    <div className="text-lg font-bold text-ris-fg1">1,482 <span className="text-xs text-ris-fg3">pkts/s</span></div>
+                    <div className="text-ris-green text-[10px]">0 DROPPED (0.00%)</div>
+                  </div>
+                  <div className="p-3 bg-ris-surface2 border border-ris-line space-y-1">
+                    <span className="text-ris-fg3 text-[10px]">INTRUSION DETECTION SCORE</span>
+                    <div className="text-lg font-bold text-ris-green">0.02 <span className="text-xs text-ris-fg3">/ 1.00</span></div>
+                    <div className="text-ris-cyan text-[10px]">ZERO SIGNATURE MATCHES</div>
+                  </div>
+                  <div className="p-3 bg-ris-surface2 border border-ris-line space-y-1">
+                    <span className="text-ris-fg3 text-[10px]">CRYPTO ENCLAVE ATTESTATION</span>
+                    <div className="text-lg font-bold text-ris-cyan">VALID <span className="text-xs text-ris-fg3">TPM 2.0</span></div>
+                    <div className="text-ris-green text-[10px]">CHAIN OF TRUST VERIFIED</div>
+                  </div>
+                </div>
+
+                <div className="p-3 bg-ris-surface2 border border-ris-line font-mono text-xs space-y-2">
+                  <div className="font-bold text-ris-fg2 border-b border-ris-line pb-1">ISOLATION RULES & ACTIVE INTERCEPTORS</div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px]">
+                    <div className="flex justify-between p-2 bg-ris-surface1 border border-ris-line">
+                      <span className="text-ris-fg3">AIRGAP BRIDGE FIREWALL:</span>
+                      <strong className="text-ris-green">ENFORCED (DROP ALL)</strong>
+                    </div>
+                    <div className="flex justify-between p-2 bg-ris-surface1 border border-ris-line">
+                      <span className="text-ris-fg3">EPHEMERAL KEY EXCHANGE:</span>
+                      <strong className="text-ris-cyan">X25519-CHACHA20</strong>
+                    </div>
+                    <div className="flex justify-between p-2 bg-ris-surface1 border border-ris-line">
+                      <span className="text-ris-fg3">DMA BUFFER GUARDS:</span>
+                      <strong className="text-ris-green">ENABLED (IOMMU)</strong>
+                    </div>
+                    <div className="flex justify-between p-2 bg-ris-surface1 border border-ris-line">
+                      <span className="text-ris-fg3">SIGNATURE PROBING:</span>
+                      <strong className="text-ris-yellow">MONITORING (PASSIVE)</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* 4. Incident Ledger View */}
+          {(activeNav === 'forensics' || activeNav === 'ledger') && (
+            <div className="space-y-4">
+              <div className="p-4 bg-ris-surface1 border border-ris-line">
+                <div className="flex items-center justify-between mb-3 border-b border-ris-line pb-2">
+                  <div className="flex items-center gap-2">
+                    <IconTerminal size={16} className="text-ris-accent" />
                     <h2 className="font-mono text-sm font-bold text-ris-fg1 tracking-wider uppercase">
                       INCIDENT AUDIT LEDGER // CRYPTOGRAPHIC TRAIL
                     </h2>
@@ -261,7 +381,8 @@ export default function ForensicDashboardPage() {
             </div>
           )}
 
-          {(activeNav === 'nodes' || activeNav === 'transceiver') && (
+          {/* 5. Carrier Channels & RF Spectrum View */}
+          {(activeNav === 'radio' || activeNav === 'nodes' || activeNav === 'transceiver') && (
             <div className="space-y-4">
               <div className="p-4 bg-ris-surface1 border border-ris-line">
                 <div className="flex items-center justify-between mb-3 border-b border-ris-line pb-2">
@@ -295,19 +416,41 @@ export default function ForensicDashboardPage() {
             </div>
           )}
 
-          {activeNav === 'security' && (
+          {/* 6. System Core Architecture View */}
+          {(activeNav === 'core' || activeNav === 'security') && (
             <div className="space-y-4">
               <div className="p-4 bg-ris-surface1 border border-ris-line">
                 <div className="flex items-center justify-between mb-3 border-b border-ris-line pb-2">
                   <div className="flex items-center gap-2">
-                    <IconShield size={16} className="text-ris-red" />
+                    <IconCpu size={16} className="text-ris-accent" />
                     <h2 className="font-mono text-sm font-bold text-ris-fg1 tracking-wider uppercase">
-                      SECURITY PERIMETER // ZERO-TRUST AIRGAP
+                      SYSTEM CORE // KERNEL THREAD TOPOLOGY
                     </h2>
                   </div>
                   <span className="font-mono text-xs text-ris-green font-semibold">
                     STATUS: SECURE // AIRGAP LOCKED
                   </span>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-3 font-mono text-xs mb-4">
+                  {[
+                    { core: 'CORE 0 (ISOLATED)', freq: '4.20 GHz', load: '18%', temp: '42°C', gov: 'performance' },
+                    { core: 'CORE 1 (REALTIME)', freq: '4.20 GHz', load: '44%', temp: '46°C', gov: 'performance' },
+                    { core: 'CORE 2 (IO_WAIT)', freq: '3.80 GHz', load: '12%', temp: '39°C', gov: 'schedutil' },
+                    { core: 'CORE 3 (SECURITY)', freq: '4.20 GHz', load: '08%', temp: '38°C', gov: 'performance' },
+                  ].map((c) => (
+                    <div key={c.core} className="p-3 bg-ris-surface2 border border-ris-line space-y-1.5">
+                      <div className="flex justify-between items-center text-[10px]">
+                        <span className="font-bold text-ris-fg1">{c.core}</span>
+                        <span className="text-ris-cyan">{c.temp}</span>
+                      </div>
+                      <div className="text-base font-bold text-ris-fg1">{c.freq}</div>
+                      <div className="flex justify-between text-[10px] text-ris-fg3">
+                        <span>LOAD: <strong className="text-ris-accent">{c.load}</strong></span>
+                        <span>GOV: <strong className="text-ris-fg2">{c.gov}</strong></span>
+                      </div>
+                    </div>
+                  ))}
                 </div>
 
                 <div className="p-4 bg-ris-surface2 border border-ris-line font-mono text-xs space-y-3">

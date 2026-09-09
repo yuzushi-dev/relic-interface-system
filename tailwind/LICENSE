@@ -1,0 +1,46 @@
+MIT License
+
+Copyright (c) 2026 Relic Interface System Contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+### Repository Scope & Dual-Licensing Notice
+
+The open-source core of Relic Interface System (including `css/`, `tokens/`, `icons/`, `@relic-ui/react` core primitives, `@relic-ui/tailwind`, and `compose/`) is licensed under the MIT License above.
+
+Commercial assets, specialized application templates (such as `templates/forensic-dashboard/`), and the Figma Studio Pro workspace are subject to the commercial terms described in `LICENSE_PRO.md` and require a valid commercial license for production deployment, organizational use, or client redistribution.
+
+---
+
+### Third-Party Software Notices & Acknowledgments
+
+This project bundles or references the following third-party assets:
+
+1. **Tabler Icons**
+   - License: MIT License (Copyright (c) 2020-2026 Paweł Kuna)
+   - Source: https://tabler.io/icons
+   - Use: SVG glyphs in `icons/ris-icons.svg` and `icons/svg/`.
+
+2. **Web Fonts**
+   - **Archivo** (SIL Open Font License 1.1, Copyright Omnibus-Type)
+   - **JetBrains Mono** (SIL Open Font License 1.1, Copyright JetBrains s.r.o.)
+   - **Chakra Petch** (SIL Open Font License 1.1, Copyright Cadson Demak)
+   - **Rajdhani** (SIL Open Font License 1.1, Copyright Indian Type Foundry)

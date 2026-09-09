@@ -201,7 +201,7 @@
       <optgroup label="Products">
         <option value="relic">Relic</option>
         <option value="biohub">BioHub</option>
-        <option value="vivokey">VivoKey</option>
+        <option value="omnikon">Omnikon</option>
         <option value="neutral">Neutral</option>
       </optgroup>
       <optgroup label="Case-Context">
@@ -211,7 +211,7 @@
       </optgroup>
     </select>
   </label>
-  <a href="COMMERCIAL_PRICING.md" class="ris-btn ris-btn--sm ris-btn--outline" style="text-decoration:none;border-color:var(--ris-accent);color:var(--ris-accent)">★ Pro Suite</a>
+  <a href="#pro-suite" class="ris-btn ris-btn--sm ris-btn--outline" style="text-decoration:none;border-color:var(--ris-accent);color:var(--ris-accent)">★ Pro Suite</a>
   <a href="motion-lab.html" class="ris-btn ris-btn--sm ris-btn--primary" style="text-decoration:none">⚡ Motion Lab</a>
   <button id="skin" class="ris-btn ris-btn--sm ris-btn--secondary" aria-pressed="true">▞ Skin: Cyber</button>
   <button id="theme" class="ris-btn ris-btn--sm" aria-pressed="false">◐ Theme</button>
@@ -238,7 +238,7 @@ LOAD 0x8D0012:44 · REL 6fed4000</div>
   </section>
  
   <!-- RIS Pro Commercial Suite Banner -->
-  <section class="spec-section">
+  <section class="spec-section" id="pro-suite">
     <div class="ris-panel ris-panel--strong" style="border-color:var(--ris-accent);margin-bottom:12px">
       <header class="ris-panel-header" style="background:var(--ris-surface-2);border-bottom:1px solid var(--ris-line);display:flex;align-items:center;justify-content:space-between;padding:10px 16px;flex-wrap:wrap;gap:8px">
         <div style="display:flex;align-items:center;gap:10px">
@@ -258,7 +258,7 @@ LOAD 0x8D0012:44 · REL 6fed4000</div>
               <span class="ris-chip ris-chip--cyan">$39 <small style="text-decoration:line-through;opacity:0.7">$49</small></span>
             </div>
             <p class="ris-small" style="margin:0;color:var(--ris-fg3);font-size:11px">
-              Master .fig file, 3 artboards, 150+ components, Dark/Light + 4 Brand variables, 3 case-context skins.
+              Turnkey plugin script (code.js), Tokens Studio DTCG JSON, 60+ button variants, panels, switches, 1440px HUD &amp; 390px Mobile layouts.
             </p>
           </div>
           <div style="background:var(--ris-surface-1);border:1px solid var(--ris-line);padding:14px">
@@ -267,7 +267,7 @@ LOAD 0x8D0012:44 · REL 6fed4000</div>
               <span class="ris-chip ris-chip--cyan">$49 <small style="text-decoration:line-through;opacity:0.7">$69</small></span>
             </div>
             <p class="ris-small" style="margin:0;color:var(--ris-fg3);font-size:11px">
-              Next.js 14 App Router Forensic Dashboard, Docker standalone, live telemetry scrubber &amp; log stream.
+              Next.js App Router Forensic Dashboard, Docker standalone, live telemetry scrubber &amp; log stream.
             </p>
           </div>
           <div style="background:var(--ris-surface-1);border:1px solid var(--ris-accent);padding:14px;box-shadow:0 0 12px rgba(230,162,60,0.1)">
@@ -281,9 +281,9 @@ LOAD 0x8D0012:44 · REL 6fed4000</div>
           </div>
         </div>
         <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
-          <a class="ris-btn ris-btn--primary ris-btn--sm" href="../templates/forensic-dashboard/README.md" target="_blank">◈ Explore Next.js Template</a>
-          <a class="ris-btn ris-btn--secondary ris-btn--sm" href="../figma/FIGMA_STUDIO_GUIDE.md" target="_blank">◈ Figma Studio Guide</a>
-          <a class="ris-btn ris-btn--sm" href="COMMERCIAL_PRICING.md" target="_blank">Commercial Pricing &amp; Competitor Audit ↗</a>
+          <a class="ris-btn ris-btn--primary ris-btn--sm" href="https://github.com/yuzushi-dev/relic-interface-system/tree/main/templates/forensic-dashboard" target="_blank" rel="noopener">◈ Explore Next.js Template</a>
+          <a class="ris-btn ris-btn--secondary ris-btn--sm" href="https://github.com/yuzushi-dev/relic-interface-system/tree/main/figma" target="_blank" rel="noopener">◈ Figma Studio Kit</a>
+          <a class="ris-btn ris-btn--sm" href="https://github.com/yuzushi-dev/relic-interface-system/blob/main/COMMERCIAL_PRICING.md" target="_blank" rel="noopener">Commercial Pricing &amp; Competitor Audit ↗</a>
         </div>
       </div>
     </div>
@@ -455,7 +455,7 @@ LOAD 0x8D0012:44 · REL 6fed4000</div>
         <label class="ris-checkbox"><input type="checkbox"> Include raw EEG data</label>
         <label class="ris-radio"><input type="radio" name="r" checked> Auto-sync every 3h</label>
         <label class="ris-radio"><input type="radio" name="r"> Manual only</label>
-        <label class="ris-switch"><input type="checkbox" checked role="switch"> Booster online · VivoKey /validate</label>
+        <label class="ris-switch"><input type="checkbox" checked role="switch"> Booster online · Omnikon /validate</label>
         <label class="ris-switch"><input type="checkbox" role="switch"> Scanline overlay</label>
         <div class="ris-field">
           <label for="f5">HR threshold — <span class="ris-mono" id="f5v">120</span> bpm</label>
@@ -850,7 +850,7 @@ LOAD 0x8D0012:44 · REL 6fed4000</div>
         <code class="ris-kbd">:focus-visible</code>. All animations halt under
         <code class="ris-kbd">prefers-reduced-motion</code>. Minimum targets: buttons 36px,
         form controls ≥24px (WCAG 2.5.8). State never communicated by color alone.
-        Skip-nav included. ARIA patterns documented in COMPONENTS.md.
+        Skip-nav included. ARIA patterns documented in <a href="https://github.com/yuzushi-dev/relic-interface-system/blob/main/COMPONENTS.md" style="color:var(--ris-accent)" target="_blank" rel="noopener">COMPONENTS.md</a>.
       </p>
     </div>
   </section>

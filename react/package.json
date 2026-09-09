@@ -4,6 +4,7 @@
   "description": "Tactical cyber React + TypeScript UI Kit for Relic Interface System (RIS v2). Fully typed, WCAG 2.2 AA compliant, Emil Kowalski motion principles.",
   "author": "Relic Interface System Team",
   "license": "MIT",
+  "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -19,7 +20,8 @@
     "dist",
     "src",
     "styles.css",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "sideEffects": [
     "*.css"

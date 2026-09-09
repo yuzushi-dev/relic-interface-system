@@ -88,7 +88,7 @@ Evolution from handoff kit to full design system. See `AUDIT.md` for full ration
 
 ### New
 - **Light theme** `[data-theme="light"]` — AA-safe ink accents, persistent bright fills.
-- **Brand layer** `[data-brand="relic|biohub|vivokey|neutral"]`.
+- **Brand layer** `[data-brand="relic|biohub|omnikon|neutral"]`.
 - **W3C Design Tokens** (`tokens/ris.tokens.json`).
 - **Complete component catalog**: form controls, table, modal, toast, alert, tabs, tooltip, breadcrumb, pagination, KPI, skeleton, empty, kbd/code, avatar, badge-count, responsive shell.
 - **Native SVG icon sprite** (Tabler Icons MIT base).

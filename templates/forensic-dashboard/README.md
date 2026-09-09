@@ -27,7 +27,7 @@ This template faithfully implements all tenets of the **Relic Interface System (
 4. **True Dual Theme (Dark Tactical HUD + Light Technical Drafting Cyan)**:
    - **Dark Mode (`data-theme="dark"`)**: High-contrast tactical HUD with graphite/obsidian surfaces (`#0a0608`), structural crimson lines (`#6e2d38`), neon accents, scanlines, and 32px HUD grid background.
    - **Light Mode (`data-theme="light"`)**: Technical architectural drafting cyan/slate palette (`#1b6b80` / `#165868`), clean ink lines, and technical millimeter grid at 10-15% opacity, eliminating fluorescent glare while retaining full cybernetic geometry.
-   - **Multi-Brand Switcher**: Instant switching between `relic` (amber/cyan), `biohub` (cyan/green), `vivokey` (red/yellow), and `neutral` (violet/cyan).
+   - **Multi-Brand Switcher**: Instant switching between `relic` (amber/cyan), `biohub` (cyan/green), `omnikon` (red/yellow), and `neutral` (violet/cyan).
 
 5. **Strict Real Data Telemetry**:
    - Zero dummy lore or fabricated hashes in telemetry charts.
@@ -76,7 +76,7 @@ templates/forensic-dashboard/
 
 | Component | Responsibility | RIS Standards Implemented |
 |---|---|---|
-| `TopBar.tsx` | Status bar & system chrome | Connection indicator (`● LOCK`), UTC ticker, Dark/Light theme toggle, Brand switcher (`relic`, `biohub`, `vivokey`, `neutral`). |
+| `TopBar.tsx` | Status bar & system chrome | Connection indicator (`● LOCK`), UTC ticker, Dark/Light theme toggle, Brand switcher (`relic`, `biohub`, `omnikon`, `neutral`). |
 | `Sidebar.tsx` | Desktop tactical navigation | Collapsible rail (64px ↔ 230px), clearance badge (`[CLEARANCE: LVL-4]`), live hardware memory meter with segmented progress. |
 | `KpiGrid.tsx` | Real-time metric indicators | 4 cards (Transfer Bitrate, Buffer Integrity, Signal Noise SNR, Threat Index) with 45° chamfers and mini sparklines. |
 | `TelemetryScrubber.tsx` | Interactive waveform analysis | Interactive mouse/touch scrubber line, exact coordinate tracking, calibrated deltas (`Δ +18`), and threshold alert (`[PEAK ALERT]`). |
@@ -153,11 +153,11 @@ The container automatically creates an unprivileged `nextjs` system user, drops 
 In `app/layout.tsx`, adjust the root `<html>` attributes:
 
 ```tsx
-<html lang="en" data-theme="dark" data-brand="vivokey" data-skin="cyber">
+<html lang="en" data-theme="dark" data-brand="omnikon" data-skin="cyber">
 ```
 
 - `data-theme`: `"dark"` | `"light"`
-- `data-brand`: `"relic"` | `"biohub"` | `"vivokey"` | `"neutral"`
+- `data-brand`: `"relic"` | `"biohub"` | `"omnikon"` | `"neutral"`
 - `data-skin`: `"cyber"` (tactical HUD aesthetics) or omit for forensic baseline
 
 ---

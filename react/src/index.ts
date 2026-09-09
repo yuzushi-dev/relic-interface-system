@@ -7,37 +7,37 @@
  */
 
 // Components
-export { Button } from './components/Button';
-export type { ButtonProps, ButtonVariant, ButtonSize } from './components/Button';
+export { Button } from './components/Button.js';
+export type { ButtonProps, ButtonVariant, ButtonSize } from './components/Button.js';
 
-export { Panel } from './components/Panel';
-export type { PanelProps, PanelVariant, PanelChamfer } from './components/Panel';
+export { Panel } from './components/Panel.js';
+export type { PanelProps, PanelVariant, PanelChamfer } from './components/Panel.js';
 
-export { Switch } from './components/Switch';
-export type { SwitchProps } from './components/Switch';
+export { Switch } from './components/Switch.js';
+export type { SwitchProps } from './components/Switch.js';
 
-export { Accordion } from './components/Accordion';
-export type { AccordionProps, AccordionItem } from './components/Accordion';
+export { Accordion } from './components/Accordion.js';
+export type { AccordionProps, AccordionItem } from './components/Accordion.js';
 
-export { Modal } from './components/Modal';
-export type { ModalProps } from './components/Modal';
+export { Modal } from './components/Modal.js';
+export type { ModalProps } from './components/Modal.js';
 
-export { Sheet } from './components/Sheet';
-export type { SheetProps } from './components/Sheet';
+export { Sheet } from './components/Sheet.js';
+export type { SheetProps } from './components/Sheet.js';
 
-export { Tabs } from './components/Tabs';
-export type { TabsProps, TabItem } from './components/Tabs';
+export { Tabs } from './components/Tabs.js';
+export type { TabsProps, TabItem } from './components/Tabs.js';
 
-export { Toast } from './components/Toast';
-export type { ToastProps, ToastData, ToastVariant, ToastAction } from './components/Toast';
+export { Toast } from './components/Toast.js';
+export type { ToastProps, ToastData, ToastVariant, ToastAction } from './components/Toast.js';
 
-export { ToastProvider, useToast, toast } from './components/ToastProvider';
-export type { ToastProviderProps, ToastOptions, ToastContextValue } from './components/ToastProvider';
+export { ToastProvider, useToast, toast } from './components/ToastProvider.js';
+export type { ToastProviderProps, ToastOptions, ToastContextValue } from './components/ToastProvider.js';
 
-export { Chip } from './components/Chip';
-export type { ChipProps, ChipVariant, StreamTag, RiskLevel } from './components/Chip';
+export { Chip } from './components/Chip.js';
+export type { ChipProps, ChipVariant, StreamTag, RiskLevel } from './components/Chip.js';
 
-export { Badge, TelemetryPill, Kpi } from './components/Badge';
+export { Badge, TelemetryPill, Kpi } from './components/Badge.js';
 export type {
   BadgeProps,
   BadgeVariant,
@@ -45,7 +45,7 @@ export type {
   TelemetryVariant,
   TelemetryDelta,
   KpiProps,
-} from './components/Badge';
+} from './components/Badge.js';
 
 export {
   LineChart,
@@ -53,7 +53,7 @@ export {
   GaugeChart,
   Sparkline,
   EegWaveform,
-} from './components/Charts';
+} from './components/Charts.js';
 export type {
   LineChartProps,
   BarChartProps,
@@ -61,25 +61,25 @@ export type {
   SparklineProps,
   EegWaveformProps,
   ScrubPoint,
-} from './components/Charts';
+} from './components/Charts.js';
 
-export { Input } from './components/Input';
-export type { InputProps } from './components/Input';
+export { Input } from './components/Input.js';
+export type { InputProps } from './components/Input.js';
 
-export { Select } from './components/Select';
-export type { SelectProps, SelectOption } from './components/Select';
+export { Select } from './components/Select.js';
+export type { SelectProps, SelectOption } from './components/Select.js';
 
-export { Textarea } from './components/Textarea';
-export type { TextareaProps } from './components/Textarea';
+export { Textarea } from './components/Textarea.js';
+export type { TextareaProps } from './components/Textarea.js';
 
-export { Checkbox } from './components/Checkbox';
-export type { CheckboxProps } from './components/Checkbox';
+export { Checkbox } from './components/Checkbox.js';
+export type { CheckboxProps } from './components/Checkbox.js';
 
-export { Table } from './components/Table';
-export type { TableProps, TableColumn } from './components/Table';
+export { Table } from './components/Table.js';
+export type { TableProps, TableColumn } from './components/Table.js';
 
-export { Alert } from './components/Alert';
-export type { AlertProps, AlertVariant } from './components/Alert';
+export { Alert } from './components/Alert.js';
+export type { AlertProps, AlertVariant } from './components/Alert.js';
 
 // Core utilities
-export { RisChartsCore } from './utils/risChartsCore';
+export { RisChartsCore } from './utils/risChartsCore.js';

@@ -16,7 +16,7 @@ The **Relic Interface System (RIS v2.8.0) Figma Studio Kit** is a precision cybe
 | **Price** | Free (Open Community) | $29 (Indie) / $79 (Team) / $199 (Enterprise) |
 | **Figma Master File** | `RIS-v2.8.0-Community-Preview.fig` | `RIS-v2.8.0-Studio-Pro.fig` (Complete) |
 | **Foundations & Tokens** | Core Tokens (`community-preview-tokens.json`) | Full W3C DTCG Token Dictionary (`tokens.json`) |
-| **Brands Included** | Relic (Default) & BioHub | Relic, BioHub, VivoKey, Neutral (All 4) |
+| **Brands Included** | Relic (Default) & BioHub | Relic, BioHub, Omnikon, Neutral (All 4) |
 | **Case-Context Skins** | Dark Graphite & Light Paper | Dark, Light, Sealed Dossier, Field Ops, Night Archive, Cyber HUD |
 | **Buttons & Controls** | Primary & Default (MD) | 7 Variants × 4 States × 3 Sizes (Full Matrix) |
 | **Interactive Components** | Basic Panels & Switch | Mechanical Switches, Corner Brackets, Accordions, Bottom Sheet |
@@ -112,11 +112,12 @@ Get the full commercial package on Lemon Squeezy / Gumroad:
 **Studio Pro Includes:**
 - Turnkey 1440px Desktop Forensic Dashboard frame
 - Turnkey 390px Mobile Touch Shell frame
-- All 4 Brand Systems (Relic, BioHub, VivoKey, Neutral)
+- All 4 Brand Systems (Relic, BioHub, Omnikon, Neutral)
 - 3 Case-Context Skins (Sealed Dossier, Field Collection, Night Archive) + Tactical Cyber HUD
-- Full 7-variant × 4-state × 3-size Button Component Sets
+- Full 7-variant × 4-state × 3-size Button Component Sets (60+ variants)
 - Complete W3C DTCG `tokens.json` dictionary (12 sets)
 - Production Tactical SVG Suite (Radar grids, targeting reticles, L-brackets)
+- Turnkey `code.js` master Figma plugin generator script
 - Commercial End-User License Agreement (EULA)
 ```
 
@@ -219,7 +220,7 @@ Subject to payment of the applicable license fee:
 
 4. OWNERSHIP & INTELLECTUAL PROPERTY
 The Product is licensed, not sold. Licensor retains all title, ownership rights, and intellectual 
-property rights in and to the Product. All trademarks, brand references (Relic, BioHub, VivoKey), 
+property rights in and to the Product. All trademarks, brand references (Relic, BioHub, Omnikon), 
 and visual iconography are proprietary to Licensor.
 
 5. DISCLAIMER OF WARRANTIES & LIMITATION OF LIABILITY

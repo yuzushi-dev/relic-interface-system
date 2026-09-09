@@ -6,7 +6,7 @@ import androidx.compose.ui.graphics.Color
  * RELIC INTERFACE SYSTEM v2 — Compose color tokens.
  * Source of truth: ../tokens/ris.tokens.json (mirrors ../css/ris-tokens.css).
  *
- * Themes: Dark (default) + Light. Brands: Relic / BioHub / VivoKey / Neutral.
+ * Themes: Dark (default) + Light. Brands: Relic / BioHub / Omnikon / Neutral.
  * Status is NEVER color-only — always pair with a label/icon.
  * Contextual accents are AA-safe (>=4.5:1) on bg/surface of their theme;
  * *Fill accents are always bright and pair with FgInvert text.
@@ -105,7 +105,7 @@ object RisLight {
 
 // ═══════════════════════════════ BRAND ══════════════════════════════════════
 
-enum class RisBrand { Relic, BioHub, VivoKey, Neutral }
+enum class RisBrand { Relic, BioHub, Omnikon, Neutral }
 
 data class RisAccentPair(val primary: Color, val primaryFill: Color, val secondary: Color)
 
@@ -118,7 +118,7 @@ fun risBrandAccents(brand: RisBrand, light: Boolean = false): RisAccentPair = wh
         if (light) RisLight.Cyan else RisCyan, RisCyanFill,
         if (light) RisLight.Green else RisGreen,
     )
-    RisBrand.VivoKey -> RisAccentPair(
+    RisBrand.Omnikon -> RisAccentPair(
         if (light) RisLight.Red else RisRed, RisRedFill,
         if (light) RisLight.Yellow else RisYellow,
     )

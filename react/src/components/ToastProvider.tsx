@@ -1,7 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect, useRef, useCallback } from 'react';
-import { Toast, ToastData, ToastVariant, ToastAction } from './Toast';
+import { Toast, ToastData, ToastVariant, ToastAction } from './Toast.js';
 
 export interface ToastOptions {
   id?: string;

@@ -16,7 +16,7 @@ Use this document to instruct agents or engineers to build applications using th
 >   `ris-tokens.css` → `ris.css` → `ris-fx.css` (optional) → `ris-skin-cyber.css` (LAST).
 > - If telemetry charts are used, load `js/ris-charts.js` (`RisCharts.line`, `bars`, `gauge`, `intraday`, `eeg`).
 > - Use standard SVG icons from `icons/ris-icons.svg`: `<svg class="ris-icon" aria-hidden="true"><use href="icons/ris-icons.svg#ris-<NAME>"/></svg>` (Tabler Icons MIT base).
-> - Root: `<html data-theme="dark" data-brand="vivokey" data-skin="cyber">` (or `data-theme="light"` for technical drafting mode).
+> - Root: `<html data-theme="dark" data-brand="omnikon" data-skin="cyber">` (or `data-theme="light"` for technical drafting mode).
 > - Body: `<body class="ris ris-grid-bg">`.
 >
 > **Non-negotiable** rules:
@@ -41,7 +41,7 @@ Use this document to instruct agents or engineers to build applications using th
 ## Wiring (Web)
 
 ```html
-<html data-theme="dark" data-brand="vivokey" data-skin="cyber">
+<html data-theme="dark" data-brand="omnikon" data-skin="cyber">
 <head>
   <link rel="stylesheet" href="css/ris-tokens.css">
   <link rel="stylesheet" href="css/ris.css">
@@ -64,7 +64,7 @@ Remove `data-skin="cyber"` + the final `<link>` → reverts to the disciplined f
 | Attribute on `<html>` | Values | Effect |
 |---|---|---|
 | `data-theme` | `dark` (default) · `light` | In Dark mode: high-contrast tactical HUD. In Light mode: technical drafting cyan/slate (`#1b6b80`), eliminating fluorescent glare while retaining cybernetic geometry and WCAG 2.2 AA. |
-| `data-brand` | `relic` · `biohub` · `vivokey` · `neutral` (+ `sealed`/`field`/`archive`) | Modifies accent pair only. `vivokey` = red/yellow, `relic` = yellow/cyan, `biohub` = cyan/green. |
+| `data-brand` | `relic` · `biohub` · `omnikon` · `neutral` (+ `sealed`/`field`/`archive`) | Modifies accent pair only. `omnikon` = red/yellow, `relic` = yellow/cyan, `biohub` = cyan/green. |
 | `data-skin` | omitted · `cyber` | `cyber` = Tactical Cyber HUD aesthetics (structural red, glow, scanlines, techno font in dark mode; blueprint cyan/slate in light mode). |
 
 ## Do / Don't

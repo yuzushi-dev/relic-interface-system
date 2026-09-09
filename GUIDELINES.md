@@ -50,7 +50,7 @@ hardcode hex values in components.
 |---|---|---|---|
 | `relic` (default) | yellow | cyan | research workbench, command surfaces |
 | `biohub` | cyan | green | biofeedback, health telemetry |
-| `vivokey` | red | yellow | authentication, possession factor, implants |
+| `omnikon` | red | yellow | authentication, possession factor, implants |
 | `neutral` | violet | cyan | general purpose / third-party projects |
 
 *Semantic* colors (danger, success, stream…) never vary with brand.

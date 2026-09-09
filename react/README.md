@@ -42,22 +42,15 @@ yarn add @relic-ui/react
 
 ### 1. Import RIS CSS in Root Layout
 
-Import the RIS stylesheets into your root `app/layout.tsx`. RIS stylesheets should be imported in this exact cascading order:
-1. `ris-tokens.css` (token definitions and themes)
-2. `ris.css` (base structural components)
-3. `ris-fx.css` *(optional)* (CRT scanlines, glitches, glows)
-4. `ris-skin-cyber.css` *(optional)* (tactical cybernetic skin)
+Import the bundled RIS stylesheet into your root `app/layout.tsx`. It bundles all tokens, components, telemetry animations, and tactical skin in one zero-config import:
 
 ```tsx
 // app/layout.tsx
 import type { Metadata } from 'next';
 import { ToastProvider } from '@relic-ui/react';
 
-// Import RIS CSS stylesheets
-import 'relic-interface-system/css/ris-tokens.css';
-import 'relic-interface-system/css/ris.css';
-import 'relic-interface-system/css/ris-fx.css';
-import 'relic-interface-system/css/ris-skin-cyber.css';
+// Import RIS bundled CSS
+import '@relic-ui/react/styles.css';
 
 export const metadata: Metadata = {
   title: 'Tactical Cyber HUD',
@@ -66,7 +59,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" data-theme="dark" data-brand="vivokey" data-skin="cyber">
+    <html lang="en" data-theme="dark" data-brand="omnikon" data-skin="cyber">
       <body className="ris ris-grid-bg">
         <ToastProvider maxToasts={5} defaultDuration={4000}>
           {children}
@@ -536,14 +529,14 @@ Relic Interface System components natively inherit variables set on `<html>`:
 
 ```html
 <!-- High-Contrast Dark Mode (Default) -->
-<html data-theme="dark" data-brand="vivokey" data-skin="cyber">
+<html data-theme="dark" data-brand="omnikon" data-skin="cyber">
 
 <!-- Technical Drafting Blueprint Light Mode (WCAG AA Compliant) -->
 <html data-theme="light" data-brand="relic" data-skin="cyber">
 ```
 
 ### Supported Brands
-- `vivokey`: Red primary + amber/yellow secondary
+- `omnikon`: Red primary + amber/yellow secondary
 - `relic`: Amber-sodium primary + cold cyan secondary
 - `biohub`: Cyan primary + emerald green secondary
 - `neutral`: Steel slate monochrome + high-contrast white

@@ -49,3 +49,7 @@ docs/superpowers/
 !.env.example
 *.pem
 *.key
+
+# Internal adversarial audits & buyer reports (do not publish)
+RIS_BUYER_AUDIT*.md
+AUDIT*.md

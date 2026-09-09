@@ -8,7 +8,7 @@ import {
   BarChartOptions,
   GaugeChartOptions,
   EegWaveformOptions,
-} from '../utils/risChartsCore';
+} from '../utils/risChartsCore.js';
 
 export type { ScrubPoint };
 

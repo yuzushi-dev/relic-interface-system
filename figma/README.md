@@ -20,7 +20,7 @@ The **Relic Interface System (RIS v2) Figma UI Kit** translates the forensic-gra
 * **Brand Taxonomy**:
   * **Relic** (Default): Yellow CTA (`#e6a23c`) / Cyan telemetry (`#6fb3c9`).
   * **BioHub**: Cyan data (`#6fb3c9`) / Green biofeedback (`#5fae84`).
-  * **VivoKey**: Red biometric auth (`#da6171`) / Yellow CTA (`#e6a23c`).
+  * **Omnikon**: Red biometric auth (`#da6171`) / Yellow CTA (`#e6a23c`).
   * **Neutral**: Violet archival (`#938ac8`) / Cyan secondary (`#6fb3c9`).
 * **Case-Context Skins**:
   * **Sealed Dossier**: Evidentiary red (`#cf5e6b`) on cold graphite (`#120e12`).
@@ -61,13 +61,13 @@ figma/
 4. The plugin will immediately recognize all configured token sets:
    * `global`: Typography (`Archivo`, `JetBrains Mono`, `Chakra Petch`), spacing (`4px` grid), shape chamfers (`6px`, `10px`, `16px`), and theme-independent accent fills.
    * `theme-dark` & `theme-light`: Contextual surfaces, borders, text, and ink accents.
-   * `brand-relic`, `brand-biohub`, `brand-vivokey`, `brand-neutral`: Accent pairs.
+   * `brand-relic`, `brand-biohub`, `brand-omnikon`, `brand-neutral`: Accent pairs.
    * `case-sealed`, `case-field`, `case-archive`, `skin-cyber`: Full contextual skins.
 5. In the bottom bar of Tokens Studio, switch between pre-configured themes in `$themes`:
    * `Dark / Relic (Default)`
    * `Light / Relic`
    * `Dark / BioHub`
-   * `Dark / VivoKey`
+   * `Dark / Omnikon`
    * `Dark / Neutral`
    * `Skin / Sealed Dossier`
    * `Skin / Field Collection`
@@ -153,7 +153,7 @@ The vector assets in `figma/assets/` can be dragged directly onto your Figma can
    Features:
    - Hard-edged geometry with 45° chamfered cuts (6px, 10px, 16px).
    - Side-by-side Dark (graphite) & Light (cold paper) modes.
-   - 4 Brand palettes: Relic, BioHub, VivoKey, Neutral.
+   - 4 Brand palettes: Relic, BioHub, Omnikon, Neutral.
    - 3 Case-Context skins: Sealed Dossier, Field Collection, Night Archive.
    - Tactical Cyber HUD mode with structural crimson lines and neon glows.
    - 100% WCAG 2.2 AA contrast verified.
@@ -174,7 +174,7 @@ The vector assets in `figma/assets/` can be dragged directly onto your Figma can
 
 ## 7. Verification & Compliance Checklist
 
-- [x] **Strict RIS v2 Naming**: All brands (`relic`, `biohub`, `vivokey`, `neutral`) and case contexts (`sealed`, `field`, `archive`) match codebase tokens.
+- [x] **Strict RIS v2 Naming**: All brands (`relic`, `biohub`, `omnikon`, `neutral`) and case contexts (`sealed`, `field`, `archive`) match codebase tokens.
 - [x] **Zero Rounded Corners**: Hard-edged rule (`radius: 0px`) respected; all rounding is replaced with 45° chamfers.
 - [x] **WCAG 2.2 AA**: All text, ink accents, and contextual states meet or exceed 4.5:1 on their target backgrounds.
 - [x] **Pure Local Workspace**: All created files reside strictly within `figma/`.

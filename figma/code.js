@@ -173,8 +173,8 @@
     registerPaintStyle("RIS / Brand / Relic Secondary", "#6fb3c9");
     registerPaintStyle("RIS / Brand / BioHub Primary", "#6fb3c9");
     registerPaintStyle("RIS / Brand / BioHub Secondary", "#5fae84");
-    registerPaintStyle("RIS / Brand / VivoKey Primary", "#da6171");
-    registerPaintStyle("RIS / Brand / VivoKey Secondary", "#e6a23c");
+    registerPaintStyle("RIS / Brand / Omnikon Primary", "#da6171");
+    registerPaintStyle("RIS / Brand / Omnikon Secondary", "#e6a23c");
     registerPaintStyle("RIS / Brand / Neutral Primary", "#938ac8");
     registerPaintStyle("RIS / Brand / Neutral Secondary", "#6fb3c9");
 
@@ -590,7 +590,7 @@
     const brandList = [
       { name: "RELIC (DEFAULT)", desc: "Workbench & Command", p: "#e6a23c", s: "#6fb3c9", pName: "Yellow", sName: "Cyan" },
       { name: "BIOHUB", desc: "Neural & Biofeedback", p: "#6fb3c9", s: "#5fae84", pName: "Cyan", sName: "Green" },
-      { name: "VIVOKEY", desc: "Biometrics & Security", p: "#da6171", s: "#e6a23c", pName: "Red", sName: "Yellow" },
+      { name: "OMNIKON", desc: "Biometrics & Security", p: "#da6171", s: "#e6a23c", pName: "Red", sName: "Yellow" },
       { name: "NEUTRAL", desc: "Archival Research", p: "#938ac8", s: "#6fb3c9", pName: "Violet", sName: "Cyan" },
     ];
 
@@ -1621,7 +1621,7 @@
 
     const deskKpis = [
       { label: "INGESTION STREAM", val: "1.44 GB/s", delta: "▲ OPTIMAL", color: "#5fae84" },
-      { label: "VIVOKEY BIOMETRICS", val: "74 BPM", delta: "▲ STABLE", color: "#6fb3c9" },
+      { label: "OMNIKON BIOMETRICS", val: "74 BPM", delta: "▲ STABLE", color: "#6fb3c9" },
       { label: "CORE SENSOR TEMP", val: "38.2 °C", delta: "▲ +1.1°C", color: "#ffd83a" },
       { label: "THREAT CONTEXT", val: "DEFCON 2", delta: "▼ ELEVATED", color: "#da6171" },
     ];
@@ -1713,7 +1713,7 @@
 
     const logRows = [
       { t: "19:34:52", node: "NODE-01", proto: "PROTO_6520", size: "24.2 MB", hash: "0x889F...771B", stat: "SYNCED" },
-      { t: "19:34:48", node: "NODE-03", proto: "VIVOKEY_BIO", size: "1.1 MB", hash: "0x442A...991C", stat: "AUTH_OK" },
+      { t: "19:34:48", node: "NODE-03", proto: "OMNIKON_BIO", size: "1.1 MB", hash: "0x442A...991C", stat: "AUTH_OK" },
       { t: "19:34:41", node: "NODE-02", proto: "SEALED_EVT", size: "128.0 MB", hash: "0x918F...B442", stat: "SEALED" },
       { t: "19:34:35", node: "NODE-07", proto: "RADAR_SWEEP", size: "64.8 MB", hash: "0x120C...D311", stat: "STREAM" },
     ];
@@ -1839,7 +1839,7 @@
     mBio.paddingRight = 16;
     mBody.appendChild(mBio);
 
-    makeText(mBio, "BIOMETRIC AUTH // VIVOKEY", FONTS.monoBold, 9.5, "#da6171");
+    makeText(mBio, "BIOMETRIC AUTH // OMNIKON", FONTS.monoBold, 9.5, "#da6171");
     makeText(mBio, "74 BPM", FONTS.displayBold, 28, "#e6ebe8");
     makeText(mBio, "▲ NORMAL SINUS RHYTHM", FONTS.monoBold, 9.5, "#5fae84");
 

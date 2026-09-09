@@ -9,7 +9,7 @@ export interface TopBarProps {
   onOpenMobileSheet?: () => void;
 }
 
-export type BrandType = 'relic' | 'biohub' | 'vivokey' | 'neutral';
+export type BrandType = 'relic' | 'biohub' | 'omnikon' | 'neutral';
 export type ThemeType = 'dark' | 'light';
 
 export const TopBar: React.FC<TopBarProps> = ({ onOpenModal, onOpenMobileSheet }) => {
@@ -97,9 +97,9 @@ export const TopBar: React.FC<TopBarProps> = ({ onOpenModal, onOpenMobileSheet }
 
       <div className="flex-1" />
 
-      {/* Brand Switcher (Relic, Biohub, Vivokey, Neutral) */}
+      {/* Brand Switcher (Relic, Biohub, Omnikon, Neutral) */}
       <div className="hidden sm:flex items-center gap-1 bg-ris-surface2 p-1 border border-ris-line">
-        {(['relic', 'biohub', 'vivokey', 'neutral'] as BrandType[]).map((b) => (
+        {(['relic', 'biohub', 'omnikon', 'neutral'] as BrandType[]).map((b) => (
           <button
             key={b}
             type="button"
@@ -134,6 +134,8 @@ export const TopBar: React.FC<TopBarProps> = ({ onOpenModal, onOpenMobileSheet }
         variant="primary"
         size="sm"
         onClick={onOpenModal}
+        aria-label="Execute System Security Override"
+        title="Execute System Security Override"
         leftIcon={<IconShield size={14} />}
       >
         <span className="hidden sm:inline">OVERRIDE</span>

@@ -59,7 +59,12 @@ No local setup is required to evaluate or start building. Launch the full enviro
 <br />
 
 <p align="center">
-  <img src="assets/dashboard-preview.png" alt="Forensic Telemetry Dashboard" width="65%" />
+  <img src="assets/dashboard-preview.png" alt="Forensic Telemetry Dashboard - Dark Tactical HUD" width="49%" />
+  &nbsp;
+  <img src="assets/dashboard-light-preview.png" alt="Forensic Telemetry Dashboard - Light Technical Blueprint" width="49%" />
+</p>
+<p align="center">
+  <img src="assets/charts-preview.png" alt="Tactical Real Telemetry SVG Charts" width="65%" />
   &nbsp;
   <img src="assets/mobile-preview.png" alt="Tactical Mobile Shell" width="31%" />
 </p>
@@ -90,7 +95,7 @@ Relic Interface System follows an open-core architecture. The foundational desig
 
 | Deliverable | Core (Open Source · MIT) | Pro Suite (Commercial License) |
 | :--- | :---: | :---: |
-| **Design Tokens & CSS** | Full Dark & Light tokens, 4 Brands | + 3 High-density Case-Context skins (`sealed`, `field`, `archive`) |
+| **Design Tokens & CSS** | Full Dark & Light tokens, 4 Brands (`relic`, `biohub`, `omnikon`, `neutral`) | + 3 High-density Case-Context skins (`sealed`, `field`, `archive`) |
 | **Figma UI Kit** | Community Preview tokens & generator script | **Figma Studio Kit Pro**: Master generator, 60+ component variants, Auto Layout, Tokens Studio DTCG |
 | **React Components** | Buttons, Panels, Switches, Tabs, Modals | Full `@relic-ui/react` library + Form controls, Data Table, Alerts, Sonner Toasts, EEG Canvas |
 | **Next.js Templates** | Specimen pages | **Forensic Telemetry Dashboard**: Complete App Router application with Docker container |

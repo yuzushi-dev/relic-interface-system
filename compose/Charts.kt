@@ -24,9 +24,13 @@ import java.time.temporal.ChronoUnit
 fun RisLineChart(
     data: List<Float>,
     modifier: Modifier = Modifier,
-    color: Color = RisCyberSkin.Cyan,
+    color: Color = Color.Unspecified,
 ) {
     if (data.size < 2) return
+    val colors = RisTheme.colors
+    val actualColor = if (color != Color.Unspecified) color else colors.cyan
+    val faintLineColor = colors.lineFaint
+
     Canvas(modifier) {
         val padX = 6f
         val padY = 10f
@@ -42,7 +46,7 @@ fun RisLineChart(
         // Baseline grid lines
         for (g in 0..3) {
             val gy = padY + g / 3f * (h - padY * 2)
-            drawLine(RisCyberSkin.LineFaint, Offset(padX, gy), Offset(w - padX, gy), 1f)
+            drawLine(faintLineColor, Offset(padX, gy), Offset(w - padX, gy), 1f)
         }
 
         // Fill area
@@ -53,15 +57,15 @@ fun RisLineChart(
             lineTo(x(0), h - padY)
             close()
         }
-        drawPath(area, color.copy(alpha = 0.20f))
+        drawPath(area, actualColor.copy(alpha = 0.20f))
 
         // Stroke line
         val line = Path().apply {
             moveTo(x(0), y(data[0]))
             data.forEachIndexed { i, v -> lineTo(x(i), y(v)) }
         }
-        drawPath(line, color, style = Stroke(width = 3f))
-        drawCircle(color, radius = 4f, center = Offset(x(data.size - 1), y(data.last())))
+        drawPath(line, actualColor, style = Stroke(width = 3f))
+        drawCircle(actualColor, radius = 4f, center = Offset(x(data.size - 1), y(data.last())))
     }
 }
 
@@ -74,18 +78,22 @@ fun RisLineChart(
 fun RisTimeSeriesChart(
     points: List<Pair<Long, Float>>,
     modifier: Modifier = Modifier,
-    color: Color = RisCyberSkin.Cyan,
+    color: Color = Color.Unspecified,
     baselineMedian: Float? = null,
     baselineSigma: Float? = null,
     valueFormat: (Float) -> String = { "%.0f".format(it) },
 ) {
     if (points.size < 2) return
+    val colors = RisTheme.colors
+    val actualColor = if (color != Color.Unspecified) color else colors.cyan
+    val faintLineColor = colors.lineFaint
+    val fg3Color = colors.fg3
     val zone = ZoneId.systemDefault()
     Canvas(modifier) {
         val labelPaint = android.graphics.Paint().apply {
             textSize = 9.dp.toPx()
             isAntiAlias = true
-            this.color = RisCyberSkin.Fg3.toArgb()
+            this.color = fg3Color.toArgb()
             typeface = android.graphics.Typeface.MONOSPACE
         }
         val padLeft = 6f
@@ -135,7 +143,7 @@ fun RisTimeSeriesChart(
                 val dayMillis = cur.toInstant().toEpochMilli()
                 val gx = x(dayMillis)
                 drawLine(
-                    color = RisCyberSkin.LineFaint,
+                    color = faintLineColor,
                     start = Offset(gx, padTop),
                     end = Offset(gx, padTop + plotH),
                     strokeWidth = 1f
@@ -159,12 +167,12 @@ fun RisTimeSeriesChart(
             val botY = y(baselineMedian - baselineSigma * 2).coerceIn(padTop, padTop + plotH)
             val medY = y(baselineMedian).coerceIn(padTop, padTop + plotH)
             drawRect(
-                color = color.copy(alpha = 0.08f),
+                color = actualColor.copy(alpha = 0.08f),
                 topLeft = Offset(padLeft, topY),
                 size = androidx.compose.ui.geometry.Size(plotW, (botY - topY).coerceAtLeast(0f))
             )
             drawLine(
-                color = color.copy(alpha = 0.35f),
+                color = actualColor.copy(alpha = 0.35f),
                 start = Offset(padLeft, medY),
                 end = Offset(padLeft + plotW, medY),
                 strokeWidth = 1.5f,
@@ -180,20 +188,20 @@ fun RisTimeSeriesChart(
             lineTo(x(points[0].first), padTop + plotH)
             close()
         }
-        drawPath(area, color.copy(alpha = 0.18f))
+        drawPath(area, actualColor.copy(alpha = 0.18f))
 
         // Stroke line
         val line = Path().apply {
             moveTo(x(points[0].first), y(points[0].second))
             points.forEach { (t, v) -> lineTo(x(t), y(v)) }
         }
-        drawPath(line, color, style = Stroke(width = 3.5f))
+        drawPath(line, actualColor, style = Stroke(width = 3.5f))
 
         // End pulse marker
         val lastP = points.last()
         val endCenter = Offset(x(lastP.first), y(lastP.second))
-        drawCircle(color.copy(alpha = 0.35f), radius = 6f, center = endCenter)
-        drawCircle(color, radius = 3.5f, center = endCenter)
+        drawCircle(actualColor.copy(alpha = 0.35f), radius = 6f, center = endCenter)
+        drawCircle(actualColor, radius = 3.5f, center = endCenter)
 
         // Min / Max Y labels
         val maxYText = valueFormat(vMax)
@@ -222,11 +230,17 @@ fun RisBarChart(
     values: List<Float>,
     modifier: Modifier = Modifier,
     highlightIndex: Int = -1,
-    color: Color = RisCyberSkin.Cyan,
-    highlightColor: Color = RisCyberSkin.Yellow,
+    color: Color = Color.Unspecified,
+    highlightColor: Color = Color.Unspecified,
     categories: List<String> = emptyList(),
 ) {
     if (values.isEmpty()) return
+    val colors = RisTheme.colors
+    val actualColor = if (color != Color.Unspecified) color else colors.cyan
+    val actualHighlightColor = if (highlightColor != Color.Unspecified) highlightColor else colors.accent
+    val faintLineColor = colors.lineFaint
+    val fg3Color = colors.fg3
+
     Canvas(modifier) {
         val padLeft = 8f
         val padRight = 8f
@@ -244,7 +258,7 @@ fun RisBarChart(
 
         // Baseline horizontal line
         drawLine(
-            color = RisCyberSkin.LineFaint,
+            color = faintLineColor,
             start = Offset(padLeft, padTop + plotH),
             end = Offset(padLeft + plotW, padTop + plotH),
             strokeWidth = 1f
@@ -253,13 +267,13 @@ fun RisBarChart(
         val labelPaint = android.graphics.Paint().apply {
             textSize = 9.dp.toPx()
             isAntiAlias = true
-            this.color = RisCyberSkin.Fg3.toArgb()
+            this.color = fg3Color.toArgb()
             typeface = android.graphics.Typeface.MONOSPACE
         }
 
         values.forEachIndexed { i, v ->
             val isHighlighted = i == highlightIndex
-            val colColor = if (isHighlighted) highlightColor else color
+            val colColor = if (isHighlighted) actualHighlightColor else actualColor
             val barH = (v / maxVal) * plotH
             val x = padLeft + i * (colW + colGap)
             val y = padTop + plotH - barH

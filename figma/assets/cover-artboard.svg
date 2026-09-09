@@ -254,13 +254,13 @@
     </g>
   </g>
 
-  <!-- Floating KPI Stat Card: Biometric VivoKey -->
+  <!-- Floating KPI Stat Card: Biometric Omnikon -->
   <g transform="translate(1000, 560)">
     <polygon points="0,0 260,0 270,10 270,140 10,140 0,130" 
              fill="#141a1e" stroke="#2a343b" stroke-width="1.5" />
     
     <rect x="16" y="16" width="3" height="14" fill="#da6171" />
-    <text x="26" y="28" fill="#98a3a5" font-family="'Archivo', sans-serif" font-size="10.5" font-weight="600" letter-spacing="0.1em">BIOMETRICS // VIVOKEY</text>
+    <text x="26" y="28" fill="#98a3a5" font-family="'Archivo', sans-serif" font-size="10.5" font-weight="600" letter-spacing="0.1em">BIOMETRICS // OMNIKON</text>
     
     <text x="24" y="78" fill="#e6ebe8" font-family="'Archivo', sans-serif" font-size="36" font-weight="800">74 <tspan fill="#98a3a5" font-size="14" font-weight="500">BPM</tspan></text>
     <text x="24" y="106" fill="#5fae84" font-family="'JetBrains Mono', monospace" font-size="11" font-weight="700">▲ STABLE // 24H DELTA</text>
@@ -392,7 +392,7 @@
   <line x1="96" y1="990" x2="1824" y2="990" stroke="#2a343b" stroke-width="1" />
   <g font-family="'JetBrains Mono', monospace" font-size="10" letter-spacing="0.1em">
     <text x="96" y="1012" fill="#98a3a5">FIGMA COMMUNITY &amp; LEMON SQUEEZY COMMERCIAL BUNDLE</text>
-    <text x="760" y="1012" fill="#5fae84">WCAG 2.2 AA / AAA CERTIFIED</text>
+    <text x="760" y="1012" fill="#5fae84">WCAG 2.2 AA CONTRAST VERIFIED</text>
     <text x="1100" y="1012" fill="#4a555b">ZERO ROUNDED CORNERS // PURE 45° ANGULAR GEOMETRY</text>
     <text x="1640" y="1012" fill="#e6a23c" font-weight="700">© 2026 RELIC INTERFACE SYSTEM</text>
   </g>

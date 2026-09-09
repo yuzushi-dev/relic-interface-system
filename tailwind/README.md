@@ -95,7 +95,7 @@ In Tailwind CSS v4, add the plugin directly to your main CSS stylesheet:
 
 ### 1. Colors
 
-All colors are mapped to their underlying CSS custom properties (`var(--ris-*)`), adapting automatically when switching themes (`data-theme="dark|light"`) or brands (`data-brand="relic|biohub|vivokey|neutral"`):
+All colors are mapped to their underlying CSS custom properties (`var(--ris-*)`), adapting automatically when switching themes (`data-theme="dark|light"`) or brands (`data-brand="relic|biohub|omnikon|neutral"`):
 
 | Tailwind Color | CSS Variable | Description |
 | :--- | :--- | :--- |
@@ -360,7 +360,7 @@ RIS supports theme switching via HTML data attributes. All Tailwind utilities pr
 ### Brand Palettes:
 - `relic` (default): Amber-sodium (`yellow`) primary, cold steel-ice (`cyan`) secondary.
 - `biohub`: Ice cyan (`cyan`) primary, emerald bio (`green`) secondary.
-- `vivokey`: Evidentiary crimson (`red`) primary, amber (`yellow`) secondary.
+- `omnikon`: Evidentiary crimson (`red`) primary, amber (`yellow`) secondary.
 - `neutral`: High-contrast violet (`violet`) primary, steel-ice (`cyan`) secondary.
 
 ---

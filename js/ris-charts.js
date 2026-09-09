@@ -64,6 +64,10 @@
   }
 
   function scale(points, w, h, pad) {
+    if (!points || !points.length) return [];
+    if (points.length === 1) {
+      return [[pad, h / 2], [w - pad, h / 2]];
+    }
     const min = Math.min(...points), max = Math.max(...points);
     const span = (max - min) || 1;
     return points.map((v, i) => [
@@ -248,11 +252,27 @@
     const color = opts.color || 'var(--ris-accent-2)';
     const svg = base(el, w, h, opts.label);
     grid(svg, w, h, opts.gridX || 6, opts.gridY || 4);
+
+    if (!points || !points.length) {
+      const emptyMsg = svgEl('text', {
+        x: w / 2,
+        y: h / 2,
+        fill: 'var(--ris-fg3)',
+        'font-family': 'var(--ris-font-mono)',
+        'font-size': 10,
+        'text-anchor': 'middle',
+        'letter-spacing': '0.08em',
+      });
+      emptyMsg.textContent = 'NO TELEMETRY DATA';
+      svg.appendChild(emptyMsg);
+      return svg;
+    }
+
     if (opts.ambientSweep !== false && opts.area !== false) ambientSweep(svg, w, h);
 
     const xy = scale(points, w, h, pad);
     const d = xy.map((p, i) => (i ? 'L' : 'M') + p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' ');
-    if (opts.area !== false) {
+    if (opts.area !== false && xy.length > 0) {
       const area = `${d} L ${xy[xy.length - 1][0].toFixed(1)} ${h - pad} L ${xy[0][0].toFixed(1)} ${h - pad} Z`;
       svg.appendChild(svgEl('path', { d: area, fill: color, opacity: 0.10 }));
     }
@@ -657,7 +677,7 @@
       if (tick.getHours() % stepH === 0) {
         const x = X(tick.getTime());
         svg.appendChild(svgEl('line', { x1: x, y1: padTop, x2: x, y2: h - padBot, stroke: 'var(--ris-line-faint)', 'stroke-width': 1 }));
-        const lbl = svgEl('text', { x: x + 2, y: h - 5, fill: 'var(--ris-fg-meta)', 'font-family': 'var(--ris-font-mono)', 'font-size': 8, 'letter-spacing': '0.04em' });
+        const lbl = svgEl('text', { x: x + 2, y: h - 5, fill: 'var(--ris-fg3)', 'font-family': 'var(--ris-font-mono)', 'font-size': 8, 'letter-spacing': '0.04em' });
         lbl.textContent = String(tick.getHours()).padStart(2, '0');
         svg.appendChild(lbl);
       }

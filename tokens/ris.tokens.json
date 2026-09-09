@@ -46,7 +46,7 @@
       "$description": "data-brand accent pairs: primary / secondary.",
       "relic":   { "$type": "color", "$value": "{color.accent.yellow}",  "$extensions": { "ris.secondary": "{color.accent.cyan}" } },
       "biohub":  { "$type": "color", "$value": "{color.accent.cyan}",    "$extensions": { "ris.secondary": "{color.accent.green}" } },
-      "vivokey": { "$type": "color", "$value": "{color.accent.red}",     "$extensions": { "ris.secondary": "{color.accent.yellow}" } },
+      "omnikon": { "$type": "color", "$value": "{color.accent.red}",     "$extensions": { "ris.secondary": "{color.accent.yellow}" } },
       "neutral": { "$type": "color", "$value": "{color.accent.violet}",  "$extensions": { "ris.secondary": "{color.accent.cyan}" } }
     },
     "stream": {

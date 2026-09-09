@@ -443,6 +443,7 @@ function relicPluginHandler({ addUtilities, matchUtilities, theme }) {
           md: '10px',
           lg: '16px',
         },
+        modifiers: true,
       }
     );
   }

@@ -17,7 +17,8 @@
     "index.js",
     "preset.js",
     "index.d.ts",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
     "test": "node test.js"

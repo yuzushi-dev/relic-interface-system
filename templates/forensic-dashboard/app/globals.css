@@ -7,7 +7,7 @@
 /* ============================================================================
    RELIC INTERFACE SYSTEM (RIS v2.8.0) — Core Tokens & Design System
    Dual Theme (Dark Tactical HUD + Light Technical Drafting Cyan)
-   Brands: Relic | Biohub | Vivokey | Neutral
+   Brands: Relic | Biohub | Omnikon | Neutral
    Skin: Cyber (Tactical Cyber HUD)
    ========================================================================== */
 
@@ -144,8 +144,8 @@
   --ris-accent-2-fill: var(--ris-green-fill);
 }
 
-/* vivokey: red primary / yellow secondary */
-:root[data-brand="vivokey"] {
+/* omnikon: red primary / yellow secondary */
+:root[data-brand="omnikon"] {
   --ris-accent:        var(--ris-red);
   --ris-accent-dim:    var(--ris-red-dim);
   --ris-accent-glow:   var(--ris-red-glow);

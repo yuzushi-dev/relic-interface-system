@@ -1,10 +1,10 @@
 /* ============================================================================
    RELIC INTERFACE SYSTEM v2 — ris-tokens.css
    Token layer: themes (dark default / light) + brands (relic / biohub /
-   vivokey / neutral). Source of truth mirrored in ../tokens/ris.tokens.json.
+   omnikon / neutral). Source of truth mirrored in ../tokens/ris.tokens.json.
 
    Usage:
-     <html data-theme="dark|light" data-brand="relic|biohub|vivokey|neutral">
+     <html data-theme="dark|light" data-brand="relic|biohub|omnikon|neutral">
      <link rel="stylesheet" href="css/ris-tokens.css">
      <link rel="stylesheet" href="css/ris.css">
 
@@ -243,9 +243,9 @@
    5. BRAND LAYER — sets the accent pair only; semantics never change.
      relic   (default) yellow / cyan   — workbench, command
      biohub            cyan   / green  — biofeedback, data
-     vivokey           red    / yellow — auth, possession factor
+     omnikon           red    / yellow — auth, possession factor
      neutral           violet / cyan   — general use
-   -------------------------------------------------------------------------- */
+    -------------------------------------------------------------------------- */
 :root,
 :root[data-brand="relic"] {
   --ris-accent:       var(--ris-yellow);
@@ -267,7 +267,7 @@
   --ris-accent-2-glow: var(--ris-green-glow);
   --ris-accent-2-line: var(--ris-green-line);
 }
-:root[data-brand="vivokey"] {
+:root[data-brand="omnikon"] {
   --ris-accent:       var(--ris-red);
   --ris-accent-dim:   var(--ris-red-dim);
   --ris-accent-glow:  var(--ris-red-glow);

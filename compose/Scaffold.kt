@@ -42,7 +42,7 @@ import java.util.Locale
  * @param snackbarHost Optional host slot for [RisToast] notifications.
  * @param floatingActionButton Optional floating action slot.
  * @param backdrop When true, applies [Modifier.cyberBackdrop] with scanlines and radial gradient.
- * @param backgroundColor Surface background tone (defaults to [RisCyberSkin.Bg]).
+ * @param backgroundColor Surface background tone (defaults to [RisTheme.colors.bg]).
  * @param content Screen content receiving safe [PaddingValues].
  */
 @Composable
