@@ -1,0 +1,512 @@
+/* ============================================================================
+   RELIC INTERFACE SYSTEM v2 — ris-skin-cyber.css
+   OPT-IN "cyber" skin — overlays the tactical cyberpunk HUD look & feel over the
+   forensic baseline WITHOUT modifying it. Load LAST:
+
+     <html data-theme="dark" data-brand="omnikon" data-skin="cyber">
+       <link rel="stylesheet" href="css/ris-tokens.css">
+       <link rel="stylesheet" href="css/ris.css">
+       <link rel="stylesheet" href="css/ris-fx.css">
+       <link rel="stylesheet" href="css/ris-skin-cyber.css">  <!-- last -->
+
+   Activation is `data-skin="cyber"` on <html>. Remove the attribute (or the
+   <link>) and the disciplined default returns: zero regressions, multi-brand and
+   light themes intact. Everything inside is scoped to [data-skin="cyber"].
+
+   Preserved discipline (user choice: "Keep AA"):
+     · re-saturated neons tempered for WCAG 2.2 AA on near-black
+     · glow ON by DEFAULT only on key chrome (topbar/selection/primary)
+     · state never color alone: base components retain label/icon
+     · every texture is STATIC (no motion) → reduced-motion safe by design
+
+   Reference: Tactical Cyber HUD — structural red, cyan/green/amber accents,
+   crimson→black gradient, scanlines+grain, data chrome (serial/hex/binary).
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap');
+
+/* ----------------------------------------------------------------------------
+   1. TOKEN OVERRIDE — AA-tempered palette + structural red.
+   Dark mode token overrides (Light mode uses technical drafting slate/cyan rules below).
+   -------------------------------------------------------------------------- */
+:root[data-skin="cyber"]:not([data-theme="light"]) {
+  /* Surfaces: red-tinted near-black, never flat */
+  --ris-void:      #070406;
+  --ris-bg:        #0a0608;
+  --ris-surface-1: #120a0d;
+  --ris-surface-2: #1a0e12;
+  --ris-surface-3: #241318;
+  --ris-surface-4: #2c171d;
+
+  /* LINES = structure, and structure is RED (tactical HUD signature) */
+  --ris-line:        #6e2d38;
+  --ris-line-strong: #9a3a48;
+  --ris-line-faint:  #3a1820;
+  --ris-scanline:    rgba(255,40,70,0.05);
+
+  /* Text: cool white with subtle warm tint */
+  --ris-fg1: #f3eef0;
+  --ris-fg2: #c8b9bd;
+  --ris-fg3: #b09aa0;   /* AA su surface-1 */
+  --ris-fg4: #6a5258;
+  --ris-on-accent: #0a0608;
+
+  /* Neon accents — BRIGHT fill, contextual (-X) AA on near-black.
+     red/cyan/green/yellow verified ≥4.5:1 on bg/surface-1. */
+  --ris-red:     #ff4d62;   --ris-red-fill:     #ff003c;
+  --ris-cyan:    #3df0ff;   --ris-cyan-fill:    #00e5ff;
+  --ris-green:   #34f08c;   --ris-green-fill:   #00e57e;
+  --ris-yellow:  #ffd83a;   --ris-yellow-fill:  #ffe23a;
+  --ris-violet:  #b08aff;   --ris-violet-fill:  #9a5cff;
+  --ris-magenta: #ff5fd2;   --ris-magenta-fill: #ff42c8;
+  --ris-orange:  #ff9f4a;   --ris-orange-fill:  #ff9230;
+
+  --ris-red-dim:     #8f1f30; --ris-cyan-dim:   #1f8a99;
+  --ris-green-dim:   #1f8a52; --ris-yellow-dim: #9a8016;
+  --ris-violet-dim:  #5a3f9a; --ris-magenta-dim:#9a2f7f; --ris-orange-dim: #9a5616;
+
+  /* Amplified glows (-glow fill, -line borders) */
+  --ris-red-glow:     rgba(255,0,60,0.22);   --ris-red-line:     rgba(255,0,60,0.55);
+  --ris-cyan-glow:    rgba(0,229,255,0.18);  --ris-cyan-line:    rgba(0,229,255,0.50);
+  --ris-green-glow:   rgba(0,229,126,0.16);  --ris-green-line:   rgba(0,229,126,0.48);
+  --ris-yellow-glow:  rgba(255,226,58,0.18); --ris-yellow-line:  rgba(255,226,58,0.50);
+  --ris-violet-glow:  rgba(154,92,255,0.16); --ris-violet-line:  rgba(154,92,255,0.48);
+  --ris-magenta-glow: rgba(255,66,200,0.16); --ris-magenta-line: rgba(255,66,200,0.48);
+  --ris-orange-glow:  rgba(255,146,48,0.16); --ris-orange-line:  rgba(255,146,48,0.48);
+
+  /* Display typography → wide techno (body/mono untouched for legibility) */
+  --ris-font-display: 'Chakra Petch', 'Rajdhani', system-ui, sans-serif;
+
+  /* Wider glow: skin raises glow token radius */
+  --ris-glow-accent: 0 0 0 1px var(--ris-accent-line), 0 0 22px var(--ris-accent-glow);
+  --ris-glow-cyan:   0 0 0 1px var(--ris-cyan-line),   0 0 22px var(--ris-cyan-glow);
+  --ris-glow-red:    0 0 0 1px var(--ris-red-line),    0 0 22px var(--ris-red-glow);
+  --ris-live:        0 0 0 1px var(--ris-red-line),    0 0 16px var(--ris-red-glow);
+}
+
+/* ----------------------------------------------------------------------------
+   2. BACKGROUND — crimson→black gradient + scanlines + grain in Dark.
+   In Light Mode: technical millimeter grid and fine grain (zero fluorescent glows).
+   -------------------------------------------------------------------------- */
+[data-skin="cyber"]:not([data-theme="light"]) body.ris,
+[data-skin="cyber"]:not([data-theme="light"]) body.ris.ris-grid-bg {
+  background-color: var(--ris-bg);
+  background-image:
+    /* fine desaturated grain */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E"),
+    /* horizontal scanlines */
+    repeating-linear-gradient(0deg, transparent 0 2px, var(--ris-scanline) 2px 3px),
+    /* top crimson halo */
+    radial-gradient(125% 80% at 50% -12%, rgba(255,0,60,0.20), transparent 60%),
+    /* bottom reflection */
+    radial-gradient(95% 55% at 50% 118%, rgba(255,0,60,0.06), transparent 55%);
+  background-size: 140px 140px, 100% 3px, 100% 100%, 100% 100%;
+  background-attachment: fixed;
+  background-repeat: repeat, repeat, no-repeat, no-repeat;
+}
+
+[data-skin="cyber"][data-theme="light"] body.ris,
+[data-skin="cyber"][data-theme="light"] body.ris.ris-grid-bg {
+  background-color: var(--ris-bg);
+  background-image:
+    /* fine technical grain */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E"),
+    /* daylight technical millimeter grid (no crimson halos) */
+    linear-gradient(rgba(10,20,26,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10,20,26,0.04) 1px, transparent 1px);
+  background-size: 140px 140px, 24px 24px, 24px 24px;
+  background-attachment: fixed;
+  background-repeat: repeat, repeat, repeat;
+}
+
+/* ----------------------------------------------------------------------------
+   3. KEY CHROME — Neon glow in Dark; clean crimson ink lines in Light.
+   -------------------------------------------------------------------------- */
+
+/* Topbar */
+[data-skin="cyber"]:not([data-theme="light"]) .ris-topbar {
+  background: color-mix(in srgb, var(--ris-surface-1) 92%, transparent);
+  border-bottom: 1px solid var(--ris-red-fill);
+  box-shadow: 0 1px 0 var(--ris-red-fill), 0 8px 22px -8px var(--ris-red-glow);
+}
+[data-skin="cyber"][data-theme="light"] .ris-topbar {
+  background: color-mix(in srgb, var(--ris-surface-1) 96%, transparent);
+  border-bottom: 1.5px solid #1b6b80;
+  box-shadow: 0 1px 4px rgba(27, 107, 128, 0.12);
+}
+
+[data-skin="cyber"]:not([data-theme="light"]) .ris-rail,
+[data-skin="cyber"]:not([data-theme="light"]) .ris-bottomnav { border-color: var(--ris-red-line); }
+
+[data-skin="cyber"][data-theme="light"] .ris-rail,
+[data-skin="cyber"][data-theme="light"] .ris-bottomnav { border-color: var(--ris-line); }
+
+/* Primary button: accent glow in dark */
+[data-skin="cyber"]:not([data-theme="light"]) .ris-btn--primary {
+  box-shadow: 0 0 0 1px var(--ris-accent-line), 0 0 16px var(--ris-accent-glow);
+}
+[data-skin="cyber"]:not([data-theme="light"]) .ris-btn--primary:hover { box-shadow: 0 0 0 1px var(--ris-on-accent), 0 0 22px var(--ris-accent-glow); }
+
+/* Selection: solid fill in dark; cyan ink in light */
+[data-skin="cyber"]:not([data-theme="light"]) .ris-table tbody tr[data-selected="true"] {
+  background: color-mix(in srgb, var(--ris-red-fill) 22%, transparent);
+  box-shadow: inset 3px 0 0 var(--ris-red-fill), 0 0 18px -6px var(--ris-red-glow);
+}
+[data-skin="cyber"][data-theme="light"] .ris-table tbody tr[data-selected="true"] {
+  background: rgba(27, 107, 128, 0.10);
+  box-shadow: inset 3px 0 0 #1b6b80;
+}
+
+[data-skin="cyber"]:not([data-theme="light"]) .ris-nav-link[data-active="true"],
+[data-skin="cyber"]:not([data-theme="light"]) .ris-nav-link[aria-current="page"] {
+  box-shadow: inset 2px 0 0 var(--ris-accent), 0 0 16px -4px var(--ris-accent-glow);
+}
+[data-skin="cyber"][data-theme="light"] .ris-nav-link[data-active="true"],
+[data-skin="cyber"][data-theme="light"] .ris-nav-link[aria-current="page"] {
+  box-shadow: inset 2px 0 0 #1b6b80;
+  color: #165868;
+}
+
+[data-skin="cyber"]:not([data-theme="light"]) .ris-tab[aria-selected="true"],
+[data-skin="cyber"]:not([data-theme="light"]) .ris-tab[data-active="true"] {
+  text-shadow: 0 0 12px var(--ris-accent-glow);
+}
+[data-skin="cyber"][data-theme="light"] .ris-tab[aria-selected="true"],
+[data-skin="cyber"][data-theme="light"] .ris-tab[data-active="true"] {
+  text-shadow: none;
+  color: #165868;
+  border-bottom-color: #1b6b80;
+}
+
+/* Panels: red border in dark; clean neutral in light */
+[data-skin="cyber"]:not([data-theme="light"]) .ris-panel {
+  border-color: var(--ris-line);
+  box-shadow: inset 0 0 28px rgba(255,0,60,0.04);
+}
+[data-skin="cyber"][data-theme="light"] .ris-panel {
+  border-color: var(--ris-line-strong);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+[data-skin="cyber"]:not([data-theme="light"]) .ris-panel-head { border-bottom-color: var(--ris-red-line); }
+[data-skin="cyber"][data-theme="light"] .ris-panel-head { border-bottom-color: var(--ris-line); }
+
+/* Brackets: red fill in dark; cyan ink without glow in light */
+[data-skin="cyber"]:not([data-theme="light"]) .ris-bracket::before,
+[data-skin="cyber"]:not([data-theme="light"]) .ris-bracket::after {
+  border-color: var(--ris-red-fill);
+  filter: drop-shadow(0 0 4px var(--ris-red-glow));
+}
+[data-skin="cyber"][data-theme="light"] .ris-bracket::before,
+[data-skin="cyber"][data-theme="light"] .ris-bracket::after {
+  border-color: #1b6b80;
+  filter: none;
+}
+
+/* Accent links/labels: text glow in dark only */
+[data-skin="cyber"]:not([data-theme="light"]) a:hover,
+[data-skin="cyber"]:not([data-theme="light"]) .ris-chip--cyan,
+[data-skin="cyber"]:not([data-theme="light"]) .ris-chip--accent { text-shadow: 0 0 10px var(--ris-accent-2-glow); }
+
+/* Tooltip: in light uses white background with high-contrast ink */
+[data-skin="cyber"]:not([data-theme="light"]) .ris-tip::after {
+  border-color: var(--ris-yellow);
+  color: var(--ris-yellow);
+  box-shadow: var(--ris-elev-2), 0 0 14px var(--ris-yellow-glow);
+}
+[data-skin="cyber"][data-theme="light"] .ris-tip::after {
+  border-color: #8a5a12;
+  color: var(--ris-fg1);
+  background: #ffffff;
+  box-shadow: var(--ris-elev-2);
+}
+
+/* Input focus: cyan glow in dark; crisp focus ring in light */
+[data-skin="cyber"]:not([data-theme="light"]) .ris-input:focus,
+[data-skin="cyber"]:not([data-theme="light"]) .ris-select:focus,
+[data-skin="cyber"]:not([data-theme="light"]) .ris-textarea:focus {
+  box-shadow: inset 0 0 0 1px var(--ris-cyan-line), 0 0 14px -2px var(--ris-cyan-glow);
+}
+[data-skin="cyber"][data-theme="light"] .ris-input:focus,
+[data-skin="cyber"][data-theme="light"] .ris-select:focus,
+[data-skin="cyber"][data-theme="light"] .ris-textarea:focus {
+  box-shadow: inset 0 0 0 1.5px #216270, 0 0 0 3px rgba(33,98,112,0.15);
+  border-color: #216270;
+}
+
+/* Slider */
+[data-skin="cyber"]:not([data-theme="light"]) .ris-slider { height: 10px; border-color: var(--ris-red-line); }
+[data-skin="cyber"]:not([data-theme="light"]) .ris-slider::-webkit-slider-thumb {
+  width: 16px; height: 22px; box-shadow: 0 0 10px var(--ris-accent-glow);
+}
+[data-skin="cyber"]:not([data-theme="light"]) .ris-slider::-moz-range-thumb {
+  width: 16px; height: 22px; box-shadow: 0 0 10px var(--ris-accent-glow);
+}
+
+/* Progress bar */
+[data-skin="cyber"]:not([data-theme="light"]) .ris-progress {
+  border-color: var(--ris-line);
+  background: var(--ris-surface-2);
+}
+[data-skin="cyber"]:not([data-theme="light"]) .ris-progress > .bar {
+  box-shadow: 0 0 10px var(--ris-accent-glow);
+}
+
+/* ----------------------------------------------------------------------------
+   4. CHROME DECORATIVO — utility opt-in (scelta utente: garnish + righello).
+   Pure decoration: apply to text elements. aria-hidden recommended.
+   -------------------------------------------------------------------------- */
+
+/* Serial / codici device — PROTOCOL 6520-A44, TRN_TLCAS_8D0095 ... */
+[data-skin="cyber"]:not([data-theme="light"]) .ris-serial {
+  font-family: var(--ris-font-mono);
+  font-size: 9px; font-weight: 500;
+  letter-spacing: var(--ris-track-wide);
+  text-transform: uppercase;
+  color: var(--ris-red-dim);
+  line-height: 1.45;
+}
+[data-skin="cyber"]:not([data-theme="light"]) .ris-serial b { color: var(--ris-red); font-weight: 600; }
+
+[data-skin="cyber"][data-theme="light"] .ris-serial {
+  font-family: var(--ris-font-mono);
+  font-size: 9px; font-weight: 500;
+  letter-spacing: var(--ris-track-wide);
+  text-transform: uppercase;
+  color: #216270;
+  line-height: 1.45;
+}
+[data-skin="cyber"][data-theme="light"] .ris-serial b { color: #165868; font-weight: 700; }
+
+/* Hex dump — blocco mono dim (usa <pre class="ris-hex">) */
+[data-skin="cyber"]:not([data-theme="light"]) .ris-hex {
+  font-family: var(--ris-font-mono);
+  font-size: 9px; line-height: 1.4;
+  color: var(--ris-red-dim);
+  white-space: pre; overflow: hidden;
+  opacity: 0.7;
+}
+[data-skin="cyber"][data-theme="light"] .ris-hex {
+  font-family: var(--ris-font-mono);
+  font-size: 9px; line-height: 1.4;
+  color: #216270;
+  white-space: pre; overflow: hidden;
+  opacity: 0.85;
+}
+
+/* Stream binario — colonna 1001 0110 negli angoli */
+[data-skin="cyber"] .ris-binary {
+  font-family: var(--ris-font-mono);
+  font-size: 8.5px; line-height: 1.5;
+  letter-spacing: 0.12em;
+  color: var(--ris-cyan-dim);
+  writing-mode: vertical-rl;
+  opacity: 0.6;
+}
+
+/* Righello bordo — tacche verticali fisse sui lati schermo */
+[data-skin="cyber"]:not([data-theme="light"]) .ris-ruler {
+  position: fixed; top: var(--ris-topbar-h); bottom: 0; width: 10px;
+  pointer-events: none; z-index: 80; opacity: 0.5;
+  background-image: repeating-linear-gradient(
+    to bottom, var(--ris-red-line) 0 1px, transparent 1px 7px);
+}
+[data-skin="cyber"]:not([data-theme="light"]) .ris-ruler--left  { left: 0;  background-position: left;  }
+[data-skin="cyber"]:not([data-theme="light"]) .ris-ruler--right { right: 0; background-image: repeating-linear-gradient(
+    to bottom, var(--ris-red-line) 0 1px, transparent 1px 13px); }
+
+[data-skin="cyber"][data-theme="light"] .ris-ruler {
+  position: fixed; top: var(--ris-topbar-h); bottom: 0; width: 10px;
+  pointer-events: none; z-index: 80; opacity: 0.35;
+  background-image: repeating-linear-gradient(
+    to bottom, #1b6b80 0 1px, transparent 1px 7px);
+}
+[data-skin="cyber"][data-theme="light"] .ris-ruler--left  { left: 0;  background-position: left;  }
+[data-skin="cyber"][data-theme="light"] .ris-ruler--right { right: 0; background-image: repeating-linear-gradient(
+    to bottom, #1b6b80 0 1px, transparent 1px 13px); }
+
+/* Corner data ticker — tiny mono block */
+[data-skin="cyber"] .ris-ticker {
+  position: fixed; bottom: 6px; left: 14px; z-index: 80;
+  font-family: var(--ris-font-mono); font-size: 8.5px; line-height: 1.5;
+  color: var(--ris-fg4); pointer-events: none; white-space: pre;
+}
+
+/* ----------------------------------------------------------------------------
+   5. NEW COMPONENTS (skin-scoped) — list-row with thumbnail + topbar stat.
+   -------------------------------------------------------------------------- */
+
+/* List-row: thumb + cyan title + cyan/red meta + timestamp; selection = solid fill.
+   Reference: Load Game / Contacts / Inventory weapon list. */
+[data-skin="cyber"] .ris-listrow {
+  position: relative;
+  display: flex; align-items: center; gap: var(--ris-s3);
+  padding: 10px 14px;
+  background: var(--ris-surface-1);
+  border: 1px solid var(--ris-line);
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  transition: background var(--ris-dur-fast) var(--ris-ease), box-shadow var(--ris-dur-fast) var(--ris-ease);
+}
+[data-skin="cyber"] .ris-listrow + .ris-listrow { margin-top: 6px; }
+[data-skin="cyber"] .ris-listrow .thumb {
+  width: 84px; height: 48px; flex: 0 0 84px;
+  object-fit: cover;
+  background: var(--ris-surface-3);
+  border: 1px solid var(--ris-line);
+}
+[data-skin="cyber"] .ris-listrow .body { flex: 1; min-width: 0; }
+[data-skin="cyber"] .ris-listrow .title {
+  font-family: var(--ris-font-display); font-weight: var(--ris-w-semi);
+  font-size: var(--ris-text-md); letter-spacing: 0.02em;
+  color: var(--ris-cyan);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+[data-skin="cyber"]:not([data-theme="light"]) .ris-listrow .meta {
+  font-family: var(--ris-font-mono); font-size: var(--ris-text-xs);
+  letter-spacing: var(--ris-track-wide); text-transform: uppercase;
+  color: var(--ris-red);
+}
+[data-skin="cyber"]:not([data-theme="light"]) .ris-listrow .time {
+  margin-left: auto; align-self: flex-start; flex: 0 0 auto;
+  font-family: var(--ris-font-mono); font-size: var(--ris-text-sm);
+  color: var(--ris-red);
+}
+[data-skin="cyber"][data-theme="light"] .ris-listrow .meta {
+  font-family: var(--ris-font-mono); font-size: var(--ris-text-xs);
+  letter-spacing: var(--ris-track-wide); text-transform: uppercase;
+  color: #1b6b80;
+}
+[data-skin="cyber"][data-theme="light"] .ris-listrow .time {
+  margin-left: auto; align-self: flex-start; flex: 0 0 auto;
+  font-family: var(--ris-font-mono); font-size: var(--ris-text-sm);
+  color: #165868;
+}
+
+[data-skin="cyber"] .ris-listrow:hover { background: var(--ris-surface-2); }
+[data-skin="cyber"]:not([data-theme="light"]) .ris-listrow[data-selected="true"] {
+  background: var(--ris-red-fill);
+  border-color: var(--ris-red-fill);
+  box-shadow: var(--ris-live);
+}
+[data-skin="cyber"]:not([data-theme="light"]) .ris-listrow[data-selected="true"] .title,
+[data-skin="cyber"]:not([data-theme="light"]) .ris-listrow[data-selected="true"] .meta,
+[data-skin="cyber"]:not([data-theme="light"]) .ris-listrow[data-selected="true"] .time { color: var(--ris-on-accent); }
+
+[data-skin="cyber"][data-theme="light"] .ris-listrow[data-selected="true"] {
+  background: #1b6b80;
+  border-color: #1b6b80;
+  box-shadow: 0 2px 10px rgba(27, 107, 128, 0.25);
+}
+[data-skin="cyber"][data-theme="light"] .ris-listrow[data-selected="true"] .title,
+[data-skin="cyber"][data-theme="light"] .ris-listrow[data-selected="true"] .meta,
+[data-skin="cyber"][data-theme="light"] .ris-listrow[data-selected="true"] .time { color: #ffffff !important; }
+
+/* Topbar stat — LEVEL / TRUST RANK with segmented meter (reuses .ris-segmeter) */
+[data-skin="cyber"] .ris-stat { display: inline-flex; align-items: center; gap: 8px; }
+[data-skin="cyber"] .ris-stat .v {
+  font-family: var(--ris-font-display); font-weight: var(--ris-w-bold);
+  font-size: var(--ris-text-lg); line-height: 1;
+  color: var(--ris-cyan); font-variant-numeric: tabular-nums;
+}
+[data-skin="cyber"] .ris-stat .n {
+  font-family: var(--ris-font-body); font-size: var(--ris-text-xs);
+  font-weight: var(--ris-w-semi); letter-spacing: var(--ris-track-wide);
+  text-transform: uppercase; color: var(--ris-green);
+}
+[data-skin="cyber"] .ris-stat .ris-segmeter { width: 84px; height: 8px; }
+[data-skin="cyber"]:not([data-theme="light"]) .ris-stat .ris-segmeter > i.on { background: var(--ris-green); box-shadow: 0 0 6px var(--ris-green-glow); }
+[data-skin="cyber"][data-theme="light"] .ris-stat .ris-segmeter > i.on { background: #1f6e47; }
+
+/* ----------------------------------------------------------------------------
+   6. RESPONSIVE / MOBILE — base system switches to topbar + bottomnav
+   under 768px; here we adapt ONLY skin-specific chrome.
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  /* Rulers: no space on phone edges → hidden */
+  [data-skin="cyber"] .ris-ruler { display: none; }
+  /* Ticker: above bottomnav, smaller font, zero overlap */
+  [data-skin="cyber"] .ris-ticker {
+    left: 8px; bottom: calc(var(--ris-bottomnav-h) + 6px); font-size: 8px;
+  }
+  /* iOS: background-attachment:fixed = jank/repaint → scroll on mobile */
+  [data-skin="cyber"] body.ris,
+  [data-skin="cyber"] body.ris.ris-grid-bg { background-attachment: scroll; }
+
+  /* Bottomnav */
+  [data-skin="cyber"]:not([data-theme="light"]) .ris-bottomnav {
+    border-top: 1px solid var(--ris-red-fill);
+    box-shadow: 0 -1px 0 var(--ris-red-fill), 0 -8px 22px -8px var(--ris-red-glow);
+  }
+  [data-skin="cyber"]:not([data-theme="light"]) .ris-bottomnav .ris-nav-link[aria-current="page"],
+  [data-skin="cyber"]:not([data-theme="light"]) .ris-bottomnav .ris-nav-link[data-active="true"] {
+    box-shadow: inset 0 2px 0 var(--ris-accent), 0 0 16px -4px var(--ris-accent-glow);
+  }
+
+  [data-skin="cyber"][data-theme="light"] .ris-bottomnav {
+    border-top: 1.5px solid #1b6b80;
+    box-shadow: 0 -1px 4px rgba(27, 107, 128, 0.10);
+  }
+  [data-skin="cyber"][data-theme="light"] .ris-bottomnav .ris-nav-link[aria-current="page"],
+  [data-skin="cyber"][data-theme="light"] .ris-bottomnav .ris-nav-link[data-active="true"] {
+    box-shadow: inset 0 2px 0 #1b6b80;
+    color: #165868;
+  }
+
+  /* List-row: compact layout, smaller thumbnail, sm title (tap target ok) */
+  [data-skin="cyber"] .ris-listrow { padding: 9px 12px; gap: 10px; }
+  [data-skin="cyber"] .ris-listrow .thumb { width: 56px; height: 42px; flex-basis: 56px; }
+  [data-skin="cyber"] .ris-listrow .title { font-size: var(--ris-text-sm); }
+
+  /* Topbar stat: value + short meter only (label hidden) */
+  [data-skin="cyber"] .ris-stat .n { display: none; }
+  [data-skin="cyber"] .ris-stat .ris-segmeter { width: 48px; }
+}
+
+/* ----------------------------------------------------------------------------
+   6B. MOTION & MOBILE COMPONENTS (Accordion, Bottom Sheet, Radar, Toast)
+   -------------------------------------------------------------------------- */
+
+/* Accordion */
+[data-skin="cyber"]:not([data-theme="light"]) .ris-acc { border-color: var(--ris-line); }
+[data-skin="cyber"][data-theme="light"] .ris-acc { border-color: var(--ris-line-strong); }
+[data-skin="cyber"][data-theme="light"] .ris-acc-trigger:hover {
+  background: var(--ris-surface-2);
+  color: #165868;
+}
+[data-skin="cyber"][data-theme="light"] .ris-acc-item[data-open="true"] .ris-acc-chevron,
+[data-skin="cyber"][data-theme="light"] .ris-acc-trigger[aria-expanded="true"] .ris-acc-chevron {
+  color: #165868;
+}
+
+/* Bottom Sheet mobile */
+[data-skin="cyber"]:not([data-theme="light"]) .ris-sheet {
+  border-top: 1.5px solid var(--ris-red-fill);
+  box-shadow: 0 -1px 0 var(--ris-red-fill), 0 -8px 24px var(--ris-red-glow);
+}
+[data-skin="cyber"][data-theme="light"] .ris-sheet {
+  border-top: 1.5px solid #1b6b80;
+  box-shadow: 0 -1px 4px rgba(27, 107, 128, 0.12), 0 -8px 24px rgba(0,0,0,0.10);
+}
+[data-skin="cyber"][data-theme="light"] .ris-sheet-handle { background: #9aa7b0; }
+[data-skin="cyber"][data-theme="light"] .ris-sheet-handle:hover,
+[data-skin="cyber"][data-theme="light"] .ris-sheet-handle:active { background: #1b6b80; }
+
+/* Radar Sweep: neon cyan in dark vs delicate drafting cyan (18% opacity) in light */
+[data-skin="cyber"][data-theme="light"] .ris-radar::after {
+  background: linear-gradient(180deg, transparent, rgba(27, 107, 128, 0.18) 80%, #1b6b80 100%);
+  border-bottom-color: #1b6b80;
+}
+
+/* HUD Toast: cyan accent in light */
+[data-skin="cyber"][data-theme="light"] .ris-toast {
+  border-left-color: #1b6b80;
+  border-color: var(--ris-line-strong);
+  background: var(--ris-surface-1);
+}
+
+/* ----------------------------------------------------------------------------
+   7. REDUCED MOTION — no motion here (static textures), neutralizing
+   inherited transitions for safety. Visual aesthetics remain intact.
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  [data-skin="cyber"] * { transition-duration: 0.01ms !important; }
+}
