@@ -62,4 +62,4 @@ RIS PRO IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, I
 
 ---
 
-*For custom enterprise licensing, source code escrow, or inquiries, open an issue/discussion at [github.com/yuzushi-dev/relic-interface-system](https://github.com/yuzushi-dev/relic-interface-system) or visit [polar.sh/yuzushi-dev](https://polar.sh/yuzushi-dev).*
+*For custom enterprise licensing, source code escrow, or inquiries, contact `support@yuzushi.party` or visit [polar.sh/yuzushi-dev](https://polar.sh/yuzushi-dev).*

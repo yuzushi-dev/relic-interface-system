@@ -231,6 +231,7 @@ LIABILITY ARISING FROM, OUT OF, OR IN CONNECTION WITH THE PRODUCT OR THE USE OR 
 
 ## 6. Support, Maintenance & Updates
 
+* **Customer Desk & Inquiries**: `support@yuzushi.party`
 * **Community & Discussions**: [GitHub Discussions](https://github.com/yuzushi-dev/relic-interface-system/discussions)
 * **Bug Reports & Token Issues**: [GitHub Issues](https://github.com/yuzushi-dev/relic-interface-system/issues)
 * **Live Showcase & Documentation**: [GitHub Pages Specimen](https://yuzushi-dev.github.io/relic-interface-system/)

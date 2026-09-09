@@ -113,7 +113,7 @@ All Pro licenses are **perpetual (one-time purchase)** with lifetime v2.x update
 | **RIS Pro All-Access** *(Best Seller)* | **$99** | $129 | **All templates + Figma Studio + React Pro + Compose + Tailwind + Priority Discussions** | [**Buy All-Access**](https://polar.sh/yuzushi-dev/products/ris-pro) |
 | **Team License** | **$249** | $299 | All-Access for up to 10 developers/designers in an organization + 48h SLA support | [**Buy Team License**](https://polar.sh/yuzushi-dev/products/ris-team) |
 
-> ℹ️ **Support & Guarantee**: 14-day money-back guarantee. Technical support provided via [GitHub Discussions](https://github.com/yuzushi-dev/relic-interface-system/discussions) and [Issues](https://github.com/yuzushi-dev/relic-interface-system/issues). Perpetual license covers all future v2.x updates.
+> ℹ️ **Support & Guarantee**: 14-day money-back guarantee. Technical support provided via email (`support@yuzushi.party`) and [GitHub Discussions](https://github.com/yuzushi-dev/relic-interface-system/discussions). Perpetual license covers all future v2.x updates.
 > Terms and commercial permissions governed by the [RIS Pro Commercial License](LICENSE_PRO.md).
 
 ---
