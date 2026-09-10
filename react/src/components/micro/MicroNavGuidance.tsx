@@ -19,11 +19,11 @@ const MANEUVER_PATHS: Record<MicroManeuver, string> = {
   'slight-left': 'M 27,37 L 33,37 M 30,37 L 30,25 L 19,14 M 27,14 L 19,14 L 19,22',
   'left': 'M 29,37 L 35,37 M 32,37 L 32,26 L 28,22 L 15,22 M 22,15 L 15,22 L 22,29',
   'sharp-left': 'M 29,37 L 35,37 M 32,37 L 32,22 L 26,16 L 24,16 L 14,26 M 22,26 L 14,26 L 14,18',
-  'u-turn': 'M 28,37 L 34,37 M 31,37 L 31,20 L 27,14 L 21,14 L 17,18 L 17,30 M 10,23 L 17,30 L 24,23',
+  'u-turn': 'M 28,37 L 34,37 M 31,37 L 31,20 L 26,15 L 20,15 L 15,20 L 15,30 M 8,23 L 15,30 L 22,23',
 };
 
 function formatDistance(meters: number): string {
-  if (meters < 1000) {
+  if (meters < 999.5) {
     return `IN ${Math.round(meters)}M`;
   }
   return `IN ${(meters / 1000).toFixed(1)}KM`;
@@ -95,7 +95,7 @@ export const MicroNavGuidance = forwardRef<SVGSVGElement, MicroNavGuidanceProps>
     : '';
 
   const formattedDistance = formatDistance(distanceMeters);
-  const formattedStreet = streetName.toUpperCase();
+  const formattedStreet = (streetName ?? '').toUpperCase();
   const formattedEta = `[ETA ${eta}]`;
   const maneuverPath = MANEUVER_PATHS[maneuver] ?? MANEUVER_PATHS['straight'];
 
