@@ -10,6 +10,13 @@ import {
 
 export type { MicroVitalTelemetryProps, EyewearOpticalProfile };
 
+const OPTICAL_PROFILE_CLASSES: Record<EyewearOpticalProfile, string> = {
+  'phosphor-green': 'ris-eyewear-profile-phosphor',
+  'tactical-amber': 'ris-eyewear-profile-amber',
+  'cyber-cyan': 'ris-eyewear-profile-cyan',
+  'alert-red': 'ris-eyewear-profile-alert',
+};
+
 function resolveOpticalColor(
   profile?: EyewearOpticalProfile,
   brand: RisBrand = 'biohub',
@@ -37,10 +44,11 @@ function formatAltitude(meters: number): string {
 
 function formatBatteryRuntime(hours?: number, percent: number = 68): string {
   if (hours !== undefined && !isNaN(hours)) {
-    const h = Math.floor(hours);
-    const m = Math.round((hours - h) * 60);
+    const totalMinutes = Math.round(hours * 60);
+    const h = Math.floor(totalMinutes / 60);
+    const m = totalMinutes % 60;
     if (h > 0) {
-      return `~${h}H ${m}M`;
+      return `~${h}H ${m.toString().padStart(2, '0')}M`;
     }
     return `~${m}M`;
   }
@@ -63,7 +71,7 @@ export const MicroVitalTelemetry = forwardRef<SVGSVGElement, MicroVitalTelemetry
       hrZone = 3,
       altitudeMeters = 420,
       batteryPercent = 68,
-      batteryRuntimeHours = 3.4,
+      batteryRuntimeHours,
       brand = 'biohub',
       opticalProfile,
       status,
@@ -88,12 +96,7 @@ export const MicroVitalTelemetry = forwardRef<SVGSVGElement, MicroVitalTelemetry
     const color = resolveOpticalColor(opticalProfile, brand, status);
 
     const opticalClass = opticalProfile
-      ? {
-          'phosphor-green': 'ris-eyewear-profile-phosphor',
-          'tactical-amber': 'ris-eyewear-profile-amber',
-          'cyber-cyan': 'ris-eyewear-profile-cyan',
-          'alert-red': 'ris-eyewear-profile-alert',
-        }[opticalProfile] ?? `ris-eyewear-profile-${opticalProfile}`
+      ? (OPTICAL_PROFILE_CLASSES[opticalProfile] ?? `ris-eyewear-profile-${opticalProfile}`)
       : '';
 
     const cleanHeartRate =
@@ -113,22 +116,24 @@ export const MicroVitalTelemetry = forwardRef<SVGSVGElement, MicroVitalTelemetry
     const cleanBatteryHours =
       typeof batteryRuntimeHours === 'number' && !isNaN(batteryRuntimeHours)
         ? batteryRuntimeHours
-        : 3.4;
+        : undefined;
 
     const formattedAltitude = formatAltitude(cleanAltitude);
     const runtimeText = formatBatteryRuntime(cleanBatteryHours, cleanBatteryPercent);
 
     const dynamicAriaLabel =
       ariaLabel ??
-      `Vital telemetry: ${cleanHeartRate} BPM, Zone ${cleanHrZone}, ${formattedAltitude}, Battery ${Math.round(cleanBatteryPercent)}% (${runtimeText})`;
+      (cleanBatteryHours !== undefined
+        ? `Vital telemetry: ${cleanHeartRate} BPM, Zone ${cleanHrZone}, ${formattedAltitude}, Battery ${Math.round(cleanBatteryPercent)}% (${runtimeText})`
+        : `Vital telemetry: ${cleanHeartRate} BPM, Zone ${cleanHrZone}, ${formattedAltitude}, Battery ${runtimeText}`);
 
     // 4 discrete segments: width 4px, height 7px each, gap 1.5px (starts at x=88, y=29)
-    // Thresholds: segment 0 (>0%), segment 1 (>=50%), segment 2 (>=75%), segment 3 (>=95%)
+    // Thresholds: segment 0 (>0%), segment 1 (>=25%), segment 2 (>=50%), segment 3 (>=75%)
     const batterySegments = [
       { lit: cleanBatteryPercent > 0 },
+      { lit: cleanBatteryPercent >= 25 },
       { lit: cleanBatteryPercent >= 50 },
       { lit: cleanBatteryPercent >= 75 },
-      { lit: cleanBatteryPercent >= 95 },
     ];
 
     return (
@@ -320,7 +325,7 @@ export const MicroVitalTelemetry = forwardRef<SVGSVGElement, MicroVitalTelemetry
                   y={30}
                   width={4}
                   height={6}
-                  fill={isCurrentZone ? 'currentColor' : isBelowZone ? 'currentColor' : 'none'}
+                  fill={isLit ? 'currentColor' : 'none'}
                   fillOpacity={isCurrentZone ? 1 : isBelowZone ? 0.45 : 0}
                   stroke="currentColor"
                   strokeWidth="0.75"
