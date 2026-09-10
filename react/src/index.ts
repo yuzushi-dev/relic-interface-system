@@ -161,6 +161,11 @@ export type {
   MicroLiveCaptionsProps,
 } from './components/micro/MicroLiveCaptions.js';
 
+export { MicroVitalTelemetry } from './components/micro/MicroVitalTelemetry.js';
+export type {
+  MicroVitalTelemetryProps,
+} from './components/micro/MicroVitalTelemetry.js';
+
 export { resolveMicroSize, resolveMicroColor } from './components/micro/types.js';
 export type { RisBrand, RisMicroStatus, RisMicroSize, MicroBaseProps } from './components/micro/types.js';
 

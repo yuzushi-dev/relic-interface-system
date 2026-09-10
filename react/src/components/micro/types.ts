@@ -93,6 +93,7 @@ export interface MicroVitalTelemetryProps extends MicroBaseProps {
   altitudeMeters?: number;
   batteryPercent?: number;
   batteryRuntimeHours?: number;
+  opticalProfile?: EyewearOpticalProfile;
 }
 
 export interface MicroGlanceNoticeProps extends MicroBaseProps {
