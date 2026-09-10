@@ -1,0 +1,58 @@
+<svg color="#6fb3c9" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 48" width="160" height="48" fill="none" stroke="#6fb3c9" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-label="Vital telemetry: 138 BPM, Zone 3, 420M ALT, Battery 68% (~3H 24M)" data-brand="biohub" data-optical-profile="cyber-cyan" data-hr-zone="3" data-animated="false" class="ris-micro-vital ris-eyewear-glass ris-eyewear-profile-cyan" style="color: #6fb3c9; overflow:visible;">
+  <defs>
+    <style>
+      :root, svg {
+        --ris-primary: #6fb3c9;
+        --ris-accent: #e6a23c;
+        --ris-yellow: #e6a23c;
+        --ris-cyan: #6fb3c9;
+        --ris-green: #2fe48a;
+        --ris-red: #ff2d3c;
+        --ris-violet: #8479be;
+        --ris-fg4: #97a4ad;
+        --ris-bg: #0a0a0c;
+        --ris-line: rgba(111, 179, 201, 0.4);
+        --ris-font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        color: #6fb3c9;
+        font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      }
+    </style>
+  </defs>
+  <title>Vital telemetry: 138 BPM, Zone 3, 420M ALT, Battery 68% (~3H 24M)</title>
+    <path d="M 0 10 L 0 6 L 6 0 L 10 0" fill="none" stroke="#6fb3c9" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke" />
+    <path d="M 150 0 L 154 0 L 160 6 L 160 10" fill="none" stroke="#6fb3c9" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke" />
+    <path d="M 0 38 L 0 42 L 6 48 L 10 48" fill="none" stroke="#6fb3c9" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke" />
+    <path d="M 150 48 L 154 48 L 160 42 L 160 38" fill="none" stroke="#6fb3c9" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke" />
+    <line x1="82" y1="0" x2="82" y2="3" stroke="#6fb3c9" stroke-width="1" stroke-opacity="0.35" vector-effect="non-scaling-stroke" />
+    <line x1="82" y1="45" x2="82" y2="48" stroke="#6fb3c9" stroke-width="1" stroke-opacity="0.35" vector-effect="non-scaling-stroke" />
+    <g class="ris-micro-vital-divider">
+      <line x1="82" y1="8" x2="82" y2="40" stroke="#6fb3c9" stroke-width="1" stroke-opacity="0.35" vector-effect="non-scaling-stroke" />
+      <line x1="80" y1="16" x2="84" y2="16" stroke="#6fb3c9" stroke-width="1" stroke-opacity="0.5" vector-effect="non-scaling-stroke" />
+      <line x1="80" y1="32" x2="84" y2="32" stroke="#6fb3c9" stroke-width="1" stroke-opacity="0.5" vector-effect="non-scaling-stroke" />
+    </g>
+    <g class="ris-micro-vital-heart">
+      <g style="color: #6fb3c9; transform-origin:11px 17px; overflow: visible;">
+        <polygon points="9,11 13,11 17,15 17,19 13,23 9,23 5,19 5,15" fill="none" stroke="#6fb3c9" stroke-width="1" vector-effect="non-scaling-stroke" />
+        <path d="M 7,17 L 9,17 L 10.5,14.5 L 11.5,19.5 L 12.5,16 L 13.5,17 L 15,17" fill="none" stroke="#6fb3c9" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" vector-effect="non-scaling-stroke" />
+      </g>
+      <text x="21" y="21" font-size="13" font-weight="800" font-family="'JetBrains Mono', monospace" letter-spacing="0.02em" fill="#6fb3c9" stroke="none">138 BPM</text>
+      <text x="21" y="36" font-size="8.5" font-weight="700" font-family="'JetBrains Mono', monospace" letter-spacing="0.06em" fill="#6fb3c9" stroke="none" opacity="0.85">[Z3]</text>
+      <g class="ris-micro-vital-zone-ticks" opacity="0.8">
+        <rect x="45" y="30" width="4" height="6" fill="#6fb3c9" fill-opacity="0.45" stroke="#6fb3c9" stroke-width="0.75" stroke-opacity="0.9" vector-effect="non-scaling-stroke" />
+        <rect x="51" y="30" width="4" height="6" fill="#6fb3c9" fill-opacity="0.45" stroke="#6fb3c9" stroke-width="0.75" stroke-opacity="0.9" vector-effect="non-scaling-stroke" />
+        <rect x="57" y="30" width="4" height="6" fill="#6fb3c9" fill-opacity="1" stroke="#6fb3c9" stroke-width="0.75" stroke-opacity="0.9" vector-effect="non-scaling-stroke" />
+        <rect x="63" y="30" width="4" height="6" fill="none" fill-opacity="0" stroke="#6fb3c9" stroke-width="0.75" stroke-opacity="0.25" vector-effect="non-scaling-stroke" />
+        <rect x="69" y="30" width="4" height="6" fill="none" fill-opacity="0" stroke="#6fb3c9" stroke-width="0.75" stroke-opacity="0.25" vector-effect="non-scaling-stroke" />
+      </g>
+    </g>
+    <g class="ris-micro-vital-env">
+      <text x="88" y="21" font-size="9.5" font-weight="700" font-family="'JetBrains Mono', monospace" letter-spacing="0.06em" fill="#6fb3c9" stroke="none">420M ALT</text>
+      <g class="ris-micro-vital-battery">
+        <rect x="88" y="29" width="4" height="7" fill="#6fb3c9" fill-opacity="1" stroke="#6fb3c9" stroke-width="1" stroke-opacity="1" shape-rendering="geometricPrecision" vector-effect="non-scaling-stroke" />
+        <rect x="93.5" y="29" width="4" height="7" fill="#6fb3c9" fill-opacity="1" stroke="#6fb3c9" stroke-width="1" stroke-opacity="1" shape-rendering="geometricPrecision" vector-effect="non-scaling-stroke" />
+        <rect x="99" y="29" width="4" height="7" fill="#6fb3c9" fill-opacity="1" stroke="#6fb3c9" stroke-width="1" stroke-opacity="1" shape-rendering="geometricPrecision" vector-effect="non-scaling-stroke" />
+        <rect x="104.5" y="29" width="4" height="7" fill="none" fill-opacity="0" stroke="#6fb3c9" stroke-width="1" stroke-opacity="0.3" shape-rendering="geometricPrecision" vector-effect="non-scaling-stroke" />
+        <text x="113" y="36" font-size="8.5" font-weight="700" font-family="'JetBrains Mono', monospace" letter-spacing="0.04em" fill="#6fb3c9" stroke="none" opacity="0.9">~3H 24M</text>
+      </g>
+    </g>
+</svg>

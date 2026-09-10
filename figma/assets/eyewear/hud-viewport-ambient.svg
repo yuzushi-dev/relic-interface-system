@@ -1,0 +1,43 @@
+<svg color="#6fb3c9" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" fill="none" stroke="#6fb3c9" stroke-width="1" shape-rendering="geometricPrecision" role="region" aria-label="Smart Glasses Heads Up Display" data-mode="ambient" data-brand="biohub" data-optical-profile="cyber-cyan" class="ris-eyewear-hud ris-eyewear-glass ris-eyewear-profile-cyan" style="background:transparent; color: #6fb3c9; overflow:visible;">
+  <defs>
+    <style>
+      :root, svg {
+        --ris-primary: #6fb3c9;
+        --ris-accent: #e6a23c;
+        --ris-yellow: #e6a23c;
+        --ris-cyan: #6fb3c9;
+        --ris-green: #2fe48a;
+        --ris-red: #ff2d3c;
+        --ris-violet: #8479be;
+        --ris-fg4: #97a4ad;
+        --ris-bg: #0a0a0c;
+        --ris-line: rgba(111, 179, 201, 0.4);
+        --ris-font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        color: #6fb3c9;
+        font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      }
+    </style>
+  </defs>
+  <title>Smart Glasses HUD - AMBIENT</title>
+    <g class="ris-hud-registration-ticks" stroke-opacity="0.6">
+      <path d="M 12 24 L 12 16 L 16 12 L 24 12" stroke="#6fb3c9" stroke-width="1.25" vector-effect="non-scaling-stroke" />
+      <circle cx="12" cy="12" r="1.5" fill="#6fb3c9" fill-opacity="0.4" />
+      <path d="M 616 12 L 624 12 L 628 16 L 628 24" stroke="#6fb3c9" stroke-width="1.25" vector-effect="non-scaling-stroke" />
+      <circle cx="628" cy="12" r="1.5" fill="#6fb3c9" fill-opacity="0.4" />
+      <path d="M 12 336 L 12 344 L 16 348 L 24 348" stroke="#6fb3c9" stroke-width="1.25" vector-effect="non-scaling-stroke" />
+      <circle cx="12" cy="348" r="1.5" fill="#6fb3c9" fill-opacity="0.4" />
+      <path d="M 616 348 L 624 348 L 628 344 L 628 336" stroke="#6fb3c9" stroke-width="1.25" vector-effect="non-scaling-stroke" />
+      <circle cx="628" cy="348" r="1.5" fill="#6fb3c9" fill-opacity="0.4" />
+    </g>
+    <g class="ris-hud-brand-tag" opacity="0.6">
+      <text x="320" y="12" text-anchor="middle" dominant-baseline="central" fill="#6fb3c9" font-size="7.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="1.8">[ RIS // OPTIC-HUD // AMBIENT ]</text>
+    </g>
+    <g transform="translate(24, 20)" role="group" aria-label="Ambient Telemetry">
+      <line x1="0" y1="2" x2="0" y2="28" stroke="#6fb3c9" stroke-width="1.5" stroke-opacity="0.7" vector-effect="non-scaling-stroke" />
+      <circle cx="0" cy="2" r="1" fill="#6fb3c9" />
+      <circle cx="0" cy="28" r="1" fill="#6fb3c9" />
+      <text x="8" y="14" fill="#6fb3c9" font-size="12" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="0.8">10:42 AM</text>
+      <text x="8" y="27" fill="#6fb3c9" fill-opacity="0.75" font-size="8" font-weight="600" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="0.4">BAT 68% (~3.4H) · 5G [ONLINE]</text>
+      <circle cx="160" cy="24.5" r="2" fill="#6fb3c9" fill-opacity="0.7" />
+    </g>
+</svg>

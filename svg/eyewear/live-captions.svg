@@ -1,0 +1,36 @@
+<svg color="#6fb3c9" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 52" width="240" height="52" fill="none" stroke="#6fb3c9" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-label="Live captions: SYSTEM INITIALIZED. SCANNING FREQUENCI AUDIO-IN: 44.1KHZ · LOW LATENCY LINK" data-brand="biohub" data-optical-profile="cyber-cyan" data-listening="true" class="ris-micro-captions ris-eyewear-glass ris-eyewear-profile-cyan" style="color: #6fb3c9; overflow:visible;">
+  <defs>
+    <style>
+      :root, svg {
+        --ris-primary: #6fb3c9;
+        --ris-accent: #e6a23c;
+        --ris-yellow: #e6a23c;
+        --ris-cyan: #6fb3c9;
+        --ris-green: #2fe48a;
+        --ris-red: #ff2d3c;
+        --ris-violet: #8479be;
+        --ris-fg4: #97a4ad;
+        --ris-bg: #0a0a0c;
+        --ris-line: rgba(111, 179, 201, 0.4);
+        --ris-font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        color: #6fb3c9;
+        font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      }
+    </style>
+  </defs>
+  <title>Live captions: SYSTEM INITIALIZED. SCANNING FREQUENCI AUDIO-IN: 44.1KHZ · LOW LATENCY LINK</title>
+    <g class="ris-micro-captions-status">
+      <circle cx="14" cy="10" r="3" fill="#6fb3c9" stroke="none" opacity="1" class="ris-micro-listen" />
+      <text x="24" y="13" font-size="8.5" font-weight="700" font-family="'JetBrains Mono', monospace" letter-spacing="0.06em" fill="#6fb3c9" stroke="none" opacity="0.9">[REC] SYS // AUDIO-01</text>
+      <line x1="222" y1="10" x2="228" y2="10" stroke="#6fb3c9" stroke-width="1" stroke-opacity="0.5" vector-effect="non-scaling-stroke" />
+      <line x1="226" y1="7" x2="226" y2="13" stroke="#6fb3c9" stroke-width="1" stroke-opacity="0.5" vector-effect="non-scaling-stroke" />
+    </g>
+    <g class="ris-micro-captions-wireframe">
+      <path d="M 6,14 L 6,46 L 12,46" fill="none" stroke="#6fb3c9" stroke-width="1" stroke-opacity="0.6" vector-effect="non-scaling-stroke" />
+      <path d="M 234,14 L 234,46 L 228,46" fill="none" stroke="#6fb3c9" stroke-width="1" stroke-opacity="0.6" vector-effect="non-scaling-stroke" />
+    </g>
+    <g class="ris-micro-captions-body">
+      <text x="14" y="28" font-size="9.5" font-weight="600" font-family="'JetBrains Mono', monospace" letter-spacing="0.04em" fill="#6fb3c9" stroke="none">SYSTEM INITIALIZED. SCANNING FREQUENCI</text>
+      <text x="14" y="42" font-size="9.5" font-weight="600" font-family="'JetBrains Mono', monospace" letter-spacing="0.04em" fill="#6fb3c9" stroke="none" opacity="0.85">AUDIO-IN: 44.1KHZ · LOW LATENCY LINK</text>
+    </g>
+</svg>
