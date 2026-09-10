@@ -126,11 +126,22 @@
       opacity: 1;
     }
 
+    /* Electrochromic Tint Dimming Layer */
+    .lens-tint-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: #000000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 160ms ease;
+    }
+
     /* Optical lens bezel, tint, and vignette */
     .lens-bezel-overlay {
       position: absolute;
       inset: 0;
-      z-index: 2;
+      z-index: 3;
       pointer-events: none;
       background: radial-gradient(circle at center, rgba(14, 20, 24, 0.02) 40%, rgba(5, 7, 9, 0.55) 100%);
       box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.8);
@@ -141,7 +152,7 @@
     .lens-pupil-markers {
       position: absolute;
       inset: 0;
-      z-index: 3;
+      z-index: 4;
       pointer-events: none;
     }
 
@@ -149,7 +160,7 @@
     .lens-hud-layer {
       position: absolute;
       inset: 0;
-      z-index: 4;
+      z-index: 5;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -515,7 +526,7 @@
 
     <div class="simulator-grid">
       <!-- Left Bay: The 16:9 Lens Simulator -->
-      <div class="lens-viewport-container" id="lens-container">
+      <div class="lens-viewport-container" id="lens-container" title="Drag & drop any photo here to test as real-world background">
         <!-- Background 1: Daylight Street -->
         <div
           class="lens-bg-layer active"
@@ -523,26 +534,64 @@
           style="background-image: url('https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1600&q=80');"
         ></div>
 
-        <!-- Background 2: Night Traffic -->
+        <!-- Background 2: Alpine Snow (High Photopic Lux Glare) -->
         <div
           class="lens-bg-layer"
-          id="bg-night"
-          style="background-image: url('https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1600&q=80');"
+          id="bg-snow"
+          style="background-image: url('https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=1600&q=80');"
         ></div>
 
-        <!-- Background 3: Industrial Inspection -->
+        <!-- Background 3: Driving Commute -->
+        <div
+          class="lens-bg-layer"
+          id="bg-driving"
+          style="background-image: url('https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1600&q=80');"
+        ></div>
+
+        <!-- Background 4: Tech Office / Meeting -->
+        <div
+          class="lens-bg-layer"
+          id="bg-office"
+          style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80');"
+        ></div>
+
+        <!-- Background 5: Industrial Inspection -->
         <div
           class="lens-bg-layer"
           id="bg-industrial"
           style="background-image: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1600&q=80');"
         ></div>
 
-        <!-- Background 4: Dark Lab Void -->
+        <!-- Background 6: Clinical Medical Lab -->
+        <div
+          class="lens-bg-layer"
+          id="bg-medical"
+          style="background-image: url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1600&q=80');"
+        ></div>
+
+        <!-- Background 7: Night Traffic -->
+        <div
+          class="lens-bg-layer"
+          id="bg-night"
+          style="background-image: url('https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1600&q=80');"
+        ></div>
+
+        <!-- Background 8: Dark Lab Void -->
         <div
           class="lens-bg-layer"
           id="bg-void"
           style="background-color: #060708;"
         ></div>
+
+        <!-- Background 9: Custom User Photo -->
+        <div
+          class="lens-bg-layer"
+          id="bg-custom"
+          style="background-size: cover; background-position: center;"
+        ></div>
+
+        <!-- Electrochromic Tint Dimming Layer -->
+        <div class="lens-tint-layer" id="lens-tint-overlay"></div>
 
         <!-- Optical Bezel & Anti-Glare Vignette -->
         <div class="lens-bezel-overlay"></div>
@@ -565,13 +614,49 @@
       <aside class="control-panel">
         <!-- 1. Background Switcher -->
         <div class="control-group">
-          <label class="control-label">Real-World Pass-Through Lens</label>
-          <div class="button-row">
-            <button class="tactical-btn active" onclick="setLensBg('daylight', this)">☀️ Daylight City</button>
-            <button class="tactical-btn" onclick="setLensBg('night', this)">🌃 Night Traffic</button>
-            <button class="tactical-btn" onclick="setLensBg('industrial', this)">🏭 Industrial</button>
-            <button class="tactical-btn" onclick="setLensBg('void', this)">⬛ Dark Lab Void</button>
+          <label class="control-label">
+            <span>Pass-Through Environment</span>
+            <span class="control-label-val" id="lens-bg-name">Daylight City</span>
+          </label>
+          <div class="button-row" style="grid-template-columns: repeat(2, 1fr); gap: 6px;">
+            <button class="tactical-btn active" onclick="setLensBg('daylight', this, 'Daylight City')">☀️ Daylight City</button>
+            <button class="tactical-btn" onclick="setLensBg('snow', this, 'Alpine Snow (10k Lux)')">❄️ High-Lux Snow</button>
+            <button class="tactical-btn" onclick="setLensBg('driving', this, 'Driving Cockpit')">🚗 Car Windshield</button>
+            <button class="tactical-btn" onclick="setLensBg('office', this, 'Indoor Meeting')">🏢 Tech Office</button>
+            <button class="tactical-btn" onclick="setLensBg('industrial', this, 'Industrial Plant')">🏭 Industrial</button>
+            <button class="tactical-btn" onclick="setLensBg('medical', this, 'Clinical Lab')">🏥 Medical Lab</button>
+            <button class="tactical-btn" onclick="setLensBg('night', this, 'Night Urban')">🌃 Night Traffic</button>
+            <button class="tactical-btn" onclick="setLensBg('void', this, 'Dark Void Benchmark')">⬛ Dark Lab Void</button>
           </div>
+
+          <!-- Custom User Background Upload / URL -->
+          <div style="display: flex; gap: 6px; margin-top: 4px;">
+            <button class="tactical-btn" id="btn-bg-custom" onclick="document.getElementById('lens-file-input').click()" style="flex: 1; border-style: dashed; border-color: var(--ris-accent); color: var(--ris-accent);">
+              📷 Carica Foto
+            </button>
+            <button class="tactical-btn" onclick="promptCustomImageUrl()" style="flex: 1; border-style: dashed;">
+              🔗 Incolla URL
+            </button>
+            <input type="file" id="lens-file-input" accept="image/*" style="display: none;" onchange="handleCustomBgUpload(event)">
+          </div>
+        </div>
+
+        <!-- 1B. Electrochromic Tint Dimming Slider -->
+        <div class="control-group" style="margin-top: -4px;">
+          <label class="control-label">
+            <span>Electrochromic Tint</span>
+            <span class="control-label-val" id="lens-tint-val">0% (Clear)</span>
+          </label>
+          <input
+            type="range"
+            min="0"
+            max="85"
+            value="0"
+            class="tactical-slider"
+            id="lens-tint-slider"
+            oninput="updateLensTint(this.value)"
+            aria-label="Electrochromic Lens Tint"
+          >
         </div>
 
         <!-- 2. Operational Mode -->
@@ -1483,16 +1568,104 @@
     ];
 
     // 1. Pass-Through Background Switcher
-    function setLensBg(bgId, btn) {
+    function setLensBg(bgId, btn, name) {
       document.querySelectorAll('.lens-bg-layer').forEach(el => el.classList.remove('active'));
       const target = document.getElementById('bg-' + bgId);
       if (target) target.classList.add('active');
 
       if (btn) {
-        btn.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.control-group .button-row button').forEach(b => b.classList.remove('active'));
+        const customBtn = document.getElementById('btn-bg-custom');
+        if (customBtn) customBtn.classList.remove('active');
         btn.classList.add('active');
       }
-      showHudToast('Lens background updated: ' + bgId.toUpperCase());
+      const labelEl = document.getElementById('lens-bg-name');
+      if (labelEl && name) labelEl.textContent = name;
+      showHudToast('Lens background: ' + (name || bgId.toUpperCase()));
+    }
+
+    function handleCustomBgUpload(e) {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        applyCustomBgImage(evt.target.result, file.name);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function promptCustomImageUrl() {
+      const url = prompt("Incolla l'URL dell'immagine di sfondo (HTTPS):", "https://");
+      if (!url || url.trim() === '' || url === 'https://') return;
+      applyCustomBgImage(url.trim(), 'Custom URL');
+    }
+
+    function applyCustomBgImage(dataUrlOrUrl, label) {
+      const customLayer = document.getElementById('bg-custom');
+      if (!customLayer) return;
+      customLayer.style.backgroundImage = 'url("' + dataUrlOrUrl + '")';
+
+      document.querySelectorAll('.lens-bg-layer').forEach(el => el.classList.remove('active'));
+      customLayer.classList.add('active');
+
+      document.querySelectorAll('.control-group .button-row button').forEach(b => b.classList.remove('active'));
+      const customBtn = document.getElementById('btn-bg-custom');
+      if (customBtn) customBtn.classList.add('active');
+
+      const labelEl = document.getElementById('lens-bg-name');
+      if (labelEl) labelEl.textContent = label || 'Custom Image';
+
+      showHudToast('Custom background: ' + (label || 'Loaded'));
+    }
+
+    function updateLensTint(val) {
+      const overlay = document.getElementById('lens-tint-overlay');
+      const label = document.getElementById('lens-tint-val');
+      const opacity = parseInt(val, 10) / 100;
+      if (overlay) overlay.style.opacity = opacity;
+      if (label) {
+        if (val == 0) label.textContent = '0% (Clear)';
+        else label.textContent = val + '% (Tinted)';
+      }
+    }
+
+    function initLensDragAndDrop() {
+      const lensContainer = document.getElementById('lens-container');
+      if (!lensContainer) return;
+      ['dragenter', 'dragover'].forEach(evtName => {
+        lensContainer.addEventListener(evtName, e => {
+          e.preventDefault();
+          e.stopPropagation();
+          lensContainer.style.outline = '2px dashed var(--ris-accent)';
+        });
+      });
+      ['dragleave', 'drop'].forEach(evtName => {
+        lensContainer.addEventListener(evtName, e => {
+          e.preventDefault();
+          e.stopPropagation();
+          lensContainer.style.outline = 'none';
+        });
+      });
+      lensContainer.addEventListener('drop', e => {
+        const files = e.dataTransfer && e.dataTransfer.files;
+        if (files && files.length > 0) {
+          const file = files[0];
+          if (file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = evt => {
+              applyCustomBgImage(evt.target.result, file.name);
+            };
+            reader.readAsDataURL(file);
+          } else {
+            showHudToast('Only image files are supported');
+          }
+        }
+      });
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initLensDragAndDrop);
+    } else {
+      initLensDragAndDrop();
     }
 
     // Fallback clipboard copying for non-HTTPS or denied permissions
