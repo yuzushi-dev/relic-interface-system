@@ -21,6 +21,8 @@
 <p align="center">
   <a href="https://yuzushi-dev.github.io/relic-interface-system/"><img src="https://img.shields.io/badge/🌐%20LIVE%20DEMO-EXPLORE%20SPECIMEN-e6a23c?style=for-the-badge&logo=googlechrome&logoColor=black" alt="Live Demo" /></a>
   &nbsp;
+  <a href="https://yuzushi-dev.github.io/relic-interface-system/eyewear.html"><img src="https://img.shields.io/badge/👓%20EYEWEAR%20HUD-OPTICAL%20SIMULATOR-2fe48a?style=for-the-badge" alt="Eyewear Simulator" /></a>
+  &nbsp;
   <a href="https://yuzushi-dev.github.io/relic-interface-system/mobile.html"><img src="https://img.shields.io/badge/📱%20MOBILE%20SHELL-TOUCH%20HUD-6fb3c9?style=for-the-badge" alt="Mobile Shell" /></a>
   &nbsp;
   <a href="https://yuzushi-dev.github.io/relic-interface-system/motion-lab.html"><img src="https://img.shields.io/badge/⚡%20MOTION%20LAB-TEST%20PHYSICS-ff2d3c?style=for-the-badge" alt="Motion Lab" /></a>
@@ -30,6 +32,7 @@
 
 <p align="center">
   <a href="https://yuzushi-dev.github.io/relic-interface-system/"><b>🌐 Launch Desktop Specimen</b></a> &nbsp;•&nbsp;
+  <a href="https://yuzushi-dev.github.io/relic-interface-system/eyewear.html"><b>👓 Optical Waveguide HUD Lab</b></a> &nbsp;•&nbsp;
   <a href="https://yuzushi-dev.github.io/relic-interface-system/mobile.html"><b>📱 Launch Mobile Touch Shell</b></a> &nbsp;•&nbsp;
   <a href="https://yuzushi-dev.github.io/relic-interface-system/motion-lab.html"><b>⚡ Test Motion Physics</b></a> &nbsp;•&nbsp;
   <a href="https://buy.polar.sh/polar_cl_UFLik36Vm34gt13RsMxroNhh7VRtez6w4tAR34FlCNv"><b>⭐ Get Pro Suite ($99)</b></a>
@@ -62,6 +65,27 @@ Most cyberpunk UI libraries are unusable in production: neon gradients that fail
 - **Zero-Dependency Real Telemetry**: Interactive SVG charts with mouse and keyboard scrubbers (`ArrowLeft` / `ArrowRight`) binding 1:1 to real data streams at 60fps. No Chart.js or D3 runtime overhead.
 - **True Dual Theme**: High-contrast tactical HUD in Dark mode; calm architectural blueprint cyan/slate (`#1b6b80`) on light gray in Light mode. Both pass WCAG 2.2 AA contrast (≥ 4.5:1).
 - **Native Android Parity**: Complete Jetpack Compose module sharing identical token values, polygon clip shapes, and Canvas chart renderers.
+- **Optical Waveguide & AR Eyewear HUD**: Ultra-compact 1px vector telemetry for smart glasses (MicroLED/Micro-OLED). Zero foveal occlusion (100% hollow boresight center) and emissive alpha physics where black is pure optical transparency.
+
+---
+
+## ◈ Smart Glasses & Waveguide Micro-HUDs (RIS v2.9)
+
+A dedicated tactical suite for compact optical waveguides and smart eyewear (Google Glass, RayNeo X2, Even Realities G1, ActiveLook). Built for sub-second peripheral glanceability without occluding the wearer's real-world vision.
+
+[![Optical Waveguide Simulator](https://img.shields.io/badge/Optical%20Lens%20Simulator-docs%2Feyewear.html-2fe48a?style=for-the-badge)](https://yuzushi-dev.github.io/relic-interface-system/eyewear.html)
+
+- **Emissive Alpha Transparency**: Black (`#000000`) emits zero light on see-through MicroLED displays. UI is drawn with crisp 1px strokes (`vector-effect="non-scaling-stroke"`) and open 45° chamfered brackets without solid card fills.
+- **Foveal Vision Safety**: Zero clutter in the central 15° cone. The center remains 100% hollow for safe driving, walking, and natural eye contact.
+- **5 Modular Atomic Components**:
+  - `MicroNavGuidance`: Turn-by-turn wayfinding with maneuver countdown and ETA chip.
+  - `MicroLiveCaptions`: Real-time speech transcription within a 38-char foveal comfort boundary.
+  - `MicroVitalTelemetry`: Cardiac BPM with ECG pulse diamond, 5-stage HR zones, altitude, and 4-segment quantized battery gauge.
+  - `MicroGlanceNotice`: Ephemeral upper-periphery alert banner with 4-second auto-decay timer line.
+  - `MicroSpatialInspection`: Central boresight targeting frame with 100% hollow center, LiDAR distance telemetry, and lateral range ruler.
+- **Turnkey Composite Viewport (`<SmartGlassesHUD />`)**:
+  - 4 specialized operational modes: `ambient` (minimalist clock & endurance), `commute` (navigation & compass heading), `meeting` (live transcription & glance alerts), and `field-ops` (LiDAR boresight & biometrics).
+- **Interactive Lens Simulator**: Test optical contrast across daylight glare, night traffic, and industrial inspection environments in [`docs/eyewear.html`](https://yuzushi-dev.github.io/relic-interface-system/eyewear.html).
 
 ---
 
