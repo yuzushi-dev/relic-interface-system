@@ -54,6 +54,8 @@ export interface MicroClusterProps extends Omit<MicroBaseProps, 'values'> {
  * Turnkey Composite HUD Cluster (`<MicroCluster>`).
  * Assembles multiple tactical micro atoms (Reticle, Dial, Matrix, Equalizer,
  * Caliper, Constellation, Stamp, Telemetry) into a unified 45° chamfered telemetry card.
+ *
+ * Native viewBox: 0 0 160 48 (10:3 aspect ratio). Default size sets width to 160px and height to 48px.
  */
 export const MicroCluster = forwardRef<SVGSVGElement, MicroClusterProps>(function MicroCluster(
   {
@@ -232,13 +234,12 @@ export const MicroCluster = forwardRef<SVGSVGElement, MicroClusterProps>(functio
           ==================================================================== */}
       {preset === 'sensor-lock' && (
         <g>
-          {/* MicroReticle Target Acquisition */}
+          {/* MicroReticle Target Reticle */}
           <g transform="translate(6, 12)">
             <MicroReticle
               preset="target-lock"
-              bearing={bearing ?? 142}
               locked={true}
-              size={32}
+              size={30}
               brand={brand}
               status={status}
               animated={animated}
@@ -247,9 +248,9 @@ export const MicroCluster = forwardRef<SVGSVGElement, MicroClusterProps>(functio
 
           {/* Vertical Divider */}
           <line
-            x1="41"
+            x1="38"
             y1="13"
-            x2="41"
+            x2="38"
             y2="43"
             stroke="currentColor"
             strokeWidth="0.5"
@@ -259,10 +260,10 @@ export const MicroCluster = forwardRef<SVGSVGElement, MicroClusterProps>(functio
           />
 
           {/* MicroMatrix Status Grid */}
-          <g transform="translate(45, 14)">
+          <g transform="translate(42, 14)">
             <MicroMatrix
               preset="led-4x4"
-              size={28}
+              size={24}
               brand={brand}
               status={status}
               animated={animated}
@@ -270,11 +271,11 @@ export const MicroCluster = forwardRef<SVGSVGElement, MicroClusterProps>(functio
           </g>
 
           {/* MicroDial Compass Bearing */}
-          <g transform="translate(76, 12)">
+          <g transform="translate(70, 12)">
             <MicroDial
               preset="compass"
               value={dialValue ?? 72}
-              size={32}
+              size={30}
               brand={brand}
               status={status}
               animated={animated}
@@ -282,7 +283,7 @@ export const MicroCluster = forwardRef<SVGSVGElement, MicroClusterProps>(functio
           </g>
 
           {/* MicroTelemetry Status Datablock */}
-          <g transform="translate(110, 12)">
+          <g transform="translate(104, 12)">
             <MicroTelemetry
               variant="stacked"
               label={telemetry?.label ?? 'TRK-09'}
@@ -290,7 +291,7 @@ export const MicroCluster = forwardRef<SVGSVGElement, MicroClusterProps>(functio
               code={telemetry?.code ?? '0x4B'}
               kanji={telemetry?.kanji ?? '照準'}
               serial={telemetry?.serial ?? (serial ?? 'DST:1.8km')}
-              size="sm"
+              size={44}
               brand={brand}
               status={status}
               animated={animated}
@@ -310,7 +311,7 @@ export const MicroCluster = forwardRef<SVGSVGElement, MicroClusterProps>(functio
             <MicroDial
               preset="power-gauge"
               value={dialValue ?? 88}
-              size={32}
+              size={30}
               brand={brand}
               status={status}
               animated={animated}
@@ -318,7 +319,7 @@ export const MicroCluster = forwardRef<SVGSVGElement, MicroClusterProps>(functio
           </g>
 
           {/* MicroTelemetry Node Health Block */}
-          <g transform="translate(42, 12)">
+          <g transform="translate(38, 12)">
             <MicroTelemetry
               variant="stacked"
               label={telemetry?.label ?? 'CORE-TEMP'}
@@ -326,7 +327,7 @@ export const MicroCluster = forwardRef<SVGSVGElement, MicroClusterProps>(functio
               code={telemetry?.code ?? '38.4°C'}
               kanji={telemetry?.kanji ?? '健全性'}
               serial={telemetry?.serial ?? (serial ?? 'SYS-OK')}
-              size="sm"
+              size={46}
               brand={brand}
               status={status}
               animated={animated}
@@ -335,9 +336,9 @@ export const MicroCluster = forwardRef<SVGSVGElement, MicroClusterProps>(functio
 
           {/* Vertical Divider */}
           <line
-            x1="100"
+            x1="88"
             y1="13"
-            x2="100"
+            x2="88"
             y2="43"
             stroke="currentColor"
             strokeWidth="0.5"
@@ -347,10 +348,10 @@ export const MicroCluster = forwardRef<SVGSVGElement, MicroClusterProps>(functio
           />
 
           {/* MicroMatrix Status Indicator */}
-          <g transform="translate(104, 13)">
+          <g transform="translate(92, 14)">
             <MicroMatrix
               preset="status-3x3"
-              size={30}
+              size={26}
               brand={brand}
               status={status}
               animated={animated}
@@ -358,12 +359,12 @@ export const MicroCluster = forwardRef<SVGSVGElement, MicroClusterProps>(functio
           </g>
 
           {/* MicroStamp Serial Stamp */}
-          <g transform="translate(136, 14)">
+          <g transform="translate(122, 13)">
             <MicroStamp
               preset="hash-stamp"
               serial={serial ?? 'NK-884'}
               hexHash="0x9F"
-              size={22}
+              size={24}
               brand={brand}
               status={status}
               animated={animated}
@@ -655,7 +656,7 @@ export const MicroCluster = forwardRef<SVGSVGElement, MicroClusterProps>(functio
               values={values ?? [20, 50, 85, 95, 85, 50, 20]}
               bars={7}
               maxHeight={26}
-              size={32}
+              size={30}
               brand={brand}
               status={status}
               animated={animated}
@@ -663,12 +664,12 @@ export const MicroCluster = forwardRef<SVGSVGElement, MicroClusterProps>(functio
           </g>
 
           {/* MicroMatrix Packet Status Matrix */}
-          <g transform="translate(48, 14)">
+          <g transform="translate(40, 14)">
             <MicroMatrix
               preset="binary-status"
               rows={4}
               cols={4}
-              size={28}
+              size={24}
               brand={brand}
               status={status}
               animated={animated}
@@ -676,12 +677,12 @@ export const MicroCluster = forwardRef<SVGSVGElement, MicroClusterProps>(functio
           </g>
 
           {/* MicroStamp Pill Code */}
-          <g transform="translate(82, 12)">
+          <g transform="translate(68, 13)">
             <MicroStamp
               variant="pill-code"
               serial={serial ?? 'PKT-08'}
               hexHash={hexHash ?? '0x3E2'}
-              size={32}
+              size={26}
               brand={brand}
               status={status}
               animated={animated}
@@ -689,7 +690,7 @@ export const MicroCluster = forwardRef<SVGSVGElement, MicroClusterProps>(functio
           </g>
 
           {/* MicroTelemetry Packet Telemetry */}
-          <g transform="translate(120, 12)">
+          <g transform="translate(98, 12)">
             <MicroTelemetry
               variant="stacked"
               label={telemetry?.label ?? 'LOSS'}
@@ -697,7 +698,7 @@ export const MicroCluster = forwardRef<SVGSVGElement, MicroClusterProps>(functio
               code={telemetry?.code ?? '99.8%'}
               kanji={telemetry?.kanji ?? 'パケット'}
               serial={telemetry?.serial ?? 'ACK-OK'}
-              size="sm"
+              size={48}
               brand={brand}
               status={status}
               animated={animated}
