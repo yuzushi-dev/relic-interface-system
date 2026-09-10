@@ -96,5 +96,20 @@ export type {
   MicroCaliperOrientation,
 } from './components/micro/MicroCaliper.js';
 
+export { MicroDial } from './components/micro/MicroDial.js';
+export type {
+  MicroDialProps,
+  MicroDialVariant,
+  MicroDialPreset,
+} from './components/micro/MicroDial.js';
+
+export { MicroEqualizer } from './components/micro/MicroEqualizer.js';
+export type {
+  MicroEqualizerProps,
+  MicroEqualizerVariant,
+  MicroEqualizerPreset,
+} from './components/micro/MicroEqualizer.js';
+
 export { resolveMicroSize, resolveMicroColor } from './components/micro/types.js';
 export type { RisBrand, RisMicroStatus, RisMicroSize, MicroBaseProps } from './components/micro/types.js';
+
