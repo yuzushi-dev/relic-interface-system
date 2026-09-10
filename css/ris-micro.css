@@ -47,12 +47,63 @@
   animation: ris-node-beacon 2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
 }
 
+/* ==========================================================================
+   OPTICAL WAVEGUIDE & EYEWEAR HUD CLASSES
+   Zero-reflow optical contrast profiles for MicroLED / see-through AR
+   ========================================================================== */
+
+.ris-eyewear-glass {
+  background: transparent !important;
+  color: var(--ris-accent);
+}
+
+.ris-eyewear-profile-phosphor {
+  --ris-eyewear-accent: #2fe48a;
+  --ris-eyewear-dim: rgba(47, 228, 138, 0.25);
+  color: #2fe48a;
+}
+
+.ris-eyewear-profile-amber {
+  --ris-eyewear-accent: #e6a23c;
+  --ris-eyewear-dim: rgba(230, 162, 60, 0.25);
+  color: #e6a23c;
+}
+
+.ris-eyewear-profile-cyan {
+  --ris-eyewear-accent: #6fb3c9;
+  --ris-eyewear-dim: rgba(111, 179, 201, 0.25);
+  color: #6fb3c9;
+}
+
+.ris-eyewear-profile-alert {
+  --ris-eyewear-accent: #ff2d3c;
+  --ris-eyewear-dim: rgba(255, 45, 60, 0.25);
+  color: #ff2d3c;
+}
+
+@keyframes ris-audio-listen {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.35); opacity: 1; }
+}
+
+.ris-micro-listen {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ris-audio-listen 1.2s ease-in-out infinite;
+}
+
+@keyframes ris-decay-line {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: 100; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .ris-micro-spin,
   .ris-micro-pulse,
   .ris-micro-blink,
   .ris-micro-scan,
-  .ris-micro-beacon {
+  .ris-micro-beacon,
+  .ris-micro-listen {
     animation: none !important;
   }
 }
@@ -61,7 +112,9 @@
 [data-motion="static"] .ris-micro-pulse,
 [data-motion="static"] .ris-micro-blink,
 [data-motion="static"] .ris-micro-scan,
-[data-motion="static"] .ris-micro-beacon {
+[data-motion="static"] .ris-micro-beacon,
+[data-motion="static"] .ris-micro-listen {
   animation: none !important;
 }
+
 

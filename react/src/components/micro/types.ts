@@ -43,3 +43,82 @@ export function resolveMicroColor(status?: RisMicroStatus, brand?: RisBrand): st
   }
   return undefined;
 }
+
+/* ==========================================================================
+   EYEWEAR MICRO-HUD TYPES & PROPS
+   Optical waveguide, biometrics, turn-by-turn wayfinding, live captions & AR
+   ========================================================================== */
+
+export type MicroManeuver =
+  | 'straight'
+  | 'slight-right'
+  | 'right'
+  | 'sharp-right'
+  | 'slight-left'
+  | 'left'
+  | 'sharp-left'
+  | 'u-turn';
+
+export type EyewearOpticalProfile =
+  | 'phosphor-green'
+  | 'tactical-amber'
+  | 'cyber-cyan'
+  | 'alert-red';
+
+export type EyewearHudMode =
+  | 'ambient'
+  | 'commute'
+  | 'meeting'
+  | 'field-ops';
+
+export interface MicroNavGuidanceProps extends MicroBaseProps {
+  maneuver?: MicroManeuver;
+  distanceMeters?: number;
+  streetName?: string;
+  eta?: string;
+}
+
+export interface MicroLiveCaptionsProps extends MicroBaseProps {
+  line1?: string;
+  line2?: string;
+  speaker?: string;
+  listening?: boolean;
+}
+
+export interface MicroVitalTelemetryProps extends MicroBaseProps {
+  heartRate?: number;
+  hrZone?: 1 | 2 | 3 | 4 | 5;
+  altitudeMeters?: number;
+  batteryPercent?: number;
+  batteryRuntimeHours?: number;
+}
+
+export interface MicroGlanceNoticeProps extends MicroBaseProps {
+  category?: 'CALENDAR' | 'COLLISION' | 'SYSTEM' | 'SECURITY';
+  title?: string;
+  subtitle?: string;
+  severity?: 'info' | 'warn' | 'critical';
+  dismissProgress?: number;
+}
+
+export type MicroSpatialInspectionStatus = 'scanning' | 'locked' | 'standby';
+
+export interface MicroSpatialInspectionProps extends Omit<MicroBaseProps, 'status'> {
+  distanceMeters?: number;
+  targetLabel?: string;
+  status?: MicroSpatialInspectionStatus;
+  specCode?: string;
+  bracketWidth?: number;
+  bracketHeight?: number;
+}
+
+export interface SmartGlassesHUDProps extends MicroBaseProps {
+  mode?: EyewearHudMode;
+  opticalProfile?: EyewearOpticalProfile;
+  navData?: Partial<MicroNavGuidanceProps>;
+  captionData?: Partial<MicroLiveCaptionsProps>;
+  vitalData?: Partial<MicroVitalTelemetryProps>;
+  noticeData?: Partial<MicroGlanceNoticeProps>;
+  inspectionData?: Partial<MicroSpatialInspectionProps>;
+}
+
