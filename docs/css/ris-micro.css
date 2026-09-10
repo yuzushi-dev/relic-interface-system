@@ -20,14 +20,14 @@
 }
 
 @keyframes ris-node-beacon {
-  0% { r: 2; opacity: 1; }
-  70% { r: 6; opacity: 0; stroke-width: 1px; }
-  100% { r: 2; opacity: 0; }
+  0% { transform: scale(1); opacity: 0.9; }
+  70% { transform: scale(2.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 0; }
 }
 
 .ris-micro-spin {
-  transform-box: fill-box;
-  transform-origin: center;
+  transform-box: view-box;
+  transform-origin: 50% 50%;
   animation: ris-radar-sweep 4s linear infinite;
 }
 
@@ -42,6 +42,8 @@
 }
 
 .ris-micro-beacon {
+  transform-box: fill-box;
+  transform-origin: center;
   animation: ris-node-beacon 2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
 }
 

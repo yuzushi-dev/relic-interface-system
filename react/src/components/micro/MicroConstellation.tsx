@@ -369,3 +369,5 @@ export const MicroConstellation = forwardRef<SVGSVGElement, MicroConstellationPr
     );
   }
 );
+
+MicroConstellation.displayName = 'MicroConstellation';

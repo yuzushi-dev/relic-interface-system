@@ -552,3 +552,5 @@ export const MicroTelemetry = forwardRef<SVGSVGElement, MicroTelemetryProps>(fun
     </svg>
   );
 });
+
+MicroTelemetry.displayName = 'MicroTelemetry';

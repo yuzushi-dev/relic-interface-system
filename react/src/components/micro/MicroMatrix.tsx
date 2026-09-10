@@ -267,3 +267,5 @@ export const MicroMatrix = forwardRef<SVGSVGElement, MicroMatrixProps>(function 
     </svg>
   );
 });
+
+MicroMatrix.displayName = 'MicroMatrix';

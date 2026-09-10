@@ -514,3 +514,5 @@ export const MicroStamp = forwardRef<SVGSVGElement, MicroStampProps>(function Mi
     </svg>
   );
 });
+
+MicroStamp.displayName = 'MicroStamp';

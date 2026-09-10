@@ -28,6 +28,7 @@
   ],
   "scripts": {
     "typecheck": "tsc --noEmit",
+    "test": "npm run typecheck",
     "build": "tsc",
     "prepack": "npm run build"
   },

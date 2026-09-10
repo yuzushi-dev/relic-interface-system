@@ -772,3 +772,5 @@ export const MicroCluster = forwardRef<SVGSVGElement, MicroClusterProps>(functio
     </svg>
   );
 });
+
+MicroCluster.displayName = 'MicroCluster';
