@@ -1,0 +1,45 @@
+<svg color="#e6a23c" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="target-circle" data-brand="relic" data-locked="true" class="ris-micro-reticle" style="color: #e6a23c; overflow:visible;">
+  <defs>
+    <style>
+      :root, svg {
+        --ris-primary: #e6a23c;
+        --ris-accent: #e6a23c;
+        --ris-yellow: #e6a23c;
+        --ris-cyan: #6fb3c9;
+        --ris-green: #5fae84;
+        --ris-red: #d45565;
+        --ris-violet: #8479be;
+        --ris-fg4: #97a4ad;
+        --ris-bg: #0a0a0c;
+        --ris-line: rgba(230, 162, 60, 0.4);
+        --ris-font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        color: #e6a23c;
+        font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      }
+    </style>
+  </defs>
+  <g>
+    <path d="M 19 3.42 A 13 13 0 0 1 28.58 13" stroke-width="1.25" />
+    <path d="M 28.58 19 A 13 13 0 0 1 19 28.58" stroke-width="1.25" />
+    <path d="M 13 28.58 A 13 13 0 0 1 3.42 19" stroke-width="1.25" />
+    <path d="M 3.42 13 A 13 13 0 0 1 13 3.42" stroke-width="1.25" />
+    <circle cx="16" cy="16" r="6.5" stroke-width="1" />
+    <circle cx="16" cy="16" r="2" fill="#e6a23c" stroke="none" />
+    <line x1="16" y1="2" x2="16" y2="9.5" stroke-width="1" />
+    <line x1="16" y1="22.5" x2="16" y2="30" stroke-width="1" />
+    <line x1="2" y1="16" x2="9.5" y2="16" stroke-width="1" />
+    <line x1="22.5" y1="16" x2="30" y2="16" stroke-width="1" />
+    <g stroke-width="1.25" class="">
+      <path d="M 10 13 V 10 H 13" />
+      <path d="M 19 10 H 22 V 13" />
+      <path d="M 10 19 V 22 H 13" />
+      <path d="M 19 22 H 22 V 19" />
+    </g>
+    <g transform="rotate(45 16 16)" stroke-width="1">
+      <line x1="16" y1="2" x2="16" y2="4.5" />
+      <line x1="16" y1="27.5" x2="16" y2="30" />
+      <line x1="2" y1="16" x2="4.5" y2="16" />
+      <line x1="27.5" y1="16" x2="30" y2="16" />
+    </g>
+  </g>
+</svg>

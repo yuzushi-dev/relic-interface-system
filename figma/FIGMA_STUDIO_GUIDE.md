@@ -55,7 +55,8 @@ Before running the generator, install the three primary open-source typefaces fr
    * Generates **Artboard 01 — Tokens & Foundations** (1600px wide).
    * Generates **Artboard 02 — Component Master Library** (1720px wide).
    * Generates **Artboard 03 — Pre-assembled Layouts** (2200px wide).
-   * Smoothly scrolls and zooms to fit all three artboards.
+   * Generates **Artboard 04 — Tactical Micrographics & HUD Atoms** (2200px wide, 34 standalone vector graphics across 9 categories).
+   * Smoothly scrolls and zooms to fit all four artboards.
 3. Verify the completion toast: `⚡ RIS v2.8.0 Commercial Pro Studio Kit Generated Successfully!`.
 
 ### Step 5: Setup the Official Thumbnail Cover
@@ -130,10 +131,11 @@ Compress the following folder structure into `RIS-v2.8.0-Studio-Pro.zip`:
 
 ```text
 RIS-v2.8.0-Studio-Pro/
-├── RIS-v2.8.0-Studio-Pro.fig           # Master Figma file (3 artboards + components + cover)
+├── RIS-v2.8.0-Studio-Pro.fig           # Master Figma file (4 artboards + components + cover)
 ├── tokens.json                         # Complete W3C DTCG & Tokens Studio tokens (12 sets)
 ├── community-preview-tokens.json       # Streamlined preview tokens
-├── assets/                             # 7 Production tactical HUD vector SVGs
+├── assets/                             # Tactical HUD vector SVGs
+│   ├── micro/                          # 34 Production SVG Micrographics (Reticles, Dials, Matrices, Clusters)
 │   ├── chamfer-btn.svg
 │   ├── chamfer-panel-md.svg
 │   ├── chamfer-panel-sm.svg
