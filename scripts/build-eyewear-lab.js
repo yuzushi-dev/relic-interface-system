@@ -113,15 +113,15 @@ async function main() {
       svgFile: 'live-captions.svg',
       jsxSnippet: `<MicroLiveCaptions
   speaker="SYS // AUDIO-01"
-  line1="SYSTEM INITIALIZED. SCANNING FREQUENCIES"
-  line2="AUDIO-IN: 44.1KHZ · LOW LATENCY LINK"
+  line1="SYSTEM INITIALIZED. LINK NOMINAL"
+  line2="AUDIO-IN: 44.1KHZ · LOW LATENCY"
   listening={true}
   opticalProfile="cyber-cyan"
 />`,
       renderLive: () => render(React.createElement(Micro.MicroLiveCaptions, {
         speaker: 'SYS // AUDIO-01',
-        line1: 'SYSTEM INITIALIZED. SCANNING FREQUENCIES',
-        line2: 'AUDIO-IN: 44.1KHZ · LOW LATENCY LINK',
+        line1: 'SYSTEM INITIALIZED. LINK NOMINAL',
+        line2: 'AUDIO-IN: 44.1KHZ · LOW LATENCY',
         listening: true,
         opticalProfile: 'cyber-cyan',
         animated: true,
@@ -1041,18 +1041,18 @@ async function main() {
     const CAPTION_PRESETS = [
       {
         speaker: 'SYS // AUDIO-01',
-        line1: 'SYSTEM INITIALIZED. SCANNING FREQUENCIES',
-        line2: 'AUDIO-IN: 44.1KHZ · LOW LATENCY LINK',
+        line1: 'SYSTEM INITIALIZED. LINK NOMINAL',
+        line2: 'AUDIO-IN: 44.1KHZ · LOW LATENCY',
       },
       {
         speaker: 'OPERATOR 02',
-        line1: 'WELCOME TEAM. RELIC INTERFACE SYSTEM',
-        line2: 'NEXT SLIDE: REVOLUTIONIZING WEARABLE HUDS',
+        line1: 'WELCOME TEAM. RELIC SYSTEM',
+        line2: 'REVOLUTIONIZING WEARABLE HUDS',
       },
       {
         speaker: 'SAFETY-AI',
-        line1: 'CHECKLIST 04: VALVE PRESSURIZED TO 4.2 BAR',
-        line2: 'ALL SYSTEM SEALS NOMINAL · PROCEED',
+        line1: 'VALVE PRESSURIZED TO 4.2 BAR',
+        line2: 'ALL SYSTEM SEALS NOMINAL · OK',
       },
     ];
 
@@ -1198,9 +1198,9 @@ async function main() {
         if (texts.length >= 3) {
           const listening = svgEl.getAttribute('data-listening') !== 'false';
           const prefix = listening ? '[REC] ' : '[IDLE] ';
-          texts[0].textContent = prefix + preset.speaker;
-          texts[1].textContent = preset.line1;
-          texts[2].textContent = preset.line2;
+          texts[0].textContent = prefix + preset.speaker.slice(0, 20).toUpperCase();
+          texts[1].textContent = preset.line1.slice(0, 34).toUpperCase();
+          texts[2].textContent = preset.line2.slice(0, 34).toUpperCase();
         }
       });
 
@@ -1218,7 +1218,8 @@ async function main() {
       const pipY = Math.round(96 - distRatio * 72);
 
       document.querySelectorAll('.ris-micro-inspection').forEach(svgEl => {
-        const distText = svgEl.querySelector('text[y="12"]');
+        const distText = svgEl.querySelector('.ris-micro-inspection-chip-top text:first-child') ||
+                         svgEl.querySelector('text[x="12"]');
         if (distText) distText.textContent = 'DST: ' + dist.toFixed(2) + 'M';
 
         const pip = svgEl.querySelector('polygon');

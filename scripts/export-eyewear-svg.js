@@ -206,8 +206,8 @@ async function main() {
       filename: 'live-captions.svg',
       component: Micro.MicroLiveCaptions,
       props: {
-        line1: 'SYSTEM INITIALIZED. SCANNING FREQUENCIES',
-        line2: 'AUDIO-IN: 44.1KHZ · LOW LATENCY LINK',
+        line1: 'SYSTEM INITIALIZED. LINK NOMINAL',
+        line2: 'AUDIO-IN: 44.1KHZ · LOW LATENCY',
         speaker: 'SYS // AUDIO-01',
         listening: true,
         brand: 'biohub',

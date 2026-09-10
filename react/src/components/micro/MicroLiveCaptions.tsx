@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { forwardRef, useId } from 'react';
 import {
   MicroLiveCaptionsProps,
   EyewearOpticalProfile,
@@ -77,9 +77,10 @@ export const MicroLiveCaptions = forwardRef<SVGSVGElement, MicroLiveCaptionsProp
         }[opticalProfile] ?? `ris-eyewear-profile-${opticalProfile}`
       : '';
 
-    const cleanSpeaker = speaker !== undefined ? speaker.toUpperCase() : 'SYS // AUDIO-01';
-    const cleanLine1 = (line1 ?? '').slice(0, 38).toUpperCase();
-    const cleanLine2 = (line2 ?? '').slice(0, 38).toUpperCase();
+    const clipId = useId();
+    const cleanSpeaker = (speaker !== undefined ? speaker : 'SYS // AUDIO-01').slice(0, 20).toUpperCase();
+    const cleanLine1 = (line1 ?? '').slice(0, 34).toUpperCase();
+    const cleanLine2 = (line2 ?? '').slice(0, 34).toUpperCase();
 
     const dynamicAriaLabel =
       ariaLabel ??
@@ -112,6 +113,12 @@ export const MicroLiveCaptions = forwardRef<SVGSVGElement, MicroLiveCaptionsProp
       >
         <title>{dynamicAriaLabel}</title>
 
+        <defs>
+          <clipPath id={clipId}>
+            <rect x="14" y="16" width="206" height="32" />
+          </clipPath>
+        </defs>
+
         {/* Top status row */}
         <g className="ris-micro-captions-status">
           {/* Audio listening indicator: pulsing dot */}
@@ -129,7 +136,7 @@ export const MicroLiveCaptions = forwardRef<SVGSVGElement, MicroLiveCaptionsProp
           <text
             x="24"
             y="13"
-            fontSize="8.5"
+            fontSize="8"
             fontWeight="700"
             fontFamily="var(--ris-font-mono, monospace)"
             letterSpacing="0.06em"
@@ -183,15 +190,15 @@ export const MicroLiveCaptions = forwardRef<SVGSVGElement, MicroLiveCaptionsProp
           />
         </g>
 
-        {/* Captions text body */}
-        <g className="ris-micro-captions-body">
+        {/* Captions text body with containment clipPath */}
+        <g className="ris-micro-captions-body" clipPath={`url(#${clipId})`}>
           <text
             x="14"
             y="28"
-            fontSize="9.5"
+            fontSize="8.5"
             fontWeight="600"
             fontFamily="var(--ris-font-mono, monospace)"
-            letterSpacing="0.04em"
+            letterSpacing="0.02em"
             fill="currentColor"
             stroke="none"
           >
@@ -199,11 +206,11 @@ export const MicroLiveCaptions = forwardRef<SVGSVGElement, MicroLiveCaptionsProp
           </text>
           <text
             x="14"
-            y="42"
-            fontSize="9.5"
+            y="41"
+            fontSize="8.5"
             fontWeight="600"
             fontFamily="var(--ris-font-mono, monospace)"
-            letterSpacing="0.04em"
+            letterSpacing="0.02em"
             fill="currentColor"
             stroke="none"
             opacity="0.85"

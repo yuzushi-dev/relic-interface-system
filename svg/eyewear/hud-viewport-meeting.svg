@@ -54,12 +54,17 @@
           <line x1="6" y1="24.5" x2="58" y2="24.5" stroke="#e6a23c" stroke-width="1.5" stroke-linecap="square" vector-effect="non-scaling-stroke" />
         </svg>
       </g>
-      <g transform="translate(196, 296)">
-        <svg viewBox="0 0 240 52" width="248" height="44" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-label="Live captions: WE HAVE FINALIZED THE TELEMETRY ARCHIT MOVING REVIEWS TO Q3 TIMELINE." data-brand="relic" data-optical-profile="tactical-amber" data-listening="true" class="ris-micro-captions ris-eyewear-glass ris-eyewear-profile-amber" style="color: #e6a23c; overflow:visible;">
-          <title>Live captions: WE HAVE FINALIZED THE TELEMETRY ARCHIT MOVING REVIEWS TO Q3 TIMELINE.</title>
+      <g transform="translate(200, 296)">
+        <svg viewBox="0 0 240 52" width="240" height="52" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-label="Live captions: FINALIZED TELEMETRY ARCHITECTURE MOVING REVIEWS TO Q3 TIMELINE" data-brand="relic" data-optical-profile="tactical-amber" data-listening="true" class="ris-micro-captions ris-eyewear-glass ris-eyewear-profile-amber" style="color: #e6a23c; overflow:visible;">
+          <title>Live captions: FINALIZED TELEMETRY ARCHITECTURE MOVING REVIEWS TO Q3 TIMELINE</title>
+            <defs>
+              <clipPath id=":R16:">
+                <rect x="14" y="16" width="206" height="32" />
+              </clipPath>
+            </defs>
             <g class="ris-micro-captions-status">
               <circle cx="14" cy="10" r="3" fill="#e6a23c" stroke="none" opacity="1" class="ris-micro-listen" />
-              <text x="24" y="13" font-size="8.5" font-weight="700" font-family="'JetBrains Mono', monospace" letter-spacing="0.06em" fill="#e6a23c" stroke="none" opacity="0.9">[REC] ELENA ROSTOVA</text>
+              <text x="24" y="13" font-size="8" font-weight="700" font-family="'JetBrains Mono', monospace" letter-spacing="0.06em" fill="#e6a23c" stroke="none" opacity="0.9">[REC] ELENA ROSTOVA</text>
               <line x1="222" y1="10" x2="228" y2="10" stroke="#e6a23c" stroke-width="1" stroke-opacity="0.5" vector-effect="non-scaling-stroke" />
               <line x1="226" y1="7" x2="226" y2="13" stroke="#e6a23c" stroke-width="1" stroke-opacity="0.5" vector-effect="non-scaling-stroke" />
             </g>
@@ -67,9 +72,9 @@
               <path d="M 6,14 L 6,46 L 12,46" fill="none" stroke="#e6a23c" stroke-width="1" stroke-opacity="0.6" vector-effect="non-scaling-stroke" />
               <path d="M 234,14 L 234,46 L 228,46" fill="none" stroke="#e6a23c" stroke-width="1" stroke-opacity="0.6" vector-effect="non-scaling-stroke" />
             </g>
-            <g class="ris-micro-captions-body">
-              <text x="14" y="28" font-size="9.5" font-weight="600" font-family="'JetBrains Mono', monospace" letter-spacing="0.04em" fill="#e6a23c" stroke="none">WE HAVE FINALIZED THE TELEMETRY ARCHIT</text>
-              <text x="14" y="42" font-size="9.5" font-weight="600" font-family="'JetBrains Mono', monospace" letter-spacing="0.04em" fill="#e6a23c" stroke="none" opacity="0.85">MOVING REVIEWS TO Q3 TIMELINE.</text>
+            <g class="ris-micro-captions-body" clip-path="url(#:R16:)">
+              <text x="14" y="28" font-size="8.5" font-weight="600" font-family="'JetBrains Mono', monospace" letter-spacing="0.02em" fill="#e6a23c" stroke="none">FINALIZED TELEMETRY ARCHITECTURE</text>
+              <text x="14" y="41" font-size="8.5" font-weight="600" font-family="'JetBrains Mono', monospace" letter-spacing="0.02em" fill="#e6a23c" stroke="none" opacity="0.85">MOVING REVIEWS TO Q3 TIMELINE</text>
             </g>
           </svg>
         </g>

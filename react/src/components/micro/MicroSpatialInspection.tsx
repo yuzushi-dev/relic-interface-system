@@ -1,4 +1,4 @@
-import { forwardRef } from 'react';
+import { forwardRef, useId } from 'react';
 import {
   MicroSpatialInspectionProps,
   MicroSpatialInspectionStatus,
@@ -121,9 +121,10 @@ export const MicroSpatialInspection = forwardRef<
   const distRatio = (clampedDist - 0.2) / (10.0 - 0.2); // 0 at 0.2m, 1 at 10.0m
   const pipY = Math.round(rulerBottomY - distRatio * rulerHeight);
 
-  const cleanTargetLabel = (targetLabel ?? 'VALVE_ACTUATOR_B2').toUpperCase();
+  const clipId = useId();
+  const cleanTargetLabel = (targetLabel ?? 'VALVE_ACTUATOR_B2').slice(0, 18).toUpperCase();
   const cleanStatus = (status ?? 'locked').toUpperCase();
-  const cleanSpecCode = specCode ? specCode.toUpperCase() : '';
+  const cleanSpecCode = specCode ? specCode.slice(0, 22).toUpperCase() : '';
 
   const dynamicAriaLabel =
     ariaLabel ??
@@ -160,6 +161,12 @@ export const MicroSpatialInspection = forwardRef<
       {...rest}
     >
       <title>{dynamicAriaLabel}</title>
+
+      <defs>
+        <clipPath id={clipId}>
+          <rect x="18" y="105" width="124" height="15" />
+        </clipPath>
+      </defs>
 
       {/* ====================================================================
           1. 4 HOLLOW 45° CORNER BRACKETS
@@ -211,23 +218,23 @@ export const MicroSpatialInspection = forwardRef<
           Strictly exterior: ZERO lines cross the central inspection field!
           ==================================================================== */}
       <g className="ris-micro-boresight-ticks" opacity="0.75">
-        {/* North Tick (x=80, y=10 to 14) */}
+        {/* North Tick (x=80, y=14 to 17) */}
         <line
           x1="80"
-          y1="10"
+          y1="14"
           x2="80"
-          y2="14"
+          y2="17"
           stroke="currentColor"
           strokeWidth="1.25"
           vectorEffect="non-scaling-stroke"
         />
 
-        {/* South Tick (x=80, y=106 to 110) */}
+        {/* South Tick (x=80, y=103 to 106) */}
         <line
           x1="80"
-          y1="106"
+          y1="103"
           x2="80"
-          y2="110"
+          y2="106"
           stroke="currentColor"
           strokeWidth="1.25"
           vectorEffect="non-scaling-stroke"
@@ -335,13 +342,13 @@ export const MicroSpatialInspection = forwardRef<
       </g>
 
       {/* ====================================================================
-          4. TELEMETRY CHIPS (Top & Bottom, strictly outside center)
+          4. TELEMETRY CHIPS (Top & Bottom, strictly separated from brackets)
           ==================================================================== */}
-      {/* Top Chip: Distance & Spec Code */}
+      {/* Top Chip: Distance (Left) & Operational Status (Right) */}
       <g className="ris-micro-inspection-chip-top">
         <text
-          x="20"
-          y="12"
+          x="12"
+          y="11"
           fontSize="8.5"
           fontWeight="800"
           fontFamily="var(--ris-font-mono, monospace)"
@@ -349,15 +356,46 @@ export const MicroSpatialInspection = forwardRef<
           fill="currentColor"
           stroke="none"
         >
-          {`DST: ${distanceMeters.toFixed(2)}M`}
+          {`DST: ${cleanDistance.toFixed(2)}M`}
+        </text>
+
+        <text
+          x="148"
+          y="11"
+          textAnchor="end"
+          fontSize="7.5"
+          fontWeight="700"
+          fontFamily="var(--ris-font-mono, monospace)"
+          letterSpacing="0.06em"
+          fill="currentColor"
+          stroke="none"
+        >
+          {`[${cleanStatus}]`}
+        </text>
+      </g>
+
+      {/* Bottom Chip: Target Label (Line 1) & Spec Code (Line 2) */}
+      <g className="ris-micro-inspection-chip-bottom" clipPath={`url(#${clipId})`}>
+        <text
+          x="80"
+          y={cleanSpecCode ? 111 : 114}
+          textAnchor="middle"
+          fontSize="7.5"
+          fontWeight="700"
+          fontFamily="var(--ris-font-mono, monospace)"
+          letterSpacing="0.04em"
+          fill="currentColor"
+          stroke="none"
+        >
+          {cleanTargetLabel}
         </text>
 
         {cleanSpecCode && (
           <text
-            x="140"
-            y="12"
-            textAnchor="end"
-            fontSize="7.5"
+            x="80"
+            y="118"
+            textAnchor="middle"
+            fontSize="6.5"
             fontWeight="600"
             fontFamily="var(--ris-font-mono, monospace)"
             letterSpacing="0.04em"
@@ -368,24 +406,6 @@ export const MicroSpatialInspection = forwardRef<
             {cleanSpecCode}
           </text>
         )}
-      </g>
-
-      {/* Bottom Chip: Target Label & Status */}
-      <g className="ris-micro-inspection-chip-bottom">
-        <text
-          x="80"
-          y="117"
-          textAnchor="middle"
-          fontSize="8"
-          fontWeight="700"
-          fontFamily="var(--ris-font-mono, monospace)"
-          letterSpacing="0.04em"
-          fill="currentColor"
-          stroke="none"
-        >
-          {cleanTargetLabel}
-          <tspan opacity="0.85">{` · [${cleanStatus}]`}</tspan>
-        </text>
       </g>
     </svg>
   );

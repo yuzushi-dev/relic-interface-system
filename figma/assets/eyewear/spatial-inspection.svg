@@ -19,6 +19,11 @@
     </style>
   </defs>
   <title>Spatial Inspection: VALVE_ACTUATOR_B2, DST 1.40M, status [LOCKED], P/N: 884-J · OK</title>
+    <defs>
+      <clipPath id=":R0:">
+        <rect x="18" y="105" width="124" height="15" />
+      </clipPath>
+    </defs>
     <g class="ris-micro-inspection-brackets" opacity="1">
       <path d="M 20 30 L 20 22 L 24 18 L 32 18" fill="none" stroke="#2fe48a" stroke-width="1.25" vector-effect="non-scaling-stroke" />
       <path d="M 128 18 L 136 18 L 140 22 L 140 30" fill="none" stroke="#2fe48a" stroke-width="1.25" vector-effect="non-scaling-stroke" />
@@ -26,8 +31,8 @@
       <path d="M 128 102 L 136 102 L 140 98 L 140 90" fill="none" stroke="#2fe48a" stroke-width="1.25" vector-effect="non-scaling-stroke" />
     </g>
     <g class="ris-micro-boresight-ticks" opacity="0.75">
-      <line x1="80" y1="10" x2="80" y2="14" stroke="#2fe48a" stroke-width="1.25" vector-effect="non-scaling-stroke" />
-      <line x1="80" y1="106" x2="80" y2="110" stroke="#2fe48a" stroke-width="1.25" vector-effect="non-scaling-stroke" />
+      <line x1="80" y1="14" x2="80" y2="17" stroke="#2fe48a" stroke-width="1.25" vector-effect="non-scaling-stroke" />
+      <line x1="80" y1="103" x2="80" y2="106" stroke="#2fe48a" stroke-width="1.25" vector-effect="non-scaling-stroke" />
       <line x1="12" y1="60" x2="16" y2="60" stroke="#2fe48a" stroke-width="1.25" vector-effect="non-scaling-stroke" />
       <line x1="144" y1="60" x2="148" y2="60" stroke="#2fe48a" stroke-width="1.25" vector-effect="non-scaling-stroke" />
     </g>
@@ -41,11 +46,11 @@
       <polygon points="155,84.5 150.5,87 155,89.5" fill="#2fe48a" stroke="none" opacity="0.9" />
     </g>
     <g class="ris-micro-inspection-chip-top">
-      <text x="20" y="12" font-size="8.5" font-weight="800" font-family="'JetBrains Mono', monospace" letter-spacing="0.04em" fill="#2fe48a" stroke="none">DST: 1.40M</text>
-      <text x="140" y="12" text-anchor="end" font-size="7.5" font-weight="600" font-family="'JetBrains Mono', monospace" letter-spacing="0.04em" fill="#2fe48a" stroke="none" opacity="0.8">P/N: 884-J · OK</text>
+      <text x="12" y="11" font-size="8.5" font-weight="800" font-family="'JetBrains Mono', monospace" letter-spacing="0.04em" fill="#2fe48a" stroke="none">DST: 1.40M</text>
+      <text x="148" y="11" text-anchor="end" font-size="7.5" font-weight="700" font-family="'JetBrains Mono', monospace" letter-spacing="0.06em" fill="#2fe48a" stroke="none">[LOCKED]</text>
     </g>
-    <g class="ris-micro-inspection-chip-bottom">
-      <text x="80" y="117" text-anchor="middle" font-size="8" font-weight="700" font-family="'JetBrains Mono', monospace" letter-spacing="0.04em" fill="#2fe48a" stroke="none">VALVE_ACTUATOR_B2<tspan opacity="0.85"> · [LOCKED]</tspan>
-      </text>
+    <g class="ris-micro-inspection-chip-bottom" clip-path="url(#:R0:)">
+      <text x="80" y="111" text-anchor="middle" font-size="7.5" font-weight="700" font-family="'JetBrains Mono', monospace" letter-spacing="0.04em" fill="#2fe48a" stroke="none">VALVE_ACTUATOR_B2</text>
+      <text x="80" y="118" text-anchor="middle" font-size="6.5" font-weight="600" font-family="'JetBrains Mono', monospace" letter-spacing="0.04em" fill="#2fe48a" stroke="none" opacity="0.8">P/N: 884-J · OK</text>
     </g>
 </svg>

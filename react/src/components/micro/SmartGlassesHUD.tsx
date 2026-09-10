@@ -55,8 +55,8 @@ const DEFAULT_NAV_DATA: Partial<MicroNavGuidanceProps> = {
 
 const DEFAULT_CAPTION_DATA: Partial<MicroLiveCaptionsProps> = {
   speaker: 'ELENA ROSTOVA',
-  line1: 'WE HAVE FINALIZED THE TELEMETRY ARCHITECTURE.',
-  line2: 'MOVING REVIEWS TO Q3 TIMELINE.',
+  line1: 'FINALIZED TELEMETRY ARCHITECTURE',
+  line2: 'MOVING REVIEWS TO Q3 TIMELINE',
   listening: true,
 };
 
@@ -402,13 +402,13 @@ export const SmartGlassesHUD = forwardRef<SVGSVGElement, SmartGlassesHUDProps>(
             </g>
 
             {/* Bottom-Center MicroLiveCaptions */}
-            <g transform="translate(196, 296)">
+            <g transform="translate(200, 296)">
               <MicroLiveCaptions
                 brand={brand}
                 opticalProfile={opticalProfile}
                 animated={animated}
-                width={248}
-                height={44}
+                width={240}
+                height={52}
                 {...DEFAULT_CAPTION_DATA}
                 {...captionData}
               />
