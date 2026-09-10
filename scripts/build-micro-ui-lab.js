@@ -574,6 +574,20 @@ async function main() {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RIS v2 — Micro-UI &amp; Telemetry Graphics Laboratory</title>
+<script>
+(function() {
+  try {
+    var r = document.documentElement;
+    var b = localStorage.getItem('ris-brand');
+    if (b) r.dataset.brand = b;
+    var t = localStorage.getItem('ris-theme');
+    if (t) r.dataset.theme = t;
+    var s = localStorage.getItem('ris-skin');
+    if (s === 'off') delete r.dataset.skin;
+    else if (s === 'cyber') r.dataset.skin = 'cyber';
+  } catch (_) {}
+})();
+</script>
 <link rel="stylesheet" href="css/ris-tokens.css">
 <link rel="stylesheet" href="css/ris.css">
 <link rel="stylesheet" href="css/ris-fx.css">
@@ -596,15 +610,9 @@ async function main() {
 
   /* Specimen Shell & Layout */
   .lab-shell {
-    max-width: 1280px;
+    max-width: 1240px;
     margin: 0 auto;
-    padding: 80px 24px 100px;
-  }
-
-  /* Topbar uses canonical styling from ris.css */
-  .ris-topbar .ris-btn--sm {
-    padding: 4px 10px;
-    font-size: 10px;
+    padding: 76px 24px 100px;
   }
 
 
@@ -1017,22 +1025,7 @@ async function main() {
   /* Mobile OLED Safety & Breakpoints */
   @media (max-width: 768px) {
     .lab-shell {
-      padding: 70px 14px 80px;
-    }
-
-    .ris-topbar {
-      gap: 6px;
-      padding: 0 10px;
-    }
-
-    .topbar-brand-title {
-      max-width: 140px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .topbar-nav {
-      display: none;
+      padding: 72px 14px 80px;
     }
 
     .brand-btn {
@@ -1045,7 +1038,11 @@ async function main() {
       align-items: flex-start;
     }
 
-    .banner-cta {
+    .banner-left {
+      max-width: 100%;
+    }
+
+    .commercial-cta {
       width: 100%;
       text-align: center;
     }
@@ -1080,7 +1077,7 @@ async function main() {
       </optgroup>
     </select>
   </label>
-  <nav class="ris-topbar-nav" style="display:flex;align-items:center;gap:6px">
+  <nav class="ris-topbar-nav">
     <a href="index.html" class="ris-btn ris-btn--sm ris-btn--outline">🌐 Specimen</a>
     <a href="micro-ui.html" class="ris-btn ris-btn--sm ris-btn--primary" aria-current="page">📐 Micro-UI</a>
     <a href="eyewear.html" class="ris-btn ris-btn--sm ris-btn--outline">👓 Eyewear HUD</a>

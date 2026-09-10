@@ -248,12 +248,26 @@ async function main() {
 
   // Build the complete HTML document
   const html = `<!DOCTYPE html>
-<html lang="en" data-theme="dark" data-brand="biohub" data-motion="live">
+<html lang="en" data-theme="dark" data-brand="biohub" data-skin="cyber" data-motion="live">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RIS v2.9 — Smart Glasses & Optical Waveguide Micro-HUD Laboratory</title>
   <meta name="description" content="Tactical Micro-HUD design system for smart glasses, waveguide AR optics, and compact HUD displays. Brutalist 1px precision with emissive alpha transparency.">
+  <script>
+  (function() {
+    try {
+      var r = document.documentElement;
+      var b = localStorage.getItem('ris-brand');
+      if (b) r.dataset.brand = b;
+      var t = localStorage.getItem('ris-theme');
+      if (t) r.dataset.theme = t;
+      var s = localStorage.getItem('ris-skin');
+      if (s === 'off') delete r.dataset.skin;
+      else if (s === 'cyber') r.dataset.skin = 'cyber';
+    } catch (_) {}
+  })();
+  </script>
 
   <!-- RIS Design System Styles -->
   <link rel="stylesheet" href="css/ris-tokens.css">
@@ -284,7 +298,7 @@ async function main() {
 
     body {
       margin: 0;
-      padding: calc(var(--ris-topbar-h, 52px) + 8px) 0 0;
+      padding: calc(var(--ris-topbar-h, 52px) + 24px) 0 0;
       background-color: var(--lab-bg);
       color: var(--ris-fg);
       font-family: var(--ris-font-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
@@ -292,79 +306,10 @@ async function main() {
       overflow-x: hidden;
     }
 
-    /* Top Navigation Header */
-    .lab-header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(10, 13, 16, 0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--lab-border);
-      padding: 12px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    [data-theme="light"] .lab-header {
-      background: rgba(245, 248, 250, 0.92);
-    }
-
-    .lab-logo-cluster {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .lab-badge {
-      font-family: var(--ris-font-mono, monospace);
-      font-size: 10px;
-      font-weight: 700;
-      padding: 3px 8px;
-      border: 1px solid var(--ris-accent);
-      color: var(--ris-accent);
-      letter-spacing: 0.1em;
-      clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px));
-    }
-
-    .lab-nav-links {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .lab-nav-links a {
-      font-family: var(--ris-font-mono, monospace);
-      font-size: 11px;
-      font-weight: 600;
-      text-decoration: none;
-      color: var(--ris-fg3);
-      padding: 6px 12px;
-      border: 1px solid transparent;
-      transition: all 140ms ease;
-    }
-
-    .lab-nav-links a:hover,
-    .lab-nav-links a.active {
-      color: var(--ris-accent);
-      border-color: var(--lab-border);
-      background: rgba(111, 179, 201, 0.08);
-      clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px));
-    }
-
-    .lab-header-controls {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
     /* Hero / Lens Simulator Layout */
     .simulator-stage {
-      max-width: 1400px;
-      margin: 32px auto 48px;
+      max-width: 1240px;
+      margin: 24px auto 48px;
       padding: 0 24px;
     }
 
@@ -560,8 +505,8 @@ async function main() {
 
     /* Showcase Cards Grid */
     .section-container {
-      max-width: 1400px;
-      margin: 64px auto;
+      max-width: 1240px;
+      margin: 48px auto;
       padding: 0 24px;
     }
 
@@ -700,7 +645,7 @@ async function main() {
       border: 1px solid var(--ris-accent);
       padding: 16px 24px;
       margin: 48px auto;
-      max-width: 1400px;
+      max-width: 1240px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -778,7 +723,7 @@ async function main() {
         </optgroup>
       </select>
     </label>
-    <nav class="ris-topbar-nav" style="display:flex;align-items:center;gap:6px">
+    <nav class="ris-topbar-nav">
       <a href="index.html" class="ris-btn ris-btn--sm ris-btn--outline">🌐 Specimen</a>
       <a href="micro-ui.html" class="ris-btn ris-btn--sm ris-btn--outline">📐 Micro-UI</a>
       <a href="eyewear.html" class="ris-btn ris-btn--sm ris-btn--primary" aria-current="page">👓 Eyewear HUD</a>

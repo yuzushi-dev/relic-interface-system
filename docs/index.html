@@ -4,6 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RIS v2 — Relic Interface System · Design System</title>
+<script>
+(function() {
+  try {
+    var r = document.documentElement;
+    var b = localStorage.getItem('ris-brand');
+    if (b) r.dataset.brand = b;
+    var t = localStorage.getItem('ris-theme');
+    if (t) r.dataset.theme = t;
+    var s = localStorage.getItem('ris-skin');
+    if (s === 'off') delete r.dataset.skin;
+    else if (s === 'cyber') r.dataset.skin = 'cyber';
+  } catch (_) {}
+})();
+</script>
 <link rel="stylesheet" href="css/ris-tokens.css">
 <link rel="stylesheet" href="css/ris.css">
 <link rel="stylesheet" href="css/ris-fx.css">
@@ -11,7 +25,7 @@
 <link rel="stylesheet" href="css/ris-micro.css">
 <style>
   /* Specimen-only chrome */
-  .spec-shell { max-width: 1180px; margin: 0 auto; padding: 88px 24px 96px; }
+  .spec-shell { max-width: 1240px; margin: 0 auto; padding: 76px 24px 96px; }
   .spec-section { margin-bottom: 56px; }
   .spec-section > h2 { margin: 0 0 6px; }
   .spec-section > .ris-eyebrow { display: block; margin-bottom: 18px; }
@@ -21,23 +35,19 @@
   .swatch .chip { height: 56px; }
   .swatch .meta { padding: 8px 10px; background: var(--ris-surface-1); font-family: var(--ris-font-mono); font-size: 10px; color: var(--ris-fg3); line-height: 1.5; }
   .swatch .meta b { color: var(--ris-fg1); display: block; font-weight: 500; }
-  .icon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 8px; }
+  .icon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 8px; min-height: 480px; }
   .icon-cell { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 14px 6px 10px; background: var(--ris-surface-1); border: 1px solid var(--ris-line-faint); color: var(--ris-fg2); }
   .icon-cell:hover { border-color: var(--ris-accent-line); color: var(--ris-accent); }
   .icon-cell span { font-family: var(--ris-font-mono); font-size: 8.5px; color: var(--ris-fg3); word-break: break-all; text-align: center; }
   .type-row { display: flex; align-items: baseline; gap: 18px; padding: 10px 0; border-bottom: 1px solid var(--ris-line-faint); }
   .type-row code { font-family: var(--ris-font-mono); font-size: 10px; color: var(--ris-fg3); width: 110px; flex: 0 0 110px; }
-  @media (max-width: 1360px) {
-    .ris-topbar { gap: 6px; padding: 0 12px; }
-    .ris-topbar .ris-btn--sm { padding: 4px 7px; font-size: 9.5px; }
-  }
-  @media (max-width: 700px) {
-    .ris-topbar { gap: 8px; }
-    .ris-topbar .ris-eyebrow { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 26vw; }
-    .ris-topbar .ris-label { display: none; }
-    .ris-topbar > .ris-chip { display: none; }            /* hide version chip on small screens */
-    .ris-topbar #brand { width: 92px; }
-    .ris-topbar #skin { font-size: 9px; padding: 4px 7px; }
+
+  /* In-page CLS prevention */
+  #swatches { min-height: 84px; }
+  .ris-panel-body:has([id^="ch-"]) { min-height: 140px; }
+  #ch-intraday, #ch-line, #ch-bars, #ch-wave, #ch-bands { min-height: 120px; }
+
+  @media (max-width: 768px) {
     .spec-shell { padding: 72px 14px 84px; }
   }
 </style>
@@ -216,7 +226,7 @@
       </optgroup>
     </select>
   </label>
-  <nav class="ris-topbar-nav" style="display:flex;align-items:center;gap:6px">
+  <nav class="ris-topbar-nav">
     <a href="index.html" class="ris-btn ris-btn--sm ris-btn--primary" aria-current="page">🌐 Specimen</a>
     <a href="micro-ui.html" class="ris-btn ris-btn--sm ris-btn--outline">📐 Micro-UI</a>
     <a href="eyewear.html" class="ris-btn ris-btn--sm ris-btn--outline">👓 Eyewear HUD</a>
@@ -1091,16 +1101,20 @@ brandSelect.onchange = e => {
   try { localStorage.setItem('ris-brand', e.target.value); } catch (_) {}
 };
 
-// Sync from localStorage if present
-(function syncChrome() {
+// Sync UI controls with current documentElement state (set in <head>)
+(function syncChromeUI() {
   try {
-    const b = localStorage.getItem('ris-brand');
-    if (b && brandSelect) { root.dataset.brand = b; brandSelect.value = b; }
-    const t = localStorage.getItem('ris-theme');
-    if (t) { root.dataset.theme = t; themeBtn.setAttribute('aria-pressed', String(t === 'light')); }
-    const s = localStorage.getItem('ris-skin');
-    if (s === 'off') { delete root.dataset.skin; skinBtn.setAttribute('aria-pressed', 'false'); skinBtn.textContent = '▟ Skin: Off'; }
-    else if (s === 'cyber') { root.dataset.skin = 'cyber'; skinBtn.setAttribute('aria-pressed', 'true'); skinBtn.textContent = '▞ Skin'; }
+    if (brandSelect && root.dataset.brand) {
+      brandSelect.value = root.dataset.brand;
+    }
+    if (themeBtn) {
+      themeBtn.setAttribute('aria-pressed', String(root.dataset.theme === 'light'));
+    }
+    if (skinBtn) {
+      const isCyber = root.dataset.skin === 'cyber';
+      skinBtn.setAttribute('aria-pressed', String(isCyber));
+      skinBtn.textContent = isCyber ? '▞ Skin' : '▟ Skin: Off';
+    }
   } catch (_) {}
 })();
 

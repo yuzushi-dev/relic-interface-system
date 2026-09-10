@@ -4,6 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RIS v2 — Motion Lab (Tactical Forensic HUD)</title>
+<script>
+(function() {
+  try {
+    var r = document.documentElement;
+    var b = localStorage.getItem('ris-brand');
+    if (b) r.dataset.brand = b;
+    var t = localStorage.getItem('ris-theme');
+    if (t) r.dataset.theme = t;
+    var s = localStorage.getItem('ris-skin');
+    if (s === 'off') delete r.dataset.skin;
+    else if (s === 'cyber') r.dataset.skin = 'cyber';
+  } catch (_) {}
+})();
+</script>
 <link rel="stylesheet" href="css/ris-tokens.css">
 <link rel="stylesheet" href="css/ris.css">
 <link rel="stylesheet" href="css/ris-fx.css">
@@ -59,7 +73,7 @@
   .lab-shell {
     max-width: 1240px;
     margin: 0 auto;
-    padding: 80px 24px 100px;
+    padding: 76px 24px 100px;
   }
 
   /* Hero Section */
@@ -452,7 +466,7 @@
       </optgroup>
     </select>
   </label>
-  <nav class="ris-topbar-nav" style="display:flex;align-items:center;gap:6px">
+  <nav class="ris-topbar-nav">
     <a href="index.html" class="ris-btn ris-btn--sm ris-btn--outline">🌐 Specimen</a>
     <a href="micro-ui.html" class="ris-btn ris-btn--sm ris-btn--outline">📐 Micro-UI</a>
     <a href="eyewear.html" class="ris-btn ris-btn--sm ris-btn--outline">👓 Eyewear HUD</a>

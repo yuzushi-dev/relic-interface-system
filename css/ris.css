@@ -8,6 +8,10 @@
    skeleton · empty · kbd/code · avatar · badge · icon · utilities.
    ========================================================================== */
 
+html {
+  scrollbar-gutter: stable;
+}
+
 *, *::before, *::after { box-sizing: border-box; }
 
 body.ris {
@@ -80,34 +84,80 @@ button, a, input, select, textarea, .ris-btn, .ris-nav-link, .ris-listrow, .ris-
    ========================================================================== */
 .ris-topbar {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; align-items: center; gap: var(--ris-s2, 8px);
-  height: var(--ris-topbar-h);
-  padding: 0 var(--ris-s4);
+  display: flex; align-items: center; gap: 8px;
+  height: var(--ris-topbar-h, 52px);
+  padding: 0 var(--ris-s4, 16px);
   background: color-mix(in srgb, var(--ris-surface-1) 96%, transparent);
   border-bottom: 1px solid var(--ris-line);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  box-sizing: border-box;
 }
-.ris-topbar .spacer { flex: 1; min-width: 8px; }
+.ris-topbar > :not(.ris-topbar-nav) {
+  flex-shrink: 0;
+}
+.ris-topbar .spacer {
+  flex: 1 1 8px;
+  min-width: 4px;
+}
+.ris-topbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex: 0 1 auto;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.ris-topbar-nav::-webkit-scrollbar {
+  display: none;
+}
+.ris-topbar-nav .ris-btn,
+.ris-topbar .ris-btn--sm {
+  padding: 4px 8px;
+  font-size: 10px;
+  min-height: 26px;
+  height: 26px;
+  line-height: 1;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
 
-@media (max-width: 1360px) {
+@media (max-width: 1440px) {
   .ris-topbar { gap: 6px; padding: 0 12px; }
-  .ris-topbar .ris-btn--sm { padding: 4px 7px; font-size: 9.5px; }
+  .ris-topbar-nav { gap: 4px; }
+  .ris-topbar-nav .ris-btn,
+  .ris-topbar .ris-btn--sm {
+    padding: 3px 6px;
+    font-size: 9.5px;
+    height: 24px;
+    min-height: 24px;
+  }
+}
+
+@media (max-width: 1180px) {
+  .ris-topbar { gap: 6px; padding: 0 10px; }
+  .ris-topbar .ris-eyebrow { font-size: 11px; }
+  .ris-topbar > .ris-chip { display: none; }
   .ris-topbar #brand { width: 96px; }
 }
 
-@media (max-width: 1100px) {
-  .ris-topbar { overflow-x: auto; scrollbar-width: none; }
-  .ris-topbar::-webkit-scrollbar { display: none; }
-  .ris-topbar .ris-eyebrow { font-size: 11px; }
-  .ris-topbar > .ris-chip { display: none; }
+@media (max-width: 860px) {
+  .ris-topbar .ris-label { display: none; }
+  .ris-topbar #skin { display: none; }
 }
 
 @media (max-width: 768px) {
-  .ris-topbar { gap: 6px; padding: 0 10px; }
-  .ris-topbar .ris-label { display: none; }
-  .ris-topbar #brand { width: 88px; font-size: 11px; padding: 3px 18px 3px 6px; }
-  .ris-topbar #skin { display: none; }
+  .ris-topbar { gap: 6px; padding: 0 8px; }
+  .ris-topbar .ris-eyebrow {
+    font-size: 10.5px;
+    max-width: 130px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .ris-topbar #brand { width: 84px; font-size: 11px; padding: 2px 18px 2px 6px; height: 24px; }
 }
 
 .ris-rail {
