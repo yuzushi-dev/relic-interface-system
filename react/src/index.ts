@@ -110,6 +110,31 @@ export type {
   MicroEqualizerPreset,
 } from './components/micro/MicroEqualizer.js';
 
+export { MicroMatrix } from './components/micro/MicroMatrix.js';
+export type {
+  MicroMatrixProps,
+  MicroMatrixVariant,
+  MicroMatrixPreset,
+  MicroMatrixDensity,
+  MicroMatrixShape,
+} from './components/micro/MicroMatrix.js';
+
+export { MicroConstellation } from './components/micro/MicroConstellation.js';
+export type {
+  MicroConstellationProps,
+  MicroConstellationVariant,
+  MicroConstellationPreset,
+  MicroConstellationNode,
+} from './components/micro/MicroConstellation.js';
+
+export { MicroStamp } from './components/micro/MicroStamp.js';
+export type {
+  MicroStampProps,
+  MicroStampVariant,
+  MicroStampPreset,
+  MicroStampCodeType,
+} from './components/micro/MicroStamp.js';
+
 export { resolveMicroSize, resolveMicroColor } from './components/micro/types.js';
 export type { RisBrand, RisMicroStatus, RisMicroSize, MicroBaseProps } from './components/micro/types.js';
 
