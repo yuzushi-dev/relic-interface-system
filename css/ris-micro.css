@@ -26,6 +26,7 @@
 }
 
 .ris-micro-spin {
+  transform-box: fill-box;
   transform-origin: center;
   animation: ris-radar-sweep 4s linear infinite;
 }
