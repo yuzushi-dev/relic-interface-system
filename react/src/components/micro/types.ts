@@ -102,6 +102,7 @@ export interface MicroGlanceNoticeProps extends MicroBaseProps {
   subtitle?: string;
   severity?: 'info' | 'warn' | 'critical';
   dismissProgress?: number;
+  opticalProfile?: EyewearOpticalProfile;
 }
 
 export type MicroSpatialInspectionStatus = 'scanning' | 'locked' | 'standby';
@@ -113,6 +114,7 @@ export interface MicroSpatialInspectionProps extends Omit<MicroBaseProps, 'statu
   specCode?: string;
   bracketWidth?: number;
   bracketHeight?: number;
+  opticalProfile?: EyewearOpticalProfile;
 }
 
 export interface SmartGlassesHUDProps extends MicroBaseProps {

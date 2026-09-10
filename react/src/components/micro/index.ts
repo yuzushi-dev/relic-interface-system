@@ -11,3 +11,5 @@ export * from './MicroCluster.js';
 export * from './MicroNavGuidance.js';
 export * from './MicroLiveCaptions.js';
 export * from './MicroVitalTelemetry.js';
+export * from './MicroGlanceNotice.js';
+export * from './MicroSpatialInspection.js';

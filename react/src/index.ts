@@ -166,7 +166,19 @@ export type {
   MicroVitalTelemetryProps,
 } from './components/micro/MicroVitalTelemetry.js';
 
+export { MicroGlanceNotice } from './components/micro/MicroGlanceNotice.js';
+export type {
+  MicroGlanceNoticeProps,
+} from './components/micro/MicroGlanceNotice.js';
+
+export { MicroSpatialInspection } from './components/micro/MicroSpatialInspection.js';
+export type {
+  MicroSpatialInspectionProps,
+  MicroSpatialInspectionStatus,
+} from './components/micro/MicroSpatialInspection.js';
+
 export { resolveMicroSize, resolveMicroColor } from './components/micro/types.js';
 export type { RisBrand, RisMicroStatus, RisMicroSize, MicroBaseProps } from './components/micro/types.js';
+
 
 
