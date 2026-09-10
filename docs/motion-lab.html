@@ -433,42 +433,42 @@
 
 <!-- Topbar with Theme, Brand, and Testing Controls -->
 <header class="ris-topbar">
-  <span class="ris-eyebrow" style="color:var(--ris-accent)">RIS v2 · MOTION ARCHITECTURE</span>
-  <a href="index.html" class="ris-btn ris-btn--sm ris-btn--outline" style="text-decoration:none">🌐 Specimen</a>
-  <a href="mobile.html" class="ris-btn ris-btn--sm ris-btn--outline" style="text-decoration:none">📱 Mobile</a>
-  <a href="micro-ui.html" class="ris-btn ris-btn--sm ris-btn--outline" style="text-decoration:none">📐 Micro-UI</a>
-  <a href="https://polar.sh/yuzushi-dev" target="_blank" rel="noopener" class="ris-btn ris-btn--sm" style="text-decoration:none;border-color:var(--ris-accent);color:var(--ris-accent);font-weight:700">★ Polar Store</a>
+  <span class="ris-eyebrow" style="color:var(--ris-accent);white-space:nowrap;flex-shrink:0">RIS v2 · MOTION</span>
+  <a href="index.html" class="ris-btn ris-btn--sm ris-btn--outline">🌐 Specimen</a>
+  <a href="mobile.html" class="ris-btn ris-btn--sm ris-btn--outline">📱 Mobile</a>
+  <a href="micro-ui.html" class="ris-btn ris-btn--sm ris-btn--outline">📐 Micro-UI</a>
+  <a href="https://polar.sh/yuzushi-dev" target="_blank" rel="noopener" class="ris-btn ris-btn--sm ris-btn--outline" style="border-color:var(--ris-accent);color:var(--ris-accent);font-weight:700">★ Store</a>
 
-  <div style="margin-left:auto; display:flex; gap:12px; align-items:center;">
+  <div style="margin-left:auto; display:flex; gap:8px; align-items:center; flex-shrink:0">
     <!-- Speed toggle (slow motion inspection) -->
-    <select class="ris-select" id="speed-select" onchange="setSpeed(this.value)" title="Animation speed for curve inspection">
-      <option value="normal">Speed: 1x (Snappy)</option>
-      <option value="slow">Speed: 0.3x (Slow-Mo)</option>
+    <select class="ris-select" id="speed-select" onchange="setSpeed(this.value)" title="Animation speed for curve inspection" style="padding:4px 22px 4px 8px;font-size:11px;height:28px">
+      <option value="normal">1x Normal</option>
+      <option value="slow">0.3x Slow</option>
     </select>
 
     <!-- Reduced Motion -->
-    <label class="tactical-switch" title="Simulate prefers-reduced-motion (WCAG 2.2 AA)">
+    <label class="tactical-switch" title="Simulate prefers-reduced-motion (WCAG 2.2 AA)" style="font-size:10px;gap:6px">
       <input type="checkbox" id="toggle-reduced" onchange="toggleReducedMotion(this.checked)">
-      <div class="tactical-switch-track"><div class="tactical-switch-thumb"></div></div>
-      <span>REDUCED MOTION</span>
+      <div class="tactical-switch-track" style="width:32px;height:18px"><div class="tactical-switch-thumb" style="width:12px;height:12px"></div></div>
+      <span style="font-size:10px;white-space:nowrap">Reduced Motion</span>
     </label>
 
     <!-- Brand selector -->
-    <select class="ris-select" id="brand-select" onchange="document.documentElement.setAttribute('data-brand', this.value)">
-      <option value="relic">Relic (Amber/Cyan)</option>
-      <option value="biohub">BioHub (Cyan/Green)</option>
-      <option value="omnikon">Omnikon (Red/Yellow)</option>
-      <option value="neutral">Neutral (Violet/Cyan)</option>
+    <select class="ris-select" id="brand-select" onchange="document.documentElement.setAttribute('data-brand', this.value)" style="padding:4px 22px 4px 8px;font-size:11px;height:28px;width:96px">
+      <option value="relic">Relic</option>
+      <option value="biohub">BioHub</option>
+      <option value="omnikon">Omnikon</option>
+      <option value="neutral">Neutral</option>
     </select>
 
     <!-- Skin toggle -->
     <button class="ris-btn ris-btn--sm ris-btn--secondary" id="skin-btn" onclick="toggleSkin()">
-      ▞ SKIN: CYBER
+      ▞ Skin
     </button>
 
     <!-- Theme toggle -->
-    <button class="ris-btn ris-btn--sm ris-btn--primary" onclick="toggleTheme()" id="theme-btn">
-      ◐ THEME: DARK
+    <button class="ris-btn ris-btn--sm ris-btn--secondary" onclick="toggleTheme()" id="theme-btn">
+      ◐ Theme
     </button>
   </div>
 </header>
@@ -787,7 +787,7 @@
     const curr = html.getAttribute('data-theme') || 'dark';
     const next = curr === 'dark' ? 'light' : 'dark';
     html.setAttribute('data-theme', next);
-    document.getElementById('theme-btn').innerText = next === 'dark' ? '◐ THEME: DARK' : '◐ THEME: LIGHT';
+    document.getElementById('theme-btn').setAttribute('aria-pressed', String(next === 'light'));
   }
 
   function toggleSkin() {

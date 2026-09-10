@@ -27,6 +27,10 @@
   .icon-cell span { font-family: var(--ris-font-mono); font-size: 8.5px; color: var(--ris-fg3); word-break: break-all; text-align: center; }
   .type-row { display: flex; align-items: baseline; gap: 18px; padding: 10px 0; border-bottom: 1px solid var(--ris-line-faint); }
   .type-row code { font-family: var(--ris-font-mono); font-size: 10px; color: var(--ris-fg3); width: 110px; flex: 0 0 110px; }
+  @media (max-width: 1360px) {
+    .ris-topbar { gap: 6px; padding: 0 12px; }
+    .ris-topbar .ris-btn--sm { padding: 4px 7px; font-size: 9.5px; }
+  }
   @media (max-width: 700px) {
     .ris-topbar { gap: 8px; }
     .ris-topbar .ris-eyebrow { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 26vw; }
@@ -193,12 +197,12 @@
 
 
 <header class="ris-topbar">
-  <span class="ris-eyebrow" style="color:var(--ris-accent)">RIS — RELIC INTERFACE SYSTEM</span>
-  <span class="ris-chip">v2.8.0</span>
+  <span class="ris-eyebrow" style="color:var(--ris-accent);white-space:nowrap">RIS — RELIC INTERFACE SYSTEM</span>
+  <span class="ris-chip" style="white-space:nowrap">v2.8.0</span>
   <span class="spacer"></span>
-  <label class="ris-field" style="flex-direction:row;align-items:center;gap:8px">
-    <span class="ris-label">Brand</span>
-    <select id="brand" class="ris-select" style="width:130px;padding:5px 30px 5px 10px;font-size:13px">
+  <label class="ris-field" style="flex-direction:row;align-items:center;gap:6px;margin:0">
+    <span class="ris-label" style="margin:0">Brand</span>
+    <select id="brand" class="ris-select" style="width:110px;padding:4px 24px 4px 8px;font-size:12px;height:28px">
       <optgroup label="Products">
         <option value="relic">Relic</option>
         <option value="biohub">BioHub</option>
@@ -212,12 +216,12 @@
       </optgroup>
     </select>
   </label>
-  <a href="mobile.html" class="ris-btn ris-btn--sm ris-btn--outline" style="text-decoration:none">📱 Mobile Shell</a>
-  <a href="motion-lab.html" class="ris-btn ris-btn--sm ris-btn--primary" style="text-decoration:none">⚡ Motion Lab</a>
-  <a href="micro-ui.html" class="ris-btn ris-btn--sm ris-btn--outline" style="text-decoration:none">📐 Micro-UI Lab</a>
-  <a href="https://polar.sh/yuzushi-dev" target="_blank" rel="noopener" class="ris-btn ris-btn--sm" style="text-decoration:none;border-color:var(--ris-accent);color:var(--ris-accent);font-weight:700">★ Polar Store</a>
-  <a href="https://github.com/yuzushi-dev/relic-interface-system" target="_blank" rel="noopener" class="ris-btn ris-btn--sm ris-btn--secondary" style="text-decoration:none">GitHub ↗</a>
-  <button id="skin" class="ris-btn ris-btn--sm ris-btn--secondary" aria-pressed="true">▞ Skin: Cyber</button>
+  <a href="mobile.html" class="ris-btn ris-btn--sm ris-btn--outline">📱 Mobile</a>
+  <a href="motion-lab.html" class="ris-btn ris-btn--sm ris-btn--outline">⚡ Motion Lab</a>
+  <a href="micro-ui.html" class="ris-btn ris-btn--sm ris-btn--outline">📐 Micro-UI</a>
+  <a href="https://polar.sh/yuzushi-dev" target="_blank" rel="noopener" class="ris-btn ris-btn--sm ris-btn--outline" style="border-color:var(--ris-accent);color:var(--ris-accent);font-weight:700">★ Store</a>
+  <a href="https://github.com/yuzushi-dev/relic-interface-system" target="_blank" rel="noopener" class="ris-btn ris-btn--sm ris-btn--secondary">GitHub ↗</a>
+  <button id="skin" class="ris-btn ris-btn--sm ris-btn--secondary" aria-pressed="true">▞ Skin</button>
   <button id="theme" class="ris-btn ris-btn--sm" aria-pressed="false">◐ Theme</button>
 </header>
 
@@ -1059,7 +1063,7 @@ skinBtn.onclick = () => {
   const on = root.dataset.skin !== 'cyber';
   if (on) root.dataset.skin = 'cyber'; else delete root.dataset.skin;
   skinBtn.setAttribute('aria-pressed', String(on));
-  skinBtn.textContent = on ? '▞ Skin: Cyber' : '▟ Skin: Off';
+  skinBtn.textContent = on ? '▞ Skin' : '▟ Skin: Off';
 };
 document.getElementById('brand').onchange = e => root.dataset.brand = e.target.value;
 

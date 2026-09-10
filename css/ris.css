@@ -80,7 +80,7 @@ button, a, input, select, textarea, .ris-btn, .ris-nav-link, .ris-listrow, .ris-
    ========================================================================== */
 .ris-topbar {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  display: flex; align-items: center; gap: var(--ris-s4);
+  display: flex; align-items: center; gap: var(--ris-s2);
   height: var(--ris-topbar-h);
   padding: 0 var(--ris-s4);
   background: color-mix(in srgb, var(--ris-surface-1) 96%, transparent);
@@ -218,9 +218,12 @@ button, a, input, select, textarea, .ris-btn, .ris-nav-link, .ris-listrow, .ris-
   font-family: var(--ris-font-body);
   font-size: var(--ris-text-xs);
   font-weight: var(--ris-w-semi);
+  line-height: 1;
   letter-spacing: var(--ris-track-wider);
   text-transform: uppercase;
-  --_accent: var(--ris-accent);
+  white-space: nowrap;
+  flex-shrink: 0;
+  text-decoration: none;
   background: var(--ris-surface-2);
   border: 1px solid var(--ris-line-strong);
   clip-path: polygon(0 0, calc(100% - var(--ris-clip-sm)) 0, 100% var(--ris-clip-sm), 100% 100%, var(--ris-clip-sm) 100%, 0 calc(100% - var(--ris-clip-sm)));
@@ -279,6 +282,21 @@ button, a, input, select, textarea, .ris-btn, .ris-nav-link, .ris-listrow, .ris-
   color: var(--ris-accent-2);
   border-color: var(--ris-accent-2);
 }
+.ris-btn--outline {
+  background: transparent;
+  color: var(--ris-fg1);
+  border-color: var(--ris-line-strong);
+}
+.ris-btn--outline:hover {
+  background: var(--ris-surface-2);
+  border-color: var(--_accent);
+  color: #ffffff;
+}
+:root[data-theme="light"] .ris-btn--outline:hover {
+  background: var(--ris-surface-1);
+  color: var(--ris-fg1);
+  border-color: var(--_accent);
+}
 .ris-btn--danger {
   --_accent: var(--ris-red);
   color: var(--ris-red);
@@ -294,7 +312,7 @@ button, a, input, select, textarea, .ris-btn, .ris-nav-link, .ris-listrow, .ris-
 .ris-btn--ghost { background: transparent; border-color: var(--ris-line); color: var(--ris-fg2); }
 .ris-btn--ghost:hover { color: #ffffff; background: var(--ris-surface-2); border-color: var(--ris-line-strong); box-shadow: none; }
 
-.ris-btn--sm { padding: 5px 10px; min-height: 28px; font-size: 10px; }
+.ris-btn--sm { padding: 4px 10px; min-height: 28px; height: 28px; font-size: 10px; line-height: 1; }
 .ris-btn--lg { padding: 13px 24px; min-height: 46px; font-size: var(--ris-text-sm); }
 .ris-btn--icon { padding: 0; width: 36px; }
 .ris-btn--block { display: flex; width: 100%; }
