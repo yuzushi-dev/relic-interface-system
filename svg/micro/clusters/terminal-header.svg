@@ -1,0 +1,129 @@
+<svg color="#e6a23c" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 48" width="160" height="48" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-preset="terminal-header" data-brand="relic" class="ris-micro-cluster" style="color: #e6a23c; overflow:visible;">
+  <defs>
+    <style>
+      :root, svg {
+        --ris-primary: #e6a23c;
+        --ris-accent: #e6a23c;
+        --ris-yellow: #e6a23c;
+        --ris-cyan: #6fb3c9;
+        --ris-green: #5fae84;
+        --ris-red: #d45565;
+        --ris-violet: #8479be;
+        --ris-fg4: #97a4ad;
+        --ris-bg: #0a0a0c;
+        --ris-line: rgba(230, 162, 60, 0.4);
+        --ris-font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        color: #e6a23c;
+        font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      }
+    </style>
+  </defs>
+  <polygon points="0,6 6,0 154,0 160,6 160,42 154,48 6,48 0,42" fill="#e6a23c" fill-opacity="0.03" stroke="#e6a23c" stroke-width="1" stroke-opacity="0.6" vector-effect="non-scaling-stroke" />
+  <path d="M 0 10 L 0 6 L 6 0 L 10 0" fill="none" stroke="#e6a23c" stroke-width="1.25" vector-effect="non-scaling-stroke" />
+  <path d="M 150 0 L 154 0 L 160 6 L 160 10" fill="none" stroke="#e6a23c" stroke-width="1.25" vector-effect="non-scaling-stroke" />
+  <path d="M 0 38 L 0 42 L 6 48 L 10 48" fill="none" stroke="#e6a23c" stroke-width="1.25" vector-effect="non-scaling-stroke" />
+  <path d="M 150 48 L 154 48 L 160 42 L 160 38" fill="none" stroke="#e6a23c" stroke-width="1.25" vector-effect="non-scaling-stroke" />
+  <g>
+    <g transform="translate(6, 2)">
+      <svg viewBox="0 0 148 16" width="148" height="16" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="ruler" data-orientation="horizontal" data-brand="relic" class="ris-micro-caliper" style="color:#e6a23c;flex-shrink:0;overflow:visible">
+        <g>
+          <g>
+            <line x1="0" y1="12" x2="148" y2="12" stroke-width="1" />
+            <line x1="0" y1="4" x2="0" y2="12" stroke-width="1.25" />
+            <polygon points="0,12 3,9 3,12" fill="#e6a23c" stroke="none" />
+            <line x1="148" y1="4" x2="148" y2="12" stroke-width="1.25" />
+            <polygon points="148,12 145,9 145,12" fill="#e6a23c" stroke="none" />
+            <line x1="9.866666666666667" y1="6" x2="9.866666666666667" y2="12" stroke-width="1" />
+            <line x1="4.933333333333334" y1="9" x2="4.933333333333334" y2="12" stroke-width="0.75" />
+            <line x1="19.733333333333334" y1="6" x2="19.733333333333334" y2="12" stroke-width="1" />
+            <line x1="14.8" y1="9" x2="14.8" y2="12" stroke-width="0.75" />
+            <line x1="29.6" y1="6" x2="29.6" y2="12" stroke-width="1" />
+            <line x1="24.666666666666668" y1="9" x2="24.666666666666668" y2="12" stroke-width="0.75" />
+            <line x1="39.46666666666667" y1="6" x2="39.46666666666667" y2="12" stroke-width="1" />
+            <line x1="34.53333333333333" y1="9" x2="34.53333333333333" y2="12" stroke-width="0.75" />
+            <line x1="49.333333333333336" y1="6" x2="49.333333333333336" y2="12" stroke-width="1" />
+            <line x1="44.400000000000006" y1="9" x2="44.400000000000006" y2="12" stroke-width="0.75" />
+            <line x1="59.2" y1="6" x2="59.2" y2="12" stroke-width="1" />
+            <line x1="54.266666666666666" y1="9" x2="54.266666666666666" y2="12" stroke-width="0.75" />
+            <line x1="69.06666666666666" y1="6" x2="69.06666666666666" y2="12" stroke-width="1" />
+            <line x1="64.13333333333333" y1="9" x2="64.13333333333333" y2="12" stroke-width="0.75" />
+            <line x1="78.93333333333334" y1="6" x2="78.93333333333334" y2="12" stroke-width="1" />
+            <line x1="74" y1="9" x2="74" y2="12" stroke-width="0.75" />
+            <line x1="88.80000000000001" y1="6" x2="88.80000000000001" y2="12" stroke-width="1" />
+            <line x1="83.86666666666667" y1="9" x2="83.86666666666667" y2="12" stroke-width="0.75" />
+            <line x1="98.66666666666667" y1="6" x2="98.66666666666667" y2="12" stroke-width="1" />
+            <line x1="93.73333333333333" y1="9" x2="93.73333333333333" y2="12" stroke-width="0.75" />
+            <line x1="108.53333333333333" y1="6" x2="108.53333333333333" y2="12" stroke-width="1" />
+            <line x1="103.6" y1="9" x2="103.6" y2="12" stroke-width="0.75" />
+            <line x1="118.4" y1="6" x2="118.4" y2="12" stroke-width="1" />
+            <line x1="113.46666666666667" y1="9" x2="113.46666666666667" y2="12" stroke-width="0.75" />
+            <line x1="128.26666666666668" y1="6" x2="128.26666666666668" y2="12" stroke-width="1" />
+            <line x1="123.33333333333334" y1="9" x2="123.33333333333334" y2="12" stroke-width="0.75" />
+            <line x1="138.13333333333333" y1="6" x2="138.13333333333333" y2="12" stroke-width="1" />
+            <line x1="133.2" y1="9" x2="133.2" y2="12" stroke-width="0.75" />
+            <line x1="143.06666666666666" y1="9" x2="143.06666666666666" y2="12" stroke-width="0.75" />
+            <g stroke="none" fill="#e6a23c" opacity="0.6" font-size="4.5" font-family="'JetBrains Mono', monospace">
+              <text x="4" y="6">00</text>
+              <text x="144" text-anchor="end" y="6">148</text>
+            </g>
+          </g>
+        </g>
+      </svg>
+    </g>
+    <g transform="translate(8, 16)">
+      <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="barcode" data-preset="barcode-mini" data-code-type="128" data-brand="relic" class="ris-micro-stamp" style="color:#e6a23c;flex-shrink:0;overflow:visible">
+        <g>
+          <g>
+            <path d="M 2 7 L 2 2 L 7 2" stroke="#e6a23c" stroke-width="1" fill="none" vector-effect="non-scaling-stroke" />
+            <path d="M 30 7 L 30 2 L 25 2" stroke="#e6a23c" stroke-width="1" fill="none" vector-effect="non-scaling-stroke" />
+            <line x1="4.5" y1="5" x2="4.5" y2="20" stroke="#e6a23c" stroke-width="1" vector-effect="non-scaling-stroke" />
+            <line x1="6.5" y1="5" x2="6.5" y2="20" stroke="#e6a23c" stroke-width="1.5" vector-effect="non-scaling-stroke" />
+            <line x1="9" y1="5" x2="9" y2="20" stroke="#e6a23c" stroke-width="0.75" vector-effect="non-scaling-stroke" />
+            <line x1="10.5" y1="5" x2="10.5" y2="20" stroke="#e6a23c" stroke-width="2" vector-effect="non-scaling-stroke" />
+            <line x1="13" y1="5" x2="13" y2="20" stroke="#e6a23c" stroke-width="1" vector-effect="non-scaling-stroke" />
+            <line x1="14.75" y1="5" x2="14.75" y2="20" stroke="#e6a23c" stroke-width="0.75" vector-effect="non-scaling-stroke" />
+            <line x1="16.5" y1="5" x2="16.5" y2="20" stroke="#e6a23c" stroke-width="2" vector-effect="non-scaling-stroke" />
+            <line x1="19" y1="5" x2="19" y2="20" stroke="#e6a23c" stroke-width="1.25" vector-effect="non-scaling-stroke" />
+            <line x1="21" y1="5" x2="21" y2="20" stroke="#e6a23c" stroke-width="0.75" vector-effect="non-scaling-stroke" />
+            <line x1="22.75" y1="5" x2="22.75" y2="20" stroke="#e6a23c" stroke-width="1.75" vector-effect="non-scaling-stroke" />
+            <line x1="25" y1="5" x2="25" y2="20" stroke="#e6a23c" stroke-width="1" vector-effect="non-scaling-stroke" />
+            <line x1="27" y1="5" x2="27" y2="20" stroke="#e6a23c" stroke-width="1.5" vector-effect="non-scaling-stroke" />
+            <text x="16" y="27" font-size="4.5" font-family="'JetBrains Mono', monospace" font-weight="700" fill="#e6a23c" text-anchor="middle" letter-spacing="0.8px" stroke="none">RL-8802</text>
+          </g>
+        </g>
+      </svg>
+    </g>
+    <g transform="translate(42, 19)">
+      <svg viewBox="0 0 96 24" width="72" height="18" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="inline" data-brand="relic" class="ris-micro-telemetry" style="color:#e6a23c;flex-shrink:0;overflow:visible">
+        <g>
+          <polygon points="0,4 4,0 92,0 96,4 96,20 92,24 4,24 0,20" fill="#e6a23c" fill-opacity="0.04" stroke="#e6a23c" stroke-width="1" stroke-opacity="0.5" vector-effect="non-scaling-stroke" />
+          <line x1="0" y1="8" x2="0" y2="4" stroke-width="1.5" stroke="#e6a23c" vector-effect="non-scaling-stroke" />
+          <line x1="4" y1="0" x2="8" y2="0" stroke-width="1.5" stroke="#e6a23c" vector-effect="non-scaling-stroke" />
+          <circle cx="6" cy="12" r="2" fill="#e6a23c" />
+          <text x="12" y="8.5" font-size="4.5" font-family="'JetBrains Mono', monospace" fill="#e6a23c" opacity="0.65" stroke="none">端末</text>
+          <text x="12" y="18.5" font-size="5.5" font-family="'JetBrains Mono', monospace" font-weight="700" letter-spacing="0.08em" fill="#e6a23c" stroke="none">SYS-TERM</text>
+          <line x1="46" y1="4" x2="46" y2="20" stroke="#e6a23c" stroke-width="0.75" stroke-opacity="0.35" vector-effect="non-scaling-stroke" />
+          <polygon points="46,11 47.5,12 46,13 44.5,12" fill="#e6a23c" opacity="0.7" stroke="none" />
+          <text x="51" y="15.5" font-size="6.5" font-family="'JetBrains Mono', monospace" font-weight="800" letter-spacing="0.04em" fill="#e6a23c" stroke="none">[SYS-OK]</text>
+          <text x="91" y="9" text-anchor="end" font-size="4" font-family="'JetBrains Mono', monospace" font-weight="700" fill="#e6a23c" opacity="0.7" stroke="none">TTY-01</text>
+          <text x="91" y="18.5" text-anchor="end" font-size="3.5" font-family="'JetBrains Mono', monospace" fill="#e6a23c" opacity="0.45" stroke="none">2026-X</text>
+        </g>
+      </svg>
+    </g>
+    <g transform="translate(122, 16)">
+      <svg viewBox="0 0 30 16" width="30" height="16" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="bracket" data-orientation="horizontal" data-brand="relic" class="ris-micro-caliper" style="color:#e6a23c;flex-shrink:0;overflow:visible">
+        <g>
+          <g>
+            <path d="M 3 11 L 0 14 L 0 6 L 2 4 L 6 4" stroke-width="1.25" />
+            <path d="M 27 11 L 30 14 L 30 6 L 28 4 L 24 4" stroke-width="1.25" />
+            <g>
+              <line x1="6" y1="4" x2="10" y2="4" stroke-width="1" />
+              <polygon points="12,2 18,2 15,5" fill="#e6a23c" stroke="none" />
+              <line x1="20" y1="4" x2="24" y2="4" stroke-width="1" />
+            </g>
+          </g>
+        </g>
+      </svg>
+    </g>
+  </g>
+</svg>

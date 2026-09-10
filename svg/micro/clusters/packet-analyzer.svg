@@ -1,0 +1,137 @@
+<svg color="#e6a23c" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 48" width="160" height="48" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-preset="packet-analyzer" data-brand="relic" class="ris-micro-cluster" style="color: #e6a23c; overflow:visible;">
+  <defs>
+    <style>
+      :root, svg {
+        --ris-primary: #e6a23c;
+        --ris-accent: #e6a23c;
+        --ris-yellow: #e6a23c;
+        --ris-cyan: #6fb3c9;
+        --ris-green: #5fae84;
+        --ris-red: #d45565;
+        --ris-violet: #8479be;
+        --ris-fg4: #97a4ad;
+        --ris-bg: #0a0a0c;
+        --ris-line: rgba(230, 162, 60, 0.4);
+        --ris-font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        color: #e6a23c;
+        font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      }
+    </style>
+  </defs>
+  <polygon points="0,6 6,0 154,0 160,6 160,42 154,48 6,48 0,42" fill="#e6a23c" fill-opacity="0.03" stroke="#e6a23c" stroke-width="1" stroke-opacity="0.6" vector-effect="non-scaling-stroke" />
+  <path d="M 0 10 L 0 6 L 6 0 L 10 0" fill="none" stroke="#e6a23c" stroke-width="1.25" vector-effect="non-scaling-stroke" />
+  <path d="M 150 0 L 154 0 L 160 6 L 160 10" fill="none" stroke="#e6a23c" stroke-width="1.25" vector-effect="non-scaling-stroke" />
+  <path d="M 0 38 L 0 42 L 6 48 L 10 48" fill="none" stroke="#e6a23c" stroke-width="1.25" vector-effect="non-scaling-stroke" />
+  <path d="M 150 48 L 154 48 L 160 42 L 160 38" fill="none" stroke="#e6a23c" stroke-width="1.25" vector-effect="non-scaling-stroke" />
+  <g>
+    <polygon points="6,1 154,1 159,6 159,10 1,10 1,6" fill="#e6a23c" fill-opacity="0.08" stroke="none" />
+    <line x1="1" y1="10" x2="159" y2="10" stroke="#e6a23c" stroke-width="0.75" stroke-opacity="0.35" vector-effect="non-scaling-stroke" />
+    <text x="6" y="7.5" font-size="4.5" font-family="'JetBrains Mono', monospace" font-weight="800" letter-spacing="0.08em" fill="#e6a23c" opacity="0.85" stroke="none">PACKET ANALYZER // ETH-0</text>
+    <text x="154" y="7.5" text-anchor="end" font-size="4" font-family="'JetBrains Mono', monospace" font-weight="700" fill="#e6a23c" opacity="0.75" stroke="none">RATE: 10 Gbps</text>
+  </g>
+  <g>
+    <g transform="translate(6, 13)">
+      <svg viewBox="0 0 32 36" width="30" height="30" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="mirrored" data-preset="bandwidth" data-brand="relic" class="ris-micro-equalizer" style="color:#e6a23c;flex-shrink:0;overflow:visible">
+        <g>
+          <line x1="2" y1="18" x2="30" y2="18" stroke-width="0.75" stroke-dasharray="1.5 1.5" opacity="0.35" />
+          <line x1="2" y1="16" x2="2" y2="20" stroke-width="1" />
+          <line x1="30" y1="16" x2="30" y2="20" stroke-width="1" />
+          <g style="transform-origin:3.38px 18px">
+            <rect x="2.02" y="15.4" width="2.71" height="5.2" fill="#e6a23c" stroke="none" />
+            <circle cx="3.38" cy="13.9" r="0.75" fill="#e6a23c" opacity="0.8" stroke="none" />
+            <circle cx="3.38" cy="22.1" r="0.75" fill="#e6a23c" opacity="0.8" stroke="none" />
+          </g>
+          <g style="transform-origin:7.59px 18px">
+            <rect x="6.23" y="11.5" width="2.71" height="13" fill="#e6a23c" stroke="none" />
+            <circle cx="7.59" cy="10" r="0.75" fill="#e6a23c" opacity="0.8" stroke="none" />
+            <circle cx="7.59" cy="26" r="0.75" fill="#e6a23c" opacity="0.8" stroke="none" />
+          </g>
+          <g style="transform-origin:11.79px 18px">
+            <rect x="10.44" y="6.95" width="2.71" height="22.1" fill="#e6a23c" stroke="none" />
+            <circle cx="11.79" cy="5.45" r="0.75" fill="#e6a23c" opacity="0.8" stroke="none" />
+            <circle cx="11.79" cy="30.55" r="0.75" fill="#e6a23c" opacity="0.8" stroke="none" />
+          </g>
+          <g style="transform-origin:16px 18px">
+            <rect x="14.65" y="5.65" width="2.71" height="24.7" fill="#e6a23c" stroke="none" />
+            <circle cx="16" cy="4.15" r="0.75" fill="#e6a23c" opacity="0.8" stroke="none" />
+            <circle cx="16" cy="31.85" r="0.75" fill="#e6a23c" opacity="0.8" stroke="none" />
+          </g>
+          <g style="transform-origin:20.21px 18px">
+            <rect x="18.86" y="6.95" width="2.71" height="22.1" fill="#e6a23c" stroke="none" />
+            <circle cx="20.21" cy="5.45" r="0.75" fill="#e6a23c" opacity="0.8" stroke="none" />
+            <circle cx="20.21" cy="30.55" r="0.75" fill="#e6a23c" opacity="0.8" stroke="none" />
+          </g>
+          <g style="transform-origin:24.43px 18px">
+            <rect x="23.07" y="11.5" width="2.71" height="13" fill="#e6a23c" stroke="none" />
+            <circle cx="24.43" cy="10" r="0.75" fill="#e6a23c" opacity="0.8" stroke="none" />
+            <circle cx="24.43" cy="26" r="0.75" fill="#e6a23c" opacity="0.8" stroke="none" />
+          </g>
+          <g style="transform-origin:28.64px 18px">
+            <rect x="27.28" y="15.4" width="2.71" height="5.2" fill="#e6a23c" stroke="none" />
+            <circle cx="28.64" cy="13.9" r="0.75" fill="#e6a23c" opacity="0.8" stroke="none" />
+            <circle cx="28.64" cy="22.1" r="0.75" fill="#e6a23c" opacity="0.8" stroke="none" />
+          </g>
+        </g>
+      </svg>
+    </g>
+    <g transform="translate(40, 14)">
+      <svg viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="blocks" data-preset="binary-status" data-density="dense" data-shape="squares" data-brand="relic" class="ris-micro-matrix" style="color:#e6a23c;flex-shrink:0;overflow:visible">
+        <path d="M 2 5 L 2 2 L 5 2" stroke="#e6a23c" stroke-width="0.75" stroke-opacity="0.3" fill="none" vector-effect="non-scaling-stroke" />
+        <path d="M 30 5 L 30 2 L 27 2" stroke="#e6a23c" stroke-width="0.75" stroke-opacity="0.3" fill="none" vector-effect="non-scaling-stroke" />
+        <path d="M 2 27 L 2 30 L 5 30" stroke="#e6a23c" stroke-width="0.75" stroke-opacity="0.3" fill="none" vector-effect="non-scaling-stroke" />
+        <path d="M 30 27 L 30 30 L 27 30" stroke="#e6a23c" stroke-width="0.75" stroke-opacity="0.3" fill="none" vector-effect="non-scaling-stroke" />
+        <g>
+          <rect x="5.1" y="5.1" width="3.8" height="3.8" fill="#e6a23c" opacity="1" class="" />
+          <rect x="11.1" y="5.1" width="3.8" height="3.8" fill="#e6a23c" opacity="0.2" />
+          <rect x="17.1" y="5.1" width="3.8" height="3.8" fill="#e6a23c" opacity="1" class="" />
+          <rect x="23.1" y="5.1" width="3.8" height="3.8" fill="#e6a23c" opacity="1" class="" />
+          <rect x="5.1" y="11.1" width="3.8" height="3.8" fill="#e6a23c" opacity="0.2" />
+          <rect x="11.1" y="11.1" width="3.8" height="3.8" fill="#e6a23c" opacity="1" class="" />
+          <rect x="17.1" y="11.1" width="3.8" height="3.8" fill="#e6a23c" opacity="0.2" />
+          <rect x="23.1" y="11.1" width="3.8" height="3.8" fill="#e6a23c" opacity="0.2" />
+          <rect x="5.1" y="17.1" width="3.8" height="3.8" fill="#e6a23c" opacity="1" class="" />
+          <rect x="11.1" y="17.1" width="3.8" height="3.8" fill="#e6a23c" opacity="1" class="" />
+          <rect x="17.1" y="17.1" width="3.8" height="3.8" fill="#e6a23c" opacity="1" class="" />
+          <rect x="23.1" y="17.1" width="3.8" height="3.8" fill="#e6a23c" opacity="0.2" />
+          <rect x="5.1" y="23.1" width="3.8" height="3.8" fill="#e6a23c" opacity="0.2" />
+          <rect x="11.1" y="23.1" width="3.8" height="3.8" fill="#e6a23c" opacity="1" class="" />
+          <rect x="17.1" y="23.1" width="3.8" height="3.8" fill="#e6a23c" opacity="0.2" />
+          <rect x="23.1" y="23.1" width="3.8" height="3.8" fill="#e6a23c" opacity="1" class="" />
+        </g>
+      </svg>
+    </g>
+    <g transform="translate(68, 13)">
+      <svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="pill-code" data-code-type="128" data-brand="relic" class="ris-micro-stamp" style="color:#e6a23c;flex-shrink:0;overflow:visible">
+        <g>
+          <polygon points="6,5 26,5 29,8 29,24 26,27 6,27 3,24 3,8" stroke="#e6a23c" stroke-width="1" fill="#0a0a0c" fill-opacity="0.25" vector-effect="non-scaling-stroke" />
+          <line x1="12" y1="5" x2="12" y2="27" stroke="#e6a23c" stroke-width="1" stroke-dasharray="1.5 1.5" stroke-opacity="0.5" vector-effect="non-scaling-stroke" />
+          <polygon points="6,5 12,5 12,27 6,27 3,24 3,8" fill="#e6a23c" fill-opacity="0.18" stroke="none" />
+          <text x="7.5" y="17.5" font-size="4.5" font-family="'JetBrains Mono', monospace" font-weight="800" fill="#e6a23c" text-anchor="middle" stroke="none">PK</text>
+          <text x="20.5" y="14" font-size="4.5" font-family="'JetBrains Mono', monospace" font-weight="700" fill="#e6a23c" text-anchor="middle" stroke="none">0x3E2</text>
+          <text x="20.5" y="22" font-size="3.5" font-family="'JetBrains Mono', monospace" fill="#e6a23c" opacity="0.65" text-anchor="middle" stroke="none">PKT-08</text>
+          <circle cx="26" cy="8" r="1" fill="#e6a23c" />
+        </g>
+      </svg>
+    </g>
+    <g transform="translate(98, 12)">
+      <svg viewBox="0 0 72 36" width="48" height="24" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="stacked" data-brand="relic" class="ris-micro-telemetry" style="color:#e6a23c;flex-shrink:0;overflow:visible">
+        <g>
+          <line x1="2" y1="3" x2="2" y2="33" stroke="#e6a23c" stroke-width="1.5" vector-effect="non-scaling-stroke" />
+          <line x1="2" y1="3" x2="6" y2="3" stroke="#e6a23c" stroke-width="1.5" vector-effect="non-scaling-stroke" />
+          <line x1="2" y1="33" x2="6" y2="33" stroke="#e6a23c" stroke-width="1.5" vector-effect="non-scaling-stroke" />
+          <line x1="2" y1="11" x2="4.5" y2="11" stroke="#e6a23c" stroke-width="1" vector-effect="non-scaling-stroke" />
+          <line x1="2" y1="18" x2="5.5" y2="18" stroke="#e6a23c" stroke-width="1" vector-effect="non-scaling-stroke" />
+          <line x1="2" y1="25" x2="4.5" y2="25" stroke="#e6a23c" stroke-width="1" vector-effect="non-scaling-stroke" />
+          <text x="8" y="8.5" font-size="5" font-family="'JetBrains Mono', monospace" font-weight="700" letter-spacing="0.08em" fill="#e6a23c" stroke="none">LOSS</text>
+          <text x="68" y="8.5" text-anchor="end" font-size="4.5" font-family="'JetBrains Mono', monospace" fill="#e6a23c" opacity="0.7" stroke="none">パケット</text>
+          <line x1="8" y1="11" x2="68" y2="11" stroke="#e6a23c" stroke-width="0.75" stroke-opacity="0.3" vector-effect="non-scaling-stroke" />
+          <polygon points="8,15 10,13 60,13 62,15 62,23 60,25 10,25 8,23" fill="#e6a23c" fill-opacity="0.08" stroke="#e6a23c" stroke-width="0.75" stroke-opacity="0.35" vector-effect="non-scaling-stroke" />
+          <text x="35" y="21.5" text-anchor="middle" font-size="7.5" font-family="'JetBrains Mono', monospace" font-weight="800" letter-spacing="0.05em" fill="#e6a23c" stroke="none">0.00%</text>
+          <circle cx="65.5" cy="19" r="1.5" fill="#e6a23c" />
+          <text x="8" y="32" font-size="4.5" font-family="'JetBrains Mono', monospace" font-weight="700" fill="#e6a23c" opacity="0.8" stroke="none">99.8%</text>
+          <text x="68" y="32" text-anchor="end" font-size="4" font-family="'JetBrains Mono', monospace" fill="#e6a23c" opacity="0.55" stroke="none">ACK-OK</text>
+        </g>
+      </svg>
+    </g>
+  </g>
+</svg>

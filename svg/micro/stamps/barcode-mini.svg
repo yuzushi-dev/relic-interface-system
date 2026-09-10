@@ -1,0 +1,40 @@
+<svg color="#e6a23c" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="barcode" data-preset="barcode-mini" data-code-type="128" data-brand="relic" class="ris-micro-stamp" style="color: #e6a23c; overflow:visible;">
+  <defs>
+    <style>
+      :root, svg {
+        --ris-primary: #e6a23c;
+        --ris-accent: #e6a23c;
+        --ris-yellow: #e6a23c;
+        --ris-cyan: #6fb3c9;
+        --ris-green: #5fae84;
+        --ris-red: #d45565;
+        --ris-violet: #8479be;
+        --ris-fg4: #97a4ad;
+        --ris-bg: #0a0a0c;
+        --ris-line: rgba(230, 162, 60, 0.4);
+        --ris-font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        color: #e6a23c;
+        font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      }
+    </style>
+  </defs>
+  <g>
+    <g>
+      <path d="M 2 7 L 2 2 L 7 2" stroke="#e6a23c" stroke-width="1" fill="none" vector-effect="non-scaling-stroke" />
+      <path d="M 30 7 L 30 2 L 25 2" stroke="#e6a23c" stroke-width="1" fill="none" vector-effect="non-scaling-stroke" />
+      <line x1="4.5" y1="5" x2="4.5" y2="20" stroke="#e6a23c" stroke-width="1" vector-effect="non-scaling-stroke" />
+      <line x1="6.5" y1="5" x2="6.5" y2="20" stroke="#e6a23c" stroke-width="1.5" vector-effect="non-scaling-stroke" />
+      <line x1="9" y1="5" x2="9" y2="20" stroke="#e6a23c" stroke-width="0.75" vector-effect="non-scaling-stroke" />
+      <line x1="10.5" y1="5" x2="10.5" y2="20" stroke="#e6a23c" stroke-width="2" vector-effect="non-scaling-stroke" />
+      <line x1="13" y1="5" x2="13" y2="20" stroke="#e6a23c" stroke-width="1" vector-effect="non-scaling-stroke" />
+      <line x1="14.75" y1="5" x2="14.75" y2="20" stroke="#e6a23c" stroke-width="0.75" vector-effect="non-scaling-stroke" />
+      <line x1="16.5" y1="5" x2="16.5" y2="20" stroke="#e6a23c" stroke-width="2" vector-effect="non-scaling-stroke" />
+      <line x1="19" y1="5" x2="19" y2="20" stroke="#e6a23c" stroke-width="1.25" vector-effect="non-scaling-stroke" />
+      <line x1="21" y1="5" x2="21" y2="20" stroke="#e6a23c" stroke-width="0.75" vector-effect="non-scaling-stroke" />
+      <line x1="22.75" y1="5" x2="22.75" y2="20" stroke="#e6a23c" stroke-width="1.75" vector-effect="non-scaling-stroke" />
+      <line x1="25" y1="5" x2="25" y2="20" stroke="#e6a23c" stroke-width="1" vector-effect="non-scaling-stroke" />
+      <line x1="27" y1="5" x2="27" y2="20" stroke="#e6a23c" stroke-width="1.5" vector-effect="non-scaling-stroke" />
+      <text x="16" y="27" font-size="4.5" font-family="'JetBrains Mono', monospace" font-weight="700" fill="#e6a23c" text-anchor="middle" letter-spacing="0.8px" stroke="none">RL-8802</text>
+    </g>
+  </g>
+</svg>

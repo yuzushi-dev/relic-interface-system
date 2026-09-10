@@ -1,0 +1,41 @@
+<svg color="#e6a23c" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 24" width="64" height="24" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="leader-line" data-orientation="horizontal" data-brand="relic" class="ris-micro-caliper" style="color: #e6a23c; overflow:visible;">
+  <defs>
+    <style>
+      :root, svg {
+        --ris-primary: #e6a23c;
+        --ris-accent: #e6a23c;
+        --ris-yellow: #e6a23c;
+        --ris-cyan: #6fb3c9;
+        --ris-green: #5fae84;
+        --ris-red: #d45565;
+        --ris-violet: #8479be;
+        --ris-fg4: #97a4ad;
+        --ris-bg: #0a0a0c;
+        --ris-line: rgba(230, 162, 60, 0.4);
+        --ris-font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        color: #e6a23c;
+        font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      }
+    </style>
+  </defs>
+  <g>
+    <g>
+      <circle cx="4" cy="18" r="2" fill="#e6a23c" stroke="none" />
+      <circle cx="4" cy="18" r="3.5" stroke-dasharray="1.5 1.5" stroke-width="0.75" />
+      <g>
+        <path d="M 4 18 L 16 6 H 62" stroke-width="1.25" />
+        <polyline points="58,3 62,6 58,9" stroke-width="1.25" />
+      </g>
+      <line x1="20" y1="4" x2="20" y2="8" stroke-width="1" />
+      <line x1="24" y1="5" x2="24" y2="7" stroke-width="0.75" />
+      <line x1="28" y1="4" x2="28" y2="8" stroke-width="1" />
+      <line x1="32" y1="5" x2="32" y2="7" stroke-width="0.75" />
+      <line x1="36" y1="4" x2="36" y2="8" stroke-width="1" />
+      <line x1="40" y1="5" x2="40" y2="7" stroke-width="0.75" />
+      <line x1="44" y1="4" x2="44" y2="8" stroke-width="1" />
+      <line x1="48" y1="5" x2="48" y2="7" stroke-width="0.75" />
+      <line x1="52" y1="4" x2="52" y2="8" stroke-width="1" />
+      <line x1="56" y1="5" x2="56" y2="7" stroke-width="0.75" />
+    </g>
+  </g>
+</svg>
