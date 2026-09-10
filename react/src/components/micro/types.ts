@@ -120,6 +120,10 @@ export interface MicroSpatialInspectionProps extends Omit<MicroBaseProps, 'statu
 export interface SmartGlassesHUDProps extends MicroBaseProps {
   mode?: EyewearHudMode;
   opticalProfile?: EyewearOpticalProfile;
+  time?: string;
+  headingText?: string;
+  airStatus?: string;
+  radiationLevel?: string;
   navData?: Partial<MicroNavGuidanceProps>;
   captionData?: Partial<MicroLiveCaptionsProps>;
   vitalData?: Partial<MicroVitalTelemetryProps>;

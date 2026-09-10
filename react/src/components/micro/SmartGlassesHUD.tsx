@@ -113,6 +113,10 @@ export const SmartGlassesHUD = forwardRef<SVGSVGElement, SmartGlassesHUDProps>(
       status,
       size = 'md',
       animated = false,
+      time = '10:42 AM',
+      headingText = '284° WNW',
+      airStatus = 'AIR: NOMINAL',
+      radiationLevel = '0.08 μSv/h',
       navData,
       captionData,
       vitalData,
@@ -278,7 +282,7 @@ export const SmartGlassesHUD = forwardRef<SVGSVGElement, SmartGlassesHUDProps>(
               fontFamily="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
               letterSpacing="0.8"
             >
-              10:42 AM
+              {time}
             </text>
 
             {/* Battery & Connectivity */}
@@ -318,7 +322,7 @@ export const SmartGlassesHUD = forwardRef<SVGSVGElement, SmartGlassesHUDProps>(
             <g
               transform="translate(260, 20)"
               role="group"
-              aria-label="Tactical Heading: 284° WNW"
+              aria-label={`Tactical Heading: ${headingText}`}
             >
               {/* 45° Chamfered Heading Badge */}
               <path
@@ -355,7 +359,7 @@ export const SmartGlassesHUD = forwardRef<SVGSVGElement, SmartGlassesHUDProps>(
                 fontFamily="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
                 letterSpacing="1"
               >
-                [ 284° WNW ]
+                [ {headingText} ]
               </text>
               {/* Side calibration pip */}
               <circle cx="108" cy="12" r="1.5" fill="currentColor" fillOpacity="0.6" />
@@ -490,7 +494,7 @@ export const SmartGlassesHUD = forwardRef<SVGSVGElement, SmartGlassesHUDProps>(
                 fontFamily="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
                 letterSpacing="0.8"
               >
-                [AIR: NOMINAL]
+                [{airStatus}]
               </text>
               <text
                 x="18"
@@ -502,7 +506,7 @@ export const SmartGlassesHUD = forwardRef<SVGSVGElement, SmartGlassesHUDProps>(
                 fontFamily="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
                 letterSpacing="0.4"
               >
-                RAD: 0.08 μSv/h
+                RAD: {radiationLevel}
               </text>
             </g>
           </>
