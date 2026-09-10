@@ -57,6 +57,9 @@ async function main() {
     opticalProfile: 'cyber-cyan',
     brand: 'biohub',
     animated: true,
+    navData: {
+      distanceMeters: 85,
+    },
   }));
 
   const meetingSvgRaw = render(React.createElement(Micro.SmartGlassesHUD, {
@@ -71,6 +74,9 @@ async function main() {
     opticalProfile: 'cyber-cyan',
     brand: 'biohub',
     animated: true,
+    inspectionData: {
+      distanceMeters: 1.4,
+    },
   }));
 
   // 2. Metadata for 5 Atomic Eyewear Cards
@@ -80,7 +86,7 @@ async function main() {
       name: 'MicroNavGuidance',
       title: 'Navigation & Wayfinding Maneuvers',
       desc: 'Optical turn-by-turn guidance with dynamic distance countdown, street name, and ETA chip. Displays 8 tactical 45° chamfered maneuver arrows with zero central vision occlusion.',
-      dimensions: '160×44',
+      dimensions: '160×48',
       svgFile: 'nav-guidance.svg',
       jsxSnippet: `<MicroNavGuidance
   maneuver="slight-right"
@@ -103,7 +109,7 @@ async function main() {
       name: 'MicroLiveCaptions',
       title: 'Real-Time Speech Transcription & Teleprompter',
       desc: 'Live speech-to-text subtitles and teleprompter constrained within a 38-character foveal comfort boundary to prevent eye strain. Features pulsating listening pip and speaker tag.',
-      dimensions: '248×44',
+      dimensions: '240×52',
       svgFile: 'live-captions.svg',
       jsxSnippet: `<MicroLiveCaptions
   speaker="SYS // AUDIO-01"
@@ -594,6 +600,12 @@ async function main() {
     }
 
     @media (max-width: 640px) {
+      .button-row--4 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
       .cards-grid--viewports {
         grid-template-columns: 1fr;
       }
@@ -1057,6 +1069,22 @@ async function main() {
       showHudToast('Lens background updated: ' + bgId.toUpperCase());
     }
 
+    // Fallback clipboard copying for non-HTTPS or denied permissions
+    function fallbackCopy(text) {
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      textArea.style.position = 'fixed';
+      textArea.style.left = '-9999px';
+      textArea.style.top = '-9999px';
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      try {
+        document.execCommand('copy');
+      } catch (e) {}
+      document.body.removeChild(textArea);
+    }
+
     // 2. HUD Mode Switcher
     function setHudMode(mode, btn) {
       currentMode = mode;
@@ -1065,6 +1093,19 @@ async function main() {
       if (rawEl && hudContainer) {
         hudContainer.innerHTML = rawEl.innerHTML;
         applyCurrentOpticalProfile();
+
+        // Re-apply current scrubbed states to the new HUD mode
+        const navSlider = document.getElementById('nav-dist-slider');
+        if (navSlider) updateNavDistance(navSlider.value);
+
+        const lidarSlider = document.getElementById('lidar-dist-slider');
+        if (lidarSlider) updateLidarDistance(lidarSlider.value);
+
+        const activeCaption = document.querySelector('button[onclick^="setCaptionPreset"].active');
+        if (activeCaption) {
+          const match = activeCaption.getAttribute('onclick').match(/(\d+)/);
+          if (match) setCaptionPreset(parseInt(match[1], 10));
+        }
       }
 
       if (btn) {
@@ -1093,15 +1134,37 @@ async function main() {
         'cyber-cyan': '#6fb3c9',
         'alert-red': '#ff2d3c',
       };
+      const classMap = {
+        'phosphor-green': 'phosphor',
+        'tactical-amber': 'amber',
+        'cyber-cyan': 'cyan',
+        'alert-red': 'alert',
+      };
       const activeColor = colors[currentOpticalProfile] || '#6fb3c9';
+      const activeSuffix = classMap[currentOpticalProfile] || 'cyan';
 
-      // Update simulator HUD
-      const hudSvg = document.querySelector('#lens-hud svg');
-      if (hudSvg) {
-        hudSvg.style.color = activeColor;
-        hudSvg.setAttribute('data-optical-profile', currentOpticalProfile);
-        hudSvg.className.baseVal = 'ris-eyewear-hud ris-eyewear-glass ris-eyewear-profile-' + currentOpticalProfile;
+      // 1. Update simulator HUD and all its nested child SVGs
+      const hudContainer = document.getElementById('lens-hud');
+      if (hudContainer) {
+        hudContainer.querySelectorAll('svg').forEach(svg => {
+          svg.style.color = activeColor;
+          svg.setAttribute('data-optical-profile', currentOpticalProfile);
+          if (svg.className && svg.className.baseVal !== undefined) {
+            const clean = svg.className.baseVal.replace(/ris-eyewear-profile-\S+/g, '').trim();
+            svg.className.baseVal = (clean + ' ris-eyewear-profile-' + activeSuffix).trim();
+          }
+        });
       }
+
+      // 2. Update all atomic and turnkey specimen cards
+      document.querySelectorAll('.eyewear-card .card-preview-stage svg').forEach(svg => {
+        svg.style.color = activeColor;
+        svg.setAttribute('data-optical-profile', currentOpticalProfile);
+        if (svg.className && svg.className.baseVal !== undefined) {
+          const clean = svg.className.baseVal.replace(/ris-eyewear-profile-\S+/g, '').trim();
+          svg.className.baseVal = (clean + ' ris-eyewear-profile-' + activeSuffix).trim();
+        }
+      });
     }
 
     // 4. Live Scrubber: Navigation Distance
@@ -1110,19 +1173,14 @@ async function main() {
       const label = document.getElementById('nav-dist-val');
       if (label) label.textContent = distNum + 'M';
 
-      // Update in lens HUD (if commute mode)
-      const navInHud = document.querySelector('#lens-hud .ris-micro-nav');
-      if (navInHud) {
-        const textDist = navInHud.querySelector('text[letter-spacing="0.04em"]');
-        if (textDist) textDist.textContent = distNum + 'M';
-      }
+      const formatted = distNum < 999.5
+        ? 'IN ' + distNum + 'M'
+        : 'IN ' + (distNum / 1000).toFixed(1) + 'KM';
 
-      // Update in atomic card
-      const navCard = document.querySelector('#card-nav-guidance .ris-micro-nav');
-      if (navCard) {
-        const textDist = navCard.querySelector('text[letter-spacing="0.04em"]');
-        if (textDist) textDist.textContent = distNum + 'M';
-      }
+      document.querySelectorAll('.ris-micro-nav').forEach(nav => {
+        const textDist = nav.querySelector('text[letter-spacing="0.04em"]');
+        if (textDist) textDist.textContent = formatted;
+      });
     }
 
     // 5. Live Scrubber: Transcription Preset
@@ -1135,20 +1193,16 @@ async function main() {
         btn.classList.add('active');
       }
 
-      function updateCaptionSvg(svgEl) {
-        if (!svgEl) return;
+      document.querySelectorAll('.ris-micro-captions').forEach(svgEl => {
         const texts = svgEl.querySelectorAll('text');
         if (texts.length >= 3) {
-          texts[0].textContent = preset.speaker;
+          const listening = svgEl.getAttribute('data-listening') !== 'false';
+          const prefix = listening ? '[REC] ' : '[IDLE] ';
+          texts[0].textContent = prefix + preset.speaker;
           texts[1].textContent = preset.line1;
           texts[2].textContent = preset.line2;
         }
-      }
-
-      // Update in lens HUD (if meeting mode)
-      updateCaptionSvg(document.querySelector('#lens-hud .ris-micro-captions'));
-      // Update in atomic card
-      updateCaptionSvg(document.querySelector('#card-live-captions .ris-micro-captions'));
+      });
 
       showHudToast('Transcription preset applied');
     }
@@ -1159,26 +1213,19 @@ async function main() {
       const label = document.getElementById('lidar-dist-val');
       if (label) label.textContent = dist.toFixed(2) + 'M';
 
-      function updateLidarSvg(svgEl) {
-        if (!svgEl) return;
-        // Update distance text at y=12
+      const clampedDist = Math.max(0.2, Math.min(10.0, dist));
+      const distRatio = (clampedDist - 0.2) / (10.0 - 0.2);
+      const pipY = Math.round(96 - distRatio * 72);
+
+      document.querySelectorAll('.ris-micro-inspection').forEach(svgEl => {
         const distText = svgEl.querySelector('text[y="12"]');
         if (distText) distText.textContent = 'DST: ' + dist.toFixed(2) + 'M';
 
-        // Update range ruler indicator pip
-        const clampedDist = Math.max(0.2, Math.min(10.0, dist));
-        const distRatio = (clampedDist - 0.2) / (10.0 - 0.2);
-        const pipY = Math.round(96 - distRatio * 72);
-        const pip = svgEl.querySelector('polygon[points*="155,"]');
+        const pip = svgEl.querySelector('polygon');
         if (pip) {
           pip.setAttribute('points', '155,' + (pipY - 2.5) + ' 150.5,' + pipY + ' 155,' + (pipY + 2.5));
         }
-      }
-
-      // Update in lens HUD (if field-ops mode)
-      updateLidarSvg(document.querySelector('#lens-hud .ris-micro-inspection'));
-      // Update in atomic card
-      updateLidarSvg(document.querySelector('#card-spatial-inspection .ris-micro-inspection'));
+      });
     }
 
     // 7. Motion Simulation Toggle
@@ -1225,16 +1272,27 @@ async function main() {
         'cyber-cyan': '#6fb3c9',
         'alert-red': '#ff2d3c',
       };
+      const classMap = {
+        'phosphor-green': 'phosphor',
+        'tactical-amber': 'amber',
+        'cyber-cyan': 'cyan',
+        'alert-red': 'alert',
+      };
       const activeHex = colors[currentOpticalProfile] || '#6fb3c9';
+      const activeSuffix = classMap[currentOpticalProfile] || 'cyan';
 
       let svgText = scriptEl.textContent;
-      svgText = svgText.replace(/#6fb3c9/g, activeHex);
+      svgText = svgText.replace(/color:\s*(?:#[a-fA-F0-9]{3,6}|var\([^)]+\));?/g, 'color: ' + activeHex + ';');
+      svgText = svgText.replace(/data-optical-profile="[^"]*"/g, 'data-optical-profile="' + currentOpticalProfile + '"');
+      svgText = svgText.replace(/ris-eyewear-profile-[a-z-]+/g, 'ris-eyewear-profile-' + activeSuffix);
+      svgText = svgText.replaceAll('#6fb3c9', activeHex).replaceAll('#e6a23c', activeHex).replaceAll('#2fe48a', activeHex).replaceAll('#ff2d3c', activeHex);
 
       try {
         await navigator.clipboard.writeText(svgText);
         showHudToast('[0x5A1] SVG copied to clipboard');
       } catch (err) {
-        showHudToast('Failed to copy SVG');
+        fallbackCopy(svgText);
+        showHudToast('[0x5A1] SVG copied to clipboard');
       }
     }
 
@@ -1242,11 +1300,15 @@ async function main() {
       const scriptEl = document.getElementById('jsx-' + cardId);
       if (!scriptEl) return;
 
+      let snippet = scriptEl.textContent;
+      snippet = snippet.replace(/opticalProfile="[^"]*"/g, 'opticalProfile="' + currentOpticalProfile + '"');
+
       try {
-        await navigator.clipboard.writeText(scriptEl.textContent);
+        await navigator.clipboard.writeText(snippet);
         showHudToast('[0x7D2] JSX snippet copied to clipboard');
       } catch (err) {
-        showHudToast('Failed to copy JSX');
+        fallbackCopy(snippet);
+        showHudToast('[0x7D2] JSX snippet copied to clipboard');
       }
     }
 
