@@ -156,6 +156,11 @@ export type {
   EyewearOpticalProfile,
 } from './components/micro/MicroNavGuidance.js';
 
+export { MicroLiveCaptions } from './components/micro/MicroLiveCaptions.js';
+export type {
+  MicroLiveCaptionsProps,
+} from './components/micro/MicroLiveCaptions.js';
+
 export { resolveMicroSize, resolveMicroColor } from './components/micro/types.js';
 export type { RisBrand, RisMicroStatus, RisMicroSize, MicroBaseProps } from './components/micro/types.js';
 

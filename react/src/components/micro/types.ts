@@ -84,6 +84,7 @@ export interface MicroLiveCaptionsProps extends MicroBaseProps {
   line2?: string;
   speaker?: string;
   listening?: boolean;
+  opticalProfile?: EyewearOpticalProfile;
 }
 
 export interface MicroVitalTelemetryProps extends MicroBaseProps {

@@ -9,3 +9,4 @@ export * from './MicroStamp.js';
 export * from './MicroTelemetry.js';
 export * from './MicroCluster.js';
 export * from './MicroNavGuidance.js';
+export * from './MicroLiveCaptions.js';
