@@ -780,49 +780,49 @@ async function main() {
         <div
           class="lens-bg-layer active"
           id="bg-daylight"
-          style="background-image: url('https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1600&q=80');"
+          style="background-color: #3b576d; background-image: url('assets/eyewear-bg/daylight.jpg'), url('https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1600&q=80');"
         ></div>
 
         <!-- Background 2: Alpine Snow (High Photopic Lux Glare) -->
         <div
           class="lens-bg-layer"
           id="bg-snow"
-          style="background-image: url('https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=1600&q=80');"
+          style="background-color: #c8d6e5; background-image: url('assets/eyewear-bg/snow.jpg'), url('https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=1600&q=80');"
         ></div>
 
         <!-- Background 3: Driving Commute -->
         <div
           class="lens-bg-layer"
           id="bg-driving"
-          style="background-image: url('https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1600&q=80');"
+          style="background-color: #1e272e; background-image: url('assets/eyewear-bg/driving.jpg'), url('https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1600&q=80');"
         ></div>
 
         <!-- Background 4: Tech Office / Meeting -->
         <div
           class="lens-bg-layer"
           id="bg-office"
-          style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80');"
+          style="background-color: #2f3542; background-image: url('assets/eyewear-bg/office.jpg'), url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80');"
         ></div>
 
         <!-- Background 5: Industrial Inspection -->
         <div
           class="lens-bg-layer"
           id="bg-industrial"
-          style="background-image: url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1600&q=80');"
+          style="background-color: #2c3e50; background-image: url('assets/eyewear-bg/industrial.jpg'), url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1600&q=80');"
         ></div>
 
         <!-- Background 6: Clinical Medical Lab -->
         <div
           class="lens-bg-layer"
           id="bg-medical"
-          style="background-image: url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1600&q=80');"
+          style="background-color: #dfe4ea; background-image: url('assets/eyewear-bg/medical.jpg'), url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1600&q=80');"
         ></div>
 
         <!-- Background 7: Night Traffic -->
         <div
           class="lens-bg-layer"
           id="bg-night"
-          style="background-image: url('https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1600&q=80');"
+          style="background-color: #0f141d; background-image: url('assets/eyewear-bg/night.jpg'), url('https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1600&q=80');"
         ></div>
 
         <!-- Background 8: Dark Lab Void -->
@@ -867,7 +867,7 @@ async function main() {
             <span>Pass-Through Environment</span>
             <span class="control-label-val" id="lens-bg-name">Daylight City</span>
           </label>
-          <div class="button-row" style="grid-template-columns: repeat(2, 1fr); gap: 6px;">
+          <div class="button-row" id="lens-bg-preset-grid" style="grid-template-columns: repeat(2, 1fr); gap: 6px;">
             <button class="tactical-btn active" onclick="setLensBg('daylight', this, 'Daylight City')">☀️ Daylight City</button>
             <button class="tactical-btn" onclick="setLensBg('snow', this, 'Alpine Snow (10k Lux)')">❄️ High-Lux Snow</button>
             <button class="tactical-btn" onclick="setLensBg('driving', this, 'Driving Cockpit')">🚗 Car Windshield</button>
@@ -1103,7 +1103,8 @@ async function main() {
       if (target) target.classList.add('active');
 
       if (btn) {
-        document.querySelectorAll('.control-group .button-row button').forEach(b => b.classList.remove('active'));
+        const bgContainer = document.getElementById('lens-bg-preset-grid');
+        if (bgContainer) bgContainer.querySelectorAll('button').forEach(b => b.classList.remove('active'));
         const customBtn = document.getElementById('btn-bg-custom');
         if (customBtn) customBtn.classList.remove('active');
         btn.classList.add('active');
@@ -1137,7 +1138,8 @@ async function main() {
       document.querySelectorAll('.lens-bg-layer').forEach(el => el.classList.remove('active'));
       customLayer.classList.add('active');
 
-      document.querySelectorAll('.control-group .button-row button').forEach(b => b.classList.remove('active'));
+      const bgContainer = document.getElementById('lens-bg-preset-grid');
+      if (bgContainer) bgContainer.querySelectorAll('button').forEach(b => b.classList.remove('active'));
       const customBtn = document.getElementById('btn-bg-custom');
       if (customBtn) customBtn.classList.add('active');
 
