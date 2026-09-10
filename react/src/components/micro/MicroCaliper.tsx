@@ -55,7 +55,7 @@ export const MicroCaliper = forwardRef<SVGSVGElement, MicroCaliperProps>(functio
 
   const effectiveOrientation: MicroCaliperOrientation = orientation ?? 'horizontal';
 
-  const effectiveAngle: 45 | 90 = angle ?? (preset === 'leader-45' ? 45 : 45);
+  const effectiveAngle: 45 | 90 = angle ?? (preset === 'leader-45' ? 45 : 90);
 
   const effectiveSubdivisions: boolean = subdivisions ?? (
     preset === 'bracket-caliper' ? false : true
