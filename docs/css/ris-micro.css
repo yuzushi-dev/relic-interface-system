@@ -1,0 +1,67 @@
+/* ==========================================================================
+   RELIC INTERFACE SYSTEM — MICRO-UI & TELEMETRY ANIMATIONS
+   Zero-reflow, hardware-accelerated tactical micro-motion.
+   ========================================================================== */
+
+@keyframes ris-radar-sweep {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes ris-square-blink {
+  0%, 49.9% { opacity: 1; }
+  50%, 100% { opacity: 0.25; }
+}
+
+@keyframes ris-scan-pulse {
+  0% { opacity: 0.4; transform: scaleY(0.96); }
+  50% { opacity: 1; transform: scaleY(1); }
+  100% { opacity: 0.4; transform: scaleY(0.96); }
+}
+
+@keyframes ris-node-beacon {
+  0% { transform: scale(1); opacity: 0.9; }
+  70% { transform: scale(2.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 0; }
+}
+
+.ris-micro-spin {
+  transform-box: view-box;
+  transform-origin: 50% 50%;
+  animation: ris-radar-sweep 4s linear infinite;
+}
+
+.ris-micro-pulse,
+.ris-micro-blink {
+  animation: ris-square-blink 1.2s step-end infinite;
+}
+
+.ris-micro-scan {
+  transform-origin: bottom;
+  animation: ris-scan-pulse 1.8s ease-in-out infinite;
+}
+
+.ris-micro-beacon {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ris-node-beacon 2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ris-micro-spin,
+  .ris-micro-pulse,
+  .ris-micro-blink,
+  .ris-micro-scan,
+  .ris-micro-beacon {
+    animation: none !important;
+  }
+}
+
+[data-motion="static"] .ris-micro-spin,
+[data-motion="static"] .ris-micro-pulse,
+[data-motion="static"] .ris-micro-blink,
+[data-motion="static"] .ris-micro-scan,
+[data-motion="static"] .ris-micro-beacon {
+  animation: none !important;
+}
+

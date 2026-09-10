@@ -1,0 +1,82 @@
+<svg color="#e6a23c" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 32" width="33" height="32" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="discrete" data-preset="packet-stream" data-brand="relic" class="ris-micro-equalizer" style="color: #e6a23c; overflow:visible;">
+  <defs>
+    <style>
+      :root, svg {
+        --ris-primary: #e6a23c;
+        --ris-accent: #e6a23c;
+        --ris-yellow: #e6a23c;
+        --ris-cyan: #6fb3c9;
+        --ris-green: #5fae84;
+        --ris-red: #d45565;
+        --ris-violet: #8479be;
+        --ris-fg4: #97a4ad;
+        --ris-bg: #0a0a0c;
+        --ris-line: rgba(230, 162, 60, 0.4);
+        --ris-font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        color: #e6a23c;
+        font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      }
+    </style>
+  </defs>
+  <g>
+    <line x1="2" y1="27" x2="31" y2="27" stroke-width="1" />
+    <line x1="2" y1="25" x2="2" y2="27" stroke-width="1" />
+    <line x1="31" y1="25" x2="31" y2="27" stroke-width="1" />
+    <g style="color: #e6a23c; transform-origin:3.585px 27px; overflow: visible;">
+      <rect x="2.49" y="23.4" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
+      <rect x="2.49" y="18.8" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
+      <rect x="2.49" y="14.2" width="2.19" height="3.6" fill="#e6a23c" opacity="0.15" stroke="none" />
+      <rect x="2.49" y="9.6" width="2.19" height="3.6" fill="#e6a23c" opacity="0.15" stroke="none" />
+      <rect x="2.49" y="5" width="2.19" height="3.6" fill="#e6a23c" opacity="0.15" stroke="none" />
+    </g>
+    <g style="color: #e6a23c; transform-origin:7.2749999999999995px 27px; overflow: visible;">
+      <rect x="6.18" y="23.4" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
+      <rect x="6.18" y="18.8" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
+      <rect x="6.18" y="14.2" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
+      <rect x="6.18" y="9.6" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
+      <rect x="6.18" y="5" width="2.19" height="3.6" fill="#e6a23c" opacity="0.15" stroke="none" />
+    </g>
+    <g style="color: #e6a23c; transform-origin:10.965px 27px; overflow: visible;">
+      <rect x="9.87" y="23.4" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
+      <rect x="9.87" y="18.8" width="2.19" height="3.6" fill="#e6a23c" opacity="0.15" stroke="none" />
+      <rect x="9.87" y="14.2" width="2.19" height="3.6" fill="#e6a23c" opacity="0.15" stroke="none" />
+      <rect x="9.87" y="9.6" width="2.19" height="3.6" fill="#e6a23c" opacity="0.15" stroke="none" />
+      <rect x="9.87" y="5" width="2.19" height="3.6" fill="#e6a23c" opacity="0.15" stroke="none" />
+    </g>
+    <g style="color: #e6a23c; transform-origin:14.655000000000001px 27px; overflow: visible;">
+      <rect x="13.56" y="23.4" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
+      <rect x="13.56" y="18.8" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
+      <rect x="13.56" y="14.2" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
+      <rect x="13.56" y="9.6" width="2.19" height="3.6" fill="#e6a23c" opacity="0.15" stroke="none" />
+      <rect x="13.56" y="5" width="2.19" height="3.6" fill="#e6a23c" opacity="0.15" stroke="none" />
+    </g>
+    <g style="color: #e6a23c; transform-origin:18.345px 27px; overflow: visible;">
+      <rect x="17.25" y="23.4" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
+      <rect x="17.25" y="18.8" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
+      <rect x="17.25" y="14.2" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
+      <rect x="17.25" y="9.6" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
+      <rect x="17.25" y="5" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
+    </g>
+    <g style="color: #e6a23c; transform-origin:22.035px 27px; overflow: visible;">
+      <rect x="20.94" y="23.4" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
+      <rect x="20.94" y="18.8" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
+      <rect x="20.94" y="14.2" width="2.19" height="3.6" fill="#e6a23c" opacity="0.15" stroke="none" />
+      <rect x="20.94" y="9.6" width="2.19" height="3.6" fill="#e6a23c" opacity="0.15" stroke="none" />
+      <rect x="20.94" y="5" width="2.19" height="3.6" fill="#e6a23c" opacity="0.15" stroke="none" />
+    </g>
+    <g style="color: #e6a23c; transform-origin:25.724999999999998px 27px; overflow: visible;">
+      <rect x="24.63" y="23.4" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
+      <rect x="24.63" y="18.8" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
+      <rect x="24.63" y="14.2" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
+      <rect x="24.63" y="9.6" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
+      <rect x="24.63" y="5" width="2.19" height="3.6" fill="#e6a23c" opacity="0.15" stroke="none" />
+    </g>
+    <g style="color: #e6a23c; transform-origin:29.415px 27px; overflow: visible;">
+      <rect x="28.32" y="23.4" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
+      <rect x="28.32" y="18.8" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
+      <rect x="28.32" y="14.2" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
+      <rect x="28.32" y="9.6" width="2.19" height="3.6" fill="#e6a23c" opacity="0.15" stroke="none" />
+      <rect x="28.32" y="5" width="2.19" height="3.6" fill="#e6a23c" opacity="0.15" stroke="none" />
+    </g>
+  </g>
+</svg>

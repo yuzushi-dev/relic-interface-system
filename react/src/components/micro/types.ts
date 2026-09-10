@@ -1,0 +1,45 @@
+import React from 'react';
+
+export type RisBrand = 'relic' | 'biohub' | 'omnikon' | 'neutral';
+export type RisMicroStatus = 'nominal' | 'active' | 'warning' | 'critical' | 'idle';
+export type RisMicroSize = 'sm' | 'md' | 'lg' | number;
+
+export interface MicroBaseProps extends React.SVGAttributes<SVGSVGElement> {
+  brand?: RisBrand;
+  status?: RisMicroStatus;
+  size?: RisMicroSize;
+  animated?: boolean;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+export function resolveMicroSize(size: RisMicroSize = 'md', defaultPx = 32): number {
+  if (typeof size === 'number') return size;
+  switch (size) {
+    case 'sm': return defaultPx * 0.75;
+    case 'lg': return defaultPx * 1.5;
+    case 'md':
+    default: return defaultPx;
+  }
+}
+
+export function resolveMicroColor(status?: RisMicroStatus, brand?: RisBrand): string | undefined {
+  if (status) {
+    switch (status) {
+      case 'nominal': return 'var(--ris-green, #5fae84)';
+      case 'active': return 'var(--ris-accent, #e6a23c)';
+      case 'warning': return 'var(--ris-yellow, #e6a23c)';
+      case 'critical': return 'var(--ris-red, #d45565)';
+      case 'idle': return 'var(--ris-fg4, #97a4ad)';
+    }
+  }
+  if (brand) {
+    switch (brand) {
+      case 'relic': return 'var(--ris-yellow, #e6a23c)';
+      case 'biohub': return 'var(--ris-cyan, #6fb3c9)';
+      case 'omnikon': return 'var(--ris-red, #d45565)';
+      case 'neutral': return 'var(--ris-violet, #8479be)';
+    }
+  }
+  return undefined;
+}

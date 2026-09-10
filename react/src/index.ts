@@ -83,3 +83,73 @@ export type { AlertProps, AlertVariant } from './components/Alert.js';
 
 // Core utilities
 export { RisChartsCore } from './utils/risChartsCore.js';
+
+// Micro UI components & types
+export { MicroReticle } from './components/micro/MicroReticle.js';
+export type { MicroReticleProps, MicroReticleVariant, MicroReticlePreset } from './components/micro/MicroReticle.js';
+
+export { MicroCaliper } from './components/micro/MicroCaliper.js';
+export type {
+  MicroCaliperProps,
+  MicroCaliperVariant,
+  MicroCaliperPreset,
+  MicroCaliperOrientation,
+} from './components/micro/MicroCaliper.js';
+
+export { MicroDial } from './components/micro/MicroDial.js';
+export type {
+  MicroDialProps,
+  MicroDialVariant,
+  MicroDialPreset,
+} from './components/micro/MicroDial.js';
+
+export { MicroEqualizer } from './components/micro/MicroEqualizer.js';
+export type {
+  MicroEqualizerProps,
+  MicroEqualizerVariant,
+  MicroEqualizerPreset,
+} from './components/micro/MicroEqualizer.js';
+
+export { MicroMatrix } from './components/micro/MicroMatrix.js';
+export type {
+  MicroMatrixProps,
+  MicroMatrixVariant,
+  MicroMatrixPreset,
+  MicroMatrixDensity,
+  MicroMatrixShape,
+} from './components/micro/MicroMatrix.js';
+
+export { MicroConstellation } from './components/micro/MicroConstellation.js';
+export type {
+  MicroConstellationProps,
+  MicroConstellationVariant,
+  MicroConstellationPreset,
+  MicroConstellationNode,
+} from './components/micro/MicroConstellation.js';
+
+export { MicroStamp } from './components/micro/MicroStamp.js';
+export type {
+  MicroStampProps,
+  MicroStampVariant,
+  MicroStampPreset,
+  MicroStampCodeType,
+} from './components/micro/MicroStamp.js';
+
+export { MicroTelemetry } from './components/micro/MicroTelemetry.js';
+export type {
+  MicroTelemetryProps,
+  MicroTelemetryVariant,
+  MicroTelemetryPreset,
+} from './components/micro/MicroTelemetry.js';
+
+export { MicroCluster } from './components/micro/MicroCluster.js';
+export type {
+  MicroClusterProps,
+  MicroClusterPreset,
+  MicroClusterTelemetry,
+} from './components/micro/MicroCluster.js';
+
+export { resolveMicroSize, resolveMicroColor } from './components/micro/types.js';
+export type { RisBrand, RisMicroStatus, RisMicroSize, MicroBaseProps } from './components/micro/types.js';
+
+
