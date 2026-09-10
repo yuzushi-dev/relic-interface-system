@@ -77,12 +77,13 @@ export const MicroLiveCaptions = forwardRef<SVGSVGElement, MicroLiveCaptionsProp
         }[opticalProfile] ?? `ris-eyewear-profile-${opticalProfile}`
       : '';
 
-    const cleanSpeaker = (speaker ? speaker.toUpperCase() : 'SYS // AUDIO-01');
+    const cleanSpeaker = speaker !== undefined ? speaker.toUpperCase() : 'SYS // AUDIO-01';
     const cleanLine1 = (line1 ?? '').slice(0, 38).toUpperCase();
     const cleanLine2 = (line2 ?? '').slice(0, 38).toUpperCase();
 
     const dynamicAriaLabel =
-      ariaLabel ?? `Live captions: ${cleanLine1} ${cleanLine2}`.trim();
+      ariaLabel ??
+      (`Live captions: ` + [cleanLine1, cleanLine2].filter(Boolean).join(' ')).trim();
 
     return (
       <svg
