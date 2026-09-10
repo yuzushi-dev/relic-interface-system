@@ -27,6 +27,8 @@
   &nbsp;
   <a href="https://yuzushi-dev.github.io/relic-interface-system/motion-lab.html"><img src="https://img.shields.io/badge/⚡%20MOTION%20LAB-TEST%20PHYSICS-ff2d3c?style=for-the-badge" alt="Motion Lab" /></a>
   &nbsp;
+  <a href="https://yuzushi-dev.github.io/relic-interface-system/micro-ui.html"><img src="https://img.shields.io/badge/🎛️%20MICRO--UI%20LAB-150%2B%20VECTOR%20SPECIMENS-938ac8?style=for-the-badge" alt="Micro-UI Lab" /></a>
+  &nbsp;
   <a href="https://buy.polar.sh/polar_cl_UFLik36Vm34gt13RsMxroNhh7VRtez6w4tAR34FlCNv"><img src="https://img.shields.io/badge/⭐%20GET%20PRO%20SUITE-%2499%20LIFETIME-2fe48a?style=for-the-badge" alt="Get Pro Suite" /></a>
 </p>
 
@@ -35,6 +37,7 @@
   <a href="https://yuzushi-dev.github.io/relic-interface-system/eyewear.html"><b>👓 Optical Waveguide HUD Lab</b></a> &nbsp;•&nbsp;
   <a href="https://yuzushi-dev.github.io/relic-interface-system/mobile.html"><b>📱 Launch Mobile Touch Shell</b></a> &nbsp;•&nbsp;
   <a href="https://yuzushi-dev.github.io/relic-interface-system/motion-lab.html"><b>⚡ Test Motion Physics</b></a> &nbsp;•&nbsp;
+  <a href="https://yuzushi-dev.github.io/relic-interface-system/micro-ui.html"><b>🎛️ Browse Micro-UI Lab</b></a> &nbsp;•&nbsp;
   <a href="https://buy.polar.sh/polar_cl_UFLik36Vm34gt13RsMxroNhh7VRtez6w4tAR34FlCNv"><b>⭐ Get Pro Suite ($99)</b></a>
 </p>
 
@@ -48,7 +51,7 @@
 
 <br />
 
-[**🌐 Live Specimen (Web)**](https://yuzushi-dev.github.io/relic-interface-system/) &nbsp;·&nbsp; [**📱 Mobile Touch Shell**](https://yuzushi-dev.github.io/relic-interface-system/mobile.html) &nbsp;·&nbsp; [**⚡ Motion & Contrast Lab**](https://yuzushi-dev.github.io/relic-interface-system/motion-lab.html) &nbsp;·&nbsp; [**🤖 Android Compose Port**](compose/README.md) &nbsp;·&nbsp; [**🛒 Polar Store**](https://polar.sh/yuzushi-dev)
+[**🌐 Live Specimen (Web)**](https://yuzushi-dev.github.io/relic-interface-system/) &nbsp;·&nbsp; [**📱 Mobile Touch Shell**](https://yuzushi-dev.github.io/relic-interface-system/mobile.html) &nbsp;·&nbsp; [**⚡ Motion & Contrast Lab**](https://yuzushi-dev.github.io/relic-interface-system/motion-lab.html) &nbsp;·&nbsp; [**🎛️ Micro-UI Lab**](https://yuzushi-dev.github.io/relic-interface-system/micro-ui.html) &nbsp;·&nbsp; [**🤖 Android Compose Port**](compose/README.md) &nbsp;·&nbsp; [**🛒 Polar Store**](https://polar.sh/yuzushi-dev)
 
 </div>
 
@@ -96,6 +99,7 @@ No local setup is required to evaluate or start building. Launch the full enviro
 [![Live Showcase](https://img.shields.io/badge/Live%20Showcase-GitHub%20Pages-e6a23c?style=for-the-badge&logo=github)](https://yuzushi-dev.github.io/relic-interface-system/)
 [![Mobile App--Shell](https://img.shields.io/badge/Mobile%20Shell-Touch%20Specimen-6fb3c9?style=for-the-badge)](https://yuzushi-dev.github.io/relic-interface-system/mobile.html)
 [![Motion Lab](https://img.shields.io/badge/Motion%20Lab-Tactical%20HUD-ff2d3c?style=for-the-badge)](https://yuzushi-dev.github.io/relic-interface-system/motion-lab.html)
+[![Micro-UI Lab](https://img.shields.io/badge/Micro--UI%20Lab-150%2B%20Vector%20Specimens-938ac8?style=for-the-badge)](https://yuzushi-dev.github.io/relic-interface-system/micro-ui.html)
 [![Polar Pro Store](https://img.shields.io/badge/Polar%20Store-Get%20Pro%20Suite-2fe48a?style=for-the-badge)](https://polar.sh/yuzushi-dev)
 
 <br />
@@ -199,6 +203,8 @@ python3 -m http.server 8080
 - **Interactive Desktop Specimen**: `http://localhost:8080/docs/index.html`
 - **Mobile Touch Shell**: `http://localhost:8080/docs/mobile.html`
 - **Motion & Contrast Lab**: `http://localhost:8080/docs/motion-lab.html`
+- **Optical Waveguide HUD Lab**: `http://localhost:8080/docs/eyewear.html`
+- **Micro-UI & Telemetry Graphics Lab**: `http://localhost:8080/docs/micro-ui.html`
 
 ---
 
