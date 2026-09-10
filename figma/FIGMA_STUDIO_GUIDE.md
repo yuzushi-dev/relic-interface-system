@@ -21,7 +21,7 @@ The **Relic Interface System (RIS v2.8.0) Figma Studio Kit** is a precision cybe
 | **Buttons & Controls** | Primary & Default (MD) | 7 Variants × 4 States × 3 Sizes (Full Matrix) |
 | **Interactive Components** | Basic Panels & Switch | Mechanical Switches, Corner Brackets, Accordions, Bottom Sheet |
 | **Pre-assembled Layouts** | Preview Screenshot | 1440px Desktop Dashboard + 390px Mobile Touch Shell |
-| **Vector HUD Assets** | 2 SVGs | Complete Tactical SVG Suite (7 Production SVGs) |
+| **Vector HUD Assets** | Core 7 SVGs + 34 Micrographics (full flywheel set) | Micrographics Vol. 1 engineered package: React components, zero-reflow CSS, consolidated tokens ($24, [buy](https://buy.polar.sh/polar_cl_tuchJBmHqDLg4PsMquZlguPtUhorHCrMk6YMU1HTdt4)) |
 | **Commercial License** | CC BY-NC 4.0 | Full Commercial EULA (Unlimited Client/SaaS Projects) |
 
 ---
@@ -77,8 +77,8 @@ The Free Preview file acts as your top-of-funnel lead generator on the Figma Com
 ### 3.1 Creating the Free Preview File
 1. Make a duplicate of your generated file (`File` > `Duplicate`).
 2. Rename to `RIS v2.8.0 — Tactical Cyber HUD (Free Community Preview)`.
-3. Keep **Artboard 01 (Tokens & Foundations)** and **Artboard 02 (Curated Components)**.
-4. On **Artboard 03**, insert an **Upgrade to Studio Pro** callout card linking to your Lemon Squeezy / Gumroad store:
+3. Keep **Artboard 01 (Tokens & Foundations)**, **Artboard 02 (Curated Components)**, and **Artboard 04 (Tactical Micrographics & HUD Atoms — all 34, free)**.
+4. On **Artboard 03**, insert an **Upgrade to Studio Pro** callout card linking to your Lemon Squeezy / Gumroad store, plus a second callout on Artboard 04 linking to the [Micrographics Vol. 1 checkout](https://buy.polar.sh/polar_cl_tuchJBmHqDLg4PsMquZlguPtUhorHCrMk6YMU1HTdt4) for the React/CSS engineered edition:
    * Showcase screenshots of the 1440px Desktop Dashboard and 390px Mobile Touch Shell.
    * Highlight the 4 Brand Matrix, 3 Case-Context Skins, and Tactical Cyber HUD system.
 
@@ -86,7 +86,7 @@ The Free Preview file acts as your top-of-funnel lead generator on the Figma Com
 * **Listing Title**: `RIS v2.8.0 — Tactical Cyber HUD & Brutalist Design System`
 * **Short Tagline**: `Precision forensic instrument UI kit: 45° chamfer vectors, dual-theme engine (WCAG 2.2 AA), and W3C DTCG design tokens.`
 * **Category**: `Design systems` · `UI kits` · `Wireframes`
-* **Tags**: `cyberpunk`, `hud`, `design-system`, `tokens`, `dark-mode`, `brutalist`, `telemetry`, `forensic`, `dashboard`, `mobile`
+* **Tags**: `cyberpunk`, `hud`, `design-system`, `tokens`, `dark-mode`, `brutalist`, `telemetry`, `forensic`, `dashboard`, `mobile`, `micrographics`
 * **Cover Thumbnail**: Use the 1920×1080 artwork generated in `figma/assets/cover-artboard.svg`.
 
 ### 3.3 Community Description Copy Template
@@ -102,6 +102,13 @@ Precision forensic instrument UI kit & cybernetic brutalist design system for te
 - **Foundations Specimen**: Complete typography scale (Archivo, JetBrains Mono, Chakra Petch) and 8-step spacing grid (4px–48px).
 - **Interactive Controls**: Chamfered buttons (Primary, Default, Secondary, Cyber Neon), status chips, and tactical mechanical toggles.
 - **Tokens Studio Ready**: Compatible with Tokens Studio for Figma and W3C DTCG token standards.
+- **34 Micrographics HUD Atoms**: Full free vector library (reticles, dials, matrices, clusters, telemetry, calipers, constellations, stamps) — drag-and-drop ready.
+
+---
+
+### 🎯 Get Micrographics Vol. 1 (Engineered Edition):
+Want the same 34 micrographics as type-safe React components with zero-reflow CSS animations and consolidated tokens?
+👉 [Get Micrographics Vol. 1 — $24 launch](https://buy.polar.sh/polar_cl_tuchJBmHqDLg4PsMquZlguPtUhorHCrMk6YMU1HTdt4)
 
 ---
 

@@ -44,7 +44,8 @@ figma/
 │   ├── hud-bracket-tl.svg     # 24x24 Top-left tactical corner L-bracket
 │   ├── hud-bracket-tr.svg     # 24x24 Top-right tactical corner L-bracket
 │   ├── hud-reticle.svg        # 80x80 Precision targeting reticle & azimuth coordinates
-│   └── hud-radar-grid.svg     # 240x240 Tactical circular radar grid with sweep sector
+│   ├── hud-radar-grid.svg     # 240x240 Tactical circular radar grid with sweep sector
+│   └── micro/                 # 34 Micrographics vector atoms (Relic Micrographics Vol.1 flywheel — see §5)
 └── README.md              # Complete integration & publishing documentation
 ```
 
@@ -124,6 +125,22 @@ The vector assets in `figma/assets/` can be dragged directly onto your Figma can
 | `hud-bracket-tr.svg` | 24×24 | Top-right tactical corner L-bracket with coordinate accent ticks. |
 | `hud-reticle.svg` | 80×80 | Precision HUD targeting reticle with concentric arcs, center deadband crosshairs, and azimuth text. |
 | `hud-radar-grid.svg` | 240×240 | Tactical azimuth radar display with range rings, 60° phosphor sweep sector, and cardinal indicators. |
+
+### 5.1 Micrographics Vol. 1 (`figma/assets/micro/`)
+
+34 standalone HUD micrographics across 9 categories — free flywheel content, dragged straight onto the Figma canvas or the Community Preview page. The engineered version (React components, zero-reflow CSS animations, consolidated tokens) is the [**Micrographics Vol. 1**](https://buy.polar.sh/polar_cl_tuchJBmHqDLg4PsMquZlguPtUhorHCrMk6YMU1HTdt4) Polar SKU ($24 launch / $34 standard).
+
+| Category | Count | Assets |
+|---|---|---|
+| `calipers/` | 3 | `bracket-caliper`, `leader-45`, `ruler-100` |
+| `clusters/` | 8 | `frequency-diag`, `node-health`, `orbital-relay`, `packet-analyzer`, `power-module`, `sensor-lock`, `tactical-survey`, `terminal-header` |
+| `constellations/` | 3 | `network-3node`, `orbital-relay`, `signal-tree` |
+| `dials/` | 4 | `azimuth-90`, `compass`, `frequency`, `power-gauge` |
+| `equalizers/` | 3 | `audio-signal`, `bandwidth`, `packet-stream` |
+| `matrices/` | 4 | `binary-status`, `cross-grid`, `led-4x4`, `status-3x3` |
+| `reticles/` | 3 | `corner-bracket`, `optic-grid`, `target-lock` |
+| `stamps/` | 3 | `barcode-mini`, `hash-stamp`, `tactical-seal` |
+| `telemetry/` | 3 | `epoch-diag`, `node-status`, `system-reset` |
 
 ---
 
