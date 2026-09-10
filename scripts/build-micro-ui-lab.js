@@ -530,9 +530,9 @@ async function main() {
           <span>Click any matrix cell below to toggle active bitmask state:</span>
         </div>
         <div class="control-btn-group">
-          <button class="ris-btn ris-btn--sm ris-btn--ghost" onclick="randomizeMatrices()">⚂ Randomize</button>
-          <button class="ris-btn ris-btn--sm ris-btn--ghost" onclick="invertMatrices()">◧ Invert Grid</button>
-          <button class="ris-btn ris-btn--sm ris-btn--ghost" onclick="clearMatrices()">✕ Clear All</button>
+          <button class="ris-btn ris-btn--sm ris-btn--ghost" onclick="randomizeMatrices()">Randomize</button>
+          <button class="ris-btn ris-btn--sm ris-btn--ghost" onclick="invertMatrices()">Invert Grid</button>
+          <button class="ris-btn ris-btn--sm ris-btn--ghost" onclick="clearMatrices()">Clear All</button>
         </div>
       </div>`;
     } else if (section.interactiveControl === 'equalizers') {
@@ -1078,12 +1078,12 @@ async function main() {
     </select>
   </label>
   <nav class="ris-topbar-nav">
-    <a href="index.html" class="ris-btn ris-btn--sm ris-btn--outline">🌐 Specimen</a>
-    <a href="micro-ui.html" class="ris-btn ris-btn--sm ris-btn--primary" aria-current="page">📐 Micro-UI</a>
-    <a href="eyewear.html" class="ris-btn ris-btn--sm ris-btn--outline">👓 Eyewear HUD</a>
-    <a href="motion-lab.html" class="ris-btn ris-btn--sm ris-btn--outline">⚡ Motion Lab</a>
-    <a href="mobile.html" class="ris-btn ris-btn--sm ris-btn--outline">📱 Mobile</a>
-    <a href="https://polar.sh/yuzushi-dev" target="_blank" rel="noopener" class="ris-btn ris-btn--sm ris-btn--outline" style="border-color:var(--ris-accent);color:var(--ris-accent);font-weight:700">★ Store</a>
+    <a href="index.html" class="ris-btn ris-btn--sm ris-btn--outline">Specimen</a>
+    <a href="micro-ui.html" class="ris-btn ris-btn--sm ris-btn--primary" aria-current="page">Micro-UI</a>
+    <a href="eyewear.html" class="ris-btn ris-btn--sm ris-btn--outline">Eyewear HUD</a>
+    <a href="motion-lab.html" class="ris-btn ris-btn--sm ris-btn--outline">Motion Lab</a>
+    <a href="mobile.html" class="ris-btn ris-btn--sm ris-btn--outline">Mobile</a>
+    <a href="https://polar.sh/yuzushi-dev" target="_blank" rel="noopener" class="ris-btn ris-btn--sm ris-btn--outline" style="border-color:var(--ris-accent);color:var(--ris-accent);font-weight:700">Store ↗</a>
     <a href="https://github.com/yuzushi-dev/relic-interface-system" target="_blank" rel="noopener" class="ris-btn ris-btn--sm ris-btn--secondary">GitHub ↗</a>
   </nav>
   <button id="skin" class="ris-btn ris-btn--sm ris-btn--secondary" aria-pressed="true" onclick="toggleGlobalSkin()">▞ Skin</button>
@@ -1110,7 +1110,7 @@ async function main() {
       <p class="banner-desc">Includes 150+ standalone SVGs, 70 composed tactical graphics, master .fig file with 4 brand modes, and turnkey React components.</p>
     </div>
     <a href="https://buy.polar.sh/polar_cl_tuchJBmHqDLg4PsMquZlguPtUhorHCrMk6YMU1HTdt4" target="_blank" rel="noopener" class="banner-cta">
-      ★ Buy on Polar ($24)
+      Buy on Polar ($24) ↗
     </a>
   </aside>
 
@@ -1127,7 +1127,7 @@ async function main() {
     <a href="#sec-stamps" class="category-nav-link">08. Stamps</a>
     <a href="#sec-clusters" class="category-nav-link">09. Clusters</a>
     <button class="ris-btn ris-btn--sm ris-btn--secondary" id="motion-btn" onclick="toggleMotion()" title="Toggle live 60fps telemetry simulation vs static vector export mode" style="margin-left:auto">
-      ⚡ 60FPS LIVE
+      60FPS LIVE
     </button>
   </nav>
 
@@ -1243,7 +1243,7 @@ ${templatesHtml.join('\n')}
     if (isStatic) {
       html.removeAttribute('data-motion');
       if (btn) {
-        btn.textContent = '⚡ 60FPS LIVE';
+        btn.textContent = '60FPS LIVE';
         btn.classList.remove('ris-btn--danger');
         btn.classList.add('ris-btn--secondary');
       }
@@ -1251,7 +1251,7 @@ ${templatesHtml.join('\n')}
     } else {
       html.setAttribute('data-motion', 'static');
       if (btn) {
-        btn.textContent = '⏹ STATIC VECTORS';
+        btn.textContent = 'STATIC VECTORS';
         btn.classList.remove('ris-btn--secondary');
         btn.classList.add('ris-btn--danger');
       }
@@ -1458,7 +1458,7 @@ ${templatesHtml.join('\n')}
     const toast = document.createElement('div');
     toast.className = 'tactical-toast';
     toast.innerHTML = 
-      '<span class="toast-icon">✓</span>' +
+      '<span class="toast-icon">◈</span>' +
       '<span class="toast-prefix">[' + hex + ']</span>' +
       '<span>' + message + '</span>';
 

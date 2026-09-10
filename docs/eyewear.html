@@ -486,12 +486,12 @@
       </select>
     </label>
     <nav class="ris-topbar-nav">
-      <a href="index.html" class="ris-btn ris-btn--sm ris-btn--outline">🌐 Specimen</a>
-      <a href="micro-ui.html" class="ris-btn ris-btn--sm ris-btn--outline">📐 Micro-UI</a>
-      <a href="eyewear.html" class="ris-btn ris-btn--sm ris-btn--primary" aria-current="page">👓 Eyewear HUD</a>
-      <a href="motion-lab.html" class="ris-btn ris-btn--sm ris-btn--outline">⚡ Motion Lab</a>
-      <a href="mobile.html" class="ris-btn ris-btn--sm ris-btn--outline">📱 Mobile</a>
-      <a href="https://polar.sh/yuzushi-dev" target="_blank" rel="noopener" class="ris-btn ris-btn--sm ris-btn--outline" style="border-color:var(--ris-accent);color:var(--ris-accent);font-weight:700">★ Store</a>
+      <a href="index.html" class="ris-btn ris-btn--sm ris-btn--outline">Specimen</a>
+      <a href="micro-ui.html" class="ris-btn ris-btn--sm ris-btn--outline">Micro-UI</a>
+      <a href="eyewear.html" class="ris-btn ris-btn--sm ris-btn--primary" aria-current="page">Eyewear HUD</a>
+      <a href="motion-lab.html" class="ris-btn ris-btn--sm ris-btn--outline">Motion Lab</a>
+      <a href="mobile.html" class="ris-btn ris-btn--sm ris-btn--outline">Mobile</a>
+      <a href="https://polar.sh/yuzushi-dev" target="_blank" rel="noopener" class="ris-btn ris-btn--sm ris-btn--outline" style="border-color:var(--ris-accent);color:var(--ris-accent);font-weight:700">Store ↗</a>
       <a href="https://github.com/yuzushi-dev/relic-interface-system" target="_blank" rel="noopener" class="ris-btn ris-btn--sm ris-btn--secondary">GitHub ↗</a>
     </nav>
     <button id="skin" class="ris-btn ris-btn--sm ris-btn--secondary" aria-pressed="true" onclick="toggleGlobalSkin()">▞ Skin</button>
@@ -502,7 +502,7 @@
   <div class="section-container" style="margin-top: 24px; margin-bottom: 0;">
     <div class="commercial-banner">
       <div class="commercial-content">
-        <h4>⚡ RIS PRO STUDIO — SMART GLASSES & HUD GRAPHICS MASTER</h4>
+        <h4>RIS PRO STUDIO — SMART GLASSES & HUD GRAPHICS MASTER</h4>
         <p>Get all 34+ Micro-UI vector atoms, 9 eyewear HUD templates, and native Figma generator script.</p>
       </div>
       <a href="https://buy.polar.sh/polar_cl_gzshc6MZaGsQy6V3oqQ1U0uK3kIQ7mcGr0wf00JbLZn" target="_blank" rel="noopener" class="tactical-btn" style="background: var(--ris-accent); color: #000; text-decoration: none; padding: 10px 18px;">
@@ -619,23 +619,23 @@
             <span class="control-label-val" id="lens-bg-name">Daylight City</span>
           </label>
           <div class="button-row" id="lens-bg-preset-grid" style="grid-template-columns: repeat(2, 1fr); gap: 6px;">
-            <button class="tactical-btn active" onclick="setLensBg('daylight', this, 'Daylight City')">☀️ Daylight City</button>
-            <button class="tactical-btn" onclick="setLensBg('snow', this, 'Alpine Snow (10k Lux)')">❄️ High-Lux Snow</button>
-            <button class="tactical-btn" onclick="setLensBg('driving', this, 'Driving Cockpit')">🚗 Car Windshield</button>
-            <button class="tactical-btn" onclick="setLensBg('office', this, 'Indoor Meeting')">🏢 Tech Office</button>
-            <button class="tactical-btn" onclick="setLensBg('industrial', this, 'Industrial Plant')">🏭 Industrial</button>
-            <button class="tactical-btn" onclick="setLensBg('medical', this, 'Clinical Lab')">🏥 Medical Lab</button>
-            <button class="tactical-btn" onclick="setLensBg('night', this, 'Night Urban')">🌃 Night Traffic</button>
-            <button class="tactical-btn" onclick="setLensBg('void', this, 'Dark Void Benchmark')">⬛ Dark Lab Void</button>
+            <button class="tactical-btn active" onclick="setLensBg('daylight', this, 'Daylight City')">Daylight City</button>
+            <button class="tactical-btn" onclick="setLensBg('snow', this, 'Alpine Snow (10k Lux)')">High-Lux Snow</button>
+            <button class="tactical-btn" onclick="setLensBg('driving', this, 'Driving Cockpit')">Car Windshield</button>
+            <button class="tactical-btn" onclick="setLensBg('office', this, 'Indoor Meeting')">Tech Office</button>
+            <button class="tactical-btn" onclick="setLensBg('industrial', this, 'Industrial Plant')">Industrial</button>
+            <button class="tactical-btn" onclick="setLensBg('medical', this, 'Clinical Lab')">Medical Lab</button>
+            <button class="tactical-btn" onclick="setLensBg('night', this, 'Night Urban')">Night Traffic</button>
+            <button class="tactical-btn" onclick="setLensBg('void', this, 'Dark Void Benchmark')">Dark Lab Void</button>
           </div>
 
           <!-- Custom User Background Upload / URL -->
           <div style="display: flex; gap: 6px; margin-top: 4px;">
             <button class="tactical-btn" id="btn-bg-custom" onclick="document.getElementById('lens-file-input').click()" style="flex: 1; border-style: dashed; border-color: var(--ris-accent); color: var(--ris-accent);">
-              📷 Carica Foto
+              Carica Foto
             </button>
             <button class="tactical-btn" onclick="promptCustomImageUrl()" style="flex: 1; border-style: dashed;">
-              🔗 Incolla URL
+              Incolla URL
             </button>
             <input type="file" id="lens-file-input" accept="image/*" style="display: none;" onchange="handleCustomBgUpload(event)">
           </div>
