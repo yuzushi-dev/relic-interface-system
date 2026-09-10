@@ -467,13 +467,10 @@ async function main() {
 
       const cardId = `card-${item.preset}`;
       const templateIdSvg = `svg-${item.preset}`;
-      const templateIdJsx = `jsx-${item.preset}`;
-      const jsxSnippet = `<${item.compName} preset="${item.preset}" brand="relic" />`;
 
-      // Store raw standalone SVG and JSX in <template> tags for clean copying
+      // Store raw standalone SVG in <script type="text/plain"> tags for clean, direct text copying
       templatesHtml.push(
-        `  <template id="${templateIdSvg}">${escapeHtml(standaloneSvg)}</template>`,
-        `  <template id="${templateIdJsx}">${escapeHtml(jsxSnippet)}</template>`
+        `  <script type="text/plain" id="${templateIdSvg}">${standaloneSvg}</script>`
       );
 
       // Construct card HTML
@@ -1407,6 +1404,7 @@ ${templatesHtml.join('\n')}
     const scale = parseFloat(val) / 100;
     eqSec.querySelectorAll('.micro-stage-viewport svg').forEach(svg => {
       svg.querySelectorAll('g[style*="transform-origin"]').forEach(bar => {
+        bar.style.animation = 'none';
         bar.style.transform = 'scaleY(' + scale + ')';
       });
     });
@@ -1414,10 +1412,10 @@ ${templatesHtml.join('\n')}
 
   // 7. COPY WORKFLOWS WITH SONNER-STYLE HUD TOAST
   async function copySvg(preset) {
-    const template = document.getElementById('svg-' + preset);
-    if (!template) return;
+    const scriptEl = document.getElementById('svg-' + preset);
+    if (!scriptEl) return;
 
-    let svgMarkup = template.textContent;
+    let svgMarkup = scriptEl.textContent || scriptEl.innerText || '';
 
     // Apply current active brand color to copyable SVG
     const BRAND_HEX = {
@@ -1427,9 +1425,11 @@ ${templatesHtml.join('\n')}
       neutral: '#9d7cd8'
     };
     const activeHex = BRAND_HEX[currentBrand] || '#e6a23c';
-    svgMarkup = svgMarkup.replace(/--ris-primary:\\s*#[0-9a-fA-F]+/g, '--ris-primary: ' + activeHex);
-    svgMarkup = svgMarkup.replace(/color:\\s*#[0-9a-fA-F]+/g, 'color: ' + activeHex);
+    svgMarkup = svgMarkup.replace(/--ris-primary:\s*#[0-9a-fA-F]+/g, '--ris-primary: ' + activeHex);
+    svgMarkup = svgMarkup.replace(/color:\s*#[0-9a-fA-F]+/g, 'color: ' + activeHex);
     svgMarkup = svgMarkup.replace(/color="[^"]*"/g, 'color="' + activeHex + '"');
+    svgMarkup = svgMarkup.replaceAll('#e6a23c', activeHex).replaceAll('#E6A23C', activeHex);
+    svgMarkup = svgMarkup.replace('data-brand="relic"', 'data-brand="' + currentBrand + '"');
 
     try {
       await navigator.clipboard.writeText(svgMarkup);
