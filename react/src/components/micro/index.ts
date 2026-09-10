@@ -6,3 +6,5 @@ export * from './MicroEqualizer.js';
 export * from './MicroMatrix.js';
 export * from './MicroConstellation.js';
 export * from './MicroStamp.js';
+export * from './MicroTelemetry.js';
+export * from './MicroCluster.js';

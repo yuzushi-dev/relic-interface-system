@@ -135,6 +135,21 @@ export type {
   MicroStampCodeType,
 } from './components/micro/MicroStamp.js';
 
+export { MicroTelemetry } from './components/micro/MicroTelemetry.js';
+export type {
+  MicroTelemetryProps,
+  MicroTelemetryVariant,
+  MicroTelemetryPreset,
+} from './components/micro/MicroTelemetry.js';
+
+export { MicroCluster } from './components/micro/MicroCluster.js';
+export type {
+  MicroClusterProps,
+  MicroClusterPreset,
+  MicroClusterTelemetry,
+} from './components/micro/MicroCluster.js';
+
 export { resolveMicroSize, resolveMicroColor } from './components/micro/types.js';
 export type { RisBrand, RisMicroStatus, RisMicroSize, MicroBaseProps } from './components/micro/types.js';
+
 
