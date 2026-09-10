@@ -1288,7 +1288,8 @@ ${templatesHtml.join('\n')}
     const numAngle = parseFloat(angle);
 
     // Rotate compass needle
-    const compassCard = document.getElementById('card-compass');
+    const compassCard = document.querySelector('[data-category="dials"][data-preset="compass"]') ||
+                        document.querySelector('[data-preset="compass"]');
     if (compassCard) {
       const needle = compassCard.querySelector('g[style*="transform-origin"]');
       if (needle) {
@@ -1297,7 +1298,8 @@ ${templatesHtml.join('\n')}
     }
 
     // Update frequency dial needle
-    const freqCard = document.getElementById('card-frequency');
+    const freqCard = document.querySelector('[data-category="dials"][data-preset="frequency"]') ||
+                     document.querySelector('[data-preset="frequency"]');
     if (freqCard) {
       const needle = freqCard.querySelector('g[style*="transform-origin"]');
       if (needle) {
@@ -1307,7 +1309,8 @@ ${templatesHtml.join('\n')}
     }
 
     // Update power gauge readout, arc path and tip pip
-    const powerCard = document.getElementById('card-power-gauge');
+    const powerCard = document.querySelector('[data-category="dials"][data-preset="power-gauge"]') ||
+                      document.querySelector('[data-preset="power-gauge"]');
     if (powerCard) {
       const pct = Math.round((numAngle / 360) * 100);
       const textVal = powerCard.querySelector('text[dominant-baseline="central"]');
@@ -1327,7 +1330,8 @@ ${templatesHtml.join('\n')}
     }
 
     // Update azimuth-90 readout, arc path and tip pip
-    const azCard = document.getElementById('card-azimuth-90');
+    const azCard = document.querySelector('[data-category="dials"][data-preset="azimuth-90"]') ||
+                   document.querySelector('[data-preset="azimuth-90"]');
     if (azCard) {
       const pct90 = Math.round((numAngle / 360) * 90);
       const textVal = azCard.querySelector('text[dominant-baseline="central"]');
