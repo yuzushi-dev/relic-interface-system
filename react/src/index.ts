@@ -83,3 +83,18 @@ export type { AlertProps, AlertVariant } from './components/Alert.js';
 
 // Core utilities
 export { RisChartsCore } from './utils/risChartsCore.js';
+
+// Micro UI components & types
+export { MicroReticle } from './components/micro/MicroReticle.js';
+export type { MicroReticleProps, MicroReticleVariant, MicroReticlePreset } from './components/micro/MicroReticle.js';
+
+export { MicroCaliper } from './components/micro/MicroCaliper.js';
+export type {
+  MicroCaliperProps,
+  MicroCaliperVariant,
+  MicroCaliperPreset,
+  MicroCaliperOrientation,
+} from './components/micro/MicroCaliper.js';
+
+export { resolveMicroSize, resolveMicroColor } from './components/micro/types.js';
+export type { RisBrand, RisMicroStatus, RisMicroSize, MicroBaseProps } from './components/micro/types.js';
