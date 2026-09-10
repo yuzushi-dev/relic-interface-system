@@ -31,42 +31,42 @@
   </g>
   <g>
     <g transform="translate(6, 13)">
-      <svg viewBox="0 0 32 36" width="30" height="30" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="mirrored" data-preset="bandwidth" data-brand="relic" class="ris-micro-equalizer" style="color:#e6a23c;flex-shrink:0;overflow:visible">
+      <svg viewBox="0 0 32 36" width="30" height="30" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="mirrored" data-preset="bandwidth" data-brand="relic" class="ris-micro-equalizer" style="color: #e6a23c; overflow:visible;">
         <g>
           <line x1="2" y1="18" x2="30" y2="18" stroke-width="0.75" stroke-dasharray="1.5 1.5" opacity="0.35" />
           <line x1="2" y1="16" x2="2" y2="20" stroke-width="1" />
           <line x1="30" y1="16" x2="30" y2="20" stroke-width="1" />
-          <g style="transform-origin:3.38px 18px">
+          <g style="color: #e6a23c; transform-origin:3.38px 18px; overflow: visible;">
             <rect x="2.02" y="15.4" width="2.71" height="5.2" fill="#e6a23c" stroke="none" />
             <circle cx="3.38" cy="13.9" r="0.75" fill="#e6a23c" opacity="0.8" stroke="none" />
             <circle cx="3.38" cy="22.1" r="0.75" fill="#e6a23c" opacity="0.8" stroke="none" />
           </g>
-          <g style="transform-origin:7.59px 18px">
+          <g style="color: #e6a23c; transform-origin:7.59px 18px; overflow: visible;">
             <rect x="6.23" y="11.5" width="2.71" height="13" fill="#e6a23c" stroke="none" />
             <circle cx="7.59" cy="10" r="0.75" fill="#e6a23c" opacity="0.8" stroke="none" />
             <circle cx="7.59" cy="26" r="0.75" fill="#e6a23c" opacity="0.8" stroke="none" />
           </g>
-          <g style="transform-origin:11.79px 18px">
+          <g style="color: #e6a23c; transform-origin:11.79px 18px; overflow: visible;">
             <rect x="10.44" y="6.95" width="2.71" height="22.1" fill="#e6a23c" stroke="none" />
             <circle cx="11.79" cy="5.45" r="0.75" fill="#e6a23c" opacity="0.8" stroke="none" />
             <circle cx="11.79" cy="30.55" r="0.75" fill="#e6a23c" opacity="0.8" stroke="none" />
           </g>
-          <g style="transform-origin:16px 18px">
+          <g style="color: #e6a23c; transform-origin:16px 18px; overflow: visible;">
             <rect x="14.65" y="5.65" width="2.71" height="24.7" fill="#e6a23c" stroke="none" />
             <circle cx="16" cy="4.15" r="0.75" fill="#e6a23c" opacity="0.8" stroke="none" />
             <circle cx="16" cy="31.85" r="0.75" fill="#e6a23c" opacity="0.8" stroke="none" />
           </g>
-          <g style="transform-origin:20.21px 18px">
+          <g style="color: #e6a23c; transform-origin:20.21px 18px; overflow: visible;">
             <rect x="18.86" y="6.95" width="2.71" height="22.1" fill="#e6a23c" stroke="none" />
             <circle cx="20.21" cy="5.45" r="0.75" fill="#e6a23c" opacity="0.8" stroke="none" />
             <circle cx="20.21" cy="30.55" r="0.75" fill="#e6a23c" opacity="0.8" stroke="none" />
           </g>
-          <g style="transform-origin:24.43px 18px">
+          <g style="color: #e6a23c; transform-origin:24.43px 18px; overflow: visible;">
             <rect x="23.07" y="11.5" width="2.71" height="13" fill="#e6a23c" stroke="none" />
             <circle cx="24.43" cy="10" r="0.75" fill="#e6a23c" opacity="0.8" stroke="none" />
             <circle cx="24.43" cy="26" r="0.75" fill="#e6a23c" opacity="0.8" stroke="none" />
           </g>
-          <g style="transform-origin:28.64px 18px">
+          <g style="color: #e6a23c; transform-origin:28.64px 18px; overflow: visible;">
             <rect x="27.28" y="15.4" width="2.71" height="5.2" fill="#e6a23c" stroke="none" />
             <circle cx="28.64" cy="13.9" r="0.75" fill="#e6a23c" opacity="0.8" stroke="none" />
             <circle cx="28.64" cy="22.1" r="0.75" fill="#e6a23c" opacity="0.8" stroke="none" />
@@ -75,7 +75,7 @@
       </svg>
     </g>
     <g transform="translate(40, 14)">
-      <svg viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="blocks" data-preset="binary-status" data-density="dense" data-shape="squares" data-brand="relic" class="ris-micro-matrix" style="color:#e6a23c;flex-shrink:0;overflow:visible">
+      <svg viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="blocks" data-preset="binary-status" data-density="dense" data-shape="squares" data-brand="relic" class="ris-micro-matrix" style="color: #e6a23c; overflow:visible;">
         <path d="M 2 5 L 2 2 L 5 2" stroke="#e6a23c" stroke-width="0.75" stroke-opacity="0.3" fill="none" vector-effect="non-scaling-stroke" />
         <path d="M 30 5 L 30 2 L 27 2" stroke="#e6a23c" stroke-width="0.75" stroke-opacity="0.3" fill="none" vector-effect="non-scaling-stroke" />
         <path d="M 2 27 L 2 30 L 5 30" stroke="#e6a23c" stroke-width="0.75" stroke-opacity="0.3" fill="none" vector-effect="non-scaling-stroke" />
@@ -101,7 +101,7 @@
       </svg>
     </g>
     <g transform="translate(68, 13)">
-      <svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="pill-code" data-code-type="128" data-brand="relic" class="ris-micro-stamp" style="color:#e6a23c;flex-shrink:0;overflow:visible">
+      <svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="pill-code" data-code-type="128" data-brand="relic" class="ris-micro-stamp" style="color: #e6a23c; overflow:visible;">
         <g>
           <polygon points="6,5 26,5 29,8 29,24 26,27 6,27 3,24 3,8" stroke="#e6a23c" stroke-width="1" fill="#0a0a0c" fill-opacity="0.25" vector-effect="non-scaling-stroke" />
           <line x1="12" y1="5" x2="12" y2="27" stroke="#e6a23c" stroke-width="1" stroke-dasharray="1.5 1.5" stroke-opacity="0.5" vector-effect="non-scaling-stroke" />
@@ -114,7 +114,7 @@
       </svg>
     </g>
     <g transform="translate(98, 12)">
-      <svg viewBox="0 0 72 36" width="48" height="24" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="stacked" data-brand="relic" class="ris-micro-telemetry" style="color:#e6a23c;flex-shrink:0;overflow:visible">
+      <svg viewBox="0 0 72 36" width="48" height="24" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="stacked" data-brand="relic" class="ris-micro-telemetry" style="color: #e6a23c; overflow:visible;">
         <g>
           <line x1="2" y1="3" x2="2" y2="33" stroke="#e6a23c" stroke-width="1.5" vector-effect="non-scaling-stroke" />
           <line x1="2" y1="3" x2="6" y2="3" stroke="#e6a23c" stroke-width="1.5" vector-effect="non-scaling-stroke" />

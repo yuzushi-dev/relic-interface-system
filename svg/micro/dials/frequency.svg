@@ -37,7 +37,7 @@
     <line x1="5.14" y1="11.5" x2="3.53" y2="10.83" stroke-width="0.75" opacity="0.45" />
     <line x1="7.69" y1="7.69" x2="6.45" y2="6.45" stroke-width="0.75" opacity="0.45" />
     <line x1="11.5" y1="5.14" x2="10.83" y2="3.53" stroke-width="0.75" opacity="0.45" />
-    <g transform="rotate(180 16 16)" style="transform-origin:16px 16px">
+    <g transform="rotate(180 16 16)" style="color: #e6a23c; transform-origin:16px 16px; overflow: visible;">
       <line x1="16" y1="16" x2="16" y2="4.5" stroke-width="1.25" />
       <polygon points="16,2.5 14.2,5.5 17.8,5.5" fill="#e6a23c" stroke="none" />
       <line x1="16" y1="16" x2="16" y2="19" stroke-width="1.5" />

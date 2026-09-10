@@ -52,7 +52,7 @@ function buildSvg(rawSvg, primaryColor = '#e6a23c') {
   svg = svg.replace(/var\(--ris-[a-zA-Z0-9_-]+,\s*([^)]+)\)/g, (match, fallback) => fallback.trim());
 
   // 4. Clean up inline style: strip web flexbox properties and normalize colors
-  svg = svg.replace(/style="([^"]*)"/, (match, styleContent) => {
+  svg = svg.replace(/style="([^"]*)"/g, (match, styleContent) => {
     let parts = styleContent
       .split(';')
       .map(s => s.trim())

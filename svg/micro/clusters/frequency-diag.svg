@@ -31,7 +31,7 @@
   </g>
   <g>
     <g transform="translate(6, 12)">
-      <svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="needle" data-preset="frequency" data-brand="relic" class="ris-micro-dial" style="color:#e6a23c;flex-shrink:0;overflow:visible">
+      <svg viewBox="0 0 32 32" width="32" height="32" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="needle" data-preset="frequency" data-brand="relic" class="ris-micro-dial" style="color: #e6a23c; overflow:visible;">
         <g>
           <circle cx="16" cy="16" r="13.5" stroke-width="1" opacity="0.35" />
           <circle cx="16" cy="16" r="9.5" stroke-width="0.75" stroke-dasharray="1.5 2" opacity="0.2" />
@@ -51,7 +51,7 @@
           <line x1="5.14" y1="11.5" x2="3.53" y2="10.83" stroke-width="0.75" opacity="0.45" />
           <line x1="7.69" y1="7.69" x2="6.45" y2="6.45" stroke-width="0.75" opacity="0.45" />
           <line x1="11.5" y1="5.14" x2="10.83" y2="3.53" stroke-width="0.75" opacity="0.45" />
-          <g transform="rotate(230.4 16 16)" style="transform-origin:16px 16px">
+          <g transform="rotate(230.4 16 16)" style="color: #e6a23c; transform-origin:16px 16px; overflow: visible;">
             <line x1="16" y1="16" x2="16" y2="4.5" stroke-width="1.25" />
             <polygon points="16,2.5 14.2,5.5 17.8,5.5" fill="#e6a23c" stroke="none" />
             <line x1="16" y1="16" x2="16" y2="19" stroke-width="1.5" />
@@ -68,40 +68,40 @@
       </svg>
     </g>
     <g transform="translate(42, 13)">
-      <svg viewBox="0 0 33 36" width="32" height="32" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="waveform" data-brand="relic" class="ris-micro-equalizer" style="color:#e6a23c;flex-shrink:0;overflow:visible">
+      <svg viewBox="0 0 33 36" width="32" height="32" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="waveform" data-brand="relic" class="ris-micro-equalizer" style="color: #e6a23c; overflow:visible;">
         <g>
           <line x1="2" y1="27" x2="31" y2="27" stroke-width="1" />
           <line x1="2" y1="25" x2="2" y2="27" stroke-width="1" />
           <line x1="31" y1="25" x2="31" y2="27" stroke-width="1" />
-          <g style="transform-origin:3.585px 27px">
+          <g style="color: #e6a23c; transform-origin:3.585px 27px; overflow: visible;">
             <rect x="2.49" y="19.72" width="2.19" height="7.28" fill="#e6a23c" stroke="none" />
             <line x1="2.49" y1="17.72" x2="4.68" y2="17.72" stroke-width="1" stroke="#e6a23c" opacity="0.85" />
           </g>
-          <g style="transform-origin:7.2749999999999995px 27px">
+          <g style="color: #e6a23c; transform-origin:7.2749999999999995px 27px; overflow: visible;">
             <rect x="6.18" y="12.7" width="2.19" height="14.3" fill="#e6a23c" stroke="none" />
             <line x1="6.18" y1="10.7" x2="8.37" y2="10.7" stroke-width="1" stroke="#e6a23c" opacity="0.85" />
           </g>
-          <g style="transform-origin:10.965px 27px">
+          <g style="color: #e6a23c; transform-origin:10.965px 27px; overflow: visible;">
             <rect x="9.87" y="4.9" width="2.19" height="22.1" fill="#e6a23c" stroke="none" />
             <line x1="9.87" y1="2.9" x2="12.06" y2="2.9" stroke-width="1" stroke="#e6a23c" opacity="0.85" />
           </g>
-          <g style="transform-origin:14.655000000000001px 27px">
+          <g style="color: #e6a23c; transform-origin:14.655000000000001px 27px; overflow: visible;">
             <rect x="13.56" y="2.3" width="2.19" height="24.7" fill="#e6a23c" stroke="none" />
             <line x1="13.56" y1="2" x2="15.75" y2="2" stroke-width="1" stroke="#e6a23c" opacity="0.85" />
           </g>
-          <g style="transform-origin:18.345px 27px">
+          <g style="color: #e6a23c; transform-origin:18.345px 27px; overflow: visible;">
             <rect x="17.25" y="6.72" width="2.19" height="20.28" fill="#e6a23c" stroke="none" />
             <line x1="17.25" y1="4.72" x2="19.44" y2="4.72" stroke-width="1" stroke="#e6a23c" opacity="0.85" />
           </g>
-          <g style="transform-origin:22.035px 27px">
+          <g style="color: #e6a23c; transform-origin:22.035px 27px; overflow: visible;">
             <rect x="20.94" y="10.88" width="2.19" height="16.12" fill="#e6a23c" stroke="none" />
             <line x1="20.94" y1="8.88" x2="23.13" y2="8.88" stroke-width="1" stroke="#e6a23c" opacity="0.85" />
           </g>
-          <g style="transform-origin:25.724999999999998px 27px">
+          <g style="color: #e6a23c; transform-origin:25.724999999999998px 27px; overflow: visible;">
             <rect x="24.63" y="15.3" width="2.19" height="11.7" fill="#e6a23c" stroke="none" />
             <line x1="24.63" y1="13.3" x2="26.82" y2="13.3" stroke-width="1" stroke="#e6a23c" opacity="0.85" />
           </g>
-          <g style="transform-origin:29.415px 27px">
+          <g style="color: #e6a23c; transform-origin:29.415px 27px; overflow: visible;">
             <rect x="28.32" y="21.28" width="2.19" height="5.72" fill="#e6a23c" stroke="none" />
             <line x1="28.32" y1="19.28" x2="30.51" y2="19.28" stroke-width="1" stroke="#e6a23c" opacity="0.85" />
           </g>
@@ -109,7 +109,7 @@
       </svg>
     </g>
     <g transform="translate(86, 12)">
-      <svg viewBox="0 0 72 36" width="44" height="22" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="stacked" data-brand="relic" class="ris-micro-telemetry" style="color:#e6a23c;flex-shrink:0;overflow:visible">
+      <svg viewBox="0 0 72 36" width="44" height="22" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="stacked" data-brand="relic" class="ris-micro-telemetry" style="color: #e6a23c; overflow:visible;">
         <g>
           <line x1="2" y1="3" x2="2" y2="33" stroke="#e6a23c" stroke-width="1.5" vector-effect="non-scaling-stroke" />
           <line x1="2" y1="3" x2="6" y2="3" stroke="#e6a23c" stroke-width="1.5" vector-effect="non-scaling-stroke" />
@@ -129,7 +129,7 @@
       </svg>
     </g>
     <g transform="translate(132, 13)">
-      <svg viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="hash-tag" data-preset="hash-stamp" data-code-type="128" data-brand="relic" class="ris-micro-stamp" style="color:#e6a23c;flex-shrink:0;overflow:visible">
+      <svg viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="hash-tag" data-preset="hash-stamp" data-code-type="128" data-brand="relic" class="ris-micro-stamp" style="color: #e6a23c; overflow:visible;">
         <g>
           <polygon points="7,3 29,3 29,25 25,29 3,29 3,7" stroke="#e6a23c" stroke-width="1" fill="#0a0a0c" fill-opacity="0.3" vector-effect="non-scaling-stroke" />
           <line x1="3" y1="7" x2="7" y2="3" stroke="#e6a23c" stroke-width="1" vector-effect="non-scaling-stroke" />

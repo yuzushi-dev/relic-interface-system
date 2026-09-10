@@ -22,56 +22,56 @@
     <line x1="2" y1="27" x2="31" y2="27" stroke-width="1" />
     <line x1="2" y1="25" x2="2" y2="27" stroke-width="1" />
     <line x1="31" y1="25" x2="31" y2="27" stroke-width="1" />
-    <g style="transform-origin:3.585px 27px">
+    <g style="color: #e6a23c; transform-origin:3.585px 27px; overflow: visible;">
       <rect x="2.49" y="23.4" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
       <rect x="2.49" y="18.8" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
       <rect x="2.49" y="14.2" width="2.19" height="3.6" fill="#e6a23c" opacity="0.15" stroke="none" />
       <rect x="2.49" y="9.6" width="2.19" height="3.6" fill="#e6a23c" opacity="0.15" stroke="none" />
       <rect x="2.49" y="5" width="2.19" height="3.6" fill="#e6a23c" opacity="0.15" stroke="none" />
     </g>
-    <g style="transform-origin:7.2749999999999995px 27px">
+    <g style="color: #e6a23c; transform-origin:7.2749999999999995px 27px; overflow: visible;">
       <rect x="6.18" y="23.4" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
       <rect x="6.18" y="18.8" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
       <rect x="6.18" y="14.2" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
       <rect x="6.18" y="9.6" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
       <rect x="6.18" y="5" width="2.19" height="3.6" fill="#e6a23c" opacity="0.15" stroke="none" />
     </g>
-    <g style="transform-origin:10.965px 27px">
+    <g style="color: #e6a23c; transform-origin:10.965px 27px; overflow: visible;">
       <rect x="9.87" y="23.4" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
       <rect x="9.87" y="18.8" width="2.19" height="3.6" fill="#e6a23c" opacity="0.15" stroke="none" />
       <rect x="9.87" y="14.2" width="2.19" height="3.6" fill="#e6a23c" opacity="0.15" stroke="none" />
       <rect x="9.87" y="9.6" width="2.19" height="3.6" fill="#e6a23c" opacity="0.15" stroke="none" />
       <rect x="9.87" y="5" width="2.19" height="3.6" fill="#e6a23c" opacity="0.15" stroke="none" />
     </g>
-    <g style="transform-origin:14.655000000000001px 27px">
+    <g style="color: #e6a23c; transform-origin:14.655000000000001px 27px; overflow: visible;">
       <rect x="13.56" y="23.4" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
       <rect x="13.56" y="18.8" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
       <rect x="13.56" y="14.2" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
       <rect x="13.56" y="9.6" width="2.19" height="3.6" fill="#e6a23c" opacity="0.15" stroke="none" />
       <rect x="13.56" y="5" width="2.19" height="3.6" fill="#e6a23c" opacity="0.15" stroke="none" />
     </g>
-    <g style="transform-origin:18.345px 27px">
+    <g style="color: #e6a23c; transform-origin:18.345px 27px; overflow: visible;">
       <rect x="17.25" y="23.4" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
       <rect x="17.25" y="18.8" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
       <rect x="17.25" y="14.2" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
       <rect x="17.25" y="9.6" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
       <rect x="17.25" y="5" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
     </g>
-    <g style="transform-origin:22.035px 27px">
+    <g style="color: #e6a23c; transform-origin:22.035px 27px; overflow: visible;">
       <rect x="20.94" y="23.4" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
       <rect x="20.94" y="18.8" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
       <rect x="20.94" y="14.2" width="2.19" height="3.6" fill="#e6a23c" opacity="0.15" stroke="none" />
       <rect x="20.94" y="9.6" width="2.19" height="3.6" fill="#e6a23c" opacity="0.15" stroke="none" />
       <rect x="20.94" y="5" width="2.19" height="3.6" fill="#e6a23c" opacity="0.15" stroke="none" />
     </g>
-    <g style="transform-origin:25.724999999999998px 27px">
+    <g style="color: #e6a23c; transform-origin:25.724999999999998px 27px; overflow: visible;">
       <rect x="24.63" y="23.4" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
       <rect x="24.63" y="18.8" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
       <rect x="24.63" y="14.2" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
       <rect x="24.63" y="9.6" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
       <rect x="24.63" y="5" width="2.19" height="3.6" fill="#e6a23c" opacity="0.15" stroke="none" />
     </g>
-    <g style="transform-origin:29.415px 27px">
+    <g style="color: #e6a23c; transform-origin:29.415px 27px; overflow: visible;">
       <rect x="28.32" y="23.4" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
       <rect x="28.32" y="18.8" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />
       <rect x="28.32" y="14.2" width="2.19" height="3.6" fill="#e6a23c" opacity="1" stroke="none" />

@@ -31,7 +31,7 @@
   </g>
   <g>
     <g transform="translate(6, 12)">
-      <svg viewBox="0 0 32 32" width="30" height="30" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="arc" data-preset="power-gauge" data-brand="relic" class="ris-micro-dial" style="color:#e6a23c;flex-shrink:0;overflow:visible">
+      <svg viewBox="0 0 32 32" width="30" height="30" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="arc" data-preset="power-gauge" data-brand="relic" class="ris-micro-dial" style="color: #e6a23c; overflow:visible;">
         <g>
           <path d="M 6.04 21.75 A 11.5 11.5 0 1 1 25.96 21.75" stroke-width="1.5" opacity="0.2" />
           <path d="M 6.04 21.75 A 11.5 11.5 0 1 1 27.5 16.24" stroke-width="2" opacity="1" />
@@ -53,7 +53,7 @@
       </svg>
     </g>
     <g transform="translate(38, 12)">
-      <svg viewBox="0 0 72 36" width="46" height="23" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="stacked" data-brand="relic" class="ris-micro-telemetry" style="color:#e6a23c;flex-shrink:0;overflow:visible">
+      <svg viewBox="0 0 72 36" width="46" height="23" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="stacked" data-brand="relic" class="ris-micro-telemetry" style="color: #e6a23c; overflow:visible;">
         <g>
           <line x1="2" y1="3" x2="2" y2="33" stroke="#e6a23c" stroke-width="1.5" vector-effect="non-scaling-stroke" />
           <line x1="2" y1="3" x2="6" y2="3" stroke="#e6a23c" stroke-width="1.5" vector-effect="non-scaling-stroke" />
@@ -74,7 +74,7 @@
     </g>
     <line x1="88" y1="13" x2="88" y2="43" stroke="#e6a23c" stroke-width="0.5" stroke-opacity="0.25" stroke-dasharray="2 2" vector-effect="non-scaling-stroke" />
     <g transform="translate(92, 14)">
-      <svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="dots" data-preset="status-3x3" data-density="spaced" data-shape="dots" data-brand="relic" class="ris-micro-matrix" style="color:#e6a23c;flex-shrink:0;overflow:visible">
+      <svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="dots" data-preset="status-3x3" data-density="spaced" data-shape="dots" data-brand="relic" class="ris-micro-matrix" style="color: #e6a23c; overflow:visible;">
         <path d="M 2 5 L 2 2 L 5 2" stroke="#e6a23c" stroke-width="0.75" stroke-opacity="0.3" fill="none" vector-effect="non-scaling-stroke" />
         <path d="M 30 5 L 30 2 L 27 2" stroke="#e6a23c" stroke-width="0.75" stroke-opacity="0.3" fill="none" vector-effect="non-scaling-stroke" />
         <path d="M 2 27 L 2 30 L 5 30" stroke="#e6a23c" stroke-width="0.75" stroke-opacity="0.3" fill="none" vector-effect="non-scaling-stroke" />
@@ -93,7 +93,7 @@
       </svg>
     </g>
     <g transform="translate(122, 13)">
-      <svg viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="hash-tag" data-preset="hash-stamp" data-code-type="128" data-brand="relic" class="ris-micro-stamp" style="color:#e6a23c;flex-shrink:0;overflow:visible">
+      <svg viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="hash-tag" data-preset="hash-stamp" data-code-type="128" data-brand="relic" class="ris-micro-stamp" style="color: #e6a23c; overflow:visible;">
         <g>
           <polygon points="7,3 29,3 29,25 25,29 3,29 3,7" stroke="#e6a23c" stroke-width="1" fill="#0a0a0c" fill-opacity="0.3" vector-effect="non-scaling-stroke" />
           <line x1="3" y1="7" x2="7" y2="3" stroke="#e6a23c" stroke-width="1" vector-effect="non-scaling-stroke" />

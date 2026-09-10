@@ -25,7 +25,7 @@
   <path d="M 150 48 L 154 48 L 160 42 L 160 38" fill="none" stroke="#e6a23c" stroke-width="1.25" vector-effect="non-scaling-stroke" />
   <g>
     <g transform="translate(6, 2)">
-      <svg viewBox="0 0 148 16" width="148" height="16" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="ruler" data-orientation="horizontal" data-brand="relic" class="ris-micro-caliper" style="color:#e6a23c;flex-shrink:0;overflow:visible">
+      <svg viewBox="0 0 148 16" width="148" height="16" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="ruler" data-orientation="horizontal" data-brand="relic" class="ris-micro-caliper" style="color: #e6a23c; overflow:visible;">
         <g>
           <g>
             <line x1="0" y1="12" x2="148" y2="12" stroke-width="1" />
@@ -71,7 +71,7 @@
       </svg>
     </g>
     <g transform="translate(8, 16)">
-      <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="barcode" data-preset="barcode-mini" data-code-type="128" data-brand="relic" class="ris-micro-stamp" style="color:#e6a23c;flex-shrink:0;overflow:visible">
+      <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="barcode" data-preset="barcode-mini" data-code-type="128" data-brand="relic" class="ris-micro-stamp" style="color: #e6a23c; overflow:visible;">
         <g>
           <g>
             <path d="M 2 7 L 2 2 L 7 2" stroke="#e6a23c" stroke-width="1" fill="none" vector-effect="non-scaling-stroke" />
@@ -94,7 +94,7 @@
       </svg>
     </g>
     <g transform="translate(42, 19)">
-      <svg viewBox="0 0 96 24" width="72" height="18" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="inline" data-brand="relic" class="ris-micro-telemetry" style="color:#e6a23c;flex-shrink:0;overflow:visible">
+      <svg viewBox="0 0 96 24" width="72" height="18" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="inline" data-brand="relic" class="ris-micro-telemetry" style="color: #e6a23c; overflow:visible;">
         <g>
           <polygon points="0,4 4,0 92,0 96,4 96,20 92,24 4,24 0,20" fill="#e6a23c" fill-opacity="0.04" stroke="#e6a23c" stroke-width="1" stroke-opacity="0.5" vector-effect="non-scaling-stroke" />
           <line x1="0" y1="8" x2="0" y2="4" stroke-width="1.5" stroke="#e6a23c" vector-effect="non-scaling-stroke" />
@@ -111,7 +111,7 @@
       </svg>
     </g>
     <g transform="translate(122, 16)">
-      <svg viewBox="0 0 30 16" width="30" height="16" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="bracket" data-orientation="horizontal" data-brand="relic" class="ris-micro-caliper" style="color:#e6a23c;flex-shrink:0;overflow:visible">
+      <svg viewBox="0 0 30 16" width="30" height="16" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="bracket" data-orientation="horizontal" data-brand="relic" class="ris-micro-caliper" style="color: #e6a23c; overflow:visible;">
         <g>
           <g>
             <path d="M 3 11 L 0 14 L 0 6 L 2 4 L 6 4" stroke-width="1.25" />

@@ -31,7 +31,7 @@
   </g>
   <g>
     <g transform="translate(6, 11)">
-      <svg viewBox="0 0 32 32" width="34" height="34" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="relay" data-preset="orbital-relay" data-brand="relic" class="ris-micro-constellation" style="color:#e6a23c;flex-shrink:0;overflow:visible">
+      <svg viewBox="0 0 32 32" width="34" height="34" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="relay" data-preset="orbital-relay" data-brand="relic" class="ris-micro-constellation" style="color: #e6a23c; overflow:visible;">
         <g>
           <circle cx="16" cy="16" r="11" stroke="#e6a23c" stroke-width="0.75" stroke-dasharray="2 2" stroke-opacity="0.25" fill="none" vector-effect="non-scaling-stroke" />
           <ellipse cx="16" cy="16" rx="13" ry="6" stroke="#e6a23c" stroke-width="0.5" stroke-dasharray="1.5 2" stroke-opacity="0.18" fill="none" transform="rotate(-25 16 16)" vector-effect="non-scaling-stroke" />
@@ -73,7 +73,7 @@
       <text x="18" y="32" text-anchor="middle" font-size="4" font-family="'JetBrains Mono', monospace" fill="#e6a23c" opacity="0.7" stroke="none">BEACON</text>
     </g>
     <g transform="translate(84, 11)">
-      <svg viewBox="0 0 80 40" width="60" height="30" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="framed" data-brand="relic" class="ris-micro-telemetry" style="color:#e6a23c;flex-shrink:0;overflow:visible">
+      <svg viewBox="0 0 80 40" width="60" height="30" fill="none" stroke="#e6a23c" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-hidden="true" data-variant="framed" data-brand="relic" class="ris-micro-telemetry" style="color: #e6a23c; overflow:visible;">
         <g>
           <polygon points="0,6 6,0 74,0 80,6 80,34 74,40 6,40 0,34" fill="#e6a23c" fill-opacity="0.04" stroke="#e6a23c" stroke-width="1" stroke-opacity="0.6" vector-effect="non-scaling-stroke" />
           <path d="M 0 10 L 0 6 L 6 0 L 10 0" fill="none" stroke="#e6a23c" stroke-width="1.25" vector-effect="non-scaling-stroke" />
