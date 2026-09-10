@@ -14,6 +14,13 @@ export type {
   EyewearOpticalProfile,
 };
 
+const OPTICAL_PROFILE_CLASSES: Record<EyewearOpticalProfile, string> = {
+  'phosphor-green': 'ris-eyewear-profile-phosphor',
+  'tactical-amber': 'ris-eyewear-profile-amber',
+  'cyber-cyan': 'ris-eyewear-profile-cyan',
+  'alert-red': 'ris-eyewear-profile-alert',
+};
+
 function resolveInspectionColor(
   opticalProfile?: EyewearOpticalProfile,
   brand: RisBrand = 'biohub',
@@ -85,12 +92,7 @@ export const MicroSpatialInspection = forwardRef<
   const color = resolveInspectionColor(opticalProfile, brand, status);
 
   const opticalClass = opticalProfile
-    ? {
-        'phosphor-green': 'ris-eyewear-profile-phosphor',
-        'tactical-amber': 'ris-eyewear-profile-amber',
-        'cyber-cyan': 'ris-eyewear-profile-cyan',
-        'alert-red': 'ris-eyewear-profile-alert',
-      }[opticalProfile] ?? `ris-eyewear-profile-${opticalProfile}`
+    ? (OPTICAL_PROFILE_CLASSES[opticalProfile] ?? `ris-eyewear-profile-${opticalProfile}`)
     : '';
 
   // 4 Corner bracket coordinates centered around (80, 60)
@@ -111,7 +113,11 @@ export const MicroSpatialInspection = forwardRef<
   const rulerBottomY = 96;
   const rulerHeight = rulerBottomY - rulerTopY; // 72px
 
-  const clampedDist = Math.max(0.2, Math.min(10.0, distanceMeters));
+  const cleanDistance =
+    typeof distanceMeters === 'number' && Number.isFinite(distanceMeters)
+      ? distanceMeters
+      : 1.4;
+  const clampedDist = Math.max(0.2, Math.min(10.0, cleanDistance));
   const distRatio = (clampedDist - 0.2) / (10.0 - 0.2); // 0 at 0.2m, 1 at 10.0m
   const pipY = Math.round(rulerBottomY - distRatio * rulerHeight);
 
@@ -121,7 +127,7 @@ export const MicroSpatialInspection = forwardRef<
 
   const dynamicAriaLabel =
     ariaLabel ??
-    `Spatial Inspection: ${cleanTargetLabel}, DST ${distanceMeters.toFixed(2)}M, status [${cleanStatus}]${
+    `Spatial Inspection: ${cleanTargetLabel}, DST ${cleanDistance.toFixed(2)}M, status [${cleanStatus}]${
       cleanSpecCode ? `, ${cleanSpecCode}` : ''
     }`;
 
@@ -146,7 +152,7 @@ export const MicroSpatialInspection = forwardRef<
       className={`ris-micro-inspection ris-eyewear-glass ${opticalClass} ${className}`.trim()}
       style={{
         color,
-        background: 'transparent !important',
+        background: 'transparent',
         flexShrink: 0,
         overflow: 'visible',
         ...style,

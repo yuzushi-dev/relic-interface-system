@@ -97,13 +97,18 @@
   to { stroke-dashoffset: 100; }
 }
 
+.ris-micro-decay {
+  animation: ris-decay-line 4s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .ris-micro-spin,
   .ris-micro-pulse,
   .ris-micro-blink,
   .ris-micro-scan,
   .ris-micro-beacon,
-  .ris-micro-listen {
+  .ris-micro-listen,
+  .ris-micro-decay {
     animation: none !important;
   }
 }
@@ -113,7 +118,8 @@
 [data-motion="static"] .ris-micro-blink,
 [data-motion="static"] .ris-micro-scan,
 [data-motion="static"] .ris-micro-beacon,
-[data-motion="static"] .ris-micro-listen {
+[data-motion="static"] .ris-micro-listen,
+[data-motion="static"] .ris-micro-decay {
   animation: none !important;
 }
 

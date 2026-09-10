@@ -10,6 +10,13 @@ import {
 
 export type { MicroGlanceNoticeProps, EyewearOpticalProfile };
 
+const OPTICAL_PROFILE_CLASSES: Record<EyewearOpticalProfile, string> = {
+  'phosphor-green': 'ris-eyewear-profile-phosphor',
+  'tactical-amber': 'ris-eyewear-profile-amber',
+  'cyber-cyan': 'ris-eyewear-profile-cyan',
+  'alert-red': 'ris-eyewear-profile-alert',
+};
+
 function resolveNoticeColor(
   severity: 'info' | 'warn' | 'critical' = 'info',
   opticalProfile?: EyewearOpticalProfile,
@@ -77,12 +84,7 @@ export const MicroGlanceNotice = forwardRef<SVGSVGElement, MicroGlanceNoticeProp
     const color = resolveNoticeColor(severity, opticalProfile, brand, status);
 
     const opticalClass = opticalProfile
-      ? {
-          'phosphor-green': 'ris-eyewear-profile-phosphor',
-          'tactical-amber': 'ris-eyewear-profile-amber',
-          'cyber-cyan': 'ris-eyewear-profile-cyan',
-          'alert-red': 'ris-eyewear-profile-alert',
-        }[opticalProfile] ?? `ris-eyewear-profile-${opticalProfile}`
+      ? (OPTICAL_PROFILE_CLASSES[opticalProfile] ?? `ris-eyewear-profile-${opticalProfile}`)
       : '';
 
     const cleanCategory = (category ?? 'SYSTEM').toUpperCase();
@@ -96,7 +98,7 @@ export const MicroGlanceNotice = forwardRef<SVGSVGElement, MicroGlanceNoticeProp
     // Decay countdown line calculation (width = 208 from x=6 to x=214)
     const decayTotalLength = 208;
     const clampedProgress =
-      dismissProgress !== undefined
+      typeof dismissProgress === 'number' && Number.isFinite(dismissProgress)
         ? Math.max(0, Math.min(100, dismissProgress))
         : undefined;
 
@@ -125,7 +127,7 @@ export const MicroGlanceNotice = forwardRef<SVGSVGElement, MicroGlanceNoticeProp
         className={`ris-micro-glance ris-eyewear-glass ${opticalClass} ${className}`.trim()}
         style={{
           color,
-          background: 'transparent !important',
+          background: 'transparent',
           flexShrink: 0,
           overflow: 'visible',
           ...style,
@@ -244,16 +246,18 @@ export const MicroGlanceNotice = forwardRef<SVGSVGElement, MicroGlanceNoticeProp
 
         {/* Active Auto-Decay Countdown Line */}
         {clampedProgress !== undefined ? (
-          <line
-            x1="6"
-            y1="24.5"
-            x2={6 + remainingWidth}
-            y2="24.5"
-            stroke="currentColor"
-            strokeWidth="1.5"
-            strokeLinecap="square"
-            vectorEffect="non-scaling-stroke"
-          />
+          remainingWidth > 0 ? (
+            <line
+              x1="6"
+              y1="24.5"
+              x2={6 + remainingWidth}
+              y2="24.5"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="square"
+              vectorEffect="non-scaling-stroke"
+            />
+          ) : null
         ) : (
           <line
             x1="6"
@@ -266,11 +270,6 @@ export const MicroGlanceNotice = forwardRef<SVGSVGElement, MicroGlanceNoticeProp
             pathLength="100"
             strokeDasharray="100"
             className={animated ? 'ris-micro-decay' : undefined}
-            style={
-              animated
-                ? { animation: 'ris-decay-line 4s linear infinite' }
-                : undefined
-            }
             vectorEffect="non-scaling-stroke"
           />
         )}
