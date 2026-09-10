@@ -177,6 +177,12 @@ export type {
   MicroSpatialInspectionStatus,
 } from './components/micro/MicroSpatialInspection.js';
 
+export { SmartGlassesHUD } from './components/micro/SmartGlassesHUD.js';
+export type {
+  SmartGlassesHUDProps,
+  EyewearHudMode,
+} from './components/micro/SmartGlassesHUD.js';
+
 export { resolveMicroSize, resolveMicroColor } from './components/micro/types.js';
 export type { RisBrand, RisMicroStatus, RisMicroSize, MicroBaseProps } from './components/micro/types.js';
 

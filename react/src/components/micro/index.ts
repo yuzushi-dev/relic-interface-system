@@ -13,3 +13,4 @@ export * from './MicroLiveCaptions.js';
 export * from './MicroVitalTelemetry.js';
 export * from './MicroGlanceNotice.js';
 export * from './MicroSpatialInspection.js';
+export * from './SmartGlassesHUD.js';
