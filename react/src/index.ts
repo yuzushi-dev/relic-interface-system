@@ -149,6 +149,13 @@ export type {
   MicroClusterTelemetry,
 } from './components/micro/MicroCluster.js';
 
+export { MicroNavGuidance } from './components/micro/MicroNavGuidance.js';
+export type {
+  MicroNavGuidanceProps,
+  MicroManeuver,
+  EyewearOpticalProfile,
+} from './components/micro/MicroNavGuidance.js';
+
 export { resolveMicroSize, resolveMicroColor } from './components/micro/types.js';
 export type { RisBrand, RisMicroStatus, RisMicroSize, MicroBaseProps } from './components/micro/types.js';
 

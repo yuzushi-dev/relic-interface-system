@@ -76,6 +76,7 @@ export interface MicroNavGuidanceProps extends MicroBaseProps {
   distanceMeters?: number;
   streetName?: string;
   eta?: string;
+  opticalProfile?: EyewearOpticalProfile;
 }
 
 export interface MicroLiveCaptionsProps extends MicroBaseProps {
