@@ -1136,6 +1136,7 @@ async function main() {
 
   <nav class="topbar-nav" aria-label="Main Navigation">
     <a href="index.html" class="ris-btn ris-btn--sm ris-btn--outline" style="text-decoration:none">🌐 Main Specimen</a>
+    <a href="eyewear.html" class="ris-btn ris-btn--sm ris-btn--outline" style="text-decoration:none">👓 Eyewear HUD</a>
     <a href="motion-lab.html" class="ris-btn ris-btn--sm ris-btn--outline" style="text-decoration:none">⚡ Motion Lab</a>
     <a href="mobile.html" class="ris-btn ris-btn--sm ris-btn--outline" style="text-decoration:none">📱 Mobile HUD</a>
   </nav>
