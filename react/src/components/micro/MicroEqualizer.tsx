@@ -36,7 +36,7 @@ export const MicroEqualizer = forwardRef<SVGSVGElement, MicroEqualizerProps>(fun
   {
     variant,
     preset,
-    bars = 8,
+    bars: barsProp,
     values,
     maxHeight,
     barWidth,
@@ -59,7 +59,7 @@ export const MicroEqualizer = forwardRef<SVGSVGElement, MicroEqualizerProps>(fun
     'waveform'
   );
 
-  const effectiveBars = Math.max(1, bars);
+  const effectiveBars = Math.max(1, barsProp ?? values?.length ?? 8);
 
   // Resolve amplitudes for each bar
   const resolvedValues: number[] = Array.from({ length: effectiveBars }, (_, i): number => {

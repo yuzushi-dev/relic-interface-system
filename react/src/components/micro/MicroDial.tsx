@@ -339,7 +339,8 @@ export const MicroDial = forwardRef<SVGSVGElement, MicroDialProps>(function Micr
             const items: React.ReactNode[] = [];
             for (let i = 0; i < count; i++) {
               const tickAngle = startAngle + (i / count) * effectiveSweepAngle;
-              const isCardinal = i % (count / 4) === 0;
+              const cardinalStep = Math.max(1, Math.floor(count / 4));
+              const isCardinal = i % cardinalStep === 0;
               const len = isCardinal ? 4 : 2;
               const rad = (tickAngle * Math.PI) / 180;
               const x1 = Number((16 + (13.5 - len) * Math.cos(rad)).toFixed(2));
