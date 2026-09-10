@@ -31,80 +31,12 @@
     padding: 80px 24px 100px;
   }
 
-  /* Topbar Extension */
-  .ris-topbar {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 0 20px;
-    height: 56px;
-    background: color-mix(in srgb, var(--ris-surface-1) 94%, transparent);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--ris-line);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
+  /* Topbar uses canonical styling from ris.css */
+  .ris-topbar .ris-btn--sm {
+    padding: 4px 10px;
+    font-size: 10px;
   }
 
-  .topbar-brand-title {
-    font-family: var(--ris-font-mono);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    color: var(--ris-accent);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    white-space: nowrap;
-  }
-
-  .topbar-nav {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  }
-
-  .topbar-controls {
-    margin-left: auto;
-    display: flex;
-    gap: 8px;
-    align-items: center;
-  }
-
-  .brand-btn-group {
-    display: flex;
-    gap: 4px;
-    background: var(--ris-surface-2);
-    padding: 2px;
-    border: 1px solid var(--ris-line);
-    clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
-  }
-
-  .brand-btn {
-    font-family: var(--ris-font-mono);
-    font-size: 9px;
-    font-weight: 700;
-    padding: 3px 8px;
-    background: transparent;
-    border: 1px solid transparent;
-    color: var(--ris-fg3);
-    cursor: pointer;
-    text-transform: uppercase;
-    transition: all 120ms var(--ease-snap);
-  }
-
-  .brand-btn:hover {
-    color: var(--ris-fg1);
-  }
-
-  .brand-btn.active {
-    background: var(--ris-accent-glow);
-    border-color: var(--ris-accent);
-    color: var(--ris-accent);
-    box-shadow: 0 0 6px var(--ris-accent-glow);
-  }
 
   /* Hero Section */
   .hero-banner {
@@ -559,37 +491,36 @@
 
 <!-- Topbar Navigation & Controls -->
 <header class="ris-topbar">
-  <div class="topbar-brand-title">
-    <span style="color:var(--ris-accent)">◈</span>
-    <span>RIS v2 — Micro-UI &amp; Telemetry Graphics Laboratory</span>
-  </div>
-
-  <nav class="topbar-nav" aria-label="Main Navigation">
-    <a href="index.html" class="ris-btn ris-btn--sm ris-btn--outline" style="text-decoration:none">🌐 Main Specimen</a>
-    <a href="eyewear.html" class="ris-btn ris-btn--sm ris-btn--outline" style="text-decoration:none">👓 Eyewear HUD</a>
-    <a href="motion-lab.html" class="ris-btn ris-btn--sm ris-btn--outline" style="text-decoration:none">⚡ Motion Lab</a>
-    <a href="mobile.html" class="ris-btn ris-btn--sm ris-btn--outline" style="text-decoration:none">📱 Mobile HUD</a>
+  <a href="index.html" class="ris-eyebrow" style="color:var(--ris-accent);white-space:nowrap;text-decoration:none">RIS — RELIC INTERFACE SYSTEM</a>
+  <span class="ris-chip" style="white-space:nowrap">v2.9.0</span>
+  <span class="spacer"></span>
+  <label class="ris-field" style="flex-direction:row;align-items:center;gap:6px;margin:0">
+    <span class="ris-label" style="margin:0">Brand</span>
+    <select id="brand" class="ris-select" style="width:110px;padding:4px 24px 4px 8px;font-size:12px;height:28px" onchange="setGlobalBrand(this.value)">
+      <optgroup label="Products">
+        <option value="relic" selected>Relic</option>
+        <option value="biohub">BioHub</option>
+        <option value="omnikon">Omnikon</option>
+        <option value="neutral">Neutral</option>
+      </optgroup>
+      <optgroup label="Case-Context">
+        <option value="sealed">Sealed</option>
+        <option value="field">Field</option>
+        <option value="archive">Archive</option>
+      </optgroup>
+    </select>
+  </label>
+  <nav class="ris-topbar-nav" style="display:flex;align-items:center;gap:6px">
+    <a href="index.html" class="ris-btn ris-btn--sm ris-btn--outline">🌐 Specimen</a>
+    <a href="micro-ui.html" class="ris-btn ris-btn--sm ris-btn--primary" aria-current="page">📐 Micro-UI</a>
+    <a href="eyewear.html" class="ris-btn ris-btn--sm ris-btn--outline">👓 Eyewear HUD</a>
+    <a href="motion-lab.html" class="ris-btn ris-btn--sm ris-btn--outline">⚡ Motion Lab</a>
+    <a href="mobile.html" class="ris-btn ris-btn--sm ris-btn--outline">📱 Mobile</a>
+    <a href="https://polar.sh/yuzushi-dev" target="_blank" rel="noopener" class="ris-btn ris-btn--sm ris-btn--outline" style="border-color:var(--ris-accent);color:var(--ris-accent);font-weight:700">★ Store</a>
+    <a href="https://github.com/yuzushi-dev/relic-interface-system" target="_blank" rel="noopener" class="ris-btn ris-btn--sm ris-btn--secondary">GitHub ↗</a>
   </nav>
-
-  <div class="topbar-controls">
-    <!-- Brand Switcher -->
-    <div class="brand-btn-group" role="group" aria-label="Brand Selector">
-      <button class="brand-btn active" data-brand="relic" onclick="setBrand('relic')">RELIC</button>
-      <button class="brand-btn" data-brand="biohub" onclick="setBrand('biohub')">BIOHUB</button>
-      <button class="brand-btn" data-brand="omnikon" onclick="setBrand('omnikon')">OMNIKON</button>
-      <button class="brand-btn" data-brand="neutral" onclick="setBrand('neutral')">NEUTRAL</button>
-    </div>
-
-    <!-- Theme Switcher -->
-    <button class="ris-btn ris-btn--sm ris-btn--primary" id="theme-btn" onclick="toggleTheme()" title="Toggle Dark HUD and Light Blueprint">
-      ◐ THEME: DARK
-    </button>
-
-    <!-- Motion Engine Toggle -->
-    <button class="ris-btn ris-btn--sm ris-btn--secondary" id="motion-btn" onclick="toggleMotion()" title="Toggle live 60fps telemetry simulation vs static vector export mode">
-      ⚡ 60FPS LIVE
-    </button>
-  </div>
+  <button id="skin" class="ris-btn ris-btn--sm ris-btn--secondary" aria-pressed="true" onclick="toggleGlobalSkin()">▞ Skin</button>
+  <button id="theme" class="ris-btn ris-btn--sm" aria-pressed="false" onclick="toggleGlobalTheme()">◐ Theme</button>
 </header>
 
 <main class="lab-shell" id="main">
@@ -617,7 +548,7 @@
   </aside>
 
   <!-- Quick Category Jump Navigation -->
-  <nav class="category-nav-bar" aria-label="Section Quick Jump">
+  <nav class="category-nav-bar" aria-label="Section Quick Jump" style="display:flex;align-items:center;flex-wrap:wrap;gap:8px">
     <span style="font-family:var(--ris-font-mono);font-size:10px;color:var(--ris-accent);font-weight:700;margin-right:6px">INDEX:</span>
     <a href="#sec-reticles" class="category-nav-link">01. Reticles</a>
     <a href="#sec-dials" class="category-nav-link">02. Dials</a>
@@ -628,6 +559,9 @@
     <a href="#sec-constellations" class="category-nav-link">07. Constellations</a>
     <a href="#sec-stamps" class="category-nav-link">08. Stamps</a>
     <a href="#sec-clusters" class="category-nav-link">09. Clusters</a>
+    <button class="ris-btn ris-btn--sm ris-btn--secondary" id="motion-btn" onclick="toggleMotion()" title="Toggle live 60fps telemetry simulation vs static vector export mode" style="margin-left:auto">
+      ⚡ 60FPS LIVE
+    </button>
   </nav>
 
   <!-- 9 Categorized Sections -->
@@ -4168,28 +4102,75 @@
   }
 
   // 1. BRAND SWITCHER
-  function setBrand(brand) {
+  function setGlobalBrand(brand) {
     currentBrand = brand;
     document.documentElement.setAttribute('data-brand', brand);
-    document.querySelectorAll('.brand-btn').forEach(btn => {
-      btn.classList.toggle('active', btn.getAttribute('data-brand') === brand);
-    });
+    try { localStorage.setItem('ris-brand', brand); } catch (_) {}
+    const brandEl = document.getElementById('brand');
+    if (brandEl) brandEl.value = brand;
     showHudToast('Active brand switched to [' + brand.toUpperCase() + ']');
   }
+  function setBrand(brand) { setGlobalBrand(brand); }
 
   // 2. THEME SWITCHER
-  function toggleTheme() {
+  function toggleGlobalTheme() {
     const html = document.documentElement;
     const current = html.getAttribute('data-theme') || 'dark';
     const next = current === 'dark' ? 'light' : 'dark';
     html.setAttribute('data-theme', next);
 
-    const btn = document.getElementById('theme-btn');
+    const btn = document.getElementById('theme');
     if (btn) {
-      btn.textContent = next === 'dark' ? '◐ THEME: DARK' : '☼ THEME: LIGHT';
+      btn.setAttribute('aria-pressed', String(next === 'light'));
     }
+    try { localStorage.setItem('ris-theme', next); } catch (_) {}
     showHudToast('Theme toggled to ' + (next === 'dark' ? 'Dark HUD' : 'Light Blueprint'));
   }
+  function toggleTheme() { toggleGlobalTheme(); }
+
+  // 3. SKIN TOGGLE
+  function toggleGlobalSkin() {
+    const html = document.documentElement;
+    const on = html.dataset.skin !== 'cyber';
+    if (on) html.dataset.skin = 'cyber'; else delete html.dataset.skin;
+    const btn = document.getElementById('skin');
+    if (btn) {
+      btn.setAttribute('aria-pressed', String(on));
+      btn.textContent = on ? '▞ Skin' : '▟ Skin: Off';
+    }
+    try { localStorage.setItem('ris-skin', on ? 'cyber' : 'off'); } catch (_) {}
+    showHudToast('Skin: ' + (on ? 'CYBER' : 'OFF'));
+  }
+  function toggleSkin() { toggleGlobalSkin(); }
+
+  // Sync from localStorage on load
+  (function syncChrome() {
+    try {
+      const b = localStorage.getItem('ris-brand');
+      if (b) {
+        currentBrand = b;
+        document.documentElement.setAttribute('data-brand', b);
+        const brandEl = document.getElementById('brand');
+        if (brandEl) brandEl.value = b;
+      }
+      const t = localStorage.getItem('ris-theme');
+      if (t) {
+        document.documentElement.setAttribute('data-theme', t);
+        const themeBtn = document.getElementById('theme');
+        if (themeBtn) themeBtn.setAttribute('aria-pressed', String(t === 'light'));
+      }
+      const s = localStorage.getItem('ris-skin');
+      if (s === 'off') {
+        delete document.documentElement.dataset.skin;
+        const skinBtn = document.getElementById('skin');
+        if (skinBtn) { skinBtn.setAttribute('aria-pressed', 'false'); skinBtn.textContent = '▟ Skin: Off'; }
+      } else if (s === 'cyber') {
+        document.documentElement.dataset.skin = 'cyber';
+        const skinBtn = document.getElementById('skin');
+        if (skinBtn) { skinBtn.setAttribute('aria-pressed', 'true'); skinBtn.textContent = '▞ Skin'; }
+      }
+    } catch (_) {}
+  })();
 
   // 3. MOTION ENGINE TOGGLE
   function toggleMotion() {

@@ -197,8 +197,8 @@
 
 
 <header class="ris-topbar">
-  <span class="ris-eyebrow" style="color:var(--ris-accent);white-space:nowrap">RIS — RELIC INTERFACE SYSTEM</span>
-  <span class="ris-chip" style="white-space:nowrap">v2.8.0</span>
+  <a href="index.html" class="ris-eyebrow" style="color:var(--ris-accent);white-space:nowrap;text-decoration:none">RIS — RELIC INTERFACE SYSTEM</a>
+  <span class="ris-chip" style="white-space:nowrap">v2.9.0</span>
   <span class="spacer"></span>
   <label class="ris-field" style="flex-direction:row;align-items:center;gap:6px;margin:0">
     <span class="ris-label" style="margin:0">Brand</span>
@@ -216,12 +216,15 @@
       </optgroup>
     </select>
   </label>
-  <a href="mobile.html" class="ris-btn ris-btn--sm ris-btn--outline">📱 Mobile</a>
-  <a href="motion-lab.html" class="ris-btn ris-btn--sm ris-btn--outline">⚡ Motion Lab</a>
-  <a href="micro-ui.html" class="ris-btn ris-btn--sm ris-btn--outline">📐 Micro-UI</a>
-  <a href="eyewear.html" class="ris-btn ris-btn--sm ris-btn--outline">👓 Eyewear HUD</a>
-  <a href="https://polar.sh/yuzushi-dev" target="_blank" rel="noopener" class="ris-btn ris-btn--sm ris-btn--outline" style="border-color:var(--ris-accent);color:var(--ris-accent);font-weight:700">★ Store</a>
-  <a href="https://github.com/yuzushi-dev/relic-interface-system" target="_blank" rel="noopener" class="ris-btn ris-btn--sm ris-btn--secondary">GitHub ↗</a>
+  <nav class="ris-topbar-nav" style="display:flex;align-items:center;gap:6px">
+    <a href="index.html" class="ris-btn ris-btn--sm ris-btn--primary" aria-current="page">🌐 Specimen</a>
+    <a href="micro-ui.html" class="ris-btn ris-btn--sm ris-btn--outline">📐 Micro-UI</a>
+    <a href="eyewear.html" class="ris-btn ris-btn--sm ris-btn--outline">👓 Eyewear HUD</a>
+    <a href="motion-lab.html" class="ris-btn ris-btn--sm ris-btn--outline">⚡ Motion Lab</a>
+    <a href="mobile.html" class="ris-btn ris-btn--sm ris-btn--outline">📱 Mobile</a>
+    <a href="https://polar.sh/yuzushi-dev" target="_blank" rel="noopener" class="ris-btn ris-btn--sm ris-btn--outline" style="border-color:var(--ris-accent);color:var(--ris-accent);font-weight:700">★ Store</a>
+    <a href="https://github.com/yuzushi-dev/relic-interface-system" target="_blank" rel="noopener" class="ris-btn ris-btn--sm ris-btn--secondary">GitHub ↗</a>
+  </nav>
   <button id="skin" class="ris-btn ris-btn--sm ris-btn--secondary" aria-pressed="true">▞ Skin</button>
   <button id="theme" class="ris-btn ris-btn--sm" aria-pressed="false">◐ Theme</button>
 </header>
@@ -1069,8 +1072,10 @@ document.getElementById('boot-demo').onclick = () => {
 const themeBtn = document.getElementById('theme');
 themeBtn.onclick = () => {
   const light = root.dataset.theme !== 'light';
-  root.dataset.theme = light ? 'light' : 'dark';
+  const newTheme = light ? 'light' : 'dark';
+  root.dataset.theme = newTheme;
   themeBtn.setAttribute('aria-pressed', String(light));
+  try { localStorage.setItem('ris-theme', newTheme); } catch (_) {}
 };
 const skinBtn = document.getElementById('skin');
 skinBtn.onclick = () => {
@@ -1078,8 +1083,26 @@ skinBtn.onclick = () => {
   if (on) root.dataset.skin = 'cyber'; else delete root.dataset.skin;
   skinBtn.setAttribute('aria-pressed', String(on));
   skinBtn.textContent = on ? '▞ Skin' : '▟ Skin: Off';
+  try { localStorage.setItem('ris-skin', on ? 'cyber' : 'off'); } catch (_) {}
 };
-document.getElementById('brand').onchange = e => root.dataset.brand = e.target.value;
+const brandSelect = document.getElementById('brand');
+brandSelect.onchange = e => {
+  root.dataset.brand = e.target.value;
+  try { localStorage.setItem('ris-brand', e.target.value); } catch (_) {}
+};
+
+// Sync from localStorage if present
+(function syncChrome() {
+  try {
+    const b = localStorage.getItem('ris-brand');
+    if (b && brandSelect) { root.dataset.brand = b; brandSelect.value = b; }
+    const t = localStorage.getItem('ris-theme');
+    if (t) { root.dataset.theme = t; themeBtn.setAttribute('aria-pressed', String(t === 'light')); }
+    const s = localStorage.getItem('ris-skin');
+    if (s === 'off') { delete root.dataset.skin; skinBtn.setAttribute('aria-pressed', 'false'); skinBtn.textContent = '▟ Skin: Off'; }
+    else if (s === 'cyber') { root.dataset.skin = 'cyber'; skinBtn.setAttribute('aria-pressed', 'true'); skinBtn.textContent = '▞ Skin'; }
+  } catch (_) {}
+})();
 
 const modal = document.getElementById('modal');
 document.getElementById('open-modal').onclick = () => { modal.hidden = false; };

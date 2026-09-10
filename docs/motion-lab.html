@@ -431,47 +431,38 @@
 </head>
 <body class="ris ris-grid-bg">
 
-<!-- Topbar with Theme, Brand, and Testing Controls -->
+<!-- Topbar Navigation & Controls -->
 <header class="ris-topbar">
-  <span class="ris-eyebrow" style="color:var(--ris-accent);white-space:nowrap;flex-shrink:0">RIS v2 · MOTION</span>
-  <a href="index.html" class="ris-btn ris-btn--sm ris-btn--outline">🌐 Specimen</a>
-  <a href="mobile.html" class="ris-btn ris-btn--sm ris-btn--outline">📱 Mobile</a>
-  <a href="micro-ui.html" class="ris-btn ris-btn--sm ris-btn--outline">📐 Micro-UI</a>
-  <a href="eyewear.html" class="ris-btn ris-btn--sm ris-btn--outline">👓 Eyewear HUD</a>
-  <a href="https://polar.sh/yuzushi-dev" target="_blank" rel="noopener" class="ris-btn ris-btn--sm ris-btn--outline" style="border-color:var(--ris-accent);color:var(--ris-accent);font-weight:700">★ Store</a>
-
-  <div style="margin-left:auto; display:flex; gap:8px; align-items:center; flex-shrink:0">
-    <!-- Speed toggle (slow motion inspection) -->
-    <select class="ris-select" id="speed-select" onchange="setSpeed(this.value)" title="Animation speed for curve inspection" style="padding:4px 22px 4px 8px;font-size:11px;height:28px">
-      <option value="normal">1x Normal</option>
-      <option value="slow">0.3x Slow</option>
+  <a href="index.html" class="ris-eyebrow" style="color:var(--ris-accent);white-space:nowrap;text-decoration:none">RIS — RELIC INTERFACE SYSTEM</a>
+  <span class="ris-chip" style="white-space:nowrap">v2.9.0</span>
+  <span class="spacer"></span>
+  <label class="ris-field" style="flex-direction:row;align-items:center;gap:6px;margin:0">
+    <span class="ris-label" style="margin:0">Brand</span>
+    <select id="brand" class="ris-select" style="width:110px;padding:4px 24px 4px 8px;font-size:12px;height:28px" onchange="setGlobalBrand(this.value)">
+      <optgroup label="Products">
+        <option value="relic" selected>Relic</option>
+        <option value="biohub">BioHub</option>
+        <option value="omnikon">Omnikon</option>
+        <option value="neutral">Neutral</option>
+      </optgroup>
+      <optgroup label="Case-Context">
+        <option value="sealed">Sealed</option>
+        <option value="field">Field</option>
+        <option value="archive">Archive</option>
+      </optgroup>
     </select>
-
-    <!-- Reduced Motion -->
-    <label class="tactical-switch" title="Simulate prefers-reduced-motion (WCAG 2.2 AA)" style="font-size:10px;gap:6px">
-      <input type="checkbox" id="toggle-reduced" onchange="toggleReducedMotion(this.checked)">
-      <div class="tactical-switch-track" style="width:32px;height:18px"><div class="tactical-switch-thumb" style="width:12px;height:12px"></div></div>
-      <span style="font-size:10px;white-space:nowrap">Reduced Motion</span>
-    </label>
-
-    <!-- Brand selector -->
-    <select class="ris-select" id="brand-select" onchange="document.documentElement.setAttribute('data-brand', this.value)" style="padding:4px 22px 4px 8px;font-size:11px;height:28px;width:96px">
-      <option value="relic">Relic</option>
-      <option value="biohub">BioHub</option>
-      <option value="omnikon">Omnikon</option>
-      <option value="neutral">Neutral</option>
-    </select>
-
-    <!-- Skin toggle -->
-    <button class="ris-btn ris-btn--sm ris-btn--secondary" id="skin-btn" onclick="toggleSkin()">
-      ▞ Skin
-    </button>
-
-    <!-- Theme toggle -->
-    <button class="ris-btn ris-btn--sm ris-btn--secondary" onclick="toggleTheme()" id="theme-btn">
-      ◐ Theme
-    </button>
-  </div>
+  </label>
+  <nav class="ris-topbar-nav" style="display:flex;align-items:center;gap:6px">
+    <a href="index.html" class="ris-btn ris-btn--sm ris-btn--outline">🌐 Specimen</a>
+    <a href="micro-ui.html" class="ris-btn ris-btn--sm ris-btn--outline">📐 Micro-UI</a>
+    <a href="eyewear.html" class="ris-btn ris-btn--sm ris-btn--outline">👓 Eyewear HUD</a>
+    <a href="motion-lab.html" class="ris-btn ris-btn--sm ris-btn--primary" aria-current="page">⚡ Motion Lab</a>
+    <a href="mobile.html" class="ris-btn ris-btn--sm ris-btn--outline">📱 Mobile</a>
+    <a href="https://polar.sh/yuzushi-dev" target="_blank" rel="noopener" class="ris-btn ris-btn--sm ris-btn--outline" style="border-color:var(--ris-accent);color:var(--ris-accent);font-weight:700">★ Store</a>
+    <a href="https://github.com/yuzushi-dev/relic-interface-system" target="_blank" rel="noopener" class="ris-btn ris-btn--sm ris-btn--secondary">GitHub ↗</a>
+  </nav>
+  <button id="skin" class="ris-btn ris-btn--sm ris-btn--secondary" aria-pressed="true" onclick="toggleGlobalSkin()">▞ Skin</button>
+  <button id="theme" class="ris-btn ris-btn--sm" aria-pressed="false" onclick="toggleGlobalTheme()">◐ Theme</button>
 </header>
 
 <main class="lab-shell">
@@ -483,6 +474,23 @@
       We unified the <strong>visual impact of tactical cyber HUDs</strong> — clipped corners, HUD brackets, radar sweeps, and tactical grids — with <strong>tactical micro-motion engineering</strong>.
       In addition, the <strong>Light theme</strong> has been engineered with cold high-density technical inks to pass all <strong>WCAG 2.2 AA</strong> criteria (contrast up to 15:1).
     </p>
+  </div>
+
+  <!-- Motion Diagnostics Control Bar -->
+  <div style="display:flex;align-items:center;gap:14px;background:var(--ris-surface-1);border:1px solid var(--ris-line);padding:10px 16px;margin-bottom:14px;flex-wrap:wrap">
+    <span style="font-family:var(--ris-font-mono);font-size:11px;font-weight:700;color:var(--ris-accent)">MOTION DIAGNOSTICS:</span>
+    <label style="display:flex;align-items:center;gap:6px;font-size:11px;font-family:var(--ris-font-mono);color:var(--ris-fg2)">
+      <span>SPEED:</span>
+      <select class="ris-select" id="speed-select" onchange="setSpeed(this.value)" title="Animation speed for curve inspection" style="padding:4px 22px 4px 8px;font-size:11px;height:28px">
+        <option value="normal">1x Normal</option>
+        <option value="slow">0.3x Slow</option>
+      </select>
+    </label>
+    <label class="tactical-switch" title="Simulate prefers-reduced-motion (WCAG 2.2 AA)" style="font-size:11px;gap:6px">
+      <input type="checkbox" id="toggle-reduced" onchange="toggleReducedMotion(this.checked)">
+      <div class="tactical-switch-track" style="width:32px;height:18px"><div class="tactical-switch-thumb" style="width:12px;height:12px"></div></div>
+      <span style="font-size:11px;white-space:nowrap;font-family:var(--ris-font-mono);color:var(--ris-fg2)">Reduced Motion (WCAG AA)</span>
+    </label>
   </div>
 
   <!-- A11y & Contrast Bar -->
@@ -783,26 +791,72 @@
     }, 3800);
   }
 
-  function toggleTheme() {
+  function setGlobalBrand(brand) {
+    document.documentElement.setAttribute('data-brand', brand);
+    try { localStorage.setItem('ris-brand', brand); } catch (_) {}
+    const brandEl = document.getElementById('brand');
+    if (brandEl) brandEl.value = brand;
+    showToast('ACTIVE BRAND: ' + brand.toUpperCase());
+  }
+
+  function toggleGlobalTheme() {
     const html = document.documentElement;
     const curr = html.getAttribute('data-theme') || 'dark';
     const next = curr === 'dark' ? 'light' : 'dark';
     html.setAttribute('data-theme', next);
-    document.getElementById('theme-btn').setAttribute('aria-pressed', String(next === 'light'));
+    const btn = document.getElementById('theme');
+    if (btn) btn.setAttribute('aria-pressed', String(next === 'light'));
+    try { localStorage.setItem('ris-theme', next); } catch (_) {}
+    showToast('THEME: ' + (next === 'dark' ? 'DARK HUD' : 'LIGHT BLUEPRINT'));
   }
+  function toggleTheme() { toggleGlobalTheme(); }
 
-  function toggleSkin() {
+  function toggleGlobalSkin() {
     const html = document.documentElement;
     const curr = html.getAttribute('data-skin');
-    const next = curr === 'cyber' ? '' : 'cyber';
-    if (next) {
+    const on = curr !== 'cyber';
+    if (on) {
       html.setAttribute('data-skin', 'cyber');
-      document.getElementById('skin-btn').innerText = '▞ SKIN: CYBER';
     } else {
       html.removeAttribute('data-skin');
-      document.getElementById('skin-btn').innerText = '▞ SKIN: REGULAR';
     }
+    const btn = document.getElementById('skin');
+    if (btn) {
+      btn.setAttribute('aria-pressed', String(on));
+      btn.textContent = on ? '▞ Skin' : '▟ Skin: Off';
+    }
+    try { localStorage.setItem('ris-skin', on ? 'cyber' : 'off'); } catch (_) {}
+    showToast('SKIN: ' + (on ? 'CYBER' : 'OFF'));
   }
+  function toggleSkin() { toggleGlobalSkin(); }
+
+  // Sync chrome from localStorage on load
+  (function syncChrome() {
+    try {
+      const b = localStorage.getItem('ris-brand');
+      if (b) {
+        document.documentElement.setAttribute('data-brand', b);
+        const brandEl = document.getElementById('brand');
+        if (brandEl) brandEl.value = b;
+      }
+      const t = localStorage.getItem('ris-theme');
+      if (t) {
+        document.documentElement.setAttribute('data-theme', t);
+        const themeBtn = document.getElementById('theme');
+        if (themeBtn) themeBtn.setAttribute('aria-pressed', String(t === 'light'));
+      }
+      const s = localStorage.getItem('ris-skin');
+      if (s === 'off') {
+        document.documentElement.removeAttribute('data-skin');
+        const skinBtn = document.getElementById('skin');
+        if (skinBtn) { skinBtn.setAttribute('aria-pressed', 'false'); skinBtn.textContent = '▟ Skin: Off'; }
+      } else if (s === 'cyber') {
+        document.documentElement.setAttribute('data-skin', 'cyber');
+        const skinBtn = document.getElementById('skin');
+        if (skinBtn) { skinBtn.setAttribute('aria-pressed', 'true'); skinBtn.textContent = '▞ Skin'; }
+      }
+    } catch (_) {}
+  })();
 
   function toggleReducedMotion(active) {
     document.documentElement.setAttribute('data-simulate-reduced', active ? 'true' : 'false');

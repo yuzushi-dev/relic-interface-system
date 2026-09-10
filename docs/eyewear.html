@@ -35,7 +35,7 @@
 
     body {
       margin: 0;
-      padding: 0;
+      padding: calc(var(--ris-topbar-h, 52px) + 8px) 0 0;
       background-color: var(--lab-bg);
       color: var(--ris-fg);
       font-family: var(--ris-font-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
@@ -509,27 +509,37 @@
 <body>
 
   <!-- Top Global Navigation Header -->
-  <header class="lab-header">
-    <div class="lab-logo-cluster">
-      <span class="lab-badge">RIS v2.9</span>
-      <strong style="font-size: 13px; letter-spacing: 0.04em;">EYEWEAR MICRO-HUD</strong>
-    </div>
-
-    <nav class="lab-nav-links">
-      <a href="index.html">Specimens</a>
-      <a href="micro-ui.html">Micrographics</a>
-      <a href="eyewear.html" class="active">Eyewear HUD</a>
-      <a href="motion-lab.html">Motion Lab</a>
-      <a href="mobile.html">Mobile OLED</a>
+  <header class="ris-topbar">
+    <a href="index.html" class="ris-eyebrow" style="color:var(--ris-accent);white-space:nowrap;text-decoration:none">RIS — RELIC INTERFACE SYSTEM</a>
+    <span class="ris-chip" style="white-space:nowrap">v2.9.0</span>
+    <span class="spacer"></span>
+    <label class="ris-field" style="flex-direction:row;align-items:center;gap:6px;margin:0">
+      <span class="ris-label" style="margin:0">Brand</span>
+      <select id="brand" class="ris-select" style="width:110px;padding:4px 24px 4px 8px;font-size:12px;height:28px" onchange="setGlobalBrand(this.value)">
+        <optgroup label="Products">
+          <option value="relic">Relic</option>
+          <option value="biohub" selected>BioHub</option>
+          <option value="omnikon">Omnikon</option>
+          <option value="neutral">Neutral</option>
+        </optgroup>
+        <optgroup label="Case-Context">
+          <option value="sealed">Sealed</option>
+          <option value="field">Field</option>
+          <option value="archive">Archive</option>
+        </optgroup>
+      </select>
+    </label>
+    <nav class="ris-topbar-nav" style="display:flex;align-items:center;gap:6px">
+      <a href="index.html" class="ris-btn ris-btn--sm ris-btn--outline">🌐 Specimen</a>
+      <a href="micro-ui.html" class="ris-btn ris-btn--sm ris-btn--outline">📐 Micro-UI</a>
+      <a href="eyewear.html" class="ris-btn ris-btn--sm ris-btn--primary" aria-current="page">👓 Eyewear HUD</a>
+      <a href="motion-lab.html" class="ris-btn ris-btn--sm ris-btn--outline">⚡ Motion Lab</a>
+      <a href="mobile.html" class="ris-btn ris-btn--sm ris-btn--outline">📱 Mobile</a>
+      <a href="https://polar.sh/yuzushi-dev" target="_blank" rel="noopener" class="ris-btn ris-btn--sm ris-btn--outline" style="border-color:var(--ris-accent);color:var(--ris-accent);font-weight:700">★ Store</a>
+      <a href="https://github.com/yuzushi-dev/relic-interface-system" target="_blank" rel="noopener" class="ris-btn ris-btn--sm ris-btn--secondary">GitHub ↗</a>
     </nav>
-
-    <div class="lab-header-controls">
-      <!-- Theme Switcher -->
-      <button class="tactical-btn" onclick="toggleTheme()" id="theme-btn">Theme: Dark</button>
-
-      <!-- Brand Switcher -->
-      <button class="tactical-btn" onclick="cycleBrand()" id="brand-btn">Brand: biohub</button>
-    </div>
+    <button id="skin" class="ris-btn ris-btn--sm ris-btn--secondary" aria-pressed="true" onclick="toggleGlobalSkin()">▞ Skin</button>
+    <button id="theme" class="ris-btn ris-btn--sm" aria-pressed="false" onclick="toggleGlobalTheme()">◐ Theme</button>
   </header>
 
   <!-- Commercial CTA Banner -->
@@ -1712,26 +1722,74 @@
       showHudToast('Motion engine: ' + mode.toUpperCase());
     }
 
-    // 8. Theme Toggle
-    function toggleTheme() {
+    // 8. Global Chrome Controls & State Persistence
+    function setGlobalBrand(val) {
+      currentBrand = val;
+      document.documentElement.setAttribute('data-brand', val);
+      try { localStorage.setItem('ris-brand', val); } catch (_) {}
+      showHudToast('Brand set to ' + val.toUpperCase());
+    }
+
+    function toggleGlobalTheme() {
       const current = document.documentElement.getAttribute('data-theme');
       const next = current === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
-      const btn = document.getElementById('theme-btn');
-      if (btn) btn.textContent = 'Theme: ' + (next === 'dark' ? 'Dark' : 'Light');
+      const btn = document.getElementById('theme');
+      if (btn) btn.setAttribute('aria-pressed', String(next === 'light'));
+      try { localStorage.setItem('ris-theme', next); } catch (_) {}
       showHudToast('Theme set to ' + next.toUpperCase());
     }
 
-    // 9. Brand Cycle
+    function toggleGlobalSkin() {
+      const on = document.documentElement.dataset.skin !== 'cyber';
+      if (on) document.documentElement.dataset.skin = 'cyber'; else delete document.documentElement.dataset.skin;
+      const btn = document.getElementById('skin');
+      if (btn) {
+        btn.setAttribute('aria-pressed', String(on));
+        btn.textContent = on ? '▞ Skin' : '▟ Skin: Off';
+      }
+      try { localStorage.setItem('ris-skin', on ? 'cyber' : 'off'); } catch (_) {}
+      showHudToast('Skin: ' + (on ? 'CYBER' : 'OFF'));
+    }
+
+    // Backwards-compatible aliases
+    function toggleTheme() { toggleGlobalTheme(); }
     const BRANDS = ['biohub', 'relic', 'omnikon', 'neutral'];
     function cycleBrand() {
       const idx = BRANDS.indexOf(currentBrand);
-      currentBrand = BRANDS[(idx + 1) % BRANDS.length];
-      document.documentElement.setAttribute('data-brand', currentBrand);
-      const btn = document.getElementById('brand-btn');
-      if (btn) btn.textContent = 'Brand: ' + currentBrand;
-      showHudToast('Brand set to ' + currentBrand.toUpperCase());
+      setGlobalBrand(BRANDS[(idx + 1) % BRANDS.length]);
+      const brandEl = document.getElementById('brand');
+      if (brandEl) brandEl.value = currentBrand;
     }
+
+    // Sync from localStorage on load
+    (function syncChrome() {
+      try {
+        const b = localStorage.getItem('ris-brand');
+        if (b) {
+          currentBrand = b;
+          document.documentElement.setAttribute('data-brand', b);
+          const brandEl = document.getElementById('brand');
+          if (brandEl) brandEl.value = b;
+        }
+        const t = localStorage.getItem('ris-theme');
+        if (t) {
+          document.documentElement.setAttribute('data-theme', t);
+          const themeBtn = document.getElementById('theme');
+          if (themeBtn) themeBtn.setAttribute('aria-pressed', String(t === 'light'));
+        }
+        const s = localStorage.getItem('ris-skin');
+        if (s === 'off') {
+          delete document.documentElement.dataset.skin;
+          const skinBtn = document.getElementById('skin');
+          if (skinBtn) { skinBtn.setAttribute('aria-pressed', 'false'); skinBtn.textContent = '▟ Skin: Off'; }
+        } else if (s === 'cyber') {
+          document.documentElement.dataset.skin = 'cyber';
+          const skinBtn = document.getElementById('skin');
+          if (skinBtn) { skinBtn.setAttribute('aria-pressed', 'true'); skinBtn.textContent = '▞ Skin'; }
+        }
+      } catch (_) {}
+    })();
 
     // 10. Copy SVG & JSX with Sonner Toast
     async function copySvg(cardId) {
