@@ -126,6 +126,7 @@ All Pro licenses are **perpetual (one-time purchase)** with lifetime v2.x update
 
 | License Tier | Launch Early-Bird Price | Standard List Price | Included Deliverables | Direct Checkout |
 | :--- | :---: | :---: | :--- | :---: |
+| **Micrographics Vol. 1** | **$24** | $34 | 34+ precision HUD SVGs, 8 React TypeScript components, zero-reflow CSS animations, tokens JSON | [**Buy Micrographics ($24)**](https://buy.polar.sh/polar_cl_tuchJBmHqDLg4PsMquZlguPtUhorHCrMk6YMU1HTdt4) |
 | **Figma Studio Kit** | **$39** | $49 | Turnkey Master script (`code.js`), Tokens Studio DTCG JSON, 60+ component variants, 130+ SVG vectors | [**Buy Figma Kit ($39)**](https://buy.polar.sh/polar_cl_gzshc6MZaGsQy6V3oqQ1U0uK3kIQ7mcGr0wf00JbLZn) |
 | **Next.js Forensic Dashboard** | **$49** | $69 | Turn-key Next.js 14 App Router template, interactive telemetry scrubber, Docker container | [**Buy Dashboard ($49)**](https://buy.polar.sh/polar_cl_gil36kSbuzIuyVTz8vJibFbjCeW6z5mB8h31j04C4Qs) |
 | **RIS Pro All-Access** *(Best Seller)* | **$99** | $129 | **All templates + Figma Studio + React Pro + Compose + Tailwind + Priority Discussions** | [**Buy All-Access ($99)**](https://buy.polar.sh/polar_cl_UFLik36Vm34gt13RsMxroNhh7VRtez6w4tAR34FlCNv) |

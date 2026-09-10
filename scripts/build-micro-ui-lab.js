@@ -1180,7 +1180,7 @@ async function main() {
       <h2 class="banner-title">Get the Full 150+ Vector Pack &amp; Figma Master — $24 Launch Offer</h2>
       <p class="banner-desc">Includes 150+ standalone SVGs, 70 composed tactical graphics, master .fig file with 4 brand modes, and turnkey React components.</p>
     </div>
-    <a href="https://buy.polar.sh/polar_cl_gzshc6MZaGsQy6V3oqQ1U0uK3kIQ7mcGr0wf00JbLZn" target="_blank" rel="noopener" class="banner-cta">
+    <a href="https://buy.polar.sh/polar_cl_tuchJBmHqDLg4PsMquZlguPtUhorHCrMk6YMU1HTdt4" target="_blank" rel="noopener" class="banner-cta">
       ★ Buy on Polar ($24)
     </a>
   </aside>
