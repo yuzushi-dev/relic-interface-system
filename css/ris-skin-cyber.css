@@ -492,8 +492,13 @@
 
 /* Radar Sweep: neon cyan in dark vs delicate drafting cyan (18% opacity) in light */
 [data-skin="cyber"][data-theme="light"] .ris-radar::after {
-  background: linear-gradient(180deg, transparent, rgba(27, 107, 128, 0.18) 80%, #1b6b80 100%);
-  border-bottom-color: #1b6b80;
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    #1b6b80 0deg,
+    rgba(27, 107, 128, 0.18) 25deg,
+    transparent 55deg,
+    transparent 360deg
+  );
 }
 
 /* HUD Toast: cyan accent in light */

@@ -36,7 +36,7 @@ const VARIANT_ACCENT_VARS: Record<ToastVariant, string> = {
 /**
  * Tactical Toast Item component (`.ris-toast`).
  * Features chamfered geometry, left telemetry stripe, high-contrast title,
- * optional action button, and smooth Emil Kowalski interruptible transitions.
+ * optional action button, and smooth interruptible transitions.
  */
 export const Toast: React.FC<ToastProps> = ({ toast, onDismiss }) => {
   const { id, title, description, variant = 'hud', action, timestamp, isDismissing } = toast;

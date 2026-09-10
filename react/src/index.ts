@@ -2,7 +2,7 @@
  * @relic-ui/react v2.8.0
  * Relic Interface System — Tactical Cyber React + TypeScript UI Kit.
  *
- * Fully typed, WCAG 2.2 AA compliant, Emil Kowalski motion principles.
+ * Fully typed, WCAG 2.2 AA compliant, tactical zero-reflow motion principles.
  * Zero unnecessary bloat: directly consumes RIS tokens & CSS classes (.ris-*).
  */
 

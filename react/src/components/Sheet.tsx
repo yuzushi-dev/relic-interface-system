@@ -41,7 +41,7 @@ const FOCUSABLE_SELECTORS = [
 
 /**
  * Tactical Mobile Bottom Sheet component (`.ris-sheet`).
- * Designed according to Emil Kowalski motion and gesture engineering principles:
+ * Designed according to tactical motion and gesture engineering principles:
  * - Direct element `transform: translateY(...)` manipulation to prevent cascading style recalculation
  * - Drag handle with pointer capture and multi-touch protection
  * - Upward drag damping (resistance rather than hard stop)

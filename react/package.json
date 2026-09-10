@@ -1,7 +1,7 @@
 {
   "name": "@relic-ui/react",
   "version": "2.8.0",
-  "description": "Tactical cyber React + TypeScript UI Kit for Relic Interface System (RIS v2). Fully typed, WCAG 2.2 AA compliant, Emil Kowalski motion principles.",
+  "description": "Tactical cyber React + TypeScript UI Kit for Relic Interface System (RIS v2). Fully typed, WCAG 2.2 AA compliant, tactical zero-reflow motion.",
   "author": "Relic Interface System Team",
   "license": "MIT",
   "type": "module",

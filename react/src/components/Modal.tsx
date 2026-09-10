@@ -52,7 +52,7 @@ const FOCUSABLE_SELECTORS = [
 
 /**
  * Tactical Modal Dialog component (`.ris-modal`).
- * Adheres to Emil Kowalski motion principles:
+ * Adheres to tactical micro-motion principles:
  * - 240ms enter animation (`var(--ris-dur-enter)`), scale(0.96) → scale(1)
  * - Centered transform origin
  * - Strictly no ease-in on entrance (uses `--ris-ease-out`)

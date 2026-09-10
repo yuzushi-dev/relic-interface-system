@@ -92,7 +92,7 @@
   "motion": {
     "ease":        { "$type": "cubicBezier", "$value": [0.2, 0.8, 0.2, 1] },
     "easeSnap":    { "$type": "cubicBezier", "$value": [0.16, 1, 0.3, 1], "$description": "Tactical HUD mechanical snap for buttons and telemetry" },
-    "easeOut":     { "$type": "cubicBezier", "$value": [0.22, 1, 0.36, 1], "$description": "Emil Kowalski high-deceleration curve for modals, drawers and accordions" },
+    "easeOut":     { "$type": "cubicBezier", "$value": [0.22, 1, 0.36, 1], "$description": "High-deceleration curve for modals, drawers and accordions" },
     "easeInOut":   { "$type": "cubicBezier", "$value": [0.65, 0, 0.35, 1], "$description": "Smooth state transitions like switch/toggle" },
     "durInstant":  { "$type": "duration", "$value": "80ms", "$description": "Tactile micro-feedback (press, checkbox, active state)" },
     "durFast":     { "$type": "duration", "$value": "140ms", "$description": "Hover, selection, telemetry flash" },

@@ -131,7 +131,7 @@
 }
 @keyframes ris-scan { to { top: 100%; } }
 
-/* RADAR SWEEP HUD — continuous tactical scanning at 2.2s linear with grid */
+/* RADAR SWEEP HUD — continuous tactical scanning at 2.8s rotary beam */
 .ris-radar {
   position: relative;
   overflow: hidden;
@@ -153,21 +153,31 @@
 .ris-radar::after {
   content: "";
   position: absolute;
-  left: 0; right: 0; top: -35%; height: 35%;
-  background: linear-gradient(180deg, transparent, var(--ris-cyan-glow) 80%, var(--ris-cyan) 100%);
-  border-bottom: 1.5px solid var(--ris-cyan);
+  top: 50%;
+  left: 50%;
+  width: 250%;
+  height: 250%;
+  transform: translate(-50%, -50%);
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    var(--ris-cyan) 0deg,
+    var(--ris-cyan-glow) 25deg,
+    transparent 55deg,
+    transparent 360deg
+  );
   pointer-events: none;
   z-index: 2;
-  animation: ris-radar-sweep 2.2s linear infinite;
+  border-radius: 50%;
+  animation: ris-radar-rotary-sweep 2.8s linear infinite;
+  mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 45%, transparent 65%);
+  -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 45%, transparent 65%);
 }
-@keyframes ris-radar-sweep {
-  0%   { top: -35%; opacity: 0; }
-  10%  { opacity: 1; }
-  90%  { opacity: 1; }
-  100% { top: 100%; opacity: 0; }
+@keyframes ris-radar-rotary-sweep {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-/* TOAST HUD STACKING (Sonner / Emil Kowalski style) */
+/* TOAST HUD STACKING (Tactical micro-motion style) */
 .ris-toast-stack {
   position: fixed;
   right: var(--ris-s4);

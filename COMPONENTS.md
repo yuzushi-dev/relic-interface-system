@@ -213,7 +213,7 @@ line to bottomnav, compacts `.ris-listrow` and `.ris-stat`, and switches to
 
 ## Motion System & Animated Components (v2)
 
-Integration of Tactical Cyber HUD aesthetic + Emil Kowalski motion engineering (zero reflow, 60fps, WCAG 2.2 AA).
+Integration of Tactical Cyber HUD aesthetic + zero-reflow micro-motion engineering (zero reflow, 60fps, WCAG 2.2 AA).
 
 ### 1. Accordion Disclosure (`.ris-acc`)
 Transition via **CSS Grid (`grid-template-rows: 0fr → 1fr`)** in 200ms (`--ris-dur-base`) with `--ris-ease-out`:

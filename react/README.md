@@ -6,14 +6,14 @@
 [![Version](https://img.shields.io/badge/version-2.8.0-e6a23c.svg)](package.json)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Strict-6fb3c9.svg)](tsconfig.json)
 [![WCAG](https://img.shields.io/badge/WCAG-2.2_AA-5fae84.svg)](GUIDELINES.md)
-[![Motion](https://img.shields.io/badge/Motion-Emil_Kowalski-d45565.svg)](https://animations.dev)
+[![Motion](https://img.shields.io/badge/Motion-Zero_Reflow-d45565.svg)](GUIDELINES.md)
 
 ---
 
 ## ⚡ Highlights
 
 - **Zero Unnecessary Bloat**: Components consume RIS tokens (`var(--ris-*)`) and classes (`.ris-*`) directly without CSS-in-JS runtimes or duplicate styling overhead.
-- **Emil Kowalski Motion Principles**:
+- **Tactical Micro-Motion Principles**:
   - **80ms Active Snap**: `:active { transform: scale(0.97); }` with `--ris-ease-snap` for instantaneous tactile feedback.
   - **Zero Layout Reflow**: Smooth accordion expand/collapse driven by CSS Grid (`grid-template-rows: 0fr → 1fr`) at 60fps without JavaScript height queries.
   - **No Ease-In on Enter**: Strictly uses `--ris-ease-out` / `--ris-ease-snap`; entering overlays scale from `0.96`, never from `0`.
@@ -344,7 +344,7 @@ import { Modal, Button } from '@relic-ui/react';
 ---
 
 ### 6. `Sheet`
-Mobile tactical bottom sheet (`.ris-sheet`) featuring Emil Kowalski gesture physics:
+Mobile tactical bottom sheet (`.ris-sheet`) featuring fluid tactical gesture physics:
 - Drag handle with direct pointer capture
 - Damped upward drag resistance (friction instead of hard stops)
 - Velocity-based flick dismissal (`velocity > 0.11 px/ms`) or swipe distance threshold

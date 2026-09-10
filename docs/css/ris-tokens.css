@@ -64,7 +64,7 @@
   --ris-clip-sm: 6px;   /* chips, inputs, buttons */
   --ris-clip-lg: 16px;  /* modals, hero panels */
 
-  /* Motion — Tactical HUD + Emil Kowalski, never bouncy */
+  /* Motion — Tactical HUD micro-motion, never bouncy */
   --ris-ease:         cubic-bezier(0.2, 0.8, 0.2, 1);
   --ris-ease-snap:    cubic-bezier(0.16, 1, 0.3, 1);
   --ris-ease-out:     cubic-bezier(0.22, 1, 0.36, 1);

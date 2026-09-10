@@ -26,7 +26,7 @@ hardcode hex values in components.
   never applied by default components.
 - **Restrained textures**: 32px grid on background, scanlines only on hero/modal surfaces.
   Never behind dense data copy.
-- **Motion System (Tactical Cyber HUD + Emil Kowalski)**:
+- **Motion System (Tactical Cyber HUD Architecture)**:
   1. *Layer-bound timing tokens*: 80ms micro-feedback (`:active scale(0.97)`), 140ms hover/switch, 200ms accordion/tabs, 240ms modal/sheet enter.
   2. *No `ease-in` for entering elements*: users expect immediate responsiveness; always use `--ris-ease-out` (`cubic-bezier(0.22, 1, 0.36, 1)`) or `--ris-ease-snap` (`cubic-bezier(0.16, 1, 0.3, 1)`).
   3. *Composited-only properties*: animate only `transform` and `opacity`. For accordions and disclosures use CSS Grid (`grid-template-rows: 0fr → 1fr`) avoiding layout reflows (`height`) at 60fps.

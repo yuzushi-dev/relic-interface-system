@@ -3,7 +3,7 @@
    Zero-reflow, hardware-accelerated tactical micro-motion.
    ========================================================================== */
 
-@keyframes ris-radar-sweep {
+@keyframes ris-micro-spin-kf {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
@@ -28,7 +28,7 @@
 .ris-micro-spin {
   transform-box: view-box;
   transform-origin: 50% 50%;
-  animation: ris-radar-sweep 4s linear infinite;
+  animation: ris-micro-spin-kf 4s linear infinite;
 }
 
 .ris-micro-pulse,

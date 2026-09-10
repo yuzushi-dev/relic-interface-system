@@ -24,7 +24,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 
 /**
  * Tactical Cyber Button component (`.ris-btn`).
- * Adheres to Emil Kowalski motion principles:
+ * Adheres to tactical micro-motion principles:
  * - 80ms micro-feedback on press (`:active` transform scale 0.97)
  * - Hardware-accelerated CSS transition (transform, background, border-color, box-shadow)
  * - Zero layout reflow
@@ -80,7 +80,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
       aria-disabled={isDisabled ? 'true' : undefined}
       className={combinedClassName}
       style={{
-        // Ensure Emil Kowalski 80ms active snap scale(0.97) and smooth release
+        // Ensure tactical 80ms active snap scale(0.97) and smooth release
         transition: 'transform var(--ris-dur-instant, 80ms) var(--ris-ease-snap, cubic-bezier(0.16, 1, 0.3, 1)), background var(--ris-dur-fast, 140ms) var(--ris-ease-snap, cubic-bezier(0.16, 1, 0.3, 1)), border-color var(--ris-dur-fast, 140ms) var(--ris-ease-snap, cubic-bezier(0.16, 1, 0.3, 1)), box-shadow var(--ris-dur-fast, 140ms) var(--ris-ease-snap, cubic-bezier(0.16, 1, 0.3, 1))',
         ...style,
       }}
