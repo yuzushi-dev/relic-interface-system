@@ -92,7 +92,7 @@ Open any blank document or your target design system file in Figma.
 
 ### Step 2: Import the Manifest
 1. Navigate to the top menu: **Plugins** > **Development** > **Import plugin from manifest...**.
-2. Select the file `/home/cristina/Scrivania/Relic Interface System/figma/manifest.json`.
+2. Select the file `figma/manifest.json` from the repository root.
 3. The plugin `"RIS v2 — Relic Interface System UI Kit Builder"` will appear in your Development plugins list.
 
 ### Step 3: Run the Plugin

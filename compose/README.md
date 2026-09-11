@@ -81,12 +81,12 @@ Prolonged HUD displays on mobile AMOLED / OLED panels face risks of differential
 
 ## 🧩 Package Structure (`design.ris`)
 
-* **[`Color.kt`](file:///home/cristina/Scrivania/Relic%20Interface%20System/compose/Color.kt)**: Baseline color tokens (forensic stack `#E6A23C`, `#6FB3C9`, `RisLight`) and canonical **`RisCyberSkin`** object (dark crimson surfaces `#070406`..`#2C171D`, structural red lines `#6E2D38`, Cyber Yellow `#FFE23A`, Glitch Cyan `#00E5FF`, Red `#FF003C`, neon glows).
-* **[`Shape.kt`](file:///home/cristina/Scrivania/Relic%20Interface%20System/compose/Shape.kt)**: Hard-edged brutalist geometry (0dp radius). 45° chamfer cuts: `RisClipSm` (6dp), `RisClip` (10dp), `RisClipLg` (16dp), `risClip(cut)` and `risClipMirror(cut)`.
-* **[`Type.kt`](file:///home/cristina/Scrivania/Relic%20Interface%20System/compose/Type.kt)**: Typographic scale (`RisHero`, `RisH1`, `RisH2`, `RisH3`, `RisBody`, `RisLabel`, `RisEyebrow`, `RisMono`).
-* **[`Theme.kt`](file:///home/cristina/Scrivania/Relic%20Interface%20System/compose/Theme.kt)**: `RisTheme`, `LocalRisColors`, and `Modifier.cyberBackdrop()` (crimson radial gradient + static scanlines).
-* **[`Scaffold.kt`](file:///home/cristina/Scrivania/Relic%20Interface%20System/compose/Scaffold.kt)**: `RisScaffold`, `RisTopBar`, and `RisBottomBar` structured for tactical layout and mobile OLED compliance.
-* **[`Components.kt`](file:///home/cristina/Scrivania/Relic%20Interface%20System/compose/Components.kt)**: Canonical UI & motion components:
+* **[`Color.kt`](Color.kt)**: Baseline color tokens (forensic stack `#E6A23C`, `#6FB3C9`, `RisLight`) and canonical **`RisCyberSkin`** object (dark crimson surfaces `#070406`..`#2C171D`, structural red lines `#6E2D38`, Cyber Yellow `#FFE23A`, Glitch Cyan `#00E5FF`, Red `#FF003C`, neon glows).
+* **[`Shape.kt`](Shape.kt)**: Hard-edged brutalist geometry (0dp radius). 45° chamfer cuts: `RisClipSm` (6dp), `RisClip` (10dp), `RisClipLg` (16dp), `risClip(cut)` and `risClipMirror(cut)`.
+* **[`Type.kt`](Type.kt)**: Typographic scale (`RisHero`, `RisH1`, `RisH2`, `RisH3`, `RisBody`, `RisLabel`, `RisEyebrow`, `RisMono`).
+* **[`Theme.kt`](Theme.kt)**: `RisTheme`, `LocalRisColors`, and `Modifier.cyberBackdrop()` (crimson radial gradient + static scanlines).
+* **[`Scaffold.kt`](Scaffold.kt)**: `RisScaffold`, `RisTopBar`, and `RisBottomBar` structured for tactical layout and mobile OLED compliance.
+* **[`Components.kt`](Components.kt)**: Canonical UI & motion components:
   * `RisPanel` (tactical container with 45° chamfer cuts and border)
   * `RisButton` (Primary yellow glow, Secondary outline, Ghost, Danger)
   * `RisTextField` (squared 90° input, mono font, eyebrow labels, icons)
@@ -100,7 +100,7 @@ Prolonged HUD displays on mobile AMOLED / OLED panels face risks of differential
   * `RisBottomSheet` (tactical modal sheet with drag handle and chamfer cuts)
   * `RisToast` (HUD toast with accent indicator line and message)
   * `RisMotion` (timing constants: `DurInstant: 80ms`, `DurFast: 140ms`, `DurBase: 200ms`, `DurEnter: 240ms`)
-* **[`Charts.kt`](file:///home/cristina/Scrivania/Relic%20Interface%20System/compose/Charts.kt)**: Zero-dependency native Canvas charts:
+* **[`Charts.kt`](Charts.kt)**: Zero-dependency native Canvas charts:
   * `RisLineChart` (continuous trend line with baseline grid and translucent fill)
   * `RisBarChart` (category columns with optional highlight overdrive, baseline, and labels)
   * `RisTimeSeriesChart` (proportional time axis, dynamic day stride to prevent label overlap, robust ±2σ baseline band)

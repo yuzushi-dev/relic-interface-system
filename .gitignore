@@ -37,7 +37,8 @@ __pycache__/
 .pytest_cache/
 scratch/
 
-# Local Agent & Superpower Environments
+# Internal Workspace, Local Agent & Superpower Environments
+.internal/
 .agents/
 .superpowers/
 .sando/
