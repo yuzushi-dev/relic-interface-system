@@ -269,6 +269,73 @@ button, a, input, select, textarea, .ris-btn, .ris-nav-link, .ris-listrow, .ris-
   margin-left: auto;
 }
 
+/* ============================================================================
+   INTRO BANNER — bordered page/tool intro block (sub-page hero: eyebrow + h1 + p)
+   ========================================================================== */
+.ris-intro-banner {
+  background: var(--ris-surface-1);
+  border: 1px solid var(--ris-line);
+  border-left: 4px solid var(--ris-accent);
+  padding: 24px 28px;
+  margin-bottom: 32px;
+  clip-path: polygon(0 0, calc(100% - var(--ris-clip-lg)) 0, 100% var(--ris-clip-lg), 100% 100%, 0 100%);
+}
+.ris-intro-banner > .ris-eyebrow { display: block; margin-bottom: 10px; }
+.ris-intro-banner h1 {
+  margin: 0 0 10px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-family: var(--ris-font-display);
+  font-size: var(--ris-text-2xl);
+  letter-spacing: var(--ris-track-wide);
+  color: var(--ris-fg1);
+}
+.ris-intro-banner p {
+  margin: 0;
+  color: var(--ris-fg2);
+  font-size: var(--ris-text-sm);
+  line-height: 1.6;
+  max-width: 900px;
+}
+
+/* ============================================================================
+   PROMO BANNER — single-product commercial CTA strip (Polar upsell)
+   ========================================================================== */
+.ris-promo-banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 32px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--ris-accent-glow) 30%, var(--ris-surface-1)), var(--ris-surface-1));
+  border: 1.5px solid var(--ris-accent);
+  padding: 20px 24px;
+  clip-path: polygon(0 0, calc(100% - var(--ris-clip-lg)) 0, 100% var(--ris-clip-lg), 100% 100%, var(--ris-clip-lg) 100%, 0 calc(100% - var(--ris-clip-lg)));
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3), 0 0 16px var(--ris-accent-glow);
+}
+.ris-promo-banner-content { flex: 1 1 500px; }
+.ris-promo-banner > .ris-eyebrow { display: block; margin-bottom: 6px; }
+.ris-promo-banner h2 {
+  margin: 0 0 6px;
+  font-family: var(--ris-font-display);
+  font-size: var(--ris-text-lg);
+  color: var(--ris-fg1);
+}
+.ris-promo-banner p {
+  margin: 0;
+  color: var(--ris-fg2);
+  font-size: var(--ris-text-sm);
+  line-height: 1.5;
+}
+@media (max-width: 640px) {
+  .ris-promo-banner { flex-direction: column; align-items: flex-start; }
+  .ris-promo-banner-content { max-width: 100%; }
+  .ris-promo-banner > .ris-btn { width: 100%; text-align: center; }
+}
+
 /* Accent corner brackets — small L marks */
 .ris-bracket::before,
 .ris-bracket::after {
@@ -387,6 +454,7 @@ button, a, input, select, textarea, .ris-btn, .ris-nav-link, .ris-listrow, .ris-
 .ris-btn--lg { padding: 13px 24px; min-height: 46px; font-size: var(--ris-text-sm); }
 .ris-btn--icon { padding: 0; width: 36px; }
 .ris-btn--block { display: flex; width: 100%; }
+.ris-btn--mono { font-family: var(--ris-font-mono); text-transform: none; letter-spacing: 0; }
 
 .ris-btn:disabled, .ris-btn--disabled {
   background: var(--ris-surface-1); color: var(--ris-fg4);
