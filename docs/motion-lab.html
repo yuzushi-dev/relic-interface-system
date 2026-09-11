@@ -76,18 +76,6 @@
     padding: 76px 24px 100px;
   }
 
-  /* Hero Section */
-  .hero-banner {
-    background: var(--ris-surface-1);
-    border: 1px solid var(--ris-line);
-    border-left: 4px solid var(--ris-accent);
-    padding: 24px 28px;
-    margin-bottom: 32px;
-    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
-  }
-  .hero-banner h1 { margin: 0 0 10px; font-size: var(--ris-text-2xl); letter-spacing: var(--ris-track-wide); }
-  .hero-banner p { margin: 0; color: var(--ris-fg2); font-size: var(--ris-text-sm); line-height: 1.6; max-width: 900px; }
-
   /* A11y Badge Bar */
   .a11y-bar {
     display: flex;
@@ -124,7 +112,7 @@
     border: 1px solid var(--ris-line-strong);
     padding: 28px;
     position: relative;
-    clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, calc(100% - var(--ris-clip-lg)) 0, 100% var(--ris-clip-lg), 100% 100%, 0 100%);
     box-shadow: 0 4px 20px rgba(0,0,0,0.15);
     margin-bottom: 48px;
   }
@@ -145,7 +133,7 @@
     background: var(--hud-tag-bg);
     color: var(--hud-tag-color);
     border: 1px solid var(--hud-tag-border);
-    clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, calc(100% - var(--ris-clip-sm)) 0, 100% var(--ris-clip-sm), 100% 100%, 0 100%);
   }
 
   /* Tactical Grid inside stage */
@@ -296,7 +284,7 @@
   .tactical-acc {
     background: var(--ris-surface-2);
     border: 1px solid var(--ris-line);
-    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, calc(100% - var(--ris-clip)) 0, 100% var(--ris-clip), 100% 100%, 0 100%);
   }
   .tactical-acc-trigger {
     padding: 12px 16px;
@@ -392,7 +380,7 @@
     border: 1px solid var(--ris-line-strong);
     width: 90%;
     max-width: 520px;
-    clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+    clip-path: polygon(0 0, calc(100% - var(--ris-clip-lg)) 0, 100% var(--ris-clip-lg), 100% 100%, var(--ris-clip-lg) 100%, 0 calc(100% - var(--ris-clip-lg)));
     box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--ris-accent-line);
     transform: scale(0.96) translateY(6px);
     transition: transform 220ms var(--ease-out);
@@ -418,7 +406,7 @@
     background: var(--hud-bg-well);
     border: 1.5px solid var(--ris-line-strong);
     position: relative;
-    clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, calc(100% - var(--ris-clip-sm)) 0, 100% var(--ris-clip-sm), 100% 100%, 0 100%);
     transition: background 120ms var(--ease-snap), border-color 120ms var(--ease-snap);
   }
   .tactical-switch-thumb {
@@ -428,7 +416,7 @@
     position: absolute;
     top: 2px;
     left: 2px;
-    clip-path: polygon(0 0, calc(100% - 3px) 0, 100% 3px, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, calc(100% - var(--ris-clip-sm)) 0, 100% var(--ris-clip-sm), 100% 100%, 0 100%);
     transition: transform 120ms var(--ease-snap), background 120ms var(--ease-snap), box-shadow 120ms var(--ease-snap);
   }
   .tactical-switch input { display: none; }
@@ -444,10 +432,11 @@
 </style>
 </head>
 <body class="ris ris-grid-bg">
+<a class="ris-skip-nav" href="#main">Skip to main content</a>
 
 <!-- Topbar Navigation & Controls -->
 <header class="ris-topbar">
-  <a href="index.html" class="ris-eyebrow" style="color:var(--ris-accent);white-space:nowrap;text-decoration:none">RIS — RELIC INTERFACE SYSTEM</a>
+  <a href="index.html" class="ris-eyebrow" style="color:var(--ris-accent);white-space:nowrap;text-decoration:none">RELIC INTERFACE SYSTEM</a>
   <span class="ris-chip" style="white-space:nowrap">v2.9.0</span>
   <span class="spacer"></span>
   <label class="ris-field" style="flex-direction:row;align-items:center;gap:6px;margin:0">
@@ -475,13 +464,12 @@
     <a href="https://polar.sh/yuzushi-dev" target="_blank" rel="noopener" class="ris-btn ris-btn--sm ris-btn--outline" style="border-color:var(--ris-accent);color:var(--ris-accent);font-weight:700">Store ↗</a>
     <a href="https://github.com/yuzushi-dev/relic-interface-system" target="_blank" rel="noopener" class="ris-btn ris-btn--sm ris-btn--secondary">GitHub ↗</a>
   </nav>
-  <button id="skin" class="ris-btn ris-btn--sm ris-btn--secondary" aria-pressed="true" onclick="toggleGlobalSkin()">▞ Skin</button>
-  <button id="theme" class="ris-btn ris-btn--sm" aria-pressed="false" onclick="toggleGlobalTheme()">◐ Theme</button>
+  <button id="theme" class="ris-btn ris-btn--sm" aria-pressed="false" onclick="toggleGlobalTheme()">◐ DARK</button>
 </header>
 
-<main class="lab-shell">
+<main class="lab-shell" id="main">
   <!-- Hero banner -->
-  <div class="hero-banner">
+  <div class="ris-intro-banner">
     <div class="ris-eyebrow" style="color:var(--ris-accent)">[ SYSTEM STANDARD ]</div>
     <h1>Tactical Forensic HUD</h1>
     <p>
@@ -785,7 +773,7 @@
       border: 1px solid var(--ris-line-strong);
       border-left: 4px solid var(--ris-accent);
       padding: 12px 16px;
-      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+      clip-path: polygon(0 0, calc(100% - var(--ris-clip-sm)) 0, 100% var(--ris-clip-sm), 100% 100%, 0 100%);
       box-shadow: 0 8px 24px rgba(0,0,0,0.3);
     `;
     toast.innerHTML = `
@@ -819,30 +807,14 @@
     const next = curr === 'dark' ? 'light' : 'dark';
     html.setAttribute('data-theme', next);
     const btn = document.getElementById('theme');
-    if (btn) btn.setAttribute('aria-pressed', String(next === 'light'));
+    if (btn) {
+      btn.setAttribute('aria-pressed', String(next === 'light'));
+      btn.textContent = next === 'light' ? '◐ LIGHT' : '◐ DARK';
+    }
     try { localStorage.setItem('ris-theme', next); } catch (_) {}
     showToast('THEME: ' + (next === 'dark' ? 'DARK HUD' : 'LIGHT BLUEPRINT'));
   }
   function toggleTheme() { toggleGlobalTheme(); }
-
-  function toggleGlobalSkin() {
-    const html = document.documentElement;
-    const curr = html.getAttribute('data-skin');
-    const on = curr !== 'cyber';
-    if (on) {
-      html.setAttribute('data-skin', 'cyber');
-    } else {
-      html.removeAttribute('data-skin');
-    }
-    const btn = document.getElementById('skin');
-    if (btn) {
-      btn.setAttribute('aria-pressed', String(on));
-      btn.textContent = on ? '▞ Skin' : '▟ Skin: Off';
-    }
-    try { localStorage.setItem('ris-skin', on ? 'cyber' : 'off'); } catch (_) {}
-    showToast('SKIN: ' + (on ? 'CYBER' : 'OFF'));
-  }
-  function toggleSkin() { toggleGlobalSkin(); }
 
   // Sync chrome from localStorage on load
   (function syncChrome() {
@@ -857,17 +829,10 @@
       if (t) {
         document.documentElement.setAttribute('data-theme', t);
         const themeBtn = document.getElementById('theme');
-        if (themeBtn) themeBtn.setAttribute('aria-pressed', String(t === 'light'));
-      }
-      const s = localStorage.getItem('ris-skin');
-      if (s === 'off') {
-        document.documentElement.removeAttribute('data-skin');
-        const skinBtn = document.getElementById('skin');
-        if (skinBtn) { skinBtn.setAttribute('aria-pressed', 'false'); skinBtn.textContent = '▟ Skin: Off'; }
-      } else if (s === 'cyber') {
-        document.documentElement.setAttribute('data-skin', 'cyber');
-        const skinBtn = document.getElementById('skin');
-        if (skinBtn) { skinBtn.setAttribute('aria-pressed', 'true'); skinBtn.textContent = '▞ Skin'; }
+        if (themeBtn) {
+          themeBtn.setAttribute('aria-pressed', String(t === 'light'));
+          themeBtn.textContent = t === 'light' ? '◐ LIGHT' : '◐ DARK';
+        }
       }
     } catch (_) {}
   })();

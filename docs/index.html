@@ -207,7 +207,7 @@
 
 
 <header class="ris-topbar">
-  <a href="index.html" class="ris-eyebrow" style="color:var(--ris-accent);white-space:nowrap;text-decoration:none">RIS — RELIC INTERFACE SYSTEM</a>
+  <a href="index.html" class="ris-eyebrow" style="color:var(--ris-accent);white-space:nowrap;text-decoration:none">RELIC INTERFACE SYSTEM</a>
   <span class="ris-chip" style="white-space:nowrap">v2.9.0</span>
   <span class="spacer"></span>
   <label class="ris-field" style="flex-direction:row;align-items:center;gap:6px;margin:0">
@@ -235,8 +235,7 @@
     <a href="https://polar.sh/yuzushi-dev" target="_blank" rel="noopener" class="ris-btn ris-btn--sm ris-btn--outline" style="border-color:var(--ris-accent);color:var(--ris-accent);font-weight:700">Store ↗</a>
     <a href="https://github.com/yuzushi-dev/relic-interface-system" target="_blank" rel="noopener" class="ris-btn ris-btn--sm ris-btn--secondary">GitHub ↗</a>
   </nav>
-  <button id="skin" class="ris-btn ris-btn--sm ris-btn--secondary" aria-pressed="true">▞ Skin</button>
-  <button id="theme" class="ris-btn ris-btn--sm" aria-pressed="false">◐ Theme</button>
+  <button id="theme" class="ris-btn ris-btn--sm" aria-pressed="false">◐ DARK</button>
 </header>
 
 <!-- Decorative cyber skin chrome (invisible when skin off) -->
@@ -342,7 +341,7 @@ LOAD 0x8D0012:44 · REL 6fed4000</div>
 
   <section class="spec-section">
     <h2 class="ris-h2">Skin Cyber</h2>
-    <span class="ris-eyebrow">data-skin="cyber" · opt-in · ris-skin-cyber.css loaded last · toggle in topbar</span>
+    <span class="ris-eyebrow">data-skin="cyber" · opt-in · ris-skin-cyber.css loaded last</span>
     <p class="ris-body" style="max-width:72ch">
       Applies tactical cyber look &amp; feel over the default forensic base without altering its core:
       structural red, crimson-to-black gradient, scanlines + grain, key chrome glows,
@@ -1085,15 +1084,8 @@ themeBtn.onclick = () => {
   const newTheme = light ? 'light' : 'dark';
   root.dataset.theme = newTheme;
   themeBtn.setAttribute('aria-pressed', String(light));
+  themeBtn.textContent = light ? '◐ LIGHT' : '◐ DARK';
   try { localStorage.setItem('ris-theme', newTheme); } catch (_) {}
-};
-const skinBtn = document.getElementById('skin');
-skinBtn.onclick = () => {
-  const on = root.dataset.skin !== 'cyber';
-  if (on) root.dataset.skin = 'cyber'; else delete root.dataset.skin;
-  skinBtn.setAttribute('aria-pressed', String(on));
-  skinBtn.textContent = on ? '▞ Skin' : '▟ Skin: Off';
-  try { localStorage.setItem('ris-skin', on ? 'cyber' : 'off'); } catch (_) {}
 };
 const brandSelect = document.getElementById('brand');
 brandSelect.onchange = e => {
@@ -1108,12 +1100,9 @@ brandSelect.onchange = e => {
       brandSelect.value = root.dataset.brand;
     }
     if (themeBtn) {
-      themeBtn.setAttribute('aria-pressed', String(root.dataset.theme === 'light'));
-    }
-    if (skinBtn) {
-      const isCyber = root.dataset.skin === 'cyber';
-      skinBtn.setAttribute('aria-pressed', String(isCyber));
-      skinBtn.textContent = isCyber ? '▞ Skin' : '▟ Skin: Off';
+      const isLight = root.dataset.theme === 'light';
+      themeBtn.setAttribute('aria-pressed', String(isLight));
+      themeBtn.textContent = isLight ? '◐ LIGHT' : '◐ DARK';
     }
   } catch (_) {}
 })();

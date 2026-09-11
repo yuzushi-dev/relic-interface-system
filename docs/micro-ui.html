@@ -46,98 +46,6 @@
   }
 
 
-  /* Hero Section */
-  .hero-banner {
-    background: var(--ris-surface-1);
-    border: 1px solid var(--ris-line);
-    border-left: 4px solid var(--ris-accent);
-    padding: 28px 32px;
-    margin-top: 20px;
-    margin-bottom: 24px;
-    clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 18px, 100% 100%, 0 100%);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-  }
-
-  .hero-banner h1 {
-    margin: 6px 0 12px;
-    font-size: 26px;
-    letter-spacing: var(--ris-track-wide);
-    font-family: var(--ris-font-heading, sans-serif);
-    color: var(--ris-fg1);
-  }
-
-  .hero-banner p {
-    margin: 0;
-    color: var(--ris-fg2);
-    font-size: 13.5px;
-    line-height: 1.6;
-    max-width: 960px;
-  }
-
-  /* Commercial Polar CTA Banner */
-  .commercial-banner {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    background: linear-gradient(135deg, color-mix(in srgb, var(--ris-accent-glow) 30%, var(--ris-surface-1)), var(--ris-surface-1));
-    border: 1.5px solid var(--ris-accent);
-    padding: 20px 24px;
-    margin-bottom: 36px;
-    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.3), 0 0 16px var(--ris-accent-glow);
-  }
-
-  .banner-left {
-    flex: 1 1 500px;
-  }
-
-  .banner-pill {
-    display: inline-block;
-    font-family: var(--ris-font-mono);
-    font-size: 10px;
-    font-weight: 700;
-    color: var(--ris-accent);
-    letter-spacing: 0.12em;
-    margin-bottom: 6px;
-  }
-
-  .banner-title {
-    margin: 0 0 6px;
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--ris-fg1);
-  }
-
-  .banner-desc {
-    margin: 0;
-    font-size: 12.5px;
-    color: var(--ris-fg2);
-    line-height: 1.5;
-  }
-
-  .banner-cta {
-    font-family: var(--ris-font-mono);
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    padding: 10px 20px;
-    white-space: nowrap;
-    text-decoration: none;
-    border: 1px solid var(--ris-accent);
-    background: var(--ris-accent);
-    color: #0a0a0c !important;
-    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
-    box-shadow: 0 0 12px var(--ris-accent-glow);
-    transition: transform 80ms var(--ease-snap), box-shadow 120ms var(--ease-snap);
-  }
-
-  .banner-cta:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 0 18px var(--ris-accent);
-  }
-
   /* Quick Category Navigation Bar */
   .category-nav-bar {
     display: flex;
@@ -170,7 +78,7 @@
 
   /* Section Styles */
   .lab-section {
-    margin-bottom: 64px;
+    margin-bottom: 56px;
   }
 
   .section-header {
@@ -187,7 +95,7 @@
   .section-title {
     margin: 0;
     font-size: 20px;
-    font-family: var(--ris-font-heading, sans-serif);
+    font-family: var(--ris-font-display);
     color: var(--ris-fg1);
     letter-spacing: var(--ris-track-wide);
   }
@@ -210,7 +118,7 @@
     background: var(--ris-surface-2);
     border: 1px solid var(--ris-line-strong);
     margin-bottom: 20px;
-    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, calc(100% - var(--ris-clip)) 0, 100% var(--ris-clip), 100% 100%, 0 100%);
   }
 
   .control-label-group {
@@ -272,7 +180,7 @@
   .micro-card {
     background: var(--ris-surface-1);
     border: 1px solid var(--ris-line);
-    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, calc(100% - var(--ris-clip)) 0, 100% var(--ris-clip), 100% 100%, 0 100%);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -336,7 +244,7 @@
     justify-content: center;
     position: relative;
     padding: 14px;
-    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+    clip-path: polygon(0 0, calc(100% - var(--ris-clip)) 0, 100% var(--ris-clip), 100% 100%, 0 100%);
     background-image:
       linear-gradient(var(--hud-radar-line) 1px, transparent 1px),
       linear-gradient(90deg, var(--hud-radar-line) 1px, transparent 1px);
@@ -422,7 +330,7 @@
     background: var(--ris-surface-1);
     border: 1px solid var(--ris-accent);
     padding: 10px 16px;
-    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+    clip-path: polygon(0 0, calc(100% - var(--ris-clip-sm)) 0, 100% var(--ris-clip-sm), 100% 100%, var(--ris-clip-sm) 100%, 0 calc(100% - var(--ris-clip-sm)));
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 12px var(--ris-accent-glow);
     display: flex;
     align-items: center;
@@ -463,20 +371,6 @@
       font-size: 8.5px;
     }
 
-    .commercial-banner {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    .banner-left {
-      max-width: 100%;
-    }
-
-    .commercial-cta {
-      width: 100%;
-      text-align: center;
-    }
-
     .micro-grid {
       grid-template-columns: 1fr;
     }
@@ -488,7 +382,7 @@
 
 <!-- Topbar Navigation & Controls -->
 <header class="ris-topbar">
-  <a href="index.html" class="ris-eyebrow" style="color:var(--ris-accent);white-space:nowrap;text-decoration:none">RIS — RELIC INTERFACE SYSTEM</a>
+  <a href="index.html" class="ris-eyebrow" style="color:var(--ris-accent);white-space:nowrap;text-decoration:none">RELIC INTERFACE SYSTEM</a>
   <span class="ris-chip" style="white-space:nowrap">v2.9.0</span>
   <span class="spacer"></span>
   <label class="ris-field" style="flex-direction:row;align-items:center;gap:6px;margin:0">
@@ -516,13 +410,12 @@
     <a href="https://polar.sh/yuzushi-dev" target="_blank" rel="noopener" class="ris-btn ris-btn--sm ris-btn--outline" style="border-color:var(--ris-accent);color:var(--ris-accent);font-weight:700">Store ↗</a>
     <a href="https://github.com/yuzushi-dev/relic-interface-system" target="_blank" rel="noopener" class="ris-btn ris-btn--sm ris-btn--secondary">GitHub ↗</a>
   </nav>
-  <button id="skin" class="ris-btn ris-btn--sm ris-btn--secondary" aria-pressed="true" onclick="toggleGlobalSkin()">▞ Skin</button>
-  <button id="theme" class="ris-btn ris-btn--sm" aria-pressed="false" onclick="toggleGlobalTheme()">◐ Theme</button>
+  <button id="theme" class="ris-btn ris-btn--sm" aria-pressed="false" onclick="toggleGlobalTheme()">◐ DARK</button>
 </header>
 
 <main class="lab-shell" id="main">
   <!-- Hero Section -->
-  <header class="hero-banner">
+  <header class="ris-intro-banner">
     <div class="ris-eyebrow" style="color:var(--ris-accent)">[ SYSTEM STANDARD // SPECIMEN 04 ]</div>
     <h1>Micro-UI &amp; Telemetry Graphics Laboratory</h1>
     <p>
@@ -533,15 +426,13 @@
   </header>
 
   <!-- Commercial CTA Banner -->
-  <aside class="commercial-banner">
-    <div class="banner-left">
-      <span class="banner-pill">[ COMMERCIAL SKU // POLAR.SH ]</span>
-      <h2 class="banner-title">Get the Full 150+ Vector Pack &amp; Figma Master — $24 Launch Offer</h2>
-      <p class="banner-desc">Includes 150+ standalone SVGs, 70 composed tactical graphics, master .fig file with 4 brand modes, and turnkey React components.</p>
+  <aside class="ris-promo-banner">
+    <div class="ris-promo-banner-content">
+      <span class="ris-eyebrow" style="color:var(--ris-accent)">[ COMMERCIAL SKU // POLAR.SH ]</span>
+      <h2>Get the Full 150+ Vector Pack &amp; Figma Master — $24 Launch Offer</h2>
+      <p>Includes 150+ standalone SVGs, 70 composed tactical graphics, master .fig file with 4 brand modes, and turnkey React components.</p>
     </div>
-    <a href="https://buy.polar.sh/polar_cl_tuchJBmHqDLg4PsMquZlguPtUhorHCrMk6YMU1HTdt4" target="_blank" rel="noopener" class="banner-cta">
-      Buy on Polar ($24) ↗
-    </a>
+    <a href="https://buy.polar.sh/polar_cl_tuchJBmHqDLg4PsMquZlguPtUhorHCrMk6YMU1HTdt4" target="_blank" rel="noopener" class="ris-btn ris-btn--primary ris-btn--mono">Buy on Polar ($24) ↗</a>
   </aside>
 
   <!-- Quick Category Jump Navigation -->
@@ -4119,26 +4010,12 @@
     const btn = document.getElementById('theme');
     if (btn) {
       btn.setAttribute('aria-pressed', String(next === 'light'));
+      btn.textContent = next === 'light' ? '◐ LIGHT' : '◐ DARK';
     }
     try { localStorage.setItem('ris-theme', next); } catch (_) {}
     showHudToast('Theme toggled to ' + (next === 'dark' ? 'Dark HUD' : 'Light Blueprint'));
   }
   function toggleTheme() { toggleGlobalTheme(); }
-
-  // 3. SKIN TOGGLE
-  function toggleGlobalSkin() {
-    const html = document.documentElement;
-    const on = html.dataset.skin !== 'cyber';
-    if (on) html.dataset.skin = 'cyber'; else delete html.dataset.skin;
-    const btn = document.getElementById('skin');
-    if (btn) {
-      btn.setAttribute('aria-pressed', String(on));
-      btn.textContent = on ? '▞ Skin' : '▟ Skin: Off';
-    }
-    try { localStorage.setItem('ris-skin', on ? 'cyber' : 'off'); } catch (_) {}
-    showHudToast('Skin: ' + (on ? 'CYBER' : 'OFF'));
-  }
-  function toggleSkin() { toggleGlobalSkin(); }
 
   // Sync from localStorage on load
   (function syncChrome() {
@@ -4154,18 +4031,14 @@
       if (t) {
         document.documentElement.setAttribute('data-theme', t);
         const themeBtn = document.getElementById('theme');
-        if (themeBtn) themeBtn.setAttribute('aria-pressed', String(t === 'light'));
+        if (themeBtn) {
+          themeBtn.setAttribute('aria-pressed', String(t === 'light'));
+          themeBtn.textContent = t === 'light' ? '◐ LIGHT' : '◐ DARK';
+        }
       }
       const s = localStorage.getItem('ris-skin');
-      if (s === 'off') {
-        delete document.documentElement.dataset.skin;
-        const skinBtn = document.getElementById('skin');
-        if (skinBtn) { skinBtn.setAttribute('aria-pressed', 'false'); skinBtn.textContent = '▟ Skin: Off'; }
-      } else if (s === 'cyber') {
-        document.documentElement.dataset.skin = 'cyber';
-        const skinBtn = document.getElementById('skin');
-        if (skinBtn) { skinBtn.setAttribute('aria-pressed', 'true'); skinBtn.textContent = '▞ Skin'; }
-      }
+      if (s === 'off') delete document.documentElement.dataset.skin;
+      else if (s === 'cyber') document.documentElement.dataset.skin = 'cyber';
     } catch (_) {}
   })();
 
