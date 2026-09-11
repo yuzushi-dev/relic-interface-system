@@ -32,7 +32,6 @@
        OPTICAL SIMULATOR LAB STYLING
        ========================================================================== */
     :root {
-      --lab-bg: #07090b;
       --lab-card-bg: rgba(14, 18, 22, 0.75);
       --lab-border: rgba(111, 179, 201, 0.25);
       --lab-line: rgba(111, 179, 201, 0.15);
@@ -40,7 +39,6 @@
     }
 
     [data-theme="light"] {
-      --lab-bg: #eef2f5;
       --lab-card-bg: rgba(255, 255, 255, 0.85);
       --lab-border: rgba(27, 107, 128, 0.35);
       --lab-line: rgba(27, 107, 128, 0.2);
@@ -48,12 +46,7 @@
     }
 
     body {
-      margin: 0;
       padding: calc(var(--ris-topbar-h, 52px) + 24px) 0 0;
-      background-color: var(--lab-bg);
-      color: var(--ris-fg);
-      font-family: var(--ris-font-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
-      -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
 
@@ -62,27 +55,6 @@
       max-width: 1240px;
       margin: 24px auto 48px;
       padding: 0 24px;
-    }
-
-    .simulator-title-bar {
-      margin-bottom: 24px;
-    }
-
-    .simulator-title-bar h1 {
-      font-size: 28px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      margin: 0 0 6px;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .simulator-title-bar p {
-      margin: 0;
-      font-size: 14px;
-      color: var(--ris-fg3);
-      line-height: 1.5;
     }
 
     .simulator-grid {
@@ -105,7 +77,7 @@
       aspect-ratio: 16 / 9;
       background: #060708;
       border: 1px solid var(--lab-border);
-      clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+      clip-path: polygon(0 0, calc(100% - var(--ris-clip)) 0, 100% var(--ris-clip), 100% 100%, var(--ris-clip) 100%, 0 calc(100% - var(--ris-clip)));
       overflow: hidden;
       box-shadow: 0 20px 48px rgba(0, 0, 0, 0.6), var(--lab-glow);
     }
@@ -165,6 +137,7 @@
       align-items: center;
       justify-content: center;
       pointer-events: none;
+      transition: opacity var(--ris-dur-base) var(--ris-ease);
     }
 
     .lens-hud-layer svg {
@@ -177,11 +150,24 @@
     .control-panel {
       background: var(--lab-card-bg);
       border: 1px solid var(--lab-border);
-      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+      clip-path: polygon(0 0, calc(100% - var(--ris-clip)) 0, 100% var(--ris-clip), 100% 100%, var(--ris-clip) 100%, 0 calc(100% - var(--ris-clip)));
       padding: 20px;
       display: flex;
       flex-direction: column;
       gap: 20px;
+      justify-content: space-between;
+      position: sticky;
+      top: 24px;
+      height: var(--panel-h, calc(100vh - 48px));
+      overflow-y: auto;
+      scrollbar-width: thin;
+    }
+
+    @media (max-width: 1080px) {
+      .control-panel {
+        position: static;
+        height: auto;
+      }
     }
 
     .control-group {
@@ -216,27 +202,9 @@
       grid-template-columns: repeat(4, 1fr);
     }
 
-    .tactical-btn {
-      font-family: var(--ris-font-mono, monospace);
-      font-size: 10px;
-      font-weight: 700;
-      padding: 8px 10px;
-      border: 1px solid var(--lab-line);
-      background: rgba(255, 255, 255, 0.03);
-      color: var(--ris-fg2);
-      cursor: pointer;
-      text-align: center;
-      transition: background-color var(--ris-dur-fast) var(--ris-ease), border-color var(--ris-dur-fast) var(--ris-ease), color var(--ris-dur-fast) var(--ris-ease);
-      clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px));
-    }
-
-    .tactical-btn:hover {
-      background: rgba(111, 179, 201, 0.12);
-      border-color: var(--ris-accent);
-      color: var(--ris-accent);
-    }
-
-    .tactical-btn.active {
+    /* Preset/mode buttons reuse .ris-btn (see .ris-btn--mono in css/ris.css);
+       only the persistent "selected" state is page-specific. */
+    .ris-btn.active {
       background: var(--ris-accent);
       border-color: var(--ris-accent);
       color: #000;
@@ -321,7 +289,7 @@
     .eyewear-card {
       background: var(--lab-card-bg);
       border: 1px solid var(--lab-border);
-      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+      clip-path: polygon(0 0, calc(100% - var(--ris-clip)) 0, 100% var(--ris-clip), 100% 100%, var(--ris-clip) 100%, 0 calc(100% - var(--ris-clip)));
       padding: 20px;
       display: flex;
       flex-direction: column;
@@ -349,6 +317,11 @@
     .card-preview-stage--viewport {
       aspect-ratio: 16 / 9;
       padding: 0;
+    }
+
+    .card-preview-stage--viewport svg {
+      width: 100%;
+      height: 100%;
     }
 
     .card-meta h3 {
@@ -380,54 +353,8 @@
       margin-top: auto;
     }
 
-    .action-btn {
-      flex: 1;
-      font-family: var(--ris-font-mono, monospace);
-      font-size: 10px;
-      font-weight: 700;
-      padding: 7px 10px;
-      border: 1px solid var(--lab-line);
-      background: transparent;
-      color: var(--ris-fg2);
-      cursor: pointer;
-      text-align: center;
-      transition: background-color var(--ris-dur-fast) var(--ris-ease), border-color var(--ris-dur-fast) var(--ris-ease), color var(--ris-dur-fast) var(--ris-ease);
-      clip-path: polygon(0 0, calc(100% - 3px) 0, 100% 3px, 100% 100%, 3px 100%, 0 calc(100% - 3px));
-    }
-
-    .action-btn:hover {
-      background: rgba(111, 179, 201, 0.15);
-      border-color: var(--ris-accent);
-      color: var(--ris-accent);
-    }
-
-    /* Commercial Banner */
-    .commercial-banner {
-      background: linear-gradient(90deg, rgba(230, 162, 60, 0.12), rgba(111, 179, 201, 0.12));
-      border: 1px solid var(--ris-accent);
-      padding: 16px 24px;
-      margin: 48px auto;
-      max-width: 1240px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
-    }
-
-    .commercial-content h4 {
-      margin: 0 0 4px;
-      font-size: 15px;
-      font-weight: 800;
-      color: var(--ris-accent);
-    }
-
-    .commercial-content p {
-      margin: 0;
-      font-size: 12px;
-      color: var(--ris-fg2);
-    }
+    /* Card action buttons reuse .ris-btn too; only the equal-width layout is local. */
+    .card-actions .ris-btn { flex: 1; }
 
     /* Sonner HUD Toast */
     #hud-toast-container {
@@ -450,7 +377,7 @@
       border: 1px solid var(--ris-accent);
       color: var(--ris-accent);
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.8), 0 0 12px rgba(111, 179, 201, 0.2);
-      clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+      clip-path: polygon(0 0, calc(100% - var(--ris-clip-sm)) 0, 100% var(--ris-clip-sm), 100% 100%, var(--ris-clip-sm) 100%, 0 calc(100% - var(--ris-clip-sm)));
       opacity: 0;
       transform: translateY(12px);
       transition: transform var(--ris-dur-enter) var(--ris-ease-snap), opacity var(--ris-dur-enter) var(--ris-ease-snap);
@@ -462,11 +389,12 @@
     }
   </style>
 </head>
-<body>
+<body class="ris ris-grid-bg">
+  <a class="ris-skip-nav" href="#main">Skip to main content</a>
 
   <!-- Top Global Navigation Header -->
   <header class="ris-topbar">
-    <a href="index.html" class="ris-eyebrow" style="color:var(--ris-accent);white-space:nowrap;text-decoration:none">RIS — RELIC INTERFACE SYSTEM</a>
+    <a href="index.html" class="ris-eyebrow" style="color:var(--ris-accent);white-space:nowrap;text-decoration:none">RELIC INTERFACE SYSTEM</a>
     <span class="ris-chip" style="white-space:nowrap">v2.9.0</span>
     <span class="spacer"></span>
     <label class="ris-field" style="flex-direction:row;align-items:center;gap:6px;margin:0">
@@ -494,26 +422,13 @@
       <a href="https://polar.sh/yuzushi-dev" target="_blank" rel="noopener" class="ris-btn ris-btn--sm ris-btn--outline" style="border-color:var(--ris-accent);color:var(--ris-accent);font-weight:700">Store ↗</a>
       <a href="https://github.com/yuzushi-dev/relic-interface-system" target="_blank" rel="noopener" class="ris-btn ris-btn--sm ris-btn--secondary">GitHub ↗</a>
     </nav>
-    <button id="skin" class="ris-btn ris-btn--sm ris-btn--secondary" aria-pressed="true" onclick="toggleGlobalSkin()">▞ Skin</button>
-    <button id="theme" class="ris-btn ris-btn--sm" aria-pressed="false" onclick="toggleGlobalTheme()">◐ Theme</button>
+    <button id="theme" class="ris-btn ris-btn--sm" aria-pressed="false" onclick="toggleGlobalTheme()">◐ DARK</button>
   </header>
 
-  <!-- Commercial CTA Banner -->
-  <div class="section-container" style="margin-top: 24px; margin-bottom: 0;">
-    <div class="commercial-banner">
-      <div class="commercial-content">
-        <h4>RIS PRO STUDIO — SMART GLASSES & HUD GRAPHICS MASTER</h4>
-        <p>Get all 34+ Micro-UI vector atoms, 9 eyewear HUD templates, and native Figma generator script.</p>
-      </div>
-      <a href="https://buy.polar.sh/polar_cl_gzshc6MZaGsQy6V3oqQ1U0uK3kIQ7mcGr0wf00JbLZn" target="_blank" rel="noopener" class="tactical-btn" style="background: var(--ris-accent); color: #000; text-decoration: none; padding: 10px 18px;">
-        Get Pro Studio ($24 Launch Offer) ↗
-      </a>
-    </div>
-  </div>
-
   <!-- Hero Section: Optical Pass-Through Lens Simulator -->
-  <main class="simulator-stage">
-    <div class="simulator-title-bar">
+  <main class="simulator-stage" id="main">
+    <div class="ris-intro-banner">
+      <div class="ris-eyebrow" style="color:var(--ris-accent)">[ SMART GLASSES // OPTICAL WAVEGUIDE HUD ]</div>
       <h1>
         <span>OPTICAL WAVEGUIDE PASS-THROUGH SIMULATOR</span>
         <span class="ris-chip ris-chip--cyan" style="font-size: 11px;">100% NON-OCCLUDING</span>
@@ -522,6 +437,16 @@
         Verifies 1px tactical telemetry contrast and non-occlusion over real-world photopic environments.<br>
         On MicroLED / Micro-OLED see-through waveguides, black pixels emit zero light (100% transparent). Test your HUD across daylight glare, night urban traffic, and complex industrial inspection.
       </p>
+    </div>
+
+    <!-- Commercial CTA Banner -->
+    <div class="ris-promo-banner">
+      <div class="ris-promo-banner-content">
+        <span class="ris-eyebrow" style="color:var(--ris-accent)">[ COMMERCIAL SKU // POLAR.SH ]</span>
+        <h2>RIS Pro Studio — Smart Glasses &amp; HUD Graphics Master</h2>
+        <p>Get all 34+ Micro-UI vector atoms, 9 eyewear HUD templates, and native Figma generator script.</p>
+      </div>
+      <a href="https://buy.polar.sh/polar_cl_gzshc6MZaGsQy6V3oqQ1U0uK3kIQ7mcGr0wf00JbLZn" target="_blank" rel="noopener" class="ris-btn ris-btn--primary ris-btn--mono">Get Pro Studio ($24 Launch Offer) ↗</a>
     </div>
 
     <div class="simulator-grid">
@@ -576,11 +501,11 @@
           style="background-color: #0f141d; background-image: url('assets/eyewear-bg/night.jpg');"
         ></div>
 
-        <!-- Background 8: Dark Lab Void -->
+        <!-- Background 8: Dark Fiber Lab -->
         <div
           class="lens-bg-layer"
           id="bg-void"
-          style="background-color: #060708;"
+          style="background-color: #060708; background-image: url('assets/eyewear-bg/void.jpg');"
         ></div>
 
         <!-- Background 9: Custom User Photo -->
@@ -606,7 +531,7 @@
 
         <!-- Live Rendered HUD SVG Layer -->
         <div class="lens-hud-layer" id="lens-hud">
-          <svg viewBox="0 0 640 360" width="640" height="360" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="region" aria-label="Smart Glasses Heads Up Display" data-mode="ambient" data-brand="biohub" data-optical-profile="cyber-cyan" class="ris-eyewear-hud ris-eyewear-glass ris-eyewear-profile-cyan" style="background:transparent;color:var(--ris-cyan);overflow:visible"><title>Smart Glasses HUD - AMBIENT</title><g class="ris-hud-registration-ticks" stroke-opacity="0.6"><path d="M 12 24 L 12 16 L 16 12 L 24 12" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 12 L 624 12 L 628 16 L 628 24" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 12 336 L 12 344 L 16 348 L 24 348" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 348 L 624 348 L 628 344 L 628 336" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle></g><g class="ris-hud-brand-tag" opacity="0.6"><text x="320" y="12" text-anchor="middle" dominant-baseline="central" fill="currentColor" font-size="7.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="1.8">[ RIS // OPTIC-HUD // AMBIENT ]</text></g><g transform="translate(24, 20)" role="group" aria-label="Ambient Telemetry"><line x1="0" y1="2" x2="0" y2="28" stroke="currentColor" stroke-width="1.5" stroke-opacity="0.7" vector-effect="non-scaling-stroke"></line><circle cx="0" cy="2" r="1" fill="currentColor"></circle><circle cx="0" cy="28" r="1" fill="currentColor"></circle><text x="8" y="14" fill="currentColor" font-size="12" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="0.8">10:42 AM</text><text x="8" y="27" fill="currentColor" fill-opacity="0.75" font-size="8" font-weight="600" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="0.4">BAT 68% (~3.4H) · 5G [ONLINE]</text><circle cx="160" cy="24.5" r="2" fill="currentColor" fill-opacity="0.9" class="ris-micro-pulse"></circle></g></svg>
+          <svg viewBox="0 0 640 360" width="640" height="360" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="region" aria-label="Smart Glasses Heads Up Display" data-mode="ambient" data-brand="biohub" data-optical-profile="cyber-cyan" class="ris-eyewear-hud ris-eyewear-glass ris-eyewear-profile-cyan" style="background:transparent;color:var(--ris-cyan);overflow:visible"><title>Smart Glasses HUD - AMBIENT</title><g class="ris-hud-registration-ticks" stroke-opacity="0.6"><path d="M 12 24 L 12 16 L 16 12 L 24 12" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 12 L 624 12 L 628 16 L 628 24" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 12 336 L 12 344 L 16 348 L 24 348" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 348 L 624 348 L 628 344 L 628 336" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle></g><g class="ris-hud-brand-tag" opacity="0.6"><text stroke="none" x="320" y="12" text-anchor="middle" dominant-baseline="central" fill="currentColor" font-size="7.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="1.8">[ RIS // OPTIC-HUD // AMBIENT ]</text></g><g transform="translate(24, 20)" role="group" aria-label="Ambient Telemetry"><line x1="0" y1="2" x2="0" y2="28" stroke="currentColor" stroke-width="1.5" stroke-opacity="0.7" vector-effect="non-scaling-stroke"></line><circle cx="0" cy="2" r="1" fill="currentColor"></circle><circle cx="0" cy="28" r="1" fill="currentColor"></circle><text stroke="none" x="8" y="14" fill="currentColor" font-size="12" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="0.8">10:42 AM</text><text stroke="none" x="8" y="27" fill="currentColor" fill-opacity="0.75" font-size="8" font-weight="600" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="0.4">BAT 68% (~3.4H) · 5G [ONLINE]</text><circle cx="160" cy="24.5" r="2" fill="currentColor" fill-opacity="0.9" class="ris-micro-pulse"></circle></g></svg>
         </div>
       </div>
 
@@ -619,23 +544,23 @@
             <span class="control-label-val" id="lens-bg-name">Daylight City</span>
           </label>
           <div class="button-row" id="lens-bg-preset-grid" style="grid-template-columns: repeat(2, 1fr); gap: 6px;">
-            <button class="tactical-btn active" onclick="setLensBg('daylight', this, 'Daylight City')">Daylight City</button>
-            <button class="tactical-btn" onclick="setLensBg('snow', this, 'Alpine Snow (10k Lux)')">High-Lux Snow</button>
-            <button class="tactical-btn" onclick="setLensBg('driving', this, 'Driving Cockpit')">Car Windshield</button>
-            <button class="tactical-btn" onclick="setLensBg('office', this, 'Indoor Meeting')">Tech Office</button>
-            <button class="tactical-btn" onclick="setLensBg('industrial', this, 'Industrial Plant')">Industrial</button>
-            <button class="tactical-btn" onclick="setLensBg('medical', this, 'Clinical Lab')">Medical Lab</button>
-            <button class="tactical-btn" onclick="setLensBg('night', this, 'Night Urban')">Night Traffic</button>
-            <button class="tactical-btn" onclick="setLensBg('void', this, 'Dark Void Benchmark')">Dark Lab Void</button>
+            <button class="ris-btn ris-btn--sm ris-btn--mono active" onclick="setLensBg('daylight', this, 'Daylight City')">Daylight City</button>
+            <button class="ris-btn ris-btn--sm ris-btn--mono" onclick="setLensBg('snow', this, 'Alpine Snow (10k Lux)')">High-Lux Snow</button>
+            <button class="ris-btn ris-btn--sm ris-btn--mono" onclick="setLensBg('driving', this, 'Driving Cockpit')">Car Windshield</button>
+            <button class="ris-btn ris-btn--sm ris-btn--mono" onclick="setLensBg('office', this, 'Indoor Meeting')">Tech Office</button>
+            <button class="ris-btn ris-btn--sm ris-btn--mono" onclick="setLensBg('industrial', this, 'Industrial Plant')">Industrial</button>
+            <button class="ris-btn ris-btn--sm ris-btn--mono" onclick="setLensBg('medical', this, 'Clinical Lab')">Medical Lab</button>
+            <button class="ris-btn ris-btn--sm ris-btn--mono" onclick="setLensBg('night', this, 'Night Urban')">Night Traffic</button>
+            <button class="ris-btn ris-btn--sm ris-btn--mono" onclick="setLensBg('void', this, 'Dark Fiber Lab')">Dark Fiber Lab</button>
           </div>
 
           <!-- Custom User Background Upload / URL -->
           <div style="display: flex; gap: 6px; margin-top: 4px;">
-            <button class="tactical-btn" id="btn-bg-custom" onclick="document.getElementById('lens-file-input').click()" style="flex: 1; border-style: dashed; border-color: var(--ris-accent); color: var(--ris-accent);">
-              Carica Foto
+            <button class="ris-btn ris-btn--sm ris-btn--mono" id="btn-bg-custom" onclick="document.getElementById('lens-file-input').click()" style="flex: 1; border-style: dashed; border-color: var(--ris-accent); color: var(--ris-accent);">
+              Upload Photo
             </button>
-            <button class="tactical-btn" onclick="promptCustomImageUrl()" style="flex: 1; border-style: dashed;">
-              Incolla URL
+            <button class="ris-btn ris-btn--sm ris-btn--mono" onclick="promptCustomImageUrl()" style="flex: 1; border-style: dashed;">
+              Paste URL
             </button>
             <input type="file" id="lens-file-input" accept="image/*" style="display: none;" onchange="handleCustomBgUpload(event)">
           </div>
@@ -659,79 +584,22 @@
           >
         </div>
 
-        <!-- 2. Operational Mode -->
+        <!-- 2. Operational Mode: auto-cycles, no manual controls (see startHudDemoRotation) -->
         <div class="control-group">
-          <label class="control-label">HUD Operational Mode</label>
-          <div class="button-row">
-            <button class="tactical-btn active" onclick="setHudMode('ambient', this)">[Ambient]</button>
-            <button class="tactical-btn" onclick="setHudMode('commute', this)">[Commute]</button>
-            <button class="tactical-btn" onclick="setHudMode('meeting', this)">[Meeting]</button>
-            <button class="tactical-btn" onclick="setHudMode('field-ops', this)">[Field Ops]</button>
-          </div>
+          <label class="control-label">
+            <span>HUD Operational Mode</span>
+            <span class="control-label-val" id="hud-mode-val">Ambient</span>
+          </label>
         </div>
 
         <!-- 3. Waveguide Chromatic Profile -->
         <div class="control-group">
           <label class="control-label">Waveguide Chromatic Profile</label>
           <div class="button-row--4" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;">
-            <button class="tactical-btn active" onclick="setOpticalProfile('cyber-cyan', this)" style="border-bottom: 2px solid var(--ris-cyan);">Cyan</button>
-            <button class="tactical-btn" onclick="setOpticalProfile('phosphor-green', this)" style="border-bottom: 2px solid var(--ris-green);">Green</button>
-            <button class="tactical-btn" onclick="setOpticalProfile('tactical-amber', this)" style="border-bottom: 2px solid var(--ris-accent);">Amber</button>
-            <button class="tactical-btn" onclick="setOpticalProfile('alert-red', this)" style="border-bottom: 2px solid var(--ris-red);">Alert</button>
-          </div>
-        </div>
-
-        <!-- 4. Scrubber: Navigation Maneuver Distance -->
-        <div class="control-group">
-          <label class="control-label">
-            <span>Wayfinding Maneuver</span>
-            <span class="control-label-val" id="nav-dist-val">85M</span>
-          </label>
-          <input
-            type="range"
-            min="0"
-            max="250"
-            value="85"
-            class="tactical-slider"
-            id="nav-dist-slider"
-            oninput="updateNavDistance(this.value)"
-          >
-        </div>
-
-        <!-- 5. Scrubber: Speech Transcription Preset -->
-        <div class="control-group">
-          <label class="control-label">Live Transcription Preset</label>
-          <div class="button-row" style="grid-template-columns: 1fr;">
-            <button class="tactical-btn active" onclick="setCaptionPreset(0, this)">[EN→IT] Live Translation</button>
-            <button class="tactical-btn" onclick="setCaptionPreset(1, this)">Keynote Teleprompter</button>
-            <button class="tactical-btn" onclick="setCaptionPreset(2, this)">Safety Valve Inspection</button>
-          </div>
-        </div>
-
-        <!-- 6. Scrubber: LiDAR Boresight Distance -->
-        <div class="control-group">
-          <label class="control-label">
-            <span>LiDAR Boresight Range</span>
-            <span class="control-label-val" id="lidar-dist-val">1.40M</span>
-          </label>
-          <input
-            type="range"
-            min="0.2"
-            max="10.0"
-            step="0.1"
-            value="1.4"
-            class="tactical-slider"
-            id="lidar-dist-slider"
-            oninput="updateLidarDistance(this.value)"
-          >
-        </div>
-
-        <!-- 7. Motion Simulation Toggle -->
-        <div class="control-group">
-          <label class="control-label">Motion Engine</label>
-          <div class="button-row">
-            <button class="tactical-btn active" onclick="setMotionMode('live', this)">Live Simulation</button>
-            <button class="tactical-btn" onclick="setMotionMode('static', this)">Static Vector</button>
+            <button class="ris-btn ris-btn--sm ris-btn--mono active" onclick="setOpticalProfile('cyber-cyan', this)" style="border-bottom: 2px solid var(--ris-cyan);">Cyan</button>
+            <button class="ris-btn ris-btn--sm ris-btn--mono" onclick="setOpticalProfile('phosphor-green', this)" style="border-bottom: 2px solid var(--ris-green);">Green</button>
+            <button class="ris-btn ris-btn--sm ris-btn--mono" onclick="setOpticalProfile('tactical-amber', this)" style="border-bottom: 2px solid var(--ris-accent);">Amber</button>
+            <button class="ris-btn ris-btn--sm ris-btn--mono" onclick="setOpticalProfile('alert-red', this)" style="border-bottom: 2px solid var(--ris-red);">Alert</button>
           </div>
         </div>
       </aside>
@@ -762,8 +630,8 @@
             <p>Optical turn-by-turn guidance with dynamic distance countdown, street name, and ETA chip. Displays 8 tactical 45° chamfered maneuver arrows with zero central vision occlusion.</p>
           </div>
           <div class="card-actions">
-            <button class="action-btn" onclick="copySvg('nav-guidance')">[Copy SVG]</button>
-            <button class="action-btn" onclick="copyJsx('nav-guidance')">[Copy JSX]</button>
+            <button class="ris-btn ris-btn--sm ris-btn--mono" onclick="copySvg('nav-guidance')">[Copy SVG]</button>
+            <button class="ris-btn ris-btn--sm ris-btn--mono" onclick="copyJsx('nav-guidance')">[Copy JSX]</button>
           </div>
           <!-- Hidden scripts for clipboard copy -->
           <script type="text/plain" id="svg-nav-guidance"><svg color="var(--ris-cyan)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 48" width="160" height="48" fill="none" stroke="var(--ris-cyan)" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-label="Navigation: slight right, IN 85M, VIA DEL CORSO, [ETA 12 MIN]" data-maneuver="slight-right" data-brand="biohub" data-optical-profile="cyber-cyan" class="ris-micro-nav ris-eyewear-glass ris-eyewear-profile-cyan" style="color: var(--ris-cyan); overflow:visible;">
@@ -829,8 +697,8 @@
             <p>Live speech-to-text subtitles and teleprompter constrained within a 38-character foveal comfort boundary to prevent eye strain. Features pulsating listening pip and speaker tag.</p>
           </div>
           <div class="card-actions">
-            <button class="action-btn" onclick="copySvg('live-captions')">[Copy SVG]</button>
-            <button class="action-btn" onclick="copyJsx('live-captions')">[Copy JSX]</button>
+            <button class="ris-btn ris-btn--sm ris-btn--mono" onclick="copySvg('live-captions')">[Copy SVG]</button>
+            <button class="ris-btn ris-btn--sm ris-btn--mono" onclick="copyJsx('live-captions')">[Copy JSX]</button>
           </div>
           <!-- Hidden scripts for clipboard copy -->
           <script type="text/plain" id="svg-live-captions"><svg color="var(--ris-cyan)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 52" width="240" height="52" fill="none" stroke="var(--ris-cyan)" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-label="Live captions: SYSTEM INITIALIZED. LINK NOMINAL AUDIO-IN: 44.1KHZ · LOW LATENCY" data-brand="biohub" data-optical-profile="cyber-cyan" data-listening="true" class="ris-micro-captions ris-eyewear-glass ris-eyewear-profile-cyan" style="color: var(--ris-cyan); overflow:visible;">
@@ -896,8 +764,8 @@
             <p>Real-time heart rate with 45° chamfered ECG pulse diamond, 5-stage HR zone exertion monitor, ambient barometric altitude, and 4-segment quantized battery gauge with runtime estimation.</p>
           </div>
           <div class="card-actions">
-            <button class="action-btn" onclick="copySvg('vital-telemetry')">[Copy SVG]</button>
-            <button class="action-btn" onclick="copyJsx('vital-telemetry')">[Copy JSX]</button>
+            <button class="ris-btn ris-btn--sm ris-btn--mono" onclick="copySvg('vital-telemetry')">[Copy SVG]</button>
+            <button class="ris-btn ris-btn--sm ris-btn--mono" onclick="copyJsx('vital-telemetry')">[Copy JSX]</button>
           </div>
           <!-- Hidden scripts for clipboard copy -->
           <script type="text/plain" id="svg-vital-telemetry"><svg color="var(--ris-cyan)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 48" width="160" height="48" fill="none" stroke="var(--ris-cyan)" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-label="Vital telemetry: 138 BPM, Zone 3, 420M ALT, Battery 68% (~3H 24M)" data-brand="biohub" data-optical-profile="cyber-cyan" data-hr-zone="3" data-animated="false" class="ris-micro-vital ris-eyewear-glass ris-eyewear-profile-cyan" style="color: var(--ris-cyan); overflow:visible;">
@@ -981,8 +849,8 @@
             <p>Ultra-slim 26px banner designed for the upper edge of smart glasses displays. High-urgency contextual alerts (calendar, collision warning, security) with 45° chamfers and auto-decay countdown timer line.</p>
           </div>
           <div class="card-actions">
-            <button class="action-btn" onclick="copySvg('glance-notice')">[Copy SVG]</button>
-            <button class="action-btn" onclick="copyJsx('glance-notice')">[Copy JSX]</button>
+            <button class="ris-btn ris-btn--sm ris-btn--mono" onclick="copySvg('glance-notice')">[Copy SVG]</button>
+            <button class="ris-btn ris-btn--sm ris-btn--mono" onclick="copyJsx('glance-notice')">[Copy JSX]</button>
           </div>
           <!-- Hidden scripts for clipboard copy -->
           <script type="text/plain" id="svg-glance-notice"><svg color="var(--ris-accent)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 26" width="220" height="26" fill="none" stroke="var(--ris-accent)" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-label="Notice [COLLISION] COLLISION WARNING: OBJECT AT 1.2M (warn)" data-category="COLLISION" data-severity="warn" data-brand="biohub" data-optical-profile="tactical-amber" class="ris-micro-glance ris-eyewear-glass ris-eyewear-profile-amber" style="color: var(--ris-accent); background:transparent; overflow:visible;">
@@ -1047,8 +915,8 @@
             <p>Tactical boresight targeting frame engineered with a 100% HOLLOW and transparent center to avoid occluding real-world equipment. Includes 4 corner brackets, exterior ticks, LiDAR range ruler, and target ID.</p>
           </div>
           <div class="card-actions">
-            <button class="action-btn" onclick="copySvg('spatial-inspection')">[Copy SVG]</button>
-            <button class="action-btn" onclick="copyJsx('spatial-inspection')">[Copy JSX]</button>
+            <button class="ris-btn ris-btn--sm ris-btn--mono" onclick="copySvg('spatial-inspection')">[Copy SVG]</button>
+            <button class="ris-btn ris-btn--sm ris-btn--mono" onclick="copyJsx('spatial-inspection')">[Copy JSX]</button>
           </div>
           <!-- Hidden scripts for clipboard copy -->
           <script type="text/plain" id="svg-spatial-inspection"><svg color="var(--ris-green)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 120" width="160" height="120" fill="none" stroke="var(--ris-green)" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-label="Spatial Inspection: VALVE_ACTUATOR_B2, DST 1.40M, status [LOCKED], P/N: 884-J · OK" data-status="locked" data-brand="biohub" data-optical-profile="phosphor-green" class="ris-micro-inspection ris-eyewear-glass ris-eyewear-profile-phosphor" style="color: var(--ris-green); background:transparent; overflow:visible;">
@@ -1134,7 +1002,7 @@
       
         <div class="eyewear-card" id="card-hud-ambient">
           <div class="card-preview-stage card-preview-stage--viewport">
-            <svg viewBox="0 0 640 360" width="640" height="360" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="region" aria-label="Smart Glasses Heads Up Display" data-mode="ambient" data-brand="biohub" data-optical-profile="cyber-cyan" class="ris-eyewear-hud ris-eyewear-glass ris-eyewear-profile-cyan" style="background:transparent;color:var(--ris-cyan);overflow:visible"><title>Smart Glasses HUD - AMBIENT</title><g class="ris-hud-registration-ticks" stroke-opacity="0.6"><path d="M 12 24 L 12 16 L 16 12 L 24 12" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 12 L 624 12 L 628 16 L 628 24" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 12 336 L 12 344 L 16 348 L 24 348" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 348 L 624 348 L 628 344 L 628 336" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle></g><g class="ris-hud-brand-tag" opacity="0.6"><text x="320" y="12" text-anchor="middle" dominant-baseline="central" fill="currentColor" font-size="7.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="1.8">[ RIS // OPTIC-HUD // AMBIENT ]</text></g><g transform="translate(24, 20)" role="group" aria-label="Ambient Telemetry"><line x1="0" y1="2" x2="0" y2="28" stroke="currentColor" stroke-width="1.5" stroke-opacity="0.7" vector-effect="non-scaling-stroke"></line><circle cx="0" cy="2" r="1" fill="currentColor"></circle><circle cx="0" cy="28" r="1" fill="currentColor"></circle><text x="8" y="14" fill="currentColor" font-size="12" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="0.8">10:42 AM</text><text x="8" y="27" fill="currentColor" fill-opacity="0.75" font-size="8" font-weight="600" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="0.4">BAT 68% (~3.4H) · 5G [ONLINE]</text><circle cx="160" cy="24.5" r="2" fill="currentColor" fill-opacity="0.9" class="ris-micro-pulse"></circle></g></svg>
+            <svg viewBox="0 0 640 360" width="640" height="360" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="region" aria-label="Smart Glasses Heads Up Display" data-mode="ambient" data-brand="biohub" data-optical-profile="cyber-cyan" class="ris-eyewear-hud ris-eyewear-glass ris-eyewear-profile-cyan" style="background:transparent;color:var(--ris-cyan);overflow:visible"><title>Smart Glasses HUD - AMBIENT</title><g class="ris-hud-registration-ticks" stroke-opacity="0.6"><path d="M 12 24 L 12 16 L 16 12 L 24 12" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 12 L 624 12 L 628 16 L 628 24" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 12 336 L 12 344 L 16 348 L 24 348" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 348 L 624 348 L 628 344 L 628 336" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle></g><g class="ris-hud-brand-tag" opacity="0.6"><text stroke="none" x="320" y="12" text-anchor="middle" dominant-baseline="central" fill="currentColor" font-size="7.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="1.8">[ RIS // OPTIC-HUD // AMBIENT ]</text></g><g transform="translate(24, 20)" role="group" aria-label="Ambient Telemetry"><line x1="0" y1="2" x2="0" y2="28" stroke="currentColor" stroke-width="1.5" stroke-opacity="0.7" vector-effect="non-scaling-stroke"></line><circle cx="0" cy="2" r="1" fill="currentColor"></circle><circle cx="0" cy="28" r="1" fill="currentColor"></circle><text stroke="none" x="8" y="14" fill="currentColor" font-size="12" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="0.8">10:42 AM</text><text stroke="none" x="8" y="27" fill="currentColor" fill-opacity="0.75" font-size="8" font-weight="600" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="0.4">BAT 68% (~3.4H) · 5G [ONLINE]</text><circle cx="160" cy="24.5" r="2" fill="currentColor" fill-opacity="0.9" class="ris-micro-pulse"></circle></g></svg>
           </div>
           <div class="card-meta">
             <h3>
@@ -1144,8 +1012,8 @@
             <p>Ultra-minimalist peripheral datablock anchored in the top-left temple. 98% of the wearer’s field of view remains entirely unobstructed for day-long everyday wear.</p>
           </div>
           <div class="card-actions">
-            <button class="action-btn" onclick="copySvg('hud-ambient')">[Copy SVG]</button>
-            <button class="action-btn" onclick="copyJsx('hud-ambient')">[Copy JSX]</button>
+            <button class="ris-btn ris-btn--sm ris-btn--mono" onclick="copySvg('hud-ambient')">[Copy SVG]</button>
+            <button class="ris-btn ris-btn--sm ris-btn--mono" onclick="copyJsx('hud-ambient')">[Copy JSX]</button>
           </div>
           <!-- Hidden scripts for clipboard copy -->
           <script type="text/plain" id="svg-hud-ambient"><svg color="var(--ris-cyan)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" fill="none" stroke="var(--ris-cyan)" stroke-width="1" shape-rendering="geometricPrecision" role="region" aria-label="Smart Glasses Heads Up Display" data-mode="ambient" data-brand="biohub" data-optical-profile="cyber-cyan" class="ris-eyewear-hud ris-eyewear-glass ris-eyewear-profile-cyan" style="background:transparent; color: var(--ris-cyan); overflow:visible;">
@@ -1180,14 +1048,14 @@
       <circle cx="628" cy="348" r="1.5" fill="var(--ris-cyan)" fill-opacity="0.4" />
     </g>
     <g class="ris-hud-brand-tag" opacity="0.6">
-      <text x="320" y="12" text-anchor="middle" dominant-baseline="central" fill="var(--ris-cyan)" font-size="7.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="1.8">[ RIS // OPTIC-HUD // AMBIENT ]</text>
+      <text stroke="none" x="320" y="12" text-anchor="middle" dominant-baseline="central" fill="var(--ris-cyan)" font-size="7.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="1.8">[ RIS // OPTIC-HUD // AMBIENT ]</text>
     </g>
     <g transform="translate(24, 20)" role="group" aria-label="Ambient Telemetry">
       <line x1="0" y1="2" x2="0" y2="28" stroke="var(--ris-cyan)" stroke-width="1.5" stroke-opacity="0.7" vector-effect="non-scaling-stroke" />
       <circle cx="0" cy="2" r="1" fill="var(--ris-cyan)" />
       <circle cx="0" cy="28" r="1" fill="var(--ris-cyan)" />
-      <text x="8" y="14" fill="var(--ris-cyan)" font-size="12" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="0.8">10:42 AM</text>
-      <text x="8" y="27" fill="var(--ris-cyan)" fill-opacity="0.75" font-size="8" font-weight="600" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="0.4">BAT 68% (~3.4H) · 5G [ONLINE]</text>
+      <text stroke="none" x="8" y="14" fill="var(--ris-cyan)" font-size="12" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="0.8">10:42 AM</text>
+      <text stroke="none" x="8" y="27" fill="var(--ris-cyan)" fill-opacity="0.75" font-size="8" font-weight="600" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="0.4">BAT 68% (~3.4H) · 5G [ONLINE]</text>
       <circle cx="160" cy="24.5" r="2" fill="var(--ris-cyan)" fill-opacity="0.7" />
     </g>
 </svg>
@@ -1197,7 +1065,7 @@
       
         <div class="eyewear-card" id="card-hud-commute">
           <div class="card-preview-stage card-preview-stage--viewport">
-            <svg viewBox="0 0 640 360" width="640" height="360" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="region" aria-label="Smart Glasses Heads Up Display" data-mode="commute" data-brand="biohub" data-optical-profile="cyber-cyan" class="ris-eyewear-hud ris-eyewear-glass ris-eyewear-profile-cyan" style="background:transparent;color:var(--ris-cyan);overflow:visible"><title>Smart Glasses HUD - COMMUTE</title><g class="ris-hud-registration-ticks" stroke-opacity="0.6"><path d="M 12 24 L 12 16 L 16 12 L 24 12" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 12 L 624 12 L 628 16 L 628 24" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 12 336 L 12 344 L 16 348 L 24 348" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 348 L 624 348 L 628 344 L 628 336" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle></g><g class="ris-hud-brand-tag" opacity="0.6"><text x="320" y="12" text-anchor="middle" dominant-baseline="central" fill="currentColor" font-size="7.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="1.8">[ RIS // OPTIC-HUD // COMMUTE ]</text></g><g transform="translate(260, 20)" role="group" aria-label="Tactical Heading: 284° WNW"><path d="M 6 0 L 114 0 L 120 6 L 120 18 L 114 24 L 6 24 L 0 18 L 0 6 Z" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.7" vector-effect="non-scaling-stroke"></path><path d="M 3 0 L 0 0 L 0 3 M 117 0 L 120 0 L 120 3 M 0 21 L 0 24 L 3 24 M 120 21 L 120 24 L 117 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.9" vector-effect="non-scaling-stroke"></path><polygon points="20,7 24,17 20,15 16,17" fill="currentColor" fill-opacity="0.9"></polygon><text x="66" y="15.5" text-anchor="middle" fill="currentColor" font-size="9.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="1">[ 284° WNW ]</text><circle cx="108" cy="12" r="1.5" fill="currentColor" fill-opacity="0.6"></circle></g><g transform="translate(456, 20)"><svg viewBox="0 0 160 48" width="160" height="44" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-label="Navigation: slight right, IN 85M, CORSO VITTORIO, [ETA 08:45]" data-maneuver="slight-right" data-brand="biohub" data-optical-profile="cyber-cyan" class="ris-micro-nav ris-eyewear-glass ris-eyewear-profile-cyan" style="color:var(--ris-cyan);flex-shrink:0;overflow:visible"><title>Navigation: slight right, IN 85M, CORSO VITTORIO, [ETA 08:45]</title><path d="M 0 10 L 0 6 L 6 0 L 10 0" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><path d="M 150 0 L 154 0 L 160 6 L 160 10" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><path d="M 0 38 L 0 42 L 6 48 L 10 48" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><path d="M 150 48 L 154 48 L 160 42 L 160 38" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><line x1="80" y1="0" x2="80" y2="3" stroke="currentColor" stroke-width="1" stroke-opacity="0.35" vector-effect="non-scaling-stroke"></line><line x1="80" y1="45" x2="80" y2="48" stroke="currentColor" stroke-width="1" stroke-opacity="0.35" vector-effect="non-scaling-stroke"></line><line x1="44" y1="6" x2="44" y2="42" stroke="currentColor" stroke-width="1" stroke-opacity="0.3" vector-effect="non-scaling-stroke"></line><line x1="42" y1="12" x2="44" y2="12" stroke="currentColor" stroke-width="1" stroke-opacity="0.4" vector-effect="non-scaling-stroke"></line><line x1="41" y1="24" x2="44" y2="24" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></line><line x1="42" y1="36" x2="44" y2="36" stroke="currentColor" stroke-width="1" stroke-opacity="0.4" vector-effect="non-scaling-stroke"></line><g class="ris-micro-nav-glyph"><path d="M 15,37 L 21,37 M 18,37 L 18,25 L 29,14 M 21,14 L 29,14 L 29,22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" shape-rendering="geometricPrecision" vector-effect="non-scaling-stroke" class="ris-micro-pulse"></path></g><g class="ris-micro-nav-telemetry"><text x="52" y="16" font-size="13" font-weight="800" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.04em" fill="currentColor" stroke="none">IN 85M</text><text x="52" y="29" font-size="9.5" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.08em" fill="currentColor" stroke="none" opacity="0.9">CORSO VITTORIO</text><text x="52" y="42" font-size="8.5" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.06em" fill="currentColor" stroke="none" opacity="0.8">[ETA 08:45]</text><circle cx="152" cy="12" r="1.5" fill="currentColor" opacity="0.8" class="ris-micro-blink"></circle></g></svg></g></svg>
+            <svg viewBox="0 0 640 360" width="640" height="360" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="region" aria-label="Smart Glasses Heads Up Display" data-mode="commute" data-brand="biohub" data-optical-profile="cyber-cyan" class="ris-eyewear-hud ris-eyewear-glass ris-eyewear-profile-cyan" style="background:transparent;color:var(--ris-cyan);overflow:visible"><title>Smart Glasses HUD - COMMUTE</title><g class="ris-hud-registration-ticks" stroke-opacity="0.6"><path d="M 12 24 L 12 16 L 16 12 L 24 12" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 12 L 624 12 L 628 16 L 628 24" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 12 336 L 12 344 L 16 348 L 24 348" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 348 L 624 348 L 628 344 L 628 336" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle></g><g class="ris-hud-brand-tag" opacity="0.6"><text stroke="none" x="320" y="12" text-anchor="middle" dominant-baseline="central" fill="currentColor" font-size="7.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="1.8">[ RIS // OPTIC-HUD // COMMUTE ]</text></g><g transform="translate(260, 20)" role="group" aria-label="Tactical Heading: 284° WNW"><path d="M 6 0 L 114 0 L 120 6 L 120 18 L 114 24 L 6 24 L 0 18 L 0 6 Z" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.7" vector-effect="non-scaling-stroke"></path><path d="M 3 0 L 0 0 L 0 3 M 117 0 L 120 0 L 120 3 M 0 21 L 0 24 L 3 24 M 120 21 L 120 24 L 117 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.9" vector-effect="non-scaling-stroke"></path><polygon points="20,7 24,17 20,15 16,17" fill="currentColor" fill-opacity="0.9"></polygon><text stroke="none" x="66" y="15.5" text-anchor="middle" fill="currentColor" font-size="9.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="1">[ 284° WNW ]</text><circle cx="108" cy="12" r="1.5" fill="currentColor" fill-opacity="0.6"></circle></g><g transform="translate(456, 20)"><svg viewBox="0 0 160 48" width="160" height="44" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-label="Navigation: slight right, IN 85M, CORSO VITTORIO, [ETA 08:45]" data-maneuver="slight-right" data-brand="biohub" data-optical-profile="cyber-cyan" class="ris-micro-nav ris-eyewear-glass ris-eyewear-profile-cyan" style="color:var(--ris-cyan);flex-shrink:0;overflow:visible"><title>Navigation: slight right, IN 85M, CORSO VITTORIO, [ETA 08:45]</title><path d="M 0 10 L 0 6 L 6 0 L 10 0" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><path d="M 150 0 L 154 0 L 160 6 L 160 10" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><path d="M 0 38 L 0 42 L 6 48 L 10 48" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><path d="M 150 48 L 154 48 L 160 42 L 160 38" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><line x1="80" y1="0" x2="80" y2="3" stroke="currentColor" stroke-width="1" stroke-opacity="0.35" vector-effect="non-scaling-stroke"></line><line x1="80" y1="45" x2="80" y2="48" stroke="currentColor" stroke-width="1" stroke-opacity="0.35" vector-effect="non-scaling-stroke"></line><line x1="44" y1="6" x2="44" y2="42" stroke="currentColor" stroke-width="1" stroke-opacity="0.3" vector-effect="non-scaling-stroke"></line><line x1="42" y1="12" x2="44" y2="12" stroke="currentColor" stroke-width="1" stroke-opacity="0.4" vector-effect="non-scaling-stroke"></line><line x1="41" y1="24" x2="44" y2="24" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></line><line x1="42" y1="36" x2="44" y2="36" stroke="currentColor" stroke-width="1" stroke-opacity="0.4" vector-effect="non-scaling-stroke"></line><g class="ris-micro-nav-glyph"><path d="M 15,37 L 21,37 M 18,37 L 18,25 L 29,14 M 21,14 L 29,14 L 29,22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" shape-rendering="geometricPrecision" vector-effect="non-scaling-stroke" class="ris-micro-pulse"></path></g><g class="ris-micro-nav-telemetry"><text x="52" y="16" font-size="13" font-weight="800" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.04em" fill="currentColor" stroke="none">IN 85M</text><text x="52" y="29" font-size="9.5" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.08em" fill="currentColor" stroke="none" opacity="0.9">CORSO VITTORIO</text><text x="52" y="42" font-size="8.5" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.06em" fill="currentColor" stroke="none" opacity="0.8">[ETA 08:45]</text><circle cx="152" cy="12" r="1.5" fill="currentColor" opacity="0.8" class="ris-micro-blink"></circle></g></svg></g></svg>
           </div>
           <div class="card-meta">
             <h3>
@@ -1207,8 +1075,8 @@
             <p>Top-right navigation guidance with maneuver countdown paired with top-center tactical compass azimuth heading. Central field of view 100% clear for safe road navigation.</p>
           </div>
           <div class="card-actions">
-            <button class="action-btn" onclick="copySvg('hud-commute')">[Copy SVG]</button>
-            <button class="action-btn" onclick="copyJsx('hud-commute')">[Copy JSX]</button>
+            <button class="ris-btn ris-btn--sm ris-btn--mono" onclick="copySvg('hud-commute')">[Copy SVG]</button>
+            <button class="ris-btn ris-btn--sm ris-btn--mono" onclick="copyJsx('hud-commute')">[Copy JSX]</button>
           </div>
           <!-- Hidden scripts for clipboard copy -->
           <script type="text/plain" id="svg-hud-commute"><svg color="var(--ris-cyan)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" fill="none" stroke="var(--ris-cyan)" stroke-width="1" shape-rendering="geometricPrecision" role="region" aria-label="Smart Glasses Heads Up Display" data-mode="commute" data-brand="biohub" data-optical-profile="cyber-cyan" class="ris-eyewear-hud ris-eyewear-glass ris-eyewear-profile-cyan" style="background:transparent; color: var(--ris-cyan); overflow:visible;">
@@ -1243,13 +1111,13 @@
       <circle cx="628" cy="348" r="1.5" fill="var(--ris-cyan)" fill-opacity="0.4" />
     </g>
     <g class="ris-hud-brand-tag" opacity="0.6">
-      <text x="320" y="12" text-anchor="middle" dominant-baseline="central" fill="var(--ris-cyan)" font-size="7.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="1.8">[ RIS // OPTIC-HUD // COMMUTE ]</text>
+      <text stroke="none" x="320" y="12" text-anchor="middle" dominant-baseline="central" fill="var(--ris-cyan)" font-size="7.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="1.8">[ RIS // OPTIC-HUD // COMMUTE ]</text>
     </g>
     <g transform="translate(260, 20)" role="group" aria-label="Tactical Heading: 284° WNW">
       <path d="M 6 0 L 114 0 L 120 6 L 120 18 L 114 24 L 6 24 L 0 18 L 0 6 Z" fill="none" stroke="var(--ris-cyan)" stroke-width="1" stroke-opacity="0.7" vector-effect="non-scaling-stroke" />
       <path d="M 3 0 L 0 0 L 0 3 M 117 0 L 120 0 L 120 3 M 0 21 L 0 24 L 3 24 M 120 21 L 120 24 L 117 24" fill="none" stroke="var(--ris-cyan)" stroke-width="1.25" stroke-opacity="0.9" vector-effect="non-scaling-stroke" />
       <polygon points="20,7 24,17 20,15 16,17" fill="var(--ris-cyan)" fill-opacity="0.9" />
-      <text x="66" y="15.5" text-anchor="middle" fill="var(--ris-cyan)" font-size="9.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="1">[ 284° WNW ]</text>
+      <text stroke="none" x="66" y="15.5" text-anchor="middle" fill="var(--ris-cyan)" font-size="9.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="1">[ 284° WNW ]</text>
       <circle cx="108" cy="12" r="1.5" fill="var(--ris-cyan)" fill-opacity="0.6" />
     </g>
     <g transform="translate(456, 20)">
@@ -1283,7 +1151,7 @@
       
         <div class="eyewear-card" id="card-hud-meeting">
           <div class="card-preview-stage card-preview-stage--viewport">
-            <svg viewBox="0 0 640 360" width="640" height="360" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="region" aria-label="Smart Glasses Heads Up Display" data-mode="meeting" data-brand="biohub" data-optical-profile="cyber-cyan" class="ris-eyewear-hud ris-eyewear-glass ris-eyewear-profile-cyan" style="background:transparent;color:var(--ris-cyan);overflow:visible"><title>Smart Glasses HUD - MEETING</title><g class="ris-hud-registration-ticks" stroke-opacity="0.6"><path d="M 12 24 L 12 16 L 16 12 L 24 12" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 12 L 624 12 L 628 16 L 628 24" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 12 336 L 12 344 L 16 348 L 24 348" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 348 L 624 348 L 628 344 L 628 336" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle></g><g class="ris-hud-brand-tag" opacity="0.6"><text x="320" y="12" text-anchor="middle" dominant-baseline="central" fill="currentColor" font-size="7.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="1.8">[ RIS // OPTIC-HUD // MEETING ]</text></g><g transform="translate(210, 20)"><svg viewBox="0 0 220 26" width="220" height="26" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-label="Notice [CALENDAR] NEXT: DESIGN SYNC: IN 10 MIN · CONF RM B (info)" data-category="CALENDAR" data-severity="info" data-brand="biohub" data-optical-profile="cyber-cyan" class="ris-micro-glance ris-eyewear-glass ris-eyewear-profile-cyan" style="color:var(--ris-cyan);background:transparent;flex-shrink:0;overflow:visible"><title>Notice [CALENDAR] NEXT: DESIGN SYNC: IN 10 MIN · CONF RM B (info)</title><defs><clipPath id=":Rm:"><rect x="76" y="2" width="128" height="22"></rect></clipPath></defs><path d="M 5 1 L 215 1 L 219 5 L 219 21 L 215 25 L 5 25 L 1 21 L 1 5 Z" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.8" vector-effect="non-scaling-stroke"></path><path d="M 1 8 L 1 4 L 4 1 L 8 1" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.9" vector-effect="non-scaling-stroke"></path><path d="M 212 1 L 216 1 L 219 4 L 219 8" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.9" vector-effect="non-scaling-stroke"></path><text x="8" y="17" font-size="8" font-weight="800" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.06em" fill="currentColor" stroke="none">[CALENDAR]</text><line x1="70" y1="6" x2="70" y2="20" stroke="currentColor" stroke-width="1" stroke-opacity="0.4" vector-effect="non-scaling-stroke"></line><g clip-path="url(#:Rm:)"><text x="78" y="17" font-size="9.5" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.04em" fill="currentColor" stroke="none">NEXT: DESIGN SYNC<tspan opacity="0.85" font-weight="600"> · IN 10 MIN · CONF RM B</tspan></text></g><circle cx="210" cy="13" r="1.5" fill="currentColor" stroke="none" opacity="0.75"></circle><line x1="6" y1="24.5" x2="214" y2="24.5" stroke="currentColor" stroke-width="1" stroke-opacity="0.2" vector-effect="non-scaling-stroke"></line><line x1="6" y1="24.5" x2="58" y2="24.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" vector-effect="non-scaling-stroke"></line></svg></g><g transform="translate(200, 296)"><svg viewBox="0 0 240 52" width="240" height="52" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-label="Live captions: FINALIZED TELEMETRY ARCHITECTURE MOVING REVIEWS TO Q3 TIMELINE" data-brand="biohub" data-optical-profile="cyber-cyan" data-listening="true" class="ris-micro-captions ris-eyewear-glass ris-eyewear-profile-cyan" style="color:var(--ris-cyan);flex-shrink:0;overflow:visible"><title>Live captions: FINALIZED TELEMETRY ARCHITECTURE MOVING REVIEWS TO Q3 TIMELINE</title><defs><clipPath id=":R16:"><rect x="14" y="16" width="206" height="32"></rect></clipPath></defs><g class="ris-micro-captions-status"><circle cx="14" cy="10" r="3" fill="currentColor" stroke="none" opacity="1" class="ris-micro-listen"></circle><text x="24" y="13" font-size="8" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.06em" fill="currentColor" stroke="none" opacity="0.9">[REC] ELENA ROSTOVA</text><line x1="222" y1="10" x2="228" y2="10" stroke="currentColor" stroke-width="1" stroke-opacity="0.5" vector-effect="non-scaling-stroke"></line><line x1="226" y1="7" x2="226" y2="13" stroke="currentColor" stroke-width="1" stroke-opacity="0.5" vector-effect="non-scaling-stroke"></line></g><g class="ris-micro-captions-wireframe"><path d="M 6,14 L 6,46 L 12,46" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><path d="M 234,14 L 234,46 L 228,46" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path></g><g class="ris-micro-captions-body" clip-path="url(#:R16:)"><text x="14" y="28" font-size="8.5" font-weight="600" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.02em" fill="currentColor" stroke="none">FINALIZED TELEMETRY ARCHITECTURE</text><text x="14" y="41" font-size="8.5" font-weight="600" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.02em" fill="currentColor" stroke="none" opacity="0.85">MOVING REVIEWS TO Q3 TIMELINE</text></g></svg></g></svg>
+            <svg viewBox="0 0 640 360" width="640" height="360" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="region" aria-label="Smart Glasses Heads Up Display" data-mode="meeting" data-brand="biohub" data-optical-profile="cyber-cyan" class="ris-eyewear-hud ris-eyewear-glass ris-eyewear-profile-cyan" style="background:transparent;color:var(--ris-cyan);overflow:visible"><title>Smart Glasses HUD - MEETING</title><g class="ris-hud-registration-ticks" stroke-opacity="0.6"><path d="M 12 24 L 12 16 L 16 12 L 24 12" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 12 L 624 12 L 628 16 L 628 24" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 12 336 L 12 344 L 16 348 L 24 348" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 348 L 624 348 L 628 344 L 628 336" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle></g><g class="ris-hud-brand-tag" opacity="0.6"><text stroke="none" x="320" y="12" text-anchor="middle" dominant-baseline="central" fill="currentColor" font-size="7.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="1.8">[ RIS // OPTIC-HUD // MEETING ]</text></g><g transform="translate(210, 20)"><svg viewBox="0 0 220 26" width="220" height="26" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-label="Notice [CALENDAR] NEXT: DESIGN SYNC: IN 10 MIN · CONF RM B (info)" data-category="CALENDAR" data-severity="info" data-brand="biohub" data-optical-profile="cyber-cyan" class="ris-micro-glance ris-eyewear-glass ris-eyewear-profile-cyan" style="color:var(--ris-cyan);background:transparent;flex-shrink:0;overflow:visible"><title>Notice [CALENDAR] NEXT: DESIGN SYNC: IN 10 MIN · CONF RM B (info)</title><defs><clipPath id=":Rm:"><rect x="76" y="2" width="128" height="22"></rect></clipPath></defs><path d="M 5 1 L 215 1 L 219 5 L 219 21 L 215 25 L 5 25 L 1 21 L 1 5 Z" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.8" vector-effect="non-scaling-stroke"></path><path d="M 1 8 L 1 4 L 4 1 L 8 1" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.9" vector-effect="non-scaling-stroke"></path><path d="M 212 1 L 216 1 L 219 4 L 219 8" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.9" vector-effect="non-scaling-stroke"></path><text x="8" y="17" font-size="8" font-weight="800" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.06em" fill="currentColor" stroke="none">[CALENDAR]</text><line x1="70" y1="6" x2="70" y2="20" stroke="currentColor" stroke-width="1" stroke-opacity="0.4" vector-effect="non-scaling-stroke"></line><g clip-path="url(#:Rm:)"><text x="78" y="17" font-size="9.5" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.04em" fill="currentColor" stroke="none">NEXT: DESIGN SYNC<tspan opacity="0.85" font-weight="600"> · IN 10 MIN · CONF RM B</tspan></text></g><circle cx="210" cy="13" r="1.5" fill="currentColor" stroke="none" opacity="0.75"></circle><line x1="6" y1="24.5" x2="214" y2="24.5" stroke="currentColor" stroke-width="1" stroke-opacity="0.2" vector-effect="non-scaling-stroke"></line><line x1="6" y1="24.5" x2="58" y2="24.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" vector-effect="non-scaling-stroke"></line></svg></g><g transform="translate(200, 296)"><svg viewBox="0 0 240 52" width="240" height="52" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-label="Live captions: FINALIZED TELEMETRY ARCHITECTURE MOVING REVIEWS TO Q3 TIMELINE" data-brand="biohub" data-optical-profile="cyber-cyan" data-listening="true" class="ris-micro-captions ris-eyewear-glass ris-eyewear-profile-cyan" style="color:var(--ris-cyan);flex-shrink:0;overflow:visible"><title>Live captions: FINALIZED TELEMETRY ARCHITECTURE MOVING REVIEWS TO Q3 TIMELINE</title><defs><clipPath id=":R16:"><rect x="14" y="16" width="206" height="32"></rect></clipPath></defs><g class="ris-micro-captions-status"><circle cx="14" cy="10" r="3" fill="currentColor" stroke="none" opacity="1" class="ris-micro-listen"></circle><text x="24" y="13" font-size="8" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.06em" fill="currentColor" stroke="none" opacity="0.9">[REC] ELENA ROSTOVA</text><line x1="222" y1="10" x2="228" y2="10" stroke="currentColor" stroke-width="1" stroke-opacity="0.5" vector-effect="non-scaling-stroke"></line><line x1="226" y1="7" x2="226" y2="13" stroke="currentColor" stroke-width="1" stroke-opacity="0.5" vector-effect="non-scaling-stroke"></line></g><g class="ris-micro-captions-wireframe"><path d="M 6,14 L 6,46 L 12,46" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><path d="M 234,14 L 234,46 L 228,46" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path></g><g class="ris-micro-captions-body" clip-path="url(#:R16:)"><text x="14" y="28" font-size="8.5" font-weight="600" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.02em" fill="currentColor" stroke="none">FINALIZED TELEMETRY ARCHITECTURE</text><text x="14" y="41" font-size="8.5" font-weight="600" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.02em" fill="currentColor" stroke="none" opacity="0.85">MOVING REVIEWS TO Q3 TIMELINE</text></g></svg></g></svg>
           </div>
           <div class="card-meta">
             <h3>
@@ -1293,8 +1161,8 @@
             <p>Bottom-center speech transcription within foveal comfort boundary paired with top glance notifications. Complete central transparency allows natural eye contact with colleagues.</p>
           </div>
           <div class="card-actions">
-            <button class="action-btn" onclick="copySvg('hud-meeting')">[Copy SVG]</button>
-            <button class="action-btn" onclick="copyJsx('hud-meeting')">[Copy JSX]</button>
+            <button class="ris-btn ris-btn--sm ris-btn--mono" onclick="copySvg('hud-meeting')">[Copy SVG]</button>
+            <button class="ris-btn ris-btn--sm ris-btn--mono" onclick="copyJsx('hud-meeting')">[Copy JSX]</button>
           </div>
           <!-- Hidden scripts for clipboard copy -->
           <script type="text/plain" id="svg-hud-meeting"><svg color="var(--ris-accent)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" fill="none" stroke="var(--ris-accent)" stroke-width="1" shape-rendering="geometricPrecision" role="region" aria-label="Smart Glasses Heads Up Display" data-mode="meeting" data-brand="relic" data-optical-profile="tactical-amber" class="ris-eyewear-hud ris-eyewear-glass ris-eyewear-profile-amber" style="background:transparent; color: var(--ris-accent); overflow:visible;">
@@ -1329,7 +1197,7 @@
       <circle cx="628" cy="348" r="1.5" fill="var(--ris-accent)" fill-opacity="0.4" />
     </g>
     <g class="ris-hud-brand-tag" opacity="0.6">
-      <text x="320" y="12" text-anchor="middle" dominant-baseline="central" fill="var(--ris-accent)" font-size="7.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="1.8">[ RIS // OPTIC-HUD // MEETING ]</text>
+      <text stroke="none" x="320" y="12" text-anchor="middle" dominant-baseline="central" fill="var(--ris-accent)" font-size="7.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="1.8">[ RIS // OPTIC-HUD // MEETING ]</text>
     </g>
     <g transform="translate(210, 20)">
       <svg viewBox="0 0 220 26" width="220" height="26" fill="none" stroke="var(--ris-accent)" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-label="Notice [CALENDAR] NEXT: DESIGN SYNC: IN 10 MIN · CONF RM B (info)" data-category="CALENDAR" data-severity="info" data-brand="relic" data-optical-profile="tactical-amber" class="ris-micro-glance ris-eyewear-glass ris-eyewear-profile-amber" style="color: var(--ris-accent); background:transparent; overflow:visible;">
@@ -1384,7 +1252,7 @@
       
         <div class="eyewear-card" id="card-hud-field-ops">
           <div class="card-preview-stage card-preview-stage--viewport">
-            <svg viewBox="0 0 640 360" width="640" height="360" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="region" aria-label="Smart Glasses Heads Up Display" data-mode="field-ops" data-brand="biohub" data-optical-profile="cyber-cyan" class="ris-eyewear-hud ris-eyewear-glass ris-eyewear-profile-cyan" style="background:transparent;color:var(--ris-cyan);overflow:visible"><title>Smart Glasses HUD - FIELD-OPS</title><g class="ris-hud-registration-ticks" stroke-opacity="0.6"><path d="M 12 24 L 12 16 L 16 12 L 24 12" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 12 L 624 12 L 628 16 L 628 24" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 12 336 L 12 344 L 16 348 L 24 348" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 348 L 624 348 L 628 344 L 628 336" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle></g><g class="ris-hud-brand-tag" opacity="0.6"><text x="320" y="12" text-anchor="middle" dominant-baseline="central" fill="currentColor" font-size="7.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="1.8">[ RIS // OPTIC-HUD // FIELD-OPS ]</text></g><g transform="translate(240, 120)"><svg viewBox="0 0 160 120" width="160" height="120" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-label="Spatial Inspection: CONDUIT_COUPLER_04, DST 1.40M, status [LOCKED], SPEC-A9 // PRESSURE OK" data-status="locked" data-brand="biohub" data-optical-profile="cyber-cyan" class="ris-micro-inspection ris-eyewear-glass ris-eyewear-profile-cyan" style="color:var(--ris-cyan);background:transparent;flex-shrink:0;overflow:visible"><title>Spatial Inspection: CONDUIT_COUPLER_04, DST 1.40M, status [LOCKED], SPEC-A9 // PRESSURE OK</title><defs><clipPath id=":Rn:"><rect x="18" y="105" width="124" height="15"></rect></clipPath></defs><g class="ris-micro-inspection-brackets" opacity="1"><path d="M 20 30 L 20 22 L 24 18 L 32 18" fill="none" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><path d="M 128 18 L 136 18 L 140 22 L 140 30" fill="none" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><path d="M 20 90 L 20 98 L 24 102 L 32 102" fill="none" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><path d="M 128 102 L 136 102 L 140 98 L 140 90" fill="none" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path></g><g class="ris-micro-boresight-ticks" opacity="0.75"><line x1="80" y1="14" x2="80" y2="17" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></line><line x1="80" y1="103" x2="80" y2="106" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></line><line x1="12" y1="60" x2="16" y2="60" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></line><line x1="144" y1="60" x2="148" y2="60" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></line></g><g class="ris-micro-range-ruler"><line x1="150" y1="24" x2="150" y2="96" stroke="currentColor" stroke-width="1" stroke-opacity="0.35" vector-effect="non-scaling-stroke"></line><line x1="148" y1="24" x2="153" y2="24" stroke="currentColor" stroke-width="1" stroke-opacity="0.7" vector-effect="non-scaling-stroke"></line><line x1="149" y1="42" x2="152" y2="42" stroke="currentColor" stroke-width="0.75" stroke-opacity="0.45" vector-effect="non-scaling-stroke"></line><line x1="148" y1="60" x2="153" y2="60" stroke="currentColor" stroke-width="1" stroke-opacity="0.7" vector-effect="non-scaling-stroke"></line><line x1="149" y1="78" x2="152" y2="78" stroke="currentColor" stroke-width="0.75" stroke-opacity="0.45" vector-effect="non-scaling-stroke"></line><line x1="148" y1="96" x2="153" y2="96" stroke="currentColor" stroke-width="1" stroke-opacity="0.7" vector-effect="non-scaling-stroke"></line><polygon points="155,84.5 150.5,87 155,89.5" fill="currentColor" stroke="none" opacity="0.9"></polygon></g><g class="ris-micro-inspection-chip-top"><text x="12" y="11" font-size="8.5" font-weight="800" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.04em" fill="currentColor" stroke="none">DST: 1.40M</text><text x="148" y="11" text-anchor="end" font-size="7.5" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.06em" fill="currentColor" stroke="none">[LOCKED]</text></g><g class="ris-micro-inspection-chip-bottom" clip-path="url(#:Rn:)"><text x="80" y="111" text-anchor="middle" font-size="7.5" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.04em" fill="currentColor" stroke="none">CONDUIT_COUPLER_04</text><text x="80" y="118" text-anchor="middle" font-size="6.5" font-weight="600" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.04em" fill="currentColor" stroke="none" opacity="0.8">SPEC-A9 // PRESSURE OK</text></g></svg></g><g transform="translate(24, 20)"><svg viewBox="0 0 160 48" width="160" height="48" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-label="Vital telemetry: 74 BPM, Zone 2, 142M ALT, Battery 88% (~4H 30M)" data-brand="biohub" data-optical-profile="cyber-cyan" data-hr-zone="2" data-animated="true" class="ris-micro-vital ris-eyewear-glass ris-eyewear-profile-cyan" style="color:var(--ris-cyan);flex-shrink:0;overflow:visible"><title>Vital telemetry: 74 BPM, Zone 2, 142M ALT, Battery 88% (~4H 30M)</title><path d="M 0 10 L 0 6 L 6 0 L 10 0" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><path d="M 150 0 L 154 0 L 160 6 L 160 10" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><path d="M 0 38 L 0 42 L 6 48 L 10 48" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><path d="M 150 48 L 154 48 L 160 42 L 160 38" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><line x1="82" y1="0" x2="82" y2="3" stroke="currentColor" stroke-width="1" stroke-opacity="0.35" vector-effect="non-scaling-stroke"></line><line x1="82" y1="45" x2="82" y2="48" stroke="currentColor" stroke-width="1" stroke-opacity="0.35" vector-effect="non-scaling-stroke"></line><g class="ris-micro-vital-divider"><line x1="82" y1="8" x2="82" y2="40" stroke="currentColor" stroke-width="1" stroke-opacity="0.35" vector-effect="non-scaling-stroke"></line><line x1="80" y1="16" x2="84" y2="16" stroke="currentColor" stroke-width="1" stroke-opacity="0.5" vector-effect="non-scaling-stroke"></line><line x1="80" y1="32" x2="84" y2="32" stroke="currentColor" stroke-width="1" stroke-opacity="0.5" vector-effect="non-scaling-stroke"></line></g><g class="ris-micro-vital-heart"><g class="ris-micro-pulse" style="transform-origin:11px 17px"><polygon points="9,11 13,11 17,15 17,19 13,23 9,23 5,19 5,15" fill="none" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke"></polygon><path d="M 7,17 L 9,17 L 10.5,14.5 L 11.5,19.5 L 12.5,16 L 13.5,17 L 15,17" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" vector-effect="non-scaling-stroke"></path></g><text x="21" y="21" font-size="13" font-weight="800" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.02em" fill="currentColor" stroke="none">74 BPM</text><text x="21" y="36" font-size="8.5" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.06em" fill="currentColor" stroke="none" opacity="0.85">[Z2]</text><g class="ris-micro-vital-zone-ticks" opacity="0.8"><rect x="45" y="30" width="4" height="6" fill="currentColor" fill-opacity="0.45" stroke="currentColor" stroke-width="0.75" stroke-opacity="0.9" vector-effect="non-scaling-stroke"></rect><rect x="51" y="30" width="4" height="6" fill="currentColor" fill-opacity="1" stroke="currentColor" stroke-width="0.75" stroke-opacity="0.9" vector-effect="non-scaling-stroke"></rect><rect x="57" y="30" width="4" height="6" fill="none" fill-opacity="0" stroke="currentColor" stroke-width="0.75" stroke-opacity="0.25" vector-effect="non-scaling-stroke"></rect><rect x="63" y="30" width="4" height="6" fill="none" fill-opacity="0" stroke="currentColor" stroke-width="0.75" stroke-opacity="0.25" vector-effect="non-scaling-stroke"></rect><rect x="69" y="30" width="4" height="6" fill="none" fill-opacity="0" stroke="currentColor" stroke-width="0.75" stroke-opacity="0.25" vector-effect="non-scaling-stroke"></rect></g></g><g class="ris-micro-vital-env"><text x="88" y="21" font-size="9.5" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.06em" fill="currentColor" stroke="none">142M ALT</text><g class="ris-micro-vital-battery"><rect x="88" y="29" width="4" height="7" fill="currentColor" fill-opacity="1" stroke="currentColor" stroke-width="1" stroke-opacity="1" shape-rendering="geometricPrecision" vector-effect="non-scaling-stroke"></rect><rect x="93.5" y="29" width="4" height="7" fill="currentColor" fill-opacity="1" stroke="currentColor" stroke-width="1" stroke-opacity="1" shape-rendering="geometricPrecision" vector-effect="non-scaling-stroke"></rect><rect x="99" y="29" width="4" height="7" fill="currentColor" fill-opacity="1" stroke="currentColor" stroke-width="1" stroke-opacity="1" shape-rendering="geometricPrecision" vector-effect="non-scaling-stroke"></rect><rect x="104.5" y="29" width="4" height="7" fill="currentColor" fill-opacity="1" stroke="currentColor" stroke-width="1" stroke-opacity="1" shape-rendering="geometricPrecision" vector-effect="non-scaling-stroke"></rect><text x="113" y="36" font-size="8.5" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.04em" fill="currentColor" stroke="none" opacity="0.9">~4H 30M</text></g></g></svg></g><g transform="translate(500, 20)" role="group" aria-label="Environmental Status: [AIR: NOMINAL] · RAD: 0.08 μSv/h"><title>[AIR: NOMINAL] · RAD: 0.08 μSv/h</title><path d="M 5 0 L 115 0 L 120 5 L 120 21 L 115 26 L 5 26 L 0 21 L 0 5 Z" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.65" vector-effect="non-scaling-stroke"></path><path d="M 3 0 L 0 0 L 0 3 M 117 0 L 120 0 L 120 3 M 0 23 L 0 26 L 3 26 M 120 23 L 120 26 L 117 26" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.85" vector-effect="non-scaling-stroke"></path><circle cx="10" cy="13" r="2" fill="currentColor" fill-opacity="0.9" class="ris-micro-pulse"></circle><text x="18" y="10.5" fill="currentColor" font-size="7.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="0.8">[AIR: NOMINAL]</text><text x="18" y="20.5" fill="currentColor" fill-opacity="0.8" font-size="7" font-weight="600" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="0.4">RAD: 0.08 μSv/h</text></g></svg>
+            <svg viewBox="0 0 640 360" width="640" height="360" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="region" aria-label="Smart Glasses Heads Up Display" data-mode="field-ops" data-brand="biohub" data-optical-profile="cyber-cyan" class="ris-eyewear-hud ris-eyewear-glass ris-eyewear-profile-cyan" style="background:transparent;color:var(--ris-cyan);overflow:visible"><title>Smart Glasses HUD - FIELD-OPS</title><g class="ris-hud-registration-ticks" stroke-opacity="0.6"><path d="M 12 24 L 12 16 L 16 12 L 24 12" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 12 L 624 12 L 628 16 L 628 24" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 12 336 L 12 344 L 16 348 L 24 348" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 348 L 624 348 L 628 344 L 628 336" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle></g><g class="ris-hud-brand-tag" opacity="0.6"><text stroke="none" x="320" y="12" text-anchor="middle" dominant-baseline="central" fill="currentColor" font-size="7.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="1.8">[ RIS // OPTIC-HUD // FIELD-OPS ]</text></g><g transform="translate(240, 120)"><svg viewBox="0 0 160 120" width="160" height="120" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-label="Spatial Inspection: CONDUIT_COUPLER_04, DST 1.40M, status [LOCKED], SPEC-A9 // PRESSURE OK" data-status="locked" data-brand="biohub" data-optical-profile="cyber-cyan" class="ris-micro-inspection ris-eyewear-glass ris-eyewear-profile-cyan" style="color:var(--ris-cyan);background:transparent;flex-shrink:0;overflow:visible"><title>Spatial Inspection: CONDUIT_COUPLER_04, DST 1.40M, status [LOCKED], SPEC-A9 // PRESSURE OK</title><defs><clipPath id=":Rn:"><rect x="18" y="105" width="124" height="15"></rect></clipPath></defs><g class="ris-micro-inspection-brackets" opacity="1"><path d="M 20 30 L 20 22 L 24 18 L 32 18" fill="none" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><path d="M 128 18 L 136 18 L 140 22 L 140 30" fill="none" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><path d="M 20 90 L 20 98 L 24 102 L 32 102" fill="none" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><path d="M 128 102 L 136 102 L 140 98 L 140 90" fill="none" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path></g><g class="ris-micro-boresight-ticks" opacity="0.75"><line x1="80" y1="14" x2="80" y2="17" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></line><line x1="80" y1="103" x2="80" y2="106" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></line><line x1="12" y1="60" x2="16" y2="60" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></line><line x1="144" y1="60" x2="148" y2="60" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></line></g><g class="ris-micro-range-ruler"><line x1="150" y1="24" x2="150" y2="96" stroke="currentColor" stroke-width="1" stroke-opacity="0.35" vector-effect="non-scaling-stroke"></line><line x1="148" y1="24" x2="153" y2="24" stroke="currentColor" stroke-width="1" stroke-opacity="0.7" vector-effect="non-scaling-stroke"></line><line x1="149" y1="42" x2="152" y2="42" stroke="currentColor" stroke-width="0.75" stroke-opacity="0.45" vector-effect="non-scaling-stroke"></line><line x1="148" y1="60" x2="153" y2="60" stroke="currentColor" stroke-width="1" stroke-opacity="0.7" vector-effect="non-scaling-stroke"></line><line x1="149" y1="78" x2="152" y2="78" stroke="currentColor" stroke-width="0.75" stroke-opacity="0.45" vector-effect="non-scaling-stroke"></line><line x1="148" y1="96" x2="153" y2="96" stroke="currentColor" stroke-width="1" stroke-opacity="0.7" vector-effect="non-scaling-stroke"></line><polygon points="155,84.5 150.5,87 155,89.5" fill="currentColor" stroke="none" opacity="0.9"></polygon></g><g class="ris-micro-inspection-chip-top"><text x="12" y="11" font-size="8.5" font-weight="800" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.04em" fill="currentColor" stroke="none">DST: 1.40M</text><text x="148" y="11" text-anchor="end" font-size="7.5" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.06em" fill="currentColor" stroke="none">[LOCKED]</text></g><g class="ris-micro-inspection-chip-bottom" clip-path="url(#:Rn:)"><text x="80" y="111" text-anchor="middle" font-size="7.5" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.04em" fill="currentColor" stroke="none">CONDUIT_COUPLER_04</text><text x="80" y="118" text-anchor="middle" font-size="6.5" font-weight="600" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.04em" fill="currentColor" stroke="none" opacity="0.8">SPEC-A9 // PRESSURE OK</text></g></svg></g><g transform="translate(24, 20)"><svg viewBox="0 0 160 48" width="160" height="48" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-label="Vital telemetry: 74 BPM, Zone 2, 142M ALT, Battery 88% (~4H 30M)" data-brand="biohub" data-optical-profile="cyber-cyan" data-hr-zone="2" data-animated="true" class="ris-micro-vital ris-eyewear-glass ris-eyewear-profile-cyan" style="color:var(--ris-cyan);flex-shrink:0;overflow:visible"><title>Vital telemetry: 74 BPM, Zone 2, 142M ALT, Battery 88% (~4H 30M)</title><path d="M 0 10 L 0 6 L 6 0 L 10 0" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><path d="M 150 0 L 154 0 L 160 6 L 160 10" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><path d="M 0 38 L 0 42 L 6 48 L 10 48" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><path d="M 150 48 L 154 48 L 160 42 L 160 38" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><line x1="82" y1="0" x2="82" y2="3" stroke="currentColor" stroke-width="1" stroke-opacity="0.35" vector-effect="non-scaling-stroke"></line><line x1="82" y1="45" x2="82" y2="48" stroke="currentColor" stroke-width="1" stroke-opacity="0.35" vector-effect="non-scaling-stroke"></line><g class="ris-micro-vital-divider"><line x1="82" y1="8" x2="82" y2="40" stroke="currentColor" stroke-width="1" stroke-opacity="0.35" vector-effect="non-scaling-stroke"></line><line x1="80" y1="16" x2="84" y2="16" stroke="currentColor" stroke-width="1" stroke-opacity="0.5" vector-effect="non-scaling-stroke"></line><line x1="80" y1="32" x2="84" y2="32" stroke="currentColor" stroke-width="1" stroke-opacity="0.5" vector-effect="non-scaling-stroke"></line></g><g class="ris-micro-vital-heart"><g class="ris-micro-pulse" style="transform-origin:11px 17px"><polygon points="9,11 13,11 17,15 17,19 13,23 9,23 5,19 5,15" fill="none" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke"></polygon><path d="M 7,17 L 9,17 L 10.5,14.5 L 11.5,19.5 L 12.5,16 L 13.5,17 L 15,17" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" vector-effect="non-scaling-stroke"></path></g><text x="21" y="21" font-size="13" font-weight="800" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.02em" fill="currentColor" stroke="none">74 BPM</text><text x="21" y="36" font-size="8.5" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.06em" fill="currentColor" stroke="none" opacity="0.85">[Z2]</text><g class="ris-micro-vital-zone-ticks" opacity="0.8"><rect x="45" y="30" width="4" height="6" fill="currentColor" fill-opacity="0.45" stroke="currentColor" stroke-width="0.75" stroke-opacity="0.9" vector-effect="non-scaling-stroke"></rect><rect x="51" y="30" width="4" height="6" fill="currentColor" fill-opacity="1" stroke="currentColor" stroke-width="0.75" stroke-opacity="0.9" vector-effect="non-scaling-stroke"></rect><rect x="57" y="30" width="4" height="6" fill="none" fill-opacity="0" stroke="currentColor" stroke-width="0.75" stroke-opacity="0.25" vector-effect="non-scaling-stroke"></rect><rect x="63" y="30" width="4" height="6" fill="none" fill-opacity="0" stroke="currentColor" stroke-width="0.75" stroke-opacity="0.25" vector-effect="non-scaling-stroke"></rect><rect x="69" y="30" width="4" height="6" fill="none" fill-opacity="0" stroke="currentColor" stroke-width="0.75" stroke-opacity="0.25" vector-effect="non-scaling-stroke"></rect></g></g><g class="ris-micro-vital-env"><text x="88" y="21" font-size="9.5" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.06em" fill="currentColor" stroke="none">142M ALT</text><g class="ris-micro-vital-battery"><rect x="88" y="29" width="4" height="7" fill="currentColor" fill-opacity="1" stroke="currentColor" stroke-width="1" stroke-opacity="1" shape-rendering="geometricPrecision" vector-effect="non-scaling-stroke"></rect><rect x="93.5" y="29" width="4" height="7" fill="currentColor" fill-opacity="1" stroke="currentColor" stroke-width="1" stroke-opacity="1" shape-rendering="geometricPrecision" vector-effect="non-scaling-stroke"></rect><rect x="99" y="29" width="4" height="7" fill="currentColor" fill-opacity="1" stroke="currentColor" stroke-width="1" stroke-opacity="1" shape-rendering="geometricPrecision" vector-effect="non-scaling-stroke"></rect><rect x="104.5" y="29" width="4" height="7" fill="currentColor" fill-opacity="1" stroke="currentColor" stroke-width="1" stroke-opacity="1" shape-rendering="geometricPrecision" vector-effect="non-scaling-stroke"></rect><text x="113" y="36" font-size="8.5" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.04em" fill="currentColor" stroke="none" opacity="0.9">~4H 30M</text></g></g></svg></g><g transform="translate(500, 20)" role="group" aria-label="Environmental Status: [AIR: NOMINAL] · RAD: 0.08 μSv/h"><title>[AIR: NOMINAL] · RAD: 0.08 μSv/h</title><path d="M 5 0 L 115 0 L 120 5 L 120 21 L 115 26 L 5 26 L 0 21 L 0 5 Z" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.65" vector-effect="non-scaling-stroke"></path><path d="M 3 0 L 0 0 L 0 3 M 117 0 L 120 0 L 120 3 M 0 23 L 0 26 L 3 26 M 120 23 L 120 26 L 117 26" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.85" vector-effect="non-scaling-stroke"></path><circle cx="10" cy="13" r="2" fill="currentColor" fill-opacity="0.9" class="ris-micro-pulse"></circle><text stroke="none" x="18" y="10.5" fill="currentColor" font-size="7.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="0.8">[AIR: NOMINAL]</text><text stroke="none" x="18" y="20.5" fill="currentColor" fill-opacity="0.8" font-size="7" font-weight="600" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="0.4">RAD: 0.08 μSv/h</text></g></svg>
           </div>
           <div class="card-meta">
             <h3>
@@ -1394,8 +1262,8 @@
             <p>Central LiDAR boresight targeting frame framing physical equipment without obstruction, paired with biometric endurance telemetry and environmental radiation status.</p>
           </div>
           <div class="card-actions">
-            <button class="action-btn" onclick="copySvg('hud-field-ops')">[Copy SVG]</button>
-            <button class="action-btn" onclick="copyJsx('hud-field-ops')">[Copy JSX]</button>
+            <button class="ris-btn ris-btn--sm ris-btn--mono" onclick="copySvg('hud-field-ops')">[Copy SVG]</button>
+            <button class="ris-btn ris-btn--sm ris-btn--mono" onclick="copyJsx('hud-field-ops')">[Copy JSX]</button>
           </div>
           <!-- Hidden scripts for clipboard copy -->
           <script type="text/plain" id="svg-hud-field-ops"><svg color="var(--ris-green)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" fill="none" stroke="var(--ris-green)" stroke-width="1" shape-rendering="geometricPrecision" role="region" aria-label="Smart Glasses Heads Up Display" data-mode="field-ops" data-brand="biohub" data-optical-profile="phosphor-green" class="ris-eyewear-hud ris-eyewear-glass ris-eyewear-profile-phosphor" style="background:transparent; color: var(--ris-green); overflow:visible;">
@@ -1430,7 +1298,7 @@
       <circle cx="628" cy="348" r="1.5" fill="var(--ris-green)" fill-opacity="0.4" />
     </g>
     <g class="ris-hud-brand-tag" opacity="0.6">
-      <text x="320" y="12" text-anchor="middle" dominant-baseline="central" fill="var(--ris-green)" font-size="7.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="1.8">[ RIS // OPTIC-HUD // FIELD-OPS ]</text>
+      <text stroke="none" x="320" y="12" text-anchor="middle" dominant-baseline="central" fill="var(--ris-green)" font-size="7.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="1.8">[ RIS // OPTIC-HUD // FIELD-OPS ]</text>
     </g>
     <g transform="translate(240, 120)">
       <svg viewBox="0 0 160 120" width="160" height="120" fill="none" stroke="var(--ris-green)" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-label="Spatial Inspection: CONDUIT_COUPLER_04, DST 1.20M, status [LOCKED], SPEC-A9 // PRESSURE OK" data-status="locked" data-brand="biohub" data-optical-profile="phosphor-green" class="ris-micro-inspection ris-eyewear-glass ris-eyewear-profile-phosphor" style="color: var(--ris-green); background:transparent; overflow:visible;">
@@ -1517,8 +1385,8 @@
             <path d="M 5 0 L 115 0 L 120 5 L 120 21 L 115 26 L 5 26 L 0 21 L 0 5 Z" fill="none" stroke="var(--ris-green)" stroke-width="1" stroke-opacity="0.65" vector-effect="non-scaling-stroke" />
             <path d="M 3 0 L 0 0 L 0 3 M 117 0 L 120 0 L 120 3 M 0 23 L 0 26 L 3 26 M 120 23 L 120 26 L 117 26" fill="none" stroke="var(--ris-green)" stroke-width="1.25" stroke-opacity="0.85" vector-effect="non-scaling-stroke" />
             <circle cx="10" cy="13" r="2" fill="var(--ris-green)" fill-opacity="0.75" />
-            <text x="18" y="10.5" fill="var(--ris-green)" font-size="7.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="0.8">[AIR: NOMINAL]</text>
-            <text x="18" y="20.5" fill="var(--ris-green)" fill-opacity="0.8" font-size="7" font-weight="600" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="0.4">RAD: 0.08 μSv/h</text>
+            <text stroke="none" x="18" y="10.5" fill="var(--ris-green)" font-size="7.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="0.8">[AIR: NOMINAL]</text>
+            <text stroke="none" x="18" y="20.5" fill="var(--ris-green)" fill-opacity="0.8" font-size="7" font-weight="600" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="0.4">RAD: 0.08 μSv/h</text>
           </g>
 </svg>
 </script>
@@ -1533,10 +1401,10 @@
 
   <!-- Raw SVG templates for live HUD mode switching -->
   <div style="display: none;">
-    <div id="raw-hud-ambient"><svg viewBox="0 0 640 360" width="640" height="360" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="region" aria-label="Smart Glasses Heads Up Display" data-mode="ambient" data-brand="biohub" data-optical-profile="cyber-cyan" class="ris-eyewear-hud ris-eyewear-glass ris-eyewear-profile-cyan" style="background:transparent;color:var(--ris-cyan);overflow:visible"><title>Smart Glasses HUD - AMBIENT</title><g class="ris-hud-registration-ticks" stroke-opacity="0.6"><path d="M 12 24 L 12 16 L 16 12 L 24 12" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 12 L 624 12 L 628 16 L 628 24" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 12 336 L 12 344 L 16 348 L 24 348" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 348 L 624 348 L 628 344 L 628 336" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle></g><g class="ris-hud-brand-tag" opacity="0.6"><text x="320" y="12" text-anchor="middle" dominant-baseline="central" fill="currentColor" font-size="7.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="1.8">[ RIS // OPTIC-HUD // AMBIENT ]</text></g><g transform="translate(24, 20)" role="group" aria-label="Ambient Telemetry"><line x1="0" y1="2" x2="0" y2="28" stroke="currentColor" stroke-width="1.5" stroke-opacity="0.7" vector-effect="non-scaling-stroke"></line><circle cx="0" cy="2" r="1" fill="currentColor"></circle><circle cx="0" cy="28" r="1" fill="currentColor"></circle><text x="8" y="14" fill="currentColor" font-size="12" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="0.8">10:42 AM</text><text x="8" y="27" fill="currentColor" fill-opacity="0.75" font-size="8" font-weight="600" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="0.4">BAT 68% (~3.4H) · 5G [ONLINE]</text><circle cx="160" cy="24.5" r="2" fill="currentColor" fill-opacity="0.9" class="ris-micro-pulse"></circle></g></svg></div>
-    <div id="raw-hud-commute"><svg viewBox="0 0 640 360" width="640" height="360" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="region" aria-label="Smart Glasses Heads Up Display" data-mode="commute" data-brand="biohub" data-optical-profile="cyber-cyan" class="ris-eyewear-hud ris-eyewear-glass ris-eyewear-profile-cyan" style="background:transparent;color:var(--ris-cyan);overflow:visible"><title>Smart Glasses HUD - COMMUTE</title><g class="ris-hud-registration-ticks" stroke-opacity="0.6"><path d="M 12 24 L 12 16 L 16 12 L 24 12" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 12 L 624 12 L 628 16 L 628 24" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 12 336 L 12 344 L 16 348 L 24 348" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 348 L 624 348 L 628 344 L 628 336" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle></g><g class="ris-hud-brand-tag" opacity="0.6"><text x="320" y="12" text-anchor="middle" dominant-baseline="central" fill="currentColor" font-size="7.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="1.8">[ RIS // OPTIC-HUD // COMMUTE ]</text></g><g transform="translate(260, 20)" role="group" aria-label="Tactical Heading: 284° WNW"><path d="M 6 0 L 114 0 L 120 6 L 120 18 L 114 24 L 6 24 L 0 18 L 0 6 Z" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.7" vector-effect="non-scaling-stroke"></path><path d="M 3 0 L 0 0 L 0 3 M 117 0 L 120 0 L 120 3 M 0 21 L 0 24 L 3 24 M 120 21 L 120 24 L 117 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.9" vector-effect="non-scaling-stroke"></path><polygon points="20,7 24,17 20,15 16,17" fill="currentColor" fill-opacity="0.9"></polygon><text x="66" y="15.5" text-anchor="middle" fill="currentColor" font-size="9.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="1">[ 284° WNW ]</text><circle cx="108" cy="12" r="1.5" fill="currentColor" fill-opacity="0.6"></circle></g><g transform="translate(456, 20)"><svg viewBox="0 0 160 48" width="160" height="44" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-label="Navigation: slight right, IN 85M, CORSO VITTORIO, [ETA 08:45]" data-maneuver="slight-right" data-brand="biohub" data-optical-profile="cyber-cyan" class="ris-micro-nav ris-eyewear-glass ris-eyewear-profile-cyan" style="color:var(--ris-cyan);flex-shrink:0;overflow:visible"><title>Navigation: slight right, IN 85M, CORSO VITTORIO, [ETA 08:45]</title><path d="M 0 10 L 0 6 L 6 0 L 10 0" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><path d="M 150 0 L 154 0 L 160 6 L 160 10" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><path d="M 0 38 L 0 42 L 6 48 L 10 48" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><path d="M 150 48 L 154 48 L 160 42 L 160 38" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><line x1="80" y1="0" x2="80" y2="3" stroke="currentColor" stroke-width="1" stroke-opacity="0.35" vector-effect="non-scaling-stroke"></line><line x1="80" y1="45" x2="80" y2="48" stroke="currentColor" stroke-width="1" stroke-opacity="0.35" vector-effect="non-scaling-stroke"></line><line x1="44" y1="6" x2="44" y2="42" stroke="currentColor" stroke-width="1" stroke-opacity="0.3" vector-effect="non-scaling-stroke"></line><line x1="42" y1="12" x2="44" y2="12" stroke="currentColor" stroke-width="1" stroke-opacity="0.4" vector-effect="non-scaling-stroke"></line><line x1="41" y1="24" x2="44" y2="24" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></line><line x1="42" y1="36" x2="44" y2="36" stroke="currentColor" stroke-width="1" stroke-opacity="0.4" vector-effect="non-scaling-stroke"></line><g class="ris-micro-nav-glyph"><path d="M 15,37 L 21,37 M 18,37 L 18,25 L 29,14 M 21,14 L 29,14 L 29,22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" shape-rendering="geometricPrecision" vector-effect="non-scaling-stroke" class="ris-micro-pulse"></path></g><g class="ris-micro-nav-telemetry"><text x="52" y="16" font-size="13" font-weight="800" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.04em" fill="currentColor" stroke="none">IN 85M</text><text x="52" y="29" font-size="9.5" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.08em" fill="currentColor" stroke="none" opacity="0.9">CORSO VITTORIO</text><text x="52" y="42" font-size="8.5" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.06em" fill="currentColor" stroke="none" opacity="0.8">[ETA 08:45]</text><circle cx="152" cy="12" r="1.5" fill="currentColor" opacity="0.8" class="ris-micro-blink"></circle></g></svg></g></svg></div>
-    <div id="raw-hud-meeting"><svg viewBox="0 0 640 360" width="640" height="360" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="region" aria-label="Smart Glasses Heads Up Display" data-mode="meeting" data-brand="biohub" data-optical-profile="cyber-cyan" class="ris-eyewear-hud ris-eyewear-glass ris-eyewear-profile-cyan" style="background:transparent;color:var(--ris-cyan);overflow:visible"><title>Smart Glasses HUD - MEETING</title><g class="ris-hud-registration-ticks" stroke-opacity="0.6"><path d="M 12 24 L 12 16 L 16 12 L 24 12" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 12 L 624 12 L 628 16 L 628 24" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 12 336 L 12 344 L 16 348 L 24 348" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 348 L 624 348 L 628 344 L 628 336" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle></g><g class="ris-hud-brand-tag" opacity="0.6"><text x="320" y="12" text-anchor="middle" dominant-baseline="central" fill="currentColor" font-size="7.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="1.8">[ RIS // OPTIC-HUD // MEETING ]</text></g><g transform="translate(210, 20)"><svg viewBox="0 0 220 26" width="220" height="26" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-label="Notice [CALENDAR] NEXT: DESIGN SYNC: IN 10 MIN · CONF RM B (info)" data-category="CALENDAR" data-severity="info" data-brand="biohub" data-optical-profile="cyber-cyan" class="ris-micro-glance ris-eyewear-glass ris-eyewear-profile-cyan" style="color:var(--ris-cyan);background:transparent;flex-shrink:0;overflow:visible"><title>Notice [CALENDAR] NEXT: DESIGN SYNC: IN 10 MIN · CONF RM B (info)</title><defs><clipPath id=":Rm:"><rect x="76" y="2" width="128" height="22"></rect></clipPath></defs><path d="M 5 1 L 215 1 L 219 5 L 219 21 L 215 25 L 5 25 L 1 21 L 1 5 Z" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.8" vector-effect="non-scaling-stroke"></path><path d="M 1 8 L 1 4 L 4 1 L 8 1" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.9" vector-effect="non-scaling-stroke"></path><path d="M 212 1 L 216 1 L 219 4 L 219 8" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.9" vector-effect="non-scaling-stroke"></path><text x="8" y="17" font-size="8" font-weight="800" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.06em" fill="currentColor" stroke="none">[CALENDAR]</text><line x1="70" y1="6" x2="70" y2="20" stroke="currentColor" stroke-width="1" stroke-opacity="0.4" vector-effect="non-scaling-stroke"></line><g clip-path="url(#:Rm:)"><text x="78" y="17" font-size="9.5" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.04em" fill="currentColor" stroke="none">NEXT: DESIGN SYNC<tspan opacity="0.85" font-weight="600"> · IN 10 MIN · CONF RM B</tspan></text></g><circle cx="210" cy="13" r="1.5" fill="currentColor" stroke="none" opacity="0.75"></circle><line x1="6" y1="24.5" x2="214" y2="24.5" stroke="currentColor" stroke-width="1" stroke-opacity="0.2" vector-effect="non-scaling-stroke"></line><line x1="6" y1="24.5" x2="58" y2="24.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" vector-effect="non-scaling-stroke"></line></svg></g><g transform="translate(200, 296)"><svg viewBox="0 0 240 52" width="240" height="52" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-label="Live captions: FINALIZED TELEMETRY ARCHITECTURE MOVING REVIEWS TO Q3 TIMELINE" data-brand="biohub" data-optical-profile="cyber-cyan" data-listening="true" class="ris-micro-captions ris-eyewear-glass ris-eyewear-profile-cyan" style="color:var(--ris-cyan);flex-shrink:0;overflow:visible"><title>Live captions: FINALIZED TELEMETRY ARCHITECTURE MOVING REVIEWS TO Q3 TIMELINE</title><defs><clipPath id=":R16:"><rect x="14" y="16" width="206" height="32"></rect></clipPath></defs><g class="ris-micro-captions-status"><circle cx="14" cy="10" r="3" fill="currentColor" stroke="none" opacity="1" class="ris-micro-listen"></circle><text x="24" y="13" font-size="8" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.06em" fill="currentColor" stroke="none" opacity="0.9">[REC] ELENA ROSTOVA</text><line x1="222" y1="10" x2="228" y2="10" stroke="currentColor" stroke-width="1" stroke-opacity="0.5" vector-effect="non-scaling-stroke"></line><line x1="226" y1="7" x2="226" y2="13" stroke="currentColor" stroke-width="1" stroke-opacity="0.5" vector-effect="non-scaling-stroke"></line></g><g class="ris-micro-captions-wireframe"><path d="M 6,14 L 6,46 L 12,46" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><path d="M 234,14 L 234,46 L 228,46" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path></g><g class="ris-micro-captions-body" clip-path="url(#:R16:)"><text x="14" y="28" font-size="8.5" font-weight="600" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.02em" fill="currentColor" stroke="none">FINALIZED TELEMETRY ARCHITECTURE</text><text x="14" y="41" font-size="8.5" font-weight="600" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.02em" fill="currentColor" stroke="none" opacity="0.85">MOVING REVIEWS TO Q3 TIMELINE</text></g></svg></g></svg></div>
-    <div id="raw-hud-field-ops"><svg viewBox="0 0 640 360" width="640" height="360" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="region" aria-label="Smart Glasses Heads Up Display" data-mode="field-ops" data-brand="biohub" data-optical-profile="cyber-cyan" class="ris-eyewear-hud ris-eyewear-glass ris-eyewear-profile-cyan" style="background:transparent;color:var(--ris-cyan);overflow:visible"><title>Smart Glasses HUD - FIELD-OPS</title><g class="ris-hud-registration-ticks" stroke-opacity="0.6"><path d="M 12 24 L 12 16 L 16 12 L 24 12" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 12 L 624 12 L 628 16 L 628 24" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 12 336 L 12 344 L 16 348 L 24 348" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 348 L 624 348 L 628 344 L 628 336" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle></g><g class="ris-hud-brand-tag" opacity="0.6"><text x="320" y="12" text-anchor="middle" dominant-baseline="central" fill="currentColor" font-size="7.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="1.8">[ RIS // OPTIC-HUD // FIELD-OPS ]</text></g><g transform="translate(240, 120)"><svg viewBox="0 0 160 120" width="160" height="120" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-label="Spatial Inspection: CONDUIT_COUPLER_04, DST 1.40M, status [LOCKED], SPEC-A9 // PRESSURE OK" data-status="locked" data-brand="biohub" data-optical-profile="cyber-cyan" class="ris-micro-inspection ris-eyewear-glass ris-eyewear-profile-cyan" style="color:var(--ris-cyan);background:transparent;flex-shrink:0;overflow:visible"><title>Spatial Inspection: CONDUIT_COUPLER_04, DST 1.40M, status [LOCKED], SPEC-A9 // PRESSURE OK</title><defs><clipPath id=":Rn:"><rect x="18" y="105" width="124" height="15"></rect></clipPath></defs><g class="ris-micro-inspection-brackets" opacity="1"><path d="M 20 30 L 20 22 L 24 18 L 32 18" fill="none" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><path d="M 128 18 L 136 18 L 140 22 L 140 30" fill="none" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><path d="M 20 90 L 20 98 L 24 102 L 32 102" fill="none" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><path d="M 128 102 L 136 102 L 140 98 L 140 90" fill="none" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path></g><g class="ris-micro-boresight-ticks" opacity="0.75"><line x1="80" y1="14" x2="80" y2="17" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></line><line x1="80" y1="103" x2="80" y2="106" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></line><line x1="12" y1="60" x2="16" y2="60" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></line><line x1="144" y1="60" x2="148" y2="60" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></line></g><g class="ris-micro-range-ruler"><line x1="150" y1="24" x2="150" y2="96" stroke="currentColor" stroke-width="1" stroke-opacity="0.35" vector-effect="non-scaling-stroke"></line><line x1="148" y1="24" x2="153" y2="24" stroke="currentColor" stroke-width="1" stroke-opacity="0.7" vector-effect="non-scaling-stroke"></line><line x1="149" y1="42" x2="152" y2="42" stroke="currentColor" stroke-width="0.75" stroke-opacity="0.45" vector-effect="non-scaling-stroke"></line><line x1="148" y1="60" x2="153" y2="60" stroke="currentColor" stroke-width="1" stroke-opacity="0.7" vector-effect="non-scaling-stroke"></line><line x1="149" y1="78" x2="152" y2="78" stroke="currentColor" stroke-width="0.75" stroke-opacity="0.45" vector-effect="non-scaling-stroke"></line><line x1="148" y1="96" x2="153" y2="96" stroke="currentColor" stroke-width="1" stroke-opacity="0.7" vector-effect="non-scaling-stroke"></line><polygon points="155,84.5 150.5,87 155,89.5" fill="currentColor" stroke="none" opacity="0.9"></polygon></g><g class="ris-micro-inspection-chip-top"><text x="12" y="11" font-size="8.5" font-weight="800" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.04em" fill="currentColor" stroke="none">DST: 1.40M</text><text x="148" y="11" text-anchor="end" font-size="7.5" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.06em" fill="currentColor" stroke="none">[LOCKED]</text></g><g class="ris-micro-inspection-chip-bottom" clip-path="url(#:Rn:)"><text x="80" y="111" text-anchor="middle" font-size="7.5" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.04em" fill="currentColor" stroke="none">CONDUIT_COUPLER_04</text><text x="80" y="118" text-anchor="middle" font-size="6.5" font-weight="600" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.04em" fill="currentColor" stroke="none" opacity="0.8">SPEC-A9 // PRESSURE OK</text></g></svg></g><g transform="translate(24, 20)"><svg viewBox="0 0 160 48" width="160" height="48" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-label="Vital telemetry: 74 BPM, Zone 2, 142M ALT, Battery 88% (~4H 30M)" data-brand="biohub" data-optical-profile="cyber-cyan" data-hr-zone="2" data-animated="true" class="ris-micro-vital ris-eyewear-glass ris-eyewear-profile-cyan" style="color:var(--ris-cyan);flex-shrink:0;overflow:visible"><title>Vital telemetry: 74 BPM, Zone 2, 142M ALT, Battery 88% (~4H 30M)</title><path d="M 0 10 L 0 6 L 6 0 L 10 0" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><path d="M 150 0 L 154 0 L 160 6 L 160 10" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><path d="M 0 38 L 0 42 L 6 48 L 10 48" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><path d="M 150 48 L 154 48 L 160 42 L 160 38" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><line x1="82" y1="0" x2="82" y2="3" stroke="currentColor" stroke-width="1" stroke-opacity="0.35" vector-effect="non-scaling-stroke"></line><line x1="82" y1="45" x2="82" y2="48" stroke="currentColor" stroke-width="1" stroke-opacity="0.35" vector-effect="non-scaling-stroke"></line><g class="ris-micro-vital-divider"><line x1="82" y1="8" x2="82" y2="40" stroke="currentColor" stroke-width="1" stroke-opacity="0.35" vector-effect="non-scaling-stroke"></line><line x1="80" y1="16" x2="84" y2="16" stroke="currentColor" stroke-width="1" stroke-opacity="0.5" vector-effect="non-scaling-stroke"></line><line x1="80" y1="32" x2="84" y2="32" stroke="currentColor" stroke-width="1" stroke-opacity="0.5" vector-effect="non-scaling-stroke"></line></g><g class="ris-micro-vital-heart"><g class="ris-micro-pulse" style="transform-origin:11px 17px"><polygon points="9,11 13,11 17,15 17,19 13,23 9,23 5,19 5,15" fill="none" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke"></polygon><path d="M 7,17 L 9,17 L 10.5,14.5 L 11.5,19.5 L 12.5,16 L 13.5,17 L 15,17" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" vector-effect="non-scaling-stroke"></path></g><text x="21" y="21" font-size="13" font-weight="800" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.02em" fill="currentColor" stroke="none">74 BPM</text><text x="21" y="36" font-size="8.5" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.06em" fill="currentColor" stroke="none" opacity="0.85">[Z2]</text><g class="ris-micro-vital-zone-ticks" opacity="0.8"><rect x="45" y="30" width="4" height="6" fill="currentColor" fill-opacity="0.45" stroke="currentColor" stroke-width="0.75" stroke-opacity="0.9" vector-effect="non-scaling-stroke"></rect><rect x="51" y="30" width="4" height="6" fill="currentColor" fill-opacity="1" stroke="currentColor" stroke-width="0.75" stroke-opacity="0.9" vector-effect="non-scaling-stroke"></rect><rect x="57" y="30" width="4" height="6" fill="none" fill-opacity="0" stroke="currentColor" stroke-width="0.75" stroke-opacity="0.25" vector-effect="non-scaling-stroke"></rect><rect x="63" y="30" width="4" height="6" fill="none" fill-opacity="0" stroke="currentColor" stroke-width="0.75" stroke-opacity="0.25" vector-effect="non-scaling-stroke"></rect><rect x="69" y="30" width="4" height="6" fill="none" fill-opacity="0" stroke="currentColor" stroke-width="0.75" stroke-opacity="0.25" vector-effect="non-scaling-stroke"></rect></g></g><g class="ris-micro-vital-env"><text x="88" y="21" font-size="9.5" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.06em" fill="currentColor" stroke="none">142M ALT</text><g class="ris-micro-vital-battery"><rect x="88" y="29" width="4" height="7" fill="currentColor" fill-opacity="1" stroke="currentColor" stroke-width="1" stroke-opacity="1" shape-rendering="geometricPrecision" vector-effect="non-scaling-stroke"></rect><rect x="93.5" y="29" width="4" height="7" fill="currentColor" fill-opacity="1" stroke="currentColor" stroke-width="1" stroke-opacity="1" shape-rendering="geometricPrecision" vector-effect="non-scaling-stroke"></rect><rect x="99" y="29" width="4" height="7" fill="currentColor" fill-opacity="1" stroke="currentColor" stroke-width="1" stroke-opacity="1" shape-rendering="geometricPrecision" vector-effect="non-scaling-stroke"></rect><rect x="104.5" y="29" width="4" height="7" fill="currentColor" fill-opacity="1" stroke="currentColor" stroke-width="1" stroke-opacity="1" shape-rendering="geometricPrecision" vector-effect="non-scaling-stroke"></rect><text x="113" y="36" font-size="8.5" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.04em" fill="currentColor" stroke="none" opacity="0.9">~4H 30M</text></g></g></svg></g><g transform="translate(500, 20)" role="group" aria-label="Environmental Status: [AIR: NOMINAL] · RAD: 0.08 μSv/h"><title>[AIR: NOMINAL] · RAD: 0.08 μSv/h</title><path d="M 5 0 L 115 0 L 120 5 L 120 21 L 115 26 L 5 26 L 0 21 L 0 5 Z" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.65" vector-effect="non-scaling-stroke"></path><path d="M 3 0 L 0 0 L 0 3 M 117 0 L 120 0 L 120 3 M 0 23 L 0 26 L 3 26 M 120 23 L 120 26 L 117 26" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.85" vector-effect="non-scaling-stroke"></path><circle cx="10" cy="13" r="2" fill="currentColor" fill-opacity="0.9" class="ris-micro-pulse"></circle><text x="18" y="10.5" fill="currentColor" font-size="7.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="0.8">[AIR: NOMINAL]</text><text x="18" y="20.5" fill="currentColor" fill-opacity="0.8" font-size="7" font-weight="600" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="0.4">RAD: 0.08 μSv/h</text></g></svg></div>
+    <div id="raw-hud-ambient"><svg viewBox="0 0 640 360" width="640" height="360" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="region" aria-label="Smart Glasses Heads Up Display" data-mode="ambient" data-brand="biohub" data-optical-profile="cyber-cyan" class="ris-eyewear-hud ris-eyewear-glass ris-eyewear-profile-cyan" style="background:transparent;color:var(--ris-cyan);overflow:visible"><title>Smart Glasses HUD - AMBIENT</title><g class="ris-hud-registration-ticks" stroke-opacity="0.6"><path d="M 12 24 L 12 16 L 16 12 L 24 12" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 12 L 624 12 L 628 16 L 628 24" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 12 336 L 12 344 L 16 348 L 24 348" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 348 L 624 348 L 628 344 L 628 336" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle></g><g class="ris-hud-brand-tag" opacity="0.6"><text stroke="none" x="320" y="12" text-anchor="middle" dominant-baseline="central" fill="currentColor" font-size="7.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="1.8">[ RIS // OPTIC-HUD // AMBIENT ]</text></g><g transform="translate(24, 20)" role="group" aria-label="Ambient Telemetry"><line x1="0" y1="2" x2="0" y2="28" stroke="currentColor" stroke-width="1.5" stroke-opacity="0.7" vector-effect="non-scaling-stroke"></line><circle cx="0" cy="2" r="1" fill="currentColor"></circle><circle cx="0" cy="28" r="1" fill="currentColor"></circle><text stroke="none" x="8" y="14" fill="currentColor" font-size="12" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="0.8">10:42 AM</text><text stroke="none" x="8" y="27" fill="currentColor" fill-opacity="0.75" font-size="8" font-weight="600" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="0.4">BAT 68% (~3.4H) · 5G [ONLINE]</text><circle cx="160" cy="24.5" r="2" fill="currentColor" fill-opacity="0.9" class="ris-micro-pulse"></circle></g></svg></div>
+    <div id="raw-hud-commute"><svg viewBox="0 0 640 360" width="640" height="360" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="region" aria-label="Smart Glasses Heads Up Display" data-mode="commute" data-brand="biohub" data-optical-profile="cyber-cyan" class="ris-eyewear-hud ris-eyewear-glass ris-eyewear-profile-cyan" style="background:transparent;color:var(--ris-cyan);overflow:visible"><title>Smart Glasses HUD - COMMUTE</title><g class="ris-hud-registration-ticks" stroke-opacity="0.6"><path d="M 12 24 L 12 16 L 16 12 L 24 12" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 12 L 624 12 L 628 16 L 628 24" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 12 336 L 12 344 L 16 348 L 24 348" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 348 L 624 348 L 628 344 L 628 336" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle></g><g class="ris-hud-brand-tag" opacity="0.6"><text stroke="none" x="320" y="12" text-anchor="middle" dominant-baseline="central" fill="currentColor" font-size="7.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="1.8">[ RIS // OPTIC-HUD // COMMUTE ]</text></g><g transform="translate(260, 20)" role="group" aria-label="Tactical Heading: 284° WNW"><path d="M 6 0 L 114 0 L 120 6 L 120 18 L 114 24 L 6 24 L 0 18 L 0 6 Z" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.7" vector-effect="non-scaling-stroke"></path><path d="M 3 0 L 0 0 L 0 3 M 117 0 L 120 0 L 120 3 M 0 21 L 0 24 L 3 24 M 120 21 L 120 24 L 117 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.9" vector-effect="non-scaling-stroke"></path><polygon points="20,7 24,17 20,15 16,17" fill="currentColor" fill-opacity="0.9"></polygon><text stroke="none" x="66" y="15.5" text-anchor="middle" fill="currentColor" font-size="9.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="1">[ 284° WNW ]</text><circle cx="108" cy="12" r="1.5" fill="currentColor" fill-opacity="0.6"></circle></g><g transform="translate(456, 20)"><svg viewBox="0 0 160 48" width="160" height="44" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-label="Navigation: slight right, IN 85M, CORSO VITTORIO, [ETA 08:45]" data-maneuver="slight-right" data-brand="biohub" data-optical-profile="cyber-cyan" class="ris-micro-nav ris-eyewear-glass ris-eyewear-profile-cyan" style="color:var(--ris-cyan);flex-shrink:0;overflow:visible"><title>Navigation: slight right, IN 85M, CORSO VITTORIO, [ETA 08:45]</title><path d="M 0 10 L 0 6 L 6 0 L 10 0" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><path d="M 150 0 L 154 0 L 160 6 L 160 10" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><path d="M 0 38 L 0 42 L 6 48 L 10 48" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><path d="M 150 48 L 154 48 L 160 42 L 160 38" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><line x1="80" y1="0" x2="80" y2="3" stroke="currentColor" stroke-width="1" stroke-opacity="0.35" vector-effect="non-scaling-stroke"></line><line x1="80" y1="45" x2="80" y2="48" stroke="currentColor" stroke-width="1" stroke-opacity="0.35" vector-effect="non-scaling-stroke"></line><line x1="44" y1="6" x2="44" y2="42" stroke="currentColor" stroke-width="1" stroke-opacity="0.3" vector-effect="non-scaling-stroke"></line><line x1="42" y1="12" x2="44" y2="12" stroke="currentColor" stroke-width="1" stroke-opacity="0.4" vector-effect="non-scaling-stroke"></line><line x1="41" y1="24" x2="44" y2="24" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></line><line x1="42" y1="36" x2="44" y2="36" stroke="currentColor" stroke-width="1" stroke-opacity="0.4" vector-effect="non-scaling-stroke"></line><g class="ris-micro-nav-glyph"><path d="M 15,37 L 21,37 M 18,37 L 18,25 L 29,14 M 21,14 L 29,14 L 29,22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" shape-rendering="geometricPrecision" vector-effect="non-scaling-stroke" class="ris-micro-pulse"></path></g><g class="ris-micro-nav-telemetry"><text x="52" y="16" font-size="13" font-weight="800" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.04em" fill="currentColor" stroke="none">IN 85M</text><text x="52" y="29" font-size="9.5" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.08em" fill="currentColor" stroke="none" opacity="0.9">CORSO VITTORIO</text><text x="52" y="42" font-size="8.5" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.06em" fill="currentColor" stroke="none" opacity="0.8">[ETA 08:45]</text><circle cx="152" cy="12" r="1.5" fill="currentColor" opacity="0.8" class="ris-micro-blink"></circle></g></svg></g></svg></div>
+    <div id="raw-hud-meeting"><svg viewBox="0 0 640 360" width="640" height="360" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="region" aria-label="Smart Glasses Heads Up Display" data-mode="meeting" data-brand="biohub" data-optical-profile="cyber-cyan" class="ris-eyewear-hud ris-eyewear-glass ris-eyewear-profile-cyan" style="background:transparent;color:var(--ris-cyan);overflow:visible"><title>Smart Glasses HUD - MEETING</title><g class="ris-hud-registration-ticks" stroke-opacity="0.6"><path d="M 12 24 L 12 16 L 16 12 L 24 12" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 12 L 624 12 L 628 16 L 628 24" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 12 336 L 12 344 L 16 348 L 24 348" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 348 L 624 348 L 628 344 L 628 336" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle></g><g class="ris-hud-brand-tag" opacity="0.6"><text stroke="none" x="320" y="12" text-anchor="middle" dominant-baseline="central" fill="currentColor" font-size="7.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="1.8">[ RIS // OPTIC-HUD // MEETING ]</text></g><g transform="translate(210, 20)"><svg viewBox="0 0 220 26" width="220" height="26" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-label="Notice [CALENDAR] NEXT: DESIGN SYNC: IN 10 MIN · CONF RM B (info)" data-category="CALENDAR" data-severity="info" data-brand="biohub" data-optical-profile="cyber-cyan" class="ris-micro-glance ris-eyewear-glass ris-eyewear-profile-cyan" style="color:var(--ris-cyan);background:transparent;flex-shrink:0;overflow:visible"><title>Notice [CALENDAR] NEXT: DESIGN SYNC: IN 10 MIN · CONF RM B (info)</title><defs><clipPath id=":Rm:"><rect x="76" y="2" width="128" height="22"></rect></clipPath></defs><path d="M 5 1 L 215 1 L 219 5 L 219 21 L 215 25 L 5 25 L 1 21 L 1 5 Z" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.8" vector-effect="non-scaling-stroke"></path><path d="M 1 8 L 1 4 L 4 1 L 8 1" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.9" vector-effect="non-scaling-stroke"></path><path d="M 212 1 L 216 1 L 219 4 L 219 8" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.9" vector-effect="non-scaling-stroke"></path><text x="8" y="17" font-size="8" font-weight="800" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.06em" fill="currentColor" stroke="none">[CALENDAR]</text><line x1="70" y1="6" x2="70" y2="20" stroke="currentColor" stroke-width="1" stroke-opacity="0.4" vector-effect="non-scaling-stroke"></line><g clip-path="url(#:Rm:)"><text x="78" y="17" font-size="9.5" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.04em" fill="currentColor" stroke="none">NEXT: DESIGN SYNC<tspan opacity="0.85" font-weight="600"> · IN 10 MIN · CONF RM B</tspan></text></g><circle cx="210" cy="13" r="1.5" fill="currentColor" stroke="none" opacity="0.75"></circle><line x1="6" y1="24.5" x2="214" y2="24.5" stroke="currentColor" stroke-width="1" stroke-opacity="0.2" vector-effect="non-scaling-stroke"></line><line x1="6" y1="24.5" x2="58" y2="24.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" vector-effect="non-scaling-stroke"></line></svg></g><g transform="translate(200, 296)"><svg viewBox="0 0 240 52" width="240" height="52" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-label="Live captions: FINALIZED TELEMETRY ARCHITECTURE MOVING REVIEWS TO Q3 TIMELINE" data-brand="biohub" data-optical-profile="cyber-cyan" data-listening="true" class="ris-micro-captions ris-eyewear-glass ris-eyewear-profile-cyan" style="color:var(--ris-cyan);flex-shrink:0;overflow:visible"><title>Live captions: FINALIZED TELEMETRY ARCHITECTURE MOVING REVIEWS TO Q3 TIMELINE</title><defs><clipPath id=":R16:"><rect x="14" y="16" width="206" height="32"></rect></clipPath></defs><g class="ris-micro-captions-status"><circle cx="14" cy="10" r="3" fill="currentColor" stroke="none" opacity="1" class="ris-micro-listen"></circle><text x="24" y="13" font-size="8" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.06em" fill="currentColor" stroke="none" opacity="0.9">[REC] ELENA ROSTOVA</text><line x1="222" y1="10" x2="228" y2="10" stroke="currentColor" stroke-width="1" stroke-opacity="0.5" vector-effect="non-scaling-stroke"></line><line x1="226" y1="7" x2="226" y2="13" stroke="currentColor" stroke-width="1" stroke-opacity="0.5" vector-effect="non-scaling-stroke"></line></g><g class="ris-micro-captions-wireframe"><path d="M 6,14 L 6,46 L 12,46" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><path d="M 234,14 L 234,46 L 228,46" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path></g><g class="ris-micro-captions-body" clip-path="url(#:R16:)"><text x="14" y="28" font-size="8.5" font-weight="600" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.02em" fill="currentColor" stroke="none">FINALIZED TELEMETRY ARCHITECTURE</text><text x="14" y="41" font-size="8.5" font-weight="600" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.02em" fill="currentColor" stroke="none" opacity="0.85">MOVING REVIEWS TO Q3 TIMELINE</text></g></svg></g></svg></div>
+    <div id="raw-hud-field-ops"><svg viewBox="0 0 640 360" width="640" height="360" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="region" aria-label="Smart Glasses Heads Up Display" data-mode="field-ops" data-brand="biohub" data-optical-profile="cyber-cyan" class="ris-eyewear-hud ris-eyewear-glass ris-eyewear-profile-cyan" style="background:transparent;color:var(--ris-cyan);overflow:visible"><title>Smart Glasses HUD - FIELD-OPS</title><g class="ris-hud-registration-ticks" stroke-opacity="0.6"><path d="M 12 24 L 12 16 L 16 12 L 24 12" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 12 L 624 12 L 628 16 L 628 24" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="12" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 12 336 L 12 344 L 16 348 L 24 348" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="12" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle><path d="M 616 348 L 624 348 L 628 344 L 628 336" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><circle cx="628" cy="348" r="1.5" fill="currentColor" fill-opacity="0.4"></circle></g><g class="ris-hud-brand-tag" opacity="0.6"><text stroke="none" x="320" y="12" text-anchor="middle" dominant-baseline="central" fill="currentColor" font-size="7.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="1.8">[ RIS // OPTIC-HUD // FIELD-OPS ]</text></g><g transform="translate(240, 120)"><svg viewBox="0 0 160 120" width="160" height="120" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-label="Spatial Inspection: CONDUIT_COUPLER_04, DST 1.40M, status [LOCKED], SPEC-A9 // PRESSURE OK" data-status="locked" data-brand="biohub" data-optical-profile="cyber-cyan" class="ris-micro-inspection ris-eyewear-glass ris-eyewear-profile-cyan" style="color:var(--ris-cyan);background:transparent;flex-shrink:0;overflow:visible"><title>Spatial Inspection: CONDUIT_COUPLER_04, DST 1.40M, status [LOCKED], SPEC-A9 // PRESSURE OK</title><defs><clipPath id=":Rn:"><rect x="18" y="105" width="124" height="15"></rect></clipPath></defs><g class="ris-micro-inspection-brackets" opacity="1"><path d="M 20 30 L 20 22 L 24 18 L 32 18" fill="none" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><path d="M 128 18 L 136 18 L 140 22 L 140 30" fill="none" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><path d="M 20 90 L 20 98 L 24 102 L 32 102" fill="none" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path><path d="M 128 102 L 136 102 L 140 98 L 140 90" fill="none" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></path></g><g class="ris-micro-boresight-ticks" opacity="0.75"><line x1="80" y1="14" x2="80" y2="17" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></line><line x1="80" y1="103" x2="80" y2="106" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></line><line x1="12" y1="60" x2="16" y2="60" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></line><line x1="144" y1="60" x2="148" y2="60" stroke="currentColor" stroke-width="1.25" vector-effect="non-scaling-stroke"></line></g><g class="ris-micro-range-ruler"><line x1="150" y1="24" x2="150" y2="96" stroke="currentColor" stroke-width="1" stroke-opacity="0.35" vector-effect="non-scaling-stroke"></line><line x1="148" y1="24" x2="153" y2="24" stroke="currentColor" stroke-width="1" stroke-opacity="0.7" vector-effect="non-scaling-stroke"></line><line x1="149" y1="42" x2="152" y2="42" stroke="currentColor" stroke-width="0.75" stroke-opacity="0.45" vector-effect="non-scaling-stroke"></line><line x1="148" y1="60" x2="153" y2="60" stroke="currentColor" stroke-width="1" stroke-opacity="0.7" vector-effect="non-scaling-stroke"></line><line x1="149" y1="78" x2="152" y2="78" stroke="currentColor" stroke-width="0.75" stroke-opacity="0.45" vector-effect="non-scaling-stroke"></line><line x1="148" y1="96" x2="153" y2="96" stroke="currentColor" stroke-width="1" stroke-opacity="0.7" vector-effect="non-scaling-stroke"></line><polygon points="155,84.5 150.5,87 155,89.5" fill="currentColor" stroke="none" opacity="0.9"></polygon></g><g class="ris-micro-inspection-chip-top"><text x="12" y="11" font-size="8.5" font-weight="800" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.04em" fill="currentColor" stroke="none">DST: 1.40M</text><text x="148" y="11" text-anchor="end" font-size="7.5" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.06em" fill="currentColor" stroke="none">[LOCKED]</text></g><g class="ris-micro-inspection-chip-bottom" clip-path="url(#:Rn:)"><text x="80" y="111" text-anchor="middle" font-size="7.5" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.04em" fill="currentColor" stroke="none">CONDUIT_COUPLER_04</text><text x="80" y="118" text-anchor="middle" font-size="6.5" font-weight="600" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.04em" fill="currentColor" stroke="none" opacity="0.8">SPEC-A9 // PRESSURE OK</text></g></svg></g><g transform="translate(24, 20)"><svg viewBox="0 0 160 48" width="160" height="48" fill="none" stroke="currentColor" stroke-width="1" shape-rendering="geometricPrecision" role="img" aria-label="Vital telemetry: 74 BPM, Zone 2, 142M ALT, Battery 88% (~4H 30M)" data-brand="biohub" data-optical-profile="cyber-cyan" data-hr-zone="2" data-animated="true" class="ris-micro-vital ris-eyewear-glass ris-eyewear-profile-cyan" style="color:var(--ris-cyan);flex-shrink:0;overflow:visible"><title>Vital telemetry: 74 BPM, Zone 2, 142M ALT, Battery 88% (~4H 30M)</title><path d="M 0 10 L 0 6 L 6 0 L 10 0" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><path d="M 150 0 L 154 0 L 160 6 L 160 10" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><path d="M 0 38 L 0 42 L 6 48 L 10 48" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><path d="M 150 48 L 154 48 L 160 42 L 160 38" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.6" vector-effect="non-scaling-stroke"></path><line x1="82" y1="0" x2="82" y2="3" stroke="currentColor" stroke-width="1" stroke-opacity="0.35" vector-effect="non-scaling-stroke"></line><line x1="82" y1="45" x2="82" y2="48" stroke="currentColor" stroke-width="1" stroke-opacity="0.35" vector-effect="non-scaling-stroke"></line><g class="ris-micro-vital-divider"><line x1="82" y1="8" x2="82" y2="40" stroke="currentColor" stroke-width="1" stroke-opacity="0.35" vector-effect="non-scaling-stroke"></line><line x1="80" y1="16" x2="84" y2="16" stroke="currentColor" stroke-width="1" stroke-opacity="0.5" vector-effect="non-scaling-stroke"></line><line x1="80" y1="32" x2="84" y2="32" stroke="currentColor" stroke-width="1" stroke-opacity="0.5" vector-effect="non-scaling-stroke"></line></g><g class="ris-micro-vital-heart"><g class="ris-micro-pulse" style="transform-origin:11px 17px"><polygon points="9,11 13,11 17,15 17,19 13,23 9,23 5,19 5,15" fill="none" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke"></polygon><path d="M 7,17 L 9,17 L 10.5,14.5 L 11.5,19.5 L 12.5,16 L 13.5,17 L 15,17" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" vector-effect="non-scaling-stroke"></path></g><text x="21" y="21" font-size="13" font-weight="800" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.02em" fill="currentColor" stroke="none">74 BPM</text><text x="21" y="36" font-size="8.5" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.06em" fill="currentColor" stroke="none" opacity="0.85">[Z2]</text><g class="ris-micro-vital-zone-ticks" opacity="0.8"><rect x="45" y="30" width="4" height="6" fill="currentColor" fill-opacity="0.45" stroke="currentColor" stroke-width="0.75" stroke-opacity="0.9" vector-effect="non-scaling-stroke"></rect><rect x="51" y="30" width="4" height="6" fill="currentColor" fill-opacity="1" stroke="currentColor" stroke-width="0.75" stroke-opacity="0.9" vector-effect="non-scaling-stroke"></rect><rect x="57" y="30" width="4" height="6" fill="none" fill-opacity="0" stroke="currentColor" stroke-width="0.75" stroke-opacity="0.25" vector-effect="non-scaling-stroke"></rect><rect x="63" y="30" width="4" height="6" fill="none" fill-opacity="0" stroke="currentColor" stroke-width="0.75" stroke-opacity="0.25" vector-effect="non-scaling-stroke"></rect><rect x="69" y="30" width="4" height="6" fill="none" fill-opacity="0" stroke="currentColor" stroke-width="0.75" stroke-opacity="0.25" vector-effect="non-scaling-stroke"></rect></g></g><g class="ris-micro-vital-env"><text x="88" y="21" font-size="9.5" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.06em" fill="currentColor" stroke="none">142M ALT</text><g class="ris-micro-vital-battery"><rect x="88" y="29" width="4" height="7" fill="currentColor" fill-opacity="1" stroke="currentColor" stroke-width="1" stroke-opacity="1" shape-rendering="geometricPrecision" vector-effect="non-scaling-stroke"></rect><rect x="93.5" y="29" width="4" height="7" fill="currentColor" fill-opacity="1" stroke="currentColor" stroke-width="1" stroke-opacity="1" shape-rendering="geometricPrecision" vector-effect="non-scaling-stroke"></rect><rect x="99" y="29" width="4" height="7" fill="currentColor" fill-opacity="1" stroke="currentColor" stroke-width="1" stroke-opacity="1" shape-rendering="geometricPrecision" vector-effect="non-scaling-stroke"></rect><rect x="104.5" y="29" width="4" height="7" fill="currentColor" fill-opacity="1" stroke="currentColor" stroke-width="1" stroke-opacity="1" shape-rendering="geometricPrecision" vector-effect="non-scaling-stroke"></rect><text x="113" y="36" font-size="8.5" font-weight="700" font-family="var(--ris-font-mono, monospace)" letter-spacing="0.04em" fill="currentColor" stroke="none" opacity="0.9">~4H 30M</text></g></g></svg></g><g transform="translate(500, 20)" role="group" aria-label="Environmental Status: [AIR: NOMINAL] · RAD: 0.08 μSv/h"><title>[AIR: NOMINAL] · RAD: 0.08 μSv/h</title><path d="M 5 0 L 115 0 L 120 5 L 120 21 L 115 26 L 5 26 L 0 21 L 0 5 Z" fill="none" stroke="currentColor" stroke-width="1" stroke-opacity="0.65" vector-effect="non-scaling-stroke"></path><path d="M 3 0 L 0 0 L 0 3 M 117 0 L 120 0 L 120 3 M 0 23 L 0 26 L 3 26 M 120 23 L 120 26 L 117 26" fill="none" stroke="currentColor" stroke-width="1.25" stroke-opacity="0.85" vector-effect="non-scaling-stroke"></path><circle cx="10" cy="13" r="2" fill="currentColor" fill-opacity="0.9" class="ris-micro-pulse"></circle><text stroke="none" x="18" y="10.5" fill="currentColor" font-size="7.5" font-weight="700" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="0.8">[AIR: NOMINAL]</text><text stroke="none" x="18" y="20.5" fill="currentColor" fill-opacity="0.8" font-size="7" font-weight="600" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" letter-spacing="0.4">RAD: 0.08 μSv/h</text></g></svg></div>
   </div>
 
   <script>
@@ -1547,7 +1415,10 @@
     let currentMode = 'ambient';
     let currentOpticalProfile = 'cyber-cyan';
     let currentBrand = 'biohub';
-    let currentMotion = 'live';
+
+    const HUD_MODES = ['ambient', 'commute', 'meeting', 'field-ops'];
+    let hudModeIndex = 0;
+    let captionIndex = 0;
 
     const CAPTION_PRESETS = [
       {
@@ -1596,7 +1467,7 @@
     }
 
     function promptCustomImageUrl() {
-      const url = prompt("Incolla l'URL dell'immagine di sfondo (HTTPS):", "https://");
+      const url = prompt("Paste the background image URL (HTTPS):", "https://");
       if (!url || url.trim() === '' || url === 'https://') return;
       applyCustomBgImage(url.trim(), 'Custom URL');
     }
@@ -1670,6 +1541,23 @@
       initLensDragAndDrop();
     }
 
+    // Keep the control panel column capped to the lens viewport's own height
+    // (instead of a fixed viewport-relative value) so it never trails far
+    // below the 16:9 preview; overflow scrolls internally past that height.
+    function syncControlPanelHeight() {
+      const lens = document.getElementById('lens-container');
+      const panel = document.querySelector('.control-panel');
+      if (!lens || !panel || typeof ResizeObserver === 'undefined') return;
+      const desktopQuery = window.matchMedia('(min-width: 1081px)');
+      const apply = () => {
+        panel.style.setProperty('--panel-h', desktopQuery.matches ? lens.offsetHeight + 'px' : '');
+      };
+      new ResizeObserver(apply).observe(lens);
+      desktopQuery.addEventListener('change', apply);
+      apply();
+    }
+    syncControlPanelHeight();
+
     // Fallback clipboard copying for non-HTTPS or denied permissions
     function fallbackCopy(text) {
       const textArea = document.createElement('textarea');
@@ -1687,34 +1575,44 @@
     }
 
     // 2. HUD Mode Switcher
-    function setHudMode(mode, btn) {
+    function setHudMode(mode) {
       currentMode = mode;
       const rawEl = document.getElementById('raw-hud-' + mode);
       const hudContainer = document.getElementById('lens-hud');
       if (rawEl && hudContainer) {
         hudContainer.innerHTML = rawEl.innerHTML;
         applyCurrentOpticalProfile();
-
-        // Re-apply current scrubbed states to the new HUD mode
-        const navSlider = document.getElementById('nav-dist-slider');
-        if (navSlider) updateNavDistance(navSlider.value);
-
-        const lidarSlider = document.getElementById('lidar-dist-slider');
-        if (lidarSlider) updateLidarDistance(lidarSlider.value);
-
-        const activeCaption = document.querySelector('button[onclick^="setCaptionPreset"].active');
-        if (activeCaption) {
-          const match = activeCaption.getAttribute('onclick').match(/(d+)/);
-          if (match) setCaptionPreset(parseInt(match[1], 10));
-        }
+        setCaptionPreset(captionIndex);
       }
 
-      if (btn) {
-        btn.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-      }
-      showHudToast('HUD mode set to [' + mode.toUpperCase() + ']');
+      const label = document.getElementById('hud-mode-val');
+      if (label) label.textContent = mode.replace('-', ' ').replace(/\b\w/g, c => c.toUpperCase());
     }
+
+    // Auto-cycles HUD Operational Mode + Live Transcription Preset with no
+    // manual controls: a slow dwell (7s) plus an opacity crossfade instead of
+    // an instant content swap, so the rotation reads as calm, not jarring.
+    // Halts under prefers-reduced-motion (freezes on the initial Ambient mode).
+    function advanceHudDemo() {
+      hudModeIndex = (hudModeIndex + 1) % HUD_MODES.length;
+      const mode = HUD_MODES[hudModeIndex];
+      if (mode === 'meeting') {
+        captionIndex = (captionIndex + 1) % CAPTION_PRESETS.length;
+      }
+      const hudContainer = document.getElementById('lens-hud');
+      if (!hudContainer) return;
+      hudContainer.style.opacity = '0';
+      setTimeout(() => {
+        setHudMode(mode);
+        hudContainer.style.opacity = '1';
+      }, 200);
+    }
+
+    function startHudDemoRotation() {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      setInterval(advanceHudDemo, 7000);
+    }
+    startHudDemoRotation();
 
     // 3. Optical Profile Switcher
     function setOpticalProfile(profile, btn) {
@@ -1768,31 +1666,10 @@
       });
     }
 
-    // 4. Live Scrubber: Navigation Distance
-    function updateNavDistance(val) {
-      const distNum = parseInt(val, 10);
-      const label = document.getElementById('nav-dist-val');
-      if (label) label.textContent = distNum + 'M';
-
-      const formatted = distNum < 999.5
-        ? 'IN ' + distNum + 'M'
-        : 'IN ' + (distNum / 1000).toFixed(1) + 'KM';
-
-      document.querySelectorAll('.ris-micro-nav').forEach(nav => {
-        const textDist = nav.querySelector('text[letter-spacing="0.04em"]');
-        if (textDist) textDist.textContent = formatted;
-      });
-    }
-
-    // 5. Live Scrubber: Transcription Preset
-    function setCaptionPreset(index, btn) {
+    // Transcription Preset: driven by advanceHudDemo, no manual controls
+    function setCaptionPreset(index) {
       const preset = CAPTION_PRESETS[index];
       if (!preset) return;
-
-      if (btn) {
-        btn.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-      }
 
       document.querySelectorAll('.ris-micro-captions').forEach(svgEl => {
         const texts = svgEl.querySelectorAll('text');
@@ -1804,42 +1681,6 @@
           texts[2].textContent = preset.line2.slice(0, 34).toUpperCase();
         }
       });
-
-      showHudToast('Transcription preset applied');
-    }
-
-    // 6. Live Scrubber: LiDAR Range
-    function updateLidarDistance(val) {
-      const dist = parseFloat(val);
-      const label = document.getElementById('lidar-dist-val');
-      if (label) label.textContent = dist.toFixed(2) + 'M';
-
-      const clampedDist = Math.max(0.2, Math.min(10.0, dist));
-      const distRatio = (clampedDist - 0.2) / (10.0 - 0.2);
-      const pipY = Math.round(96 - distRatio * 72);
-
-      document.querySelectorAll('.ris-micro-inspection').forEach(svgEl => {
-        const distText = svgEl.querySelector('.ris-micro-inspection-chip-top text:first-child') ||
-                         svgEl.querySelector('text[x="12"]');
-        if (distText) distText.textContent = 'DST: ' + dist.toFixed(2) + 'M';
-
-        const pip = svgEl.querySelector('polygon');
-        if (pip) {
-          pip.setAttribute('points', '155,' + (pipY - 2.5) + ' 150.5,' + pipY + ' 155,' + (pipY + 2.5));
-        }
-      });
-    }
-
-    // 7. Motion Simulation Toggle
-    function setMotionMode(mode, btn) {
-      currentMotion = mode;
-      document.documentElement.setAttribute('data-motion', mode);
-
-      if (btn) {
-        btn.parentElement.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-      }
-      showHudToast('Motion engine: ' + mode.toUpperCase());
     }
 
     // 8. Global Chrome Controls & State Persistence
@@ -1855,21 +1696,12 @@
       const next = current === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
       const btn = document.getElementById('theme');
-      if (btn) btn.setAttribute('aria-pressed', String(next === 'light'));
+      if (btn) {
+        btn.setAttribute('aria-pressed', String(next === 'light'));
+        btn.textContent = next === 'light' ? '◐ LIGHT' : '◐ DARK';
+      }
       try { localStorage.setItem('ris-theme', next); } catch (_) {}
       showHudToast('Theme set to ' + next.toUpperCase());
-    }
-
-    function toggleGlobalSkin() {
-      const on = document.documentElement.dataset.skin !== 'cyber';
-      if (on) document.documentElement.dataset.skin = 'cyber'; else delete document.documentElement.dataset.skin;
-      const btn = document.getElementById('skin');
-      if (btn) {
-        btn.setAttribute('aria-pressed', String(on));
-        btn.textContent = on ? '▞ Skin' : '▟ Skin: Off';
-      }
-      try { localStorage.setItem('ris-skin', on ? 'cyber' : 'off'); } catch (_) {}
-      showHudToast('Skin: ' + (on ? 'CYBER' : 'OFF'));
     }
 
     // Backwards-compatible aliases
@@ -1896,18 +1728,14 @@
         if (t) {
           document.documentElement.setAttribute('data-theme', t);
           const themeBtn = document.getElementById('theme');
-          if (themeBtn) themeBtn.setAttribute('aria-pressed', String(t === 'light'));
+          if (themeBtn) {
+            themeBtn.setAttribute('aria-pressed', String(t === 'light'));
+            themeBtn.textContent = t === 'light' ? '◐ LIGHT' : '◐ DARK';
+          }
         }
         const s = localStorage.getItem('ris-skin');
-        if (s === 'off') {
-          delete document.documentElement.dataset.skin;
-          const skinBtn = document.getElementById('skin');
-          if (skinBtn) { skinBtn.setAttribute('aria-pressed', 'false'); skinBtn.textContent = '▟ Skin: Off'; }
-        } else if (s === 'cyber') {
-          document.documentElement.dataset.skin = 'cyber';
-          const skinBtn = document.getElementById('skin');
-          if (skinBtn) { skinBtn.setAttribute('aria-pressed', 'true'); skinBtn.textContent = '▞ Skin'; }
-        }
+        if (s === 'off') delete document.documentElement.dataset.skin;
+        else if (s === 'cyber') document.documentElement.dataset.skin = 'cyber';
       } catch (_) {}
     })();
 
